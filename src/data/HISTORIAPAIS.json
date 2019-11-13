@@ -1,0 +1,121 @@
+{
+  "HISTORIAPAIS":
+  {"type":"FeatureCollection", "features": 
+      
+  
+[
+    {
+      "eleccion": 2006,
+      "registro": 15657265,
+      "votos": 11708857,
+      "nulos": 159297,
+      "abstencion": 3948408,
+      "unidad": 4250317,
+      "oficialismo": 7270796,
+      "ppt": 0,
+      "otros": 28447
+    },
+    {
+      "eleccion": 2007,
+      "registro": 15911656,
+      "votos": 9754146,
+      "nulos": 125965,
+      "abstencion": 6157510,
+      "unidad": 4842890,
+      "oficialismo": 4780853,
+      "ppt": 0,
+      "otros": 0
+    },
+    {
+      "eleccion": 2008,
+      "registro": 16887734,
+      "votos": 10596920,
+      "nulos": 0,
+      "abstencion": 6290814,
+      "unidad": 4747615,
+      "oficialismo": 5576627,
+      "ppt": 272678,
+      "otros": 0
+    },
+    {
+      "eleccion": 2009,
+      "registro": 16652131,
+      "votos": 11710740,
+      "nulos": 206419,
+      "abstencion": 4941391,
+      "unidad": 5193839,
+      "oficialismo": 6310482,
+      "ppt": 0,
+      "otros": 0
+    },
+    {
+      "eleccion": 2010,
+      "registro": 17458392,
+      "votos": 11596191,
+      "nulos": 287090,
+      "abstencion": 5862201,
+      "unidad": 5334305,
+      "oficialismo": 5451382,
+      "ppt": 354677,
+      "otros": 168737
+    },
+    {
+      "eleccion": 201201,
+      "registro": 18798178,
+      "votos": 15136476,
+      "nulos": 287413,
+      "abstencion": 3661702,
+      "unidad": 6549028,
+      "oficialismo": 8210349,
+      "ppt": 0,
+      "otros": 89686
+    },
+    {
+      "eleccion": 201202,
+      "registro": 17390189,
+      "votos": 9228528,
+      "nulos": 316753,
+      "abstencion": 8161661,
+      "unidad": 3702788,
+      "oficialismo": 4834851,
+      "ppt": 0,
+      "otros": 372880
+    },
+    {
+      "eleccion": 201301,
+      "registro": 18796831,
+      "votos": 14995467,
+      "nulos": 62707,
+      "abstencion": 3801364,
+      "unidad": 7307633,
+      "oficialismo": 7582162,
+      "ppt": 0,
+      "otros": 42965
+    },
+    {
+      "eleccion": 201302,
+      "registro": 19066431,
+      "votos": 11215365,
+      "nulos": 416127,
+      "abstencion": 7822547,
+      "unidad": 4397297,
+      "oficialismo": 5265930,
+      "ppt": 0,
+      "otros": 1135962
+    },
+    {
+      "eleccion": 201501,
+      "registro": 19472918,
+      "votos": 14435522,
+      "nulos": 686905,
+      "abstencion": 5037396,
+      "unidad": 7728025,
+      "oficialismo": 5622785,
+      "ppt": 0,
+      "otros": 397873
+    }
+  ]
+  }}
+   
+
+  

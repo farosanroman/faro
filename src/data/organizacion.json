@@ -1,0 +1,45 @@
+{
+    "organizacion":
+    [
+      {
+        "id": 0,
+        "nombre": "AD",
+        "descripcion": "Accion Democratica",
+        "selected": true
+      },
+      {
+        "id": 1,
+        "nombre": "VPA",
+        "descripcion": "Voluntad Popular",
+        "selected": true
+      },
+      {
+        "id":2,
+        "nombre": "UNTC",
+        "descripcion": "Un Nuevo Tiempo",
+        "selected": true
+      }
+      ,
+      
+      {
+        "id":3,
+        "nombre": "CR",
+        "descripcion": "Causa R",
+        "selected": true
+      },
+      {
+        "id":3,
+        "nombre": "SC",
+        "descripcion": "Sociedad Civil",
+        "selected": true
+      }
+      ,
+      {
+        "id":4,
+        "nombre": "SUMATE",
+        "descripcion": "Sumate",
+        "selected": true
+      }
+ 
+    ]
+}

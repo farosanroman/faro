@@ -1,0 +1,80 @@
+{
+"formulario":
+{
+    "id": "EXPERIENCIA",
+    "type": "formulario",
+    "descripcion":"Experiencia Electoral",
+    "preguntas": [
+        {
+            "idpregunta": "1",
+            "pregunta": "CENTRO DE VOTACION ",
+            "idrespuesta": 0,
+            "obligatorio":true,
+            "multiples":true,
+            "texto":true,
+            "codcne":false,
+            "location":false,
+            "comentario": "Falta Experiencia en Centro",
+            "respuestas": [
+                {
+                    "idrespuesta": 1,
+                    "respuesta": "Testigo",
+                    "descripcion":"TEstigo de MEsa",
+                     "texto":""   ,
+                    "valid":true
+                },
+                {
+                    "idrespuesta": 2,
+                    "respuesta": "Observador",
+                    "descripcion":"Observador de Alguna ONG",
+                    "texto":"",
+                    "valid":false
+                },
+                {
+                    "idrespuesta": 3,
+                    "respuesta": "CONTEORAPIDO",
+                    "descripcion":"Ha aprticipado en conteo rapido",
+                    "texto":"",
+                    "valid":true
+                }
+            ]
+        },
+{
+            "idpregunta": "2",
+            "pregunta": "PARTIDO ",
+            "idrespuesta": 0,
+            "obligatorio":true,
+            "multiples":true,
+            "texto":true,
+            "codcne":false,
+            "location":false,
+            "comentario": "Falta Experiencia en el Partido",
+            "respuestas": [
+                {
+                    "idrespuesta": 1,
+                    "respuesta": "Planiiificdor",
+                    "descripcion":"TEstigo de MEsa",
+                     "texto":"",   
+                    "valid":true
+                },
+                {
+                    "idrespuesta": 2,
+                    "respuesta": "Logistica",
+                    "descripcion":"Observador de Alguna ONG",
+                    "texto":"",
+                    "valid":false
+                },
+                {
+                    "idrespuesta": 3,
+                    "respuesta": "CONTEORAPIDO",
+                    "descripcion":"Ha aprticipado en conteo rapido del partido",
+                    "texto":"",
+                    "valid":true
+                }
+            ]
+        }
+        
+    ]
+}
+
+}

@@ -1,0 +1,31 @@
+{
+"ESTADOS" : [
+    { "id": "0", "name": "Seleccione Estado" },
+    { "id": "00", "name": "Venezuela" },
+    { "id": "01", "name": "Distrito Capital" },
+    { "id": "02", "name": "Anzoátegui" },
+    { "id": "03", "name": "Apure" },
+    { "id": "04", "name": "Aragua" },
+    { "id": "05", "name": "Barinas" },
+    { "id": "06", "name": "Bolívar" },
+    { "id": "07", "name": "Carabobo" },
+    { "id": "08", "name": "Cojedes" },
+    { "id": "09", "name": "Falcón" },
+    { "id": "10", "name": "Guárico" },
+    { "id": "11", "name": "Lara" },
+    { "id": "12", "name": "Mérida" },
+    { "id": "13", "name": "Miranda" },
+    { "id": "14", "name": "Monagas" },
+    { "id": "15", "name": "Nueva Esparta" },
+    { "id": "16", "name": "Portuguesa" },
+    { "id": "17", "name": "Sucre" },
+    { "id": "18", "name": "Táchira" },
+    { "id": "19", "name": "Trujillo" },
+    { "id": "20", "name": "Yaracuy" },
+    { "id": "21", "name": "Zulia" },
+    { "id": "22", "name": "Amazonas" },    
+    { "id": "23", "name": "Delta" },
+    { "id": "24", "name": "Vargas" }
+    
+]
+}
