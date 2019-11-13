@@ -171,6 +171,7 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
 //alert(JSON.stringify(RESPUESTAS))
 
 return (
+    
 <Fragment>
 <div className={classes.root}>
  <Title2>Estructuras GeoElectorales</Title2>
