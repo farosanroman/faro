@@ -50,17 +50,13 @@ export default function AsignacionDirecciones() {
     const [cedulaError, setCedulaError] = React.useState({flag:false,helper:"ok"});
     const [nombre1, setNombre1] = React.useState("");
     const [nombre2, setNombre2] = React.useState("");
-    
     const [apellido1, setApellido1] = React.useState("");
     const [apellido2, setApellido2] = React.useState("");
-    const [codcne, setCodcne] = React.useState("");
-    const [estado, setEstado] = React.useState("");
-    const [municipio, setMunicipio] = React.useState("");
-    const [parroquia, setParroquia] = React.useState("");
-    const [nombre, setNombre] = React.useState("");
-    const [direccion, setDireccion] = React.useState("");
-
-   
+    
+    const [correo, setCorreo] = React.useState("");
+    const [celular, setCelular] = React.useState("");
+    const [twt, setTwt] = React.useState("");
+    
     const handleChangeCambios=input=>e=>{
  
         if (input=="cedula"){
@@ -83,90 +79,7 @@ export default function AsignacionDirecciones() {
           setCedula(e.target.value)
         }
         }
-        const handleGetPersona = () => {   //de Faro
-  
-            //this.setState({ isLoading: true });
-           // alert('The value is: ' + JSON.stringify(cedula));
-            //let cedula="V3664204";    
-             
-            getPersona(cedula,result => {  
-              //alert("ppa")
-             //    alert(JSON.stringify(result[0].direcciones))
-                 var correo="";
-                 var celular="";
-                 //alert(JSON.stringify(result))
-                 if (result.length==0){
-                  setCedulaError({flag:true,helper:"Cedula NO ha sido registrada en Faro!!!"})
-            
-                 }
-                 if (result.length>0){
-                ///alert(JSON.stringify(result))
-                 for (let i = 0; i < result[0].direcciones.length; ++i) {
-                     if ((result[0].direcciones[i].IdOpcion==8)&&(result[0].direcciones[i].TipoDireccion==1)){
-                       celular=result[0].direcciones[i].direccion
-                     }
-                     if ((result[0].direcciones[i].IdOpcion==5)&&(result[0].direcciones[i].TipoDireccion==2)){
-                       correo=result[0].direcciones[i].direccion
-                     }
-                 } 
-                 setNombre1(result[0].nombre1) 
-                 setNombre2(result[0].nombre2) 
-                 setApellido1(result[0].apellido1) 
-                 setApellido2(result[0].apellido2) 
-                 setCodcne(result[0].cv.codcne) 
-                 setEstado(result[0].cv.estado)
-                 setMunicipio(result[0].cv.municipio)
-                 setParroquia(result[0].cv.parroquia)
-                 setNombre(result[0].cv.nombre)
-                 setDireccion(result[0].cv.direccion) 
-                 var rolesstr=""
-                 /*
-                 for (let ii = 0; ii < result[0].rol.length; ++ii) {
-                     rolesstr+=" | "+result[0].rol[ii].rol
-                 }
-                 const formDataPersona={
-                   "identificacion":result[0].identificacion,
-                   "nombre1":result[0].nombre1,
-                   "nombre2":result[0].nombre2,
-                   "apellido1":result[0].apellido1,
-                   "apellido2":result[0].apellido2,
-                   "sexo":result[0].sexo,
-                   "edad":result[0].edad,
-                   "fechanac":result[0].fechanac,
-                   "correo":correo,
-                   "telefono":celular,
-                   "estado":result[0].cv.estado,
-                   "municipio":result[0].cv.municipio,
-                   "parroquia":result[0].cv.parroquia,
-                   "codcne":result[0].cv.codcne,
-                   "nombre":result[0].cv.nombre,
-                   "accion":"",
-                   "rol": rolesstr,
-                   "direcciones":result[0].direcciones,
-                   "roles":result[0].rol
-                   
-                 
-                 };
-                  */
-                // formDataPersona.nombre2="Jose"
-                // formDataPersona.apellido1="Gonzales"
-                // formDataPersona.apellido2="Iturbe"
-               
-                 // dispatch({
-               //    type: 'PERSONA',
-               //    stateprop:formDataPersona
-               //  });  
-                // alert(JSON.stringify(formDataPersona.direcciones))
-                //GetPersona("")
-                 }
-                 //this.setState({persona:formDataPersona,identificacion:imagecedula,isLoading:false})
-                 
-              });
-                
-          
-        
-        }
-  return (
+    return (
     <React.Fragment>
     
         <Typography variant="h6" gutterBottom>
@@ -178,7 +91,7 @@ export default function AsignacionDirecciones() {
             required
             id="firstName"
             name="firstName"
-            label="First name"
+            label="Primer Nombre"
             fullWidth
             autoComplete="fname"
             defaultValue={nombre1}
@@ -190,7 +103,7 @@ export default function AsignacionDirecciones() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Segundo Nombre"
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
@@ -202,7 +115,7 @@ export default function AsignacionDirecciones() {
             required
             id="firstName"
             name="firstName"
-            label="First name"
+            label="Primer Apellido"
             fullWidth
             autoComplete="fname"
             defaultValue={nombre1}
@@ -214,35 +127,29 @@ export default function AsignacionDirecciones() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Segundo Apellido"
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
             value={apellido2}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="lname"
-            defaultValue={nombre2}
-            value={codcne}
-          />
         </Grid>
+        <Typography variant="h6" gutterBottom>
+        Direcciones
+      </Typography>
+      <Grid container spacing={3}>
+ 
         <Grid item xs={12} sm={6}>
           <TextField
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Correo"
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
-            value={estado}
+            value={correo}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -250,11 +157,11 @@ export default function AsignacionDirecciones() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Celular"
             fullWidth
             autoComplete="lname"
-            defaultValue={nombre2}
-            value={municipio}
+            defaultValue={celular}
+            value={celular}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -262,35 +169,11 @@ export default function AsignacionDirecciones() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Twiter"
             fullWidth
             autoComplete="lname"
-            defaultValue={nombre2}
-            value={parroquia}
-          />
-        </Grid>
-        <Grid item xs={12} sm={12}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="lname"
-            defaultValue={nombre2}
-            value={nombre}
-          />
-        </Grid>
-        <Grid item xs={12} sm={12}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="lname"
-            defaultValue={nombre2}
-            value={direccion}
+            defaultValue={celular}
+            value={twt}
           />
         </Grid>
 

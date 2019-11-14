@@ -12,6 +12,8 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import AsignacionCedula from './asignacioncedula';
 import AsignacionDirecciones from './asignaciondirecciones';
+import AsignacionRol from './asignacionrol';
+import AsignacionOrganizacion from './asignacionorganizacion';
 //import PaymentForm from './PaymentForm';
 //import Review from './Review';
 
@@ -65,7 +67,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const steps = ['Cedula', 'Direcciones', 'Rol','Partido','Confirmacion'];
+const steps = ['Cedula', 'Direcciones', 'Rol','Partido','Asignacion'];
 
 function getStepContent(step) {
   switch (step) {
@@ -76,9 +78,9 @@ function getStepContent(step) {
             return <AsignacionDirecciones />
       //return <PaymentForm />;
     case 2:
-            return <Copyright />
+            return <AsignacionRol />
             case 3:
-                    return <Copyright />
+                    return <AsignacionOrganizacion />
                     case 4:
                             return <Copyright />
      // return <Review />;
@@ -119,7 +121,7 @@ export default function AsignacionPasos() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                 Gracias por el Registro de nuestro Ciudadano
                 </Typography>
                 <Typography variant="subtitle1">
                   El ciudadano ha sido asignado.

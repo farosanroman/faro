@@ -206,7 +206,7 @@ export default function AsignacionCedula() {
             required
             id="firstName"
             name="firstName"
-            label="First name"
+            label="Primer Nombre"
             fullWidth
             autoComplete="fname"
             defaultValue={nombre1}
@@ -218,7 +218,7 @@ export default function AsignacionCedula() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Segundo Nombre"
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
@@ -230,7 +230,7 @@ export default function AsignacionCedula() {
             required
             id="firstName"
             name="firstName"
-            label="First name"
+            label="Primer Apellido"
             fullWidth
             autoComplete="fname"
             defaultValue={nombre1}
@@ -242,7 +242,7 @@ export default function AsignacionCedula() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Segundo Apellido"
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
@@ -254,7 +254,7 @@ export default function AsignacionCedula() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Cod CNE"
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
@@ -266,7 +266,7 @@ export default function AsignacionCedula() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Estado"
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
@@ -278,7 +278,7 @@ export default function AsignacionCedula() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Municipio"
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
@@ -290,7 +290,7 @@ export default function AsignacionCedula() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Parroquia"
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
@@ -302,7 +302,7 @@ export default function AsignacionCedula() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Centro"
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
@@ -314,7 +314,7 @@ export default function AsignacionCedula() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Direccion"
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
