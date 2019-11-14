@@ -169,9 +169,8 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
 // var center = [  -66.8658,10.4645];
 // var radius = 7;
 //alert(JSON.stringify(RESPUESTAS))
-
 return (
-    
+
 <Fragment>
 <div className={classes.root}>
  <Title2>Estructuras GeoElectorales</Title2>

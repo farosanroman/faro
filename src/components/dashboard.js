@@ -69,6 +69,7 @@ import Geo from './indicadores/geo';
 import Historia from './inteligencia/historia';
 import Polylines from './inteligencia/polylines';
 import Centros from './dashboard/centros';
+import AsignacionPasos from './personas/asignacionpasos'
 import AsignacionDatos from './personas/asignaciondatos';
 import SimpleTable from './mensajeria/simpletable';
 import Mensajes from './mensajeria/mensajes';
@@ -392,6 +393,7 @@ export default function Dashboard() {
        <Grid item xs={12}>
       
               <Paper className={classes.paper}>
+                <AsignacionPasos />
               <Login />
               </Paper>
             </Grid>

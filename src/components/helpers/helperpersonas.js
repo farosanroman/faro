@@ -8,7 +8,7 @@ export  const getPersona=(cedula,callback)=>{
         callback([])
       })
   .then(data => {
-    //alert("helper"+JSON.stringify(data)+"helper")
+  alert("helper"+JSON.stringify(data)+"helper")
    callback(data)
   })
   
