@@ -1,6 +1,8 @@
 export  const getPersona=(cedula,callback)=>{
 //alert(cedula)
-    const url="https://faro2018consultas.azurewebsites.net/api/twtpersona?cedula="+cedula
+    var url="https://faro2018consultas.azurewebsites.net/api/twtpersona?cedula="+cedula
+    url="https://openfaroapi.azurewebsites.net/api/personaget?identificacion=V3664511"
+    url="https://openfaroapi.azurewebsites.net/api/personaget?identificacion=V3664511"
    fetch(url,{     
   })
   .then(response => response.json())
@@ -8,7 +10,7 @@ export  const getPersona=(cedula,callback)=>{
         callback([])
       })
   .then(data => {
-  alert("helper"+JSON.stringify(data)+"helper")
+  //alert("helper"+JSON.stringify(data)+"helper")
    callback(data)
   })
   

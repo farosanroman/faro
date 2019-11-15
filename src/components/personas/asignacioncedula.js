@@ -91,7 +91,7 @@ export default function AsignacionCedula() {
              
             getPersona(cedula,result => {  
               //alert("ppa")
-             //    alert(JSON.stringify(result[0].direcciones))
+                alert(JSON.stringify(result))
                  var correo="";
                  var celular="";
                  //alert(JSON.stringify(result))

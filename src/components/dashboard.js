@@ -70,7 +70,7 @@ import Historia from './inteligencia/historia';
 import Polylines from './inteligencia/polylines';
 import Centros from './dashboard/centros';
 import AsignacionPasos from './personas/asignacionpasos'
-import AsignacionDatos from './personas/asignaciondatos';
+//import AsignacionDatos from './personas/asignaciondatosborrar';
 import SimpleTable from './mensajeria/simpletable';
 import Mensajes from './mensajeria/mensajes';
 import Intervalos from './mensajeria/intervalos';
@@ -187,7 +187,31 @@ const useStyles = makeStyles(theme => ({
     height: 400,
   },
 }));
-
+function getStepContent(step) {
+  switch (step) {
+    case 100:
+        return (
+          <Grid container spacing={3}>
+          <Grid item xs={12}>
+         
+                 <Paper >
+                 <Login />
+                 </Paper>
+               </Grid>
+           </Grid>
+        )
+               
+     // return <AddressForm />;
+    case 1:
+            return  <AsignacionPasos />
+      //return <PaymentForm />;
+    case 2:
+            return  <AsignacionPasos />
+           
+    default:
+      throw new Error('Unknown step');
+  }
+}
 export default function Dashboard() {
   const classes = useStyles();
   const [flagDrawer, setFlagDrawer] = React.useState(false);
@@ -381,24 +405,21 @@ export default function Dashboard() {
       <ListItemText primary="VinoTinto" />
     </ListItem>
     
+
+    
         </List>
       </Drawer>
       }
       <main className={classes.content}>
       <div className={classes.appBarSpacer} />
-   
-      {(component==100)&&
-  
-      <Grid container spacing={3}>
-       <Grid item xs={12}>
       
-              <Paper className={classes.paper}>
-                <AsignacionPasos />
-              <Login />
-              </Paper>
-            </Grid>
-        </Grid>
+     
+      {(component==100)&&
+         <Paper className={classes.paper}>
+               {getStepContent(component)}
+           </Paper>
       }
+  
    {(component==12)&&
      <Container maxWidth="lg" className={classes.container}>
                 <Polylines />
@@ -453,7 +474,7 @@ export default function Dashboard() {
             <Resultados />
       </Container>
      }
-      {(component==5)&&<AsignacionDatos/>}
+      {(component==5)&&<AsignacionPasos/>}
   {(component==0)&&
  <Container maxWidth="lg" className={classes.container}>
  

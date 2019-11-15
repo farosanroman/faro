@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const steps = ['Cedula', 'Direcciones', 'Rol','Partido','Asignacion'];
+const steps = ['Cedula', 'Direcciones', 'Rol','Organizacion','Asignacion'];
 
 function getStepContent(step) {
   switch (step) {
@@ -106,6 +106,7 @@ export default function AsignacionPasos() {
       <CssBaseline />
      
       <main className={classes.layout}>
+      
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">
             Asignacion al Faro V2.0

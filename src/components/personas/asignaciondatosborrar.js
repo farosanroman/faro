@@ -41,7 +41,7 @@ function getStepContent(step) {
   }
 }
 
-export default function AsignacionDatos() {
+export default function AsignacionDatosBorrar() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
