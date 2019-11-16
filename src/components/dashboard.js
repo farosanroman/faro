@@ -412,7 +412,7 @@ export default function Dashboard() {
       }
       <main className={classes.content}>
       <div className={classes.appBarSpacer} />
-      
+  
      
       {(component==100)&&
          <Paper className={classes.paper}>
