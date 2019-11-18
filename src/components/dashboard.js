@@ -68,7 +68,7 @@ import ChartPieChart from './indicadores/chartpiechart';
 import Geo from './indicadores/geo';
 import Historia from './inteligencia/historia';
 import Polylines from './inteligencia/polylines';
-import Centros from './dashboard/centros';
+import GeoCentros from './dashboard/geocentros';
 import AsignacionPasos from './personas/asignacionpasos'
 //import AsignacionDatos from './personas/asignaciondatosborrar';
 import SimpleTable from './mensajeria/simpletable';
@@ -309,7 +309,23 @@ export default function Dashboard() {
       </ListItemIcon>
       <ListItemText primary="GeoElectoral" />
     </ListItem>
-
+    <ListItem button  onClick={handleComponent(10)} >
+      <ListItemIcon>
+        <PlaceIcon />
+      </ListItemIcon>
+      <ListItemText primary="GeoCentros" />
+    </ListItem>
+    <ListItem button  onClick={handleComponent(11)} >
+      <ListItemIcon>
+        <HowToVoteIcon />
+      </ListItemIcon>
+      <ListItemText primary="Historia" />
+    </ListItem>
+    </List>
+              
+              <Divider />
+              <List>
+             
         <ListItem button onClick={handleComponent(1)}>
       <ListItemIcon>
         <BallotIcon />
@@ -323,19 +339,11 @@ export default function Dashboard() {
       </ListItemIcon>
       <ListItemText primary="Caracteristicas" />
     </ListItem>
-    
-    <ListItem button  onClick={handleComponent(10)} >
-      <ListItemIcon>
-        <PlaceIcon />
-      </ListItemIcon>
-      <ListItemText primary="Centros" />
-    </ListItem>
-    <ListItem button  onClick={handleComponent(11)} >
-      <ListItemIcon>
-        <HowToVoteIcon />
-      </ListItemIcon>
-      <ListItemText primary="Historia" />
-    </ListItem>
+    </List>
+              
+        <Divider />
+        <List>
+       
     <ListItem button onClick={handleComponent(2)}>
       <ListItemIcon>
         <SpeakerNotesIcon />
@@ -460,7 +468,7 @@ export default function Dashboard() {
           }
       {(component==10)&&
         <Container maxWidth="lg" className={classes.container}>
-            <Centros />
+            <GeoCentros />
       </Container>
      }
     {(component==11)&&

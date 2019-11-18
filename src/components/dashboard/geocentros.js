@@ -49,7 +49,7 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
   }));
   
 //export default function Geo({lnglat0,zoom0,centros0,GetCentros,GetPersonasCODCNE}) {
-  export default function Centros() {
+  export default function GeoCentros() {
   const { state, dispatch } = React.useContext(Application);
 
   const [centros, setCentros] = React.useState([]);
