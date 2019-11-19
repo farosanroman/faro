@@ -100,7 +100,7 @@ useEffect(() => {
    
 },[]);
 function SignIn(user) {
-  //alert("firebase user "+JSON.stringify(user))
+//  alert("firebase user "+JSON.stringify(user))
   var login={id:user.providerData[0].uid,name:user.displayName,photoURL:user.photoURL,email:user.email,phone:user.metadata.phoneNumber,cedula:"",photo:"",lat:0,lng:0}
 
   setMensajeSnackBar(JSON.stringify(login))

@@ -74,6 +74,7 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
     const [CODESTADO, setCODESTADO] = React.useState();
  
     const [CENTROSGEO, setCENTROSGEO] = React.useState([]);
+    const [comentario, setComentario] = React.useState("");
  
     const [state,setState]=useState( {
         flagLogin:false,
@@ -175,8 +176,11 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
       )     
    })   
    centrosjson.features=featurescentrosjson;
-   setCENTROSGEO(centrosjson)     
-   alert(result.length+" "+JSON.stringify(centrosfiltro.length))
+   setCENTROSGEO(centrosjson) 
+   setComentario(result.length+ " centros "+centrosfiltro.length+" Urbanos")
+   //alert(JSON.stringify(centrosjson))
+            
+   //alert(result.length+" "+JSON.stringify(centrosfiltro.length))
       })
      
       },[CODESTADO]);
@@ -254,7 +258,7 @@ return (
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("23")}>GeoRurales</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("08")}>GeoSocioEconomicos</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("12")}>GeoResultados</Button>
- 
+ <div>{comentario}</div>
  
  <Map       
    //style="mapbox://styles/mapbox/streets-v8"
@@ -319,7 +323,7 @@ return (
  <GeoJSONLayer
           data={CENTROSGEO}
           circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'purple','circle-radius': 2, }}  
+         circlePaint={{'circle-color': 'orange','circle-radius': 2, }}  
         // onClick={onMapClick}     
         //circleOnClick={onCentroClick}
         //   fillOnClick={this.onMapClick}  
