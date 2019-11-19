@@ -143,7 +143,7 @@ export default function AsignacionPasos() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Grabar' : 'Proximo'}
+                    {activeStep === steps.length - 1 ? 'Asignar' : 'Proximo'}
                   </Button>
                 </div>
               </React.Fragment>

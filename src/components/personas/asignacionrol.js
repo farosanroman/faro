@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -25,7 +25,7 @@ import {getPersona} from '../helpers/helperpersonas'
 import {EEMMPP} from  '../../data/EEMMPP.json';
 import {roles} from  '../../data/roles.json';
 import {organizacion} from  '../../data/organizacion.json';
-
+import { Application } from '../../App';
 const useStyles = makeStyles(theme => ({
     formControl: {
         margin: theme.spacing(1),
@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   }));
 export default function AsignacionRol() {
     const classes = useStyles();
-  
+    const { state, dispatch } = React.useContext(Application);
     const [cedula, setCedula] = React.useState("");
     const [cedulaError, setCedulaError] = React.useState({flag:false,helper:"ok"});
     const [nombre1, setNombre1] = React.useState("");
@@ -80,7 +80,13 @@ export default function AsignacionRol() {
    
     const [codparroquia, setCodigoParroquia] = React.useState("");
     const [posparroquia, setPosParroquia] = React.useState(0);
-    
+    useEffect(() => {
+      setNombre1(state.asignacion.nombre1)
+      setNombre2(state.asignacion.nombre2)
+      setApellido1(state.asignacion.apellido1)
+      setApellido2(state.asignacion.apellido2)
+
+  },[]);
     const handleChangeCambios=input=>e=>{
         if (input=="formularios"){
          //alert("cedula")

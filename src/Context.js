@@ -105,10 +105,9 @@ export const defaultState = {
     zoom:[12],
     radio:3,
     /////
+    asignacion:{},
     persona:{"identificacion":"","nombre1":"","nombre2":"","apellido1":"","apellido2":"","sexo":"","edad":"","fechanac":"","correo":"","telefono":"","estado":"","municipio":"","parroquia":"","codcne":"","nombre":"","accion":"","rol": "","direcciones":[],"roles":[] },
-    caracteristica:{},
-    seleccion:{},
-    personas:[],
+   
     rolespersonas:[],
     centro:"Centro de Votacion",
     centros:null,
@@ -127,6 +126,10 @@ export const defaultState = {
   export const reducer = (state = defaultState, action) => {
       const { type, stateprop } = action;
       switch (type) {
+        case 'ASIGNACION':
+          // alert(JSON.stringify(stateprop))
+        return { ...state, asignacion: stateprop };
+   
         case 'FLAGLOGIN':
          // alert("FLAGLOGIN en reducer "+JSON.stringify(stateprop))
         return { ...state, flagLogin: stateprop };
@@ -172,10 +175,10 @@ export const defaultState = {
                //alert(JSON.stringify(state.organizacion))
                let roles = state.roles.map((rol) => {
                 if (rol.id==stateprop){  
-                if (rol.selected==true){ 
-                       rol.selected=false}
-                       else
-                       {rol.selected=true}
+                     if (rol.selected==true){ 
+                        rol.selected=false}
+                        else
+                        {rol.selected=true}
                  }
                 return rol;
                });

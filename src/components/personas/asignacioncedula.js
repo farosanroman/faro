@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import {getPersona} from '../helpers/helperpersonas'
+import { Application } from '../../App';
 const useStyles = makeStyles(theme => ({
     appBar: {
       position: 'relative',
@@ -45,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   }));
 export default function AsignacionCedula() {
     const classes = useStyles();
-  
+    const { state, dispatch } = React.useContext(Application);
     const [cedula, setCedula] = React.useState("");
     const [cedulaError, setCedulaError] = React.useState({flag:false,helper:"ok"});
     const [nombre1, setNombre1] = React.useState("");
@@ -91,7 +92,7 @@ export default function AsignacionCedula() {
              
             getPersona(cedula,result => {  
               //alert("ppa")
-                alert(JSON.stringify(result))
+                //1alert(JSON.stringify(result))
                  var correo="";
                  var celular="";
                  //alert(JSON.stringify(result))
@@ -99,26 +100,30 @@ export default function AsignacionCedula() {
                   setCedulaError({flag:true,helper:"Cedula NO ha sido registrada en Faro!!!"})
             
                  }
-                 if (result.length>0){
+                // if (result.length>0){
                 ///alert(JSON.stringify(result))
-                 for (let i = 0; i < result[0].direcciones.length; ++i) {
-                     if ((result[0].direcciones[i].IdOpcion==8)&&(result[0].direcciones[i].TipoDireccion==1)){
-                       celular=result[0].direcciones[i].direccion
-                     }
-                     if ((result[0].direcciones[i].IdOpcion==5)&&(result[0].direcciones[i].TipoDireccion==2)){
-                       correo=result[0].direcciones[i].direccion
-                     }
-                 } 
-                 setNombre1(result[0].nombre1) 
-                 setNombre2(result[0].nombre2) 
-                 setApellido1(result[0].apellido1) 
-                 setApellido2(result[0].apellido2) 
-                 setCodcne(result[0].cv.codcne) 
-                 setEstado(result[0].cv.estado)
-                 setMunicipio(result[0].cv.municipio)
-                 setParroquia(result[0].cv.parroquia)
-                 setNombre(result[0].cv.nombre)
-                 setDireccion(result[0].cv.direccion) 
+                // for (let i = 0; i < result[0].direcciones.length; ++i) {
+                //     if ((result[0].direcciones[i].IdOpcion==8)&&(result[0].direcciones[i].TipoDireccion==1)){
+                //       celular=result[0].direcciones[i].direccion
+                //     }
+                //     if ((result[0].direcciones[i].IdOpcion==5)&&(result[0].direcciones[i].TipoDireccion==2)){
+                //       correo=result[0].direcciones[i].direccion
+                //     }
+                // } 
+                 setNombre1(result.nombre1) 
+                 setNombre2(result.nombre2) 
+                 setApellido1(result.apellido1) 
+                 setApellido2(result.apellido2) 
+                 setCodcne(result.codcncentrovotacion) 
+                 setEstado(result.nombreestadocentrovotacion)
+                 setMunicipio(result.nombremunicipiocentrovotacion)
+                 setParroquia(result.nombreparroquiacentrovotacion)
+                 setNombre(result.nombrecentrovotacion)
+                 setDireccion(result.direccioncentrovotacion) 
+                 dispatch({
+                  type: 'ASIGNACION',
+                  stateprop: result
+                });
                  var rolesstr=""
                  /*
                  for (let ii = 0; ii < result[0].rol.length; ++ii) {
@@ -158,7 +163,7 @@ export default function AsignacionCedula() {
                //  });  
                 // alert(JSON.stringify(formDataPersona.direcciones))
                 //GetPersona("")
-                 }
+               //  }
                  //this.setState({persona:formDataPersona,identificacion:imagecedula,isLoading:false})
                  
               });
@@ -183,6 +188,9 @@ export default function AsignacionCedula() {
           error={cedulaError.flag}     
           helperText={cedulaError.helper}
           defaultValue={cedula}
+
+          
+
 
 />
         </Grid>

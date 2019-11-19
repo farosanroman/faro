@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import {getPersona} from '../helpers/helperpersonas'
+import { Application } from '../../App';
 const useStyles = makeStyles(theme => ({
     appBar: {
       position: 'relative',
@@ -45,7 +46,8 @@ const useStyles = makeStyles(theme => ({
   }));
 export default function AsignacionDirecciones() {
     const classes = useStyles();
-  
+    const { state, dispatch } = React.useContext(Application);
+
     const [cedula, setCedula] = React.useState("");
     const [cedulaError, setCedulaError] = React.useState({flag:false,helper:"ok"});
     const [nombre1, setNombre1] = React.useState("");
@@ -53,10 +55,101 @@ export default function AsignacionDirecciones() {
     const [apellido1, setApellido1] = React.useState("");
     const [apellido2, setApellido2] = React.useState("");
     
-    const [correo, setCorreo] = React.useState("");
-    const [celular, setCelular] = React.useState("");
+    const [correo, setCorreo] = React.useState("cc");
+    const [correoError, setCorreoError] = React.useState({flag:false,helper:"ok"});
+  
+    const [celular, setCelular] = React.useState("2129878787");
+    const [celularError, setCelularError] = React.useState({flag:false,helper:"ok"});
+  
     const [twt, setTwt] = React.useState("");
+    const [index, setIndex] = React.useState(1)
     
+    const [inputs, setInputs] = React.useState([
+      
+        {
+          id: 'email',
+          label: 'Email',
+          placeholder: 'john@acme.com',
+          value: correo,
+          error: false,
+          helperText: 'Formato de Correo',
+          getHelperText: error =>
+            error
+              ? 'Ooops. No tiene el formato de correo'
+              : 'Formato de mail correcto',
+          isValid: value => /\S+@\S+\.\S+/.test(value)
+        },
+      {
+        id: 'phone',
+        label: 'Phone',
+        placeholder: '999-999-9999',
+        value: celular,
+        error: false,
+        helperText: 'Formato de Telefono',
+        getHelperText: error =>
+          error
+            ? 'Woops. No es un formato de celular'
+            : 'Formato de Celular',
+        isValid: value =>
+          /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(
+            value
+          )
+      },
+      {
+        id: 'twitter',
+        label: 'Twitter',
+        placeholder: '@abcdef',
+        value: twt,
+        error: false,
+        helperText: 'Un formato de nombre de Twitter',
+        getHelperText: error =>
+          error
+            ? 'Ooops. No tiene el formato de twitter'
+            : 'Formato twitter correcto',
+        isValid: value => /^@?(\w){1,15}$/.test(value)
+      }
+    ]);
+    const [input, setInput] = React.useState(inputs[1])
+      function closeDialog(id){
+       // alert("closeDialog")
+        //setflagOpenDireccion(false);
+  
+      }
+ //alert(JSON.stringify(state.asignacion))
+   // setApellido1("state.asignacion.apellido1")    
+   useEffect(() => {
+      setNombre1(state.asignacion.nombre1)
+      setNombre2(state.asignacion.nombre2)
+      setApellido1(state.asignacion.apellido1)
+      setApellido2(state.asignacion.apellido2)
+
+  },[]);
+  const onChange = ({ target: { id, value } }) => {
+   alert(id+" "+value)
+   
+   if (id=="email"){setIndex(0);setCorreo(value)}
+   if (id=="phone"){alert("aaa");setIndex(1);setCelular(value)}
+   alert(index)
+   if (id=="twt")setIndex(2)
+   setInput(inputs[index])
+
+   const isValid = input.isValid(value);
+
+   alert(index)
+
+   var newInput = {
+    ...inputs[index],
+    value: value,
+    error: !isValid,
+    helperText: input.getHelperText(!isValid)
+  };
+  alert(JSON.stringify(newInput))
+  //setInput(newInput)
+  var i=inputs[index]
+  i[index]=newInput
+  setInputs(i)
+
+  }
     const handleChangeCambios=input=>e=>{
  
         if (input=="cedula"){
@@ -77,6 +170,28 @@ export default function AsignacionDirecciones() {
                //this.setState({errorCelular:true,helperTextCelular:"Sintaxis Erronea"})
            }
           setCedula(e.target.value)
+        }
+        if (input=="email"){
+          const isValid = inputs[0].isValid(e.target.value);
+          if (isValid){
+            setCorreoError({flag:false,helper:"Sintaxis Correcta"})
+        
+          } else{
+            setCorreoError({flag:true,helper:"Sintaxis Incorrecta"})
+          }
+         // alert(isValid)         
+          setCorreo(e.target.value)
+        }
+        if (input=="phone"){
+          const isValid = inputs[1].isValid(e.target.value);
+          if (isValid){
+            setCelularError({flag:false,helper:"Sintaxis Correcta"})
+        
+          } else{
+            setCelularError({flag:true,helper:"Sintaxis Incorrecta"})
+          }
+         // alert(isValid)         
+          setCelular(e.target.value)
         }
         }
     return (
@@ -141,33 +256,41 @@ export default function AsignacionDirecciones() {
       <Grid container spacing={3}>
  
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
+        <TextField
+            autoFocus
+            margin="dense"
+            id="email"
             label="Correo"
-            fullWidth
-            autoComplete="lname"
-            defaultValue={nombre2}
             value={correo}
-          />
+            onChange={handleChangeCambios('email')}
+            error={correoError.flag}     
+            helperText={correoError.helper}
+            defaultValue={correo}
+  
+         
+         />
+         
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
+        <TextField
+            autoFocus
+            margin="dense"
+            id="phone"
             label="Celular"
-            fullWidth
-            autoComplete="lname"
-            defaultValue={celular}
             value={celular}
-          />
+            onChange={handleChangeCambios('phone')}
+            error={celularError.flag}     
+            helperText={celularError.helper}
+            defaultValue={celular}
+  
+         
+         />
+        
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="lastName"
+            id="twt"
             name="lastName"
             label="Twiter"
             fullWidth
