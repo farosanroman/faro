@@ -212,6 +212,7 @@ export default function AsignacionCedula() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            disabled={true}
             id="firstName"
             name="firstName"
             label="Primer Nombre"

@@ -25,7 +25,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 import BallotIcon from '@material-ui/icons/Ballot';
-import PeopleIcon from '@material-ui/icons/People';
+import MailIcon from '@material-ui/icons/Mail';
 import PlaceIcon from '@material-ui/icons/Place';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
@@ -38,6 +38,7 @@ import LayersIcon from '@material-ui/icons/Layers';
 import SendIcon from '@material-ui/icons/Send';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
+import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ReceiptIcon from '@material-ui/icons/Receipt';
@@ -46,7 +47,7 @@ import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import EditIcon from '@material-ui/icons/Edit';
-
+import PeopleIcon from '@material-ui/icons/People';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
@@ -328,25 +329,30 @@ export default function Dashboard() {
              
         <ListItem button onClick={handleComponent(1)}>
       <ListItemIcon>
-        <BallotIcon />
+        <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Indicadores" />
+      <ListItemText primary="Equipo" />
     </ListItem>
 
         <ListItem button  onClick={handleComponent(0)} >
       <ListItemIcon>
-        <DashboardIcon />
+        <PersonPinCircleIcon />
       </ListItemIcon>
-      <ListItemText primary="Caracteristicas" />
+      <ListItemText primary="Distribucion" />
     </ListItem>
     </List>
-              
+    <ListItem button  onClick={handleComponent(8)} >
+      <ListItemIcon>
+      <BrightnessHighIcon />
+      </ListItemIcon>
+      <ListItemText primary="Filtros" />
+    </ListItem>          
         <Divider />
         <List>
        
     <ListItem button onClick={handleComponent(2)}>
       <ListItemIcon>
-        <SpeakerNotesIcon />
+        <MailIcon />
       </ListItemIcon>
       <ListItemText primary="Mensajeria" />
     </ListItem>
@@ -359,12 +365,7 @@ export default function Dashboard() {
     </ListItem>
 
 
-    <ListItem button  onClick={handleComponent(8)} >
-      <ListItemIcon>
-      <BrightnessHighIcon />
-      </ListItemIcon>
-      <ListItemText primary="Filtros" />
-    </ListItem>
+    
         </List>
               
         <Divider />

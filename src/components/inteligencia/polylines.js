@@ -10,6 +10,17 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import MenuItem from '@material-ui/core/MenuItem';
+
+import NativeSelect from '@material-ui/core/NativeSelect';
 //import {observadores} from '../data/observadores.json';
 //import {antenas} from '../data/antenas.json';
 //import {celular} from '../data/celular.json';
@@ -27,13 +38,15 @@ import {func1} from '../helpers/helperpolygons'
 import {pointInPolygon} from '../helpers/helperpolygons'
 import {resultados,getLocation,getPersona,getPersonasCODCNE,getCentrosCODCNE} from '../helpers/helpers'
 
+import CircularProgress from '@material-ui/core/CircularProgress';
+import {EEMMPP} from  '../../data/EEMMPP.json';
 function Leyenda() {
   return (
 
     <Typography variant="body2" color="textSecondary" align="center">
-     {'CENTROS POBLADOS: '}
-      {'Metropolis->500M hab'} {'Ciudad Intermedia->500M-300M hab'} {'Ciudad Pequenna->300M-50M hab'} {'Poblacion Rural->50M-100 hab'} {'Poblacion Dispersa-> <100 hab'} 
-    
+ <InputLabel  htmlFor="age-native-simple">Centro Poblados
+      {'Metropolis >500M '} {'Ciudad Intermedia 500M-300M '} {'Ciudad Pequenna 300M-50M '} {'Poblacion Rural 50M-100 '} {'Poblacion Dispersa <100 '} 
+      </InputLabel>
     </Typography>
   );
 }
@@ -50,7 +63,13 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
   
   
   const useStyles = makeStyles(theme => ({
-
+    font: {
+      fontSize: 20
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+      },
     root: {
       flexGrow: 1
     },
@@ -73,9 +92,12 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
     //const { state, dispatch } = React.useContext(Application);
     const [CODESTADO, setCODESTADO] = React.useState();
  
-    const [CENTROSGEO, setCENTROSGEO] = React.useState([]);
+    const [CENTROSURBANOSGEO, setCENTROSURBANOSGEO] = React.useState([]);
+    const [CENTROSRURALESGEO, setCENTROSRURALESGEO] = React.useState([]);
+
     const [comentario, setComentario] = React.useState("");
  
+    const [flagCircular, setFlagCircular] = React.useState(false);
     const [state,setState]=useState( {
         flagLogin:false,
         geolocation:{country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"},
@@ -107,6 +129,7 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
     useEffect(() => {
         // Actualiza el título del documento usando la API del navegador
         //calculos(FORMULARIOS)
+        setFlagCircular(true);
         var url="http://nodefaro.azurewebsites.net/parroquias"
 			 // url="https://archivosamarillos.blob.core.windows.net/manualesfaro/0101.json"
        //alert(url)
@@ -131,6 +154,7 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
 					 }
           //this.setState({ jsontext:pa });
           setPA(pa)
+          setFlagCircular(false);
            //this.setState({PA:pa,isLoading:false })
          });
          
@@ -143,27 +167,31 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
       },[]);
  
       useEffect(() => {
-
+//alert(CODESTADO)
+    setFlagCircular(true);
       getCentrosCODCNE(CODESTADO,result => {  
-        //alert(JSON.stringify(result))
+  //      alert(JSON.stringify(result))
        // setCentros(result) 
-        let centrosjson={"type":"FeatureCollection","features":[] }
        //coordendas de centride de parroquias
           
         //alert(JSON.stringify(centrosjson))
         
          //alert()
          var centrosfiltro=[]
+         var ruralesfiltro=[]
          for (var i = 0; i < result.length; i++) {
+           var flag=false
            for (var j = 0; j < CIUDADESGEO.features.length; j++) {
                      var p={"type":"Point","coordinates":[result[i].lng,result[i].lat]}
                      var poly=CIUDADESGEO.features[j].geometry
                      if (pointInPolygon(p,poly)){
                       centrosfiltro.push(result[i])
                       j=CIUDADESGEO.features.length+1 
+                      flag=true
                     }
                      
-           }          
+           }
+           if (flag==false) {ruralesfiltro.push(result[i])}         
          }
          const  featurescentrosjson=centrosfiltro.map(o=>{               
           return(
@@ -174,12 +202,29 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
               }
             }
       )     
-   })   
-   centrosjson.features=featurescentrosjson;
-   setCENTROSGEO(centrosjson) 
+   }) 
+   const  featuresruralesjson=ruralesfiltro.map(o=>{               
+    return(
+      {
+        "type":"Feature",
+        "properties":{"nombre":o.nombrecentro,"codcne":o.codcne,"correo":o.correo,},                             
+        "geometry":{"type":"Point","coordinates":[o.lng,o.lat]
+        }
+      }
+)     
+})   
+let centrosjson={"type":"FeatureCollection","features":[] }
+
+    centrosjson.features=featurescentrosjson;
+    let ruralesjson={"type":"FeatureCollection","features":[] }
+
+    ruralesjson.features=featuresruralesjson;
+
+   setCENTROSURBANOSGEO(centrosjson) 
+   setCENTROSRURALESGEO(ruralesjson)
    setComentario(result.length+ " centros "+centrosfiltro.length+" Urbanos")
    //alert(JSON.stringify(centrosjson))
-            
+   setFlagCircular(flag)
    //alert(result.length+" "+JSON.stringify(centrosfiltro.length))
       })
      
@@ -187,6 +232,17 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
   function onResize (map, event)  {
    //alert(map.getZoom()+" " +JSON.stringify(event))
   }
+  const handleChangeCambios=input=>e=>{
+    
+    if (input=="estado"){
+     // alert(JSON.stringify(e.target.value)) 
+      var index = EEMMPP.findIndex(obj => obj.cneestado==e.target.value);
+    // alert(index)
+       var cod=e.target.value.substring(0,2)
+      setCODESTADO(cod)
+      //setPosEstado(index)
+     }
+    }
    function onZoom (map, event)  {
      var zoomint=Math.round(map.getZoom());
      //dispatch({
@@ -233,9 +289,7 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
 //alert(JSON.stringify(RESPUESTAS))
 const handleInterseccion = id => {
   var a=0
-  for (var i = 0; i < PA.features.length; i++) {
-         a+=1 
-  }
+  
   //alert(a)
   //alert(JSON.stringify(func1({a:999})))
   var chacao={"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-66.86648285220637,10.547065812599794],[-66.85106526213166,10.534706725606188],[-66.84499798628454,10.535777779305338],[-66.84723508822026,10.533705752425973],[-66.84771313574767,10.525801551983824],[-66.84598901355122,10.521770577285338],[-66.84902305253324,10.498507164212297],[-66.84440981668895,10.491634051146493],[-66.84452567135637,10.480287837919786],[-66.84798971439658,10.481516877004744],[-66.85470212388573,10.479155828975298],[-66.8572430940725,10.480048808159482],[-66.86195818975469,10.483072828611846],[-66.86997459035034,10.485250815734428],[-66.86994547759159,10.493149972906204],[-66.86689262126768,10.500595090939822],[-66.86204546594162,10.508173241950711],[-66.86327173368704,10.519100400660978],[-66.86904566288901,10.528349545158989],[-66.87063874499933,10.53307857187393],[-66.8711089771884,10.54229174772203],[-66.86648285220637,10.547065812599794]]]},"properties":{"PARROQUIA":"Chacao","MUNICIPIO":"Chacao","ESTADO":"Miranda"}}
@@ -253,11 +307,33 @@ return (
 <Fragment>
 <div className={classes.root}>
  <Title2>Estructuras GeoElectorales</Title2>
- <Button variant="outlined" color="primary" onClick={() => handleInterseccion("13")}>GeoParroquias</Button>
+ 
+      
+     
+        
+       
+        <Select
+         className={classes.formControl}
+        value={CODESTADO+"0000"}
+        onChange={handleChangeCambios('estado')}
+         input={<Input name="Estado" id="age-helper" />}
+       >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        {EEMMPP.map((item, index) => (
+                 <MenuItem value={item.cneestado}>{item.name}</MenuItem>
+              
+               ))}
+       
+      
+      </Select>
+      
+ <Button variant="outlined" color="primary" onClick={() => handleInterseccion("01")}>GeoParroquias</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("01")}>GeoCiudades</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("23")}>GeoRurales</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("08")}>GeoSocioEconomicos</Button>
- <Button variant="outlined" color="primary" onClick={() => handleInterseccion("12")}>GeoResultados</Button>
+ <Button variant="outlined" color="primary" onClick={() => handleInterseccion("12")}>GeoResultados</Button>{flagCircular&&<CircularProgress className={classes.progress} />}
  <div>{comentario}</div>
  
  <Map       
@@ -321,9 +397,28 @@ return (
           }}
           />
  <GeoJSONLayer
-          data={CENTROSGEO}
+          data={CENTROSRURALESGEO}
           circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'orange','circle-radius': 2, }}  
+         circlePaint={{'circle-color': 'red','circle-radius': 2, }}  
+        // onClick={onMapClick}     
+        //circleOnClick={onCentroClick}
+        //   fillOnClick={this.onMapClick}  
+          symbolLayout={{
+            'text-field': '{nombre}',
+            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top',
+            "text-size": 10
+            
+          }}
+          symbolPaint={{
+            'text-color': 'black'
+          }}
+          />
+ <GeoJSONLayer
+          data={CENTROSURBANOSGEO}
+          circleLayout={{ visibility: 'visible' }}
+         circlePaint={{'circle-color': 'blue','circle-radius': 2, }}  
         // onClick={onMapClick}     
         //circleOnClick={onCentroClick}
         //   fillOnClick={this.onMapClick}  
@@ -344,7 +439,7 @@ return (
 
 
         </div>
-<Leyenda />
+<Leyenda className={classes.font}/>
 </Fragment>
 )
         }
