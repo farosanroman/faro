@@ -328,12 +328,19 @@ return (
        
       
       </Select>
-      
- <Button variant="outlined" color="primary" onClick={() => handleInterseccion("01")}>GeoParroquias</Button>
+      {flagCircular&&<CircularProgress 
+  variant="indeterminate"
+  disableShrink
+  
+  size={17}
+  thickness={4}
+ className={classes.progress} />}     
+ <Button variant="outlined" color="primary" onClick={() => handleInterseccion("01")}>GeoMetropolis</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("01")}>GeoCiudades</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("23")}>GeoRurales</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("08")}>GeoSocioEconomicos</Button>
- <Button variant="outlined" color="primary" onClick={() => handleInterseccion("12")}>GeoResultados</Button>{flagCircular&&<CircularProgress className={classes.progress} />}
+ <Button variant="outlined" color="primary" onClick={() => handleInterseccion("12")}>GeoResultados</Button>
+ 
  <div>{comentario}</div>
  
  <Map       

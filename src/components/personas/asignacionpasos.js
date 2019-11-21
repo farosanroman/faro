@@ -111,7 +111,7 @@ export default function AsignacionPasos() {
           <Typography component="h1" variant="h4" align="center">
             Asignacion al Faro V2.0
           </Typography>
-          <Stepper activeStep={activeStep} className={classes.stepper}>
+          <Stepper activeStep={activeStep} className={classes.stepper} orientation="horizontal">
             {steps.map(label => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>

@@ -346,7 +346,8 @@ export default function Dashboard() {
       <BrightnessHighIcon />
       </ListItemIcon>
       <ListItemText primary="Filtros" />
-    </ListItem>          
+    </ListItem>.
+              
         <Divider />
         <List>
        
