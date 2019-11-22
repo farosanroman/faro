@@ -50,12 +50,14 @@ import EditIcon from '@material-ui/icons/Edit';
 import PeopleIcon from '@material-ui/icons/People';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import { mainListItems, secondaryListItems } from './listItems';
 import { Summary } from './indicadores/summary'
 //import { Summary } from './summary'
 //import Chart from './chartpyramid';
 import Total from './indicadores/total';
 import Login from './dashboard/login';
+import About from './dashboard/about';
 import FaroPieChart from './indicadores/faropiechart';
 
 import Indicadores from './indicadores/indicadores';
@@ -236,6 +238,7 @@ export default function Dashboard() {
    // alert()
    setFlagDrawer(true)
     setFlagLogin(false)
+   // setComponente(101)
     //setOpen(false);
   };
   const handleFiltro=()=>{
@@ -279,11 +282,18 @@ export default function Dashboard() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Pizarra Electoral
           </Typography>
+          
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
+          <IconButton onClick={handleComponent(69)} color="inherit">
+            <Badge  color="secondary">
+              <VisibilityIcon />
+            </Badge>
+          </IconButton>
+
           <Button  onClick={handleLoginOpen} color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
@@ -422,7 +432,7 @@ export default function Dashboard() {
       }
       <main className={classes.content}>
       <div className={classes.appBarSpacer} />
-  
+  {(component==69)&&<About />}
      
       {(component==100)&&
          <Paper className={classes.paper}>
