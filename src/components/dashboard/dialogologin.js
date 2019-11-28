@@ -49,14 +49,17 @@ export default function DialogoLogin(props) {
   const [mensajeSnackBar,setMensajeSnackBar]=React.useState("");
 
 const [{ data, isLoading, isError }, fetchData] = useFetch("");
-if ((data!=undefined)&&(!isLoading))
+useEffect(() => {
+ // alert(JSON.stringify(data)+" "+JSON.stringify(isLoading))  
+  if ((data!=undefined)&&(!isLoading))
 
-{
- // alert("ok")
-//  alert("fetchDATA"+JSON.stringify(data)+" isLoading"+isLoading+" isError"+isError) 
+  {
+  
+    props.login()
+  }
+},[data,isLoading]);
 
-  props.login()
-}
+
 const uiConfig = {
   //https://www.youtube.com/watch?v=zq0TuNqV0Ew
   //https://stackoverflow.com/questions/37603118/firebase-auth-onauthstatechanged-not-working
@@ -86,6 +89,7 @@ useEffect(() => {
   //setOpenSnackBar(true)
   //setMensajeSnackBar("Autenticando en Twitter...")
  //A U T O M A T I C O
+ fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
   firebase.auth().onAuthStateChanged(
     user=>{
       

@@ -5,9 +5,7 @@ export const defaultState = {
     organizacion:
     [
       {
-        "id": 0,
-        "nombre": "AD",
-        "descripcion": "Accion Democratica",
+        "id": 0,"nombre": "AD","descripcion": "Accion Democratica",
         "selected": true,
         value: 800
       },
@@ -69,10 +67,11 @@ export const defaultState = {
       }
     ]
   ,
-    experiencia:[{ name: 'Alta', value: 400 },
-    { name: 'Media', value: 800 },
-    { name: 'Baja', value: 100 },
-    { name: 'Desconocida', value: 300 }
+    experienciaelectoral:[
+      { name: 'Alta', value: 400 },
+      { name: 'Media', value: 800 },
+      { name: 'Baja', value: 100 },
+      { name: 'Desconocida', value: 300 }
     ],
     educacion:[
       { name: 'Basica', value: 400 },

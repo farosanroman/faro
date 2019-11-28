@@ -26,6 +26,7 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 //import {celular} from '../data/celular.json';
 import {WORLD} from '../../data/world.json';
 import {USA} from '../../data/USA.json';
+import {COLOMBIA} from '../../data/COLOMBIA.json';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
 //import {RESP} from '../../data/resp.json';
@@ -396,6 +397,14 @@ return (
                      //fillOnMouseEnter={this.MouseEnter} 
          // fillOnClick={this.onFillMapClick}
        />  
+         <GeoJSONLayer
+           data={COLOMBIA}
+           fillPaint={{'fill-color': 'red','fill-outline-color': 'purple','fill-opacity': 0.002}}
+           linePaint={{'line-color': 'red','line-width': 2}}
+                     //fillOnMouseEnter={this.MouseEnter} 
+         // fillOnClick={this.onFillMapClick}
+       />  
+
           <GeoJSONLayer
            data={USA}
            fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}

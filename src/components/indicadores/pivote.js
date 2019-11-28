@@ -34,7 +34,7 @@ const rows = [
   createData('SUMATE', 356, 16.0, 49, 3.9),
 ];
 
-export  function Summary() {
+export  function Pivote() {
   const classes = useStyles();
 
   return (

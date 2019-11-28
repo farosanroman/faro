@@ -8,10 +8,14 @@ import Paper from '@material-ui/core/Paper';
 
 import Title from '../dashboard/title';
 import FaroPieChart from './faropiechart';
+//import FaroPieChart from './faropiechartborrar';
+import PieChartDE from './piechartde';
 import Total from './total';
 import { Application } from '../../App';
+import {DASHBOARD} from '../../data/DASHBOARD.json';
+import {DASHBOARD2} from '../../data/DASHBOARD2.json';
 //import { StateStoring } from 'devextreme-react/data-grid';
-
+//alert(JSON.stringify(DASHBOARD))
 
 const drawerWidth = 240;
 
@@ -88,6 +92,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+   
   },
     paper2: {
     padding: theme.spacing(2),
@@ -95,7 +100,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary
   },
   fixedHeight: {
-    height: 260,
+    height: 300,
   },
   
    fixedHeight2: {
@@ -109,7 +114,7 @@ export default function Indicadores() {
   const fixedHeightPaper2 = clsx(classes.paper, classes.fixedHeight2);
   const { state, dispatch } = React.useContext(Application);
 
- // alert(JSON.stringify(state.organizacion))
+// alert("indicadores "+JSON.stringify(DASHBOARD2.dashboard[3].resultados))
     return (
         <div className={classes.root}>     
         <Container maxWidth="lg" className={classes.container}>   
@@ -133,49 +138,17 @@ export default function Indicadores() {
            <Total indicador={'Retirados'}/>
              </Paper>
            </Grid>     
+           {DASHBOARD2.dashboard.map((item, index) => (
+              <Grid item xs={12} sm={6} md={3}>
+              <Paper className={fixedHeightPaper}>
+             
+              <FaroPieChart indicador={'Organizacion'} indicador={item}/>
       
-           <Grid item xs={12} sm={6} md={3}>
-        <Paper className={fixedHeightPaper}>
-       
-        <FaroPieChart indicador={'Organizacion'} data={state.organizacion}/>
+                </Paper>
+              </Grid>    
+         
+               ))}  
 
-          </Paper>
-        </Grid> 
-        
-        <Grid item xs={12} sm={6} md={3}>
-       
-       <Paper className={fixedHeightPaper}>
-      
-       <FaroPieChart indicador={'Experiencia Electoral'} data={state.experiencia} />
-
-         </Paper>
-       </Grid> 
-            
-       <Grid item xs={12} sm={6} md={3}>
-        <Paper className={fixedHeightPaper} >
-       
-        <FaroPieChart indicador={'Docente'} data={state.docente}/>
-
-          </Paper>
-        </Grid> 
-
-
-       
-        <Grid item xs={12} sm={6} md={3}>
-        <Paper className={fixedHeightPaper}>
-       
-        <FaroPieChart indicador={'FormacionElectoral'} data={state.calificacion}/>
-
-          </Paper>
-        </Grid> 
-        
-        <Grid item xs={12} sm={6} md={3}>
-        <Paper className={fixedHeightPaper}>
-       
-        <FaroPieChart indicador={'Cursos Previos'} data={state.previos} />
-
-          </Paper>
-        </Grid> 
 
         </Grid>       
    </Container>

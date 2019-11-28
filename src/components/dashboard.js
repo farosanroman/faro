@@ -52,13 +52,13 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { mainListItems, secondaryListItems } from './listItems';
-import { Summary } from './indicadores/summary'
+import { Pivote } from './indicadores/pivote'
 //import { Summary } from './summary'
 //import Chart from './chartpyramid';
 import Total from './indicadores/total';
 import Login from './dashboard/login';
 import About from './dashboard/about';
-import FaroPieChart from './indicadores/faropiechart';
+import FaroPieChart from './indicadores/faropiechartborrar';
 
 import Indicadores from './indicadores/indicadores';
 
@@ -376,6 +376,12 @@ export default function Dashboard() {
     </ListItem>
 
 
+    <ListItem button onClick={handleComponent(4)}>
+      <ListItemIcon>
+        <PieChartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Resultados" />
+    </ListItem>
     
         </List>
               
@@ -389,12 +395,6 @@ export default function Dashboard() {
       <ListItemText primary="Datos" />
     </ListItem>
 
-    <ListItem button onClick={handleComponent(4)}>
-      <ListItemIcon>
-        <PieChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Resultados" />
-    </ListItem>
 
    
 
@@ -457,12 +457,49 @@ export default function Dashboard() {
           <Container maxWidth="lg" className={classes.container}>   
            <Indicadores />
 
-               <Summary />
+               <Pivote />
         <Paper className={fixedHeightPaper}>
           <Chart1 />
         </Paper>
           </Container>
           }
+           {(component==0)&&
+ <Container maxWidth="lg" className={classes.container}>
+ 
+<Grid container spacing={3}>
+      
+
+<Grid item xs={12} sm={6} md={6}>
+<Paper className={fixedHeightPaper2}>
+  <ChartPieChart /></Paper>
+</Grid>
+<Grid item xs={12} sm={6} md={6}>
+<Paper className={fixedHeightPaper2}>
+<ChartPyramid />
+  </Paper>
+</Grid>
+
+<Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <Geo />
+              </Paper>
+            </Grid>
+      <Grid item xs={12} md={6} lg={6}>
+        <Paper className={fixedHeightPaper}>
+           <Chart2 />
+        </Paper>
+      </Grid>
+         
+   
+      <Grid item xs={12} md={6} lg={6}>
+        <Paper className={fixedHeightPaper2}>
+           <Chart4 />
+        </Paper>
+      </Grid>
+         </Grid>
+
+</Container>
+}
                 {(component==6)&&
           <Container maxWidth="lg" className={classes.container}>
                           <Cursos />
@@ -495,49 +532,7 @@ export default function Dashboard() {
       </Container>
      }
       {(component==5)&&<AsignacionPasos/>}
-  {(component==0)&&
- <Container maxWidth="lg" className={classes.container}>
  
-<Grid container spacing={3}>
-      
-
-<Grid item xs={12} sm={6} md={6}>
-<Paper className={fixedHeightPaper2}>
-  <ChartPieChart /></Paper>
-</Grid>
-<Grid item xs={12} sm={6} md={6}>
-<Paper className={fixedHeightPaper2}>
-<ChartPyramid />
-  </Paper>
-</Grid>
-
-<Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Geo />
-              </Paper>
-            </Grid>
-
-
-
-   
-     
-   
-      <Grid item xs={12} md={6} lg={6}>
-        <Paper className={fixedHeightPaper}>
-           <Chart2 />
-        </Paper>
-      </Grid>
-         
-   
-      <Grid item xs={12} md={6} lg={6}>
-        <Paper className={fixedHeightPaper2}>
-           <Chart4 />
-        </Paper>
-      </Grid>
-         </Grid>
-
-</Container>
-}
 
          
  

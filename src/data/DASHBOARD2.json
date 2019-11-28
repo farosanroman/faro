@@ -1,0 +1,159 @@
+{
+"DASHBOARD2":{
+    "cantpersonas":2000,
+    "dashboard":
+    [
+        {
+          "idformulario": "1",
+          "nombre": "Experiencia Electoral",
+          "resultados": [
+            {
+              "id": "1",
+              "nombre": "Alta",
+              "value": 3
+            },
+            {
+              "id": "2",
+              "nombre": "Media",
+              "value": 2
+            },
+            {
+              "id": "3",
+              "nombre": "Baja",
+              "value": 3
+            },
+            {
+              "id": "4",
+              "nombre": "Desconocida",
+              "value": 7
+            }
+          ]
+        },
+        {
+          "idformulario": "2",
+          "nombre": "Formacion Academica",
+          "resultados": [
+            {
+              "id": "1",
+              "nombre": "Basica / Media",
+              "value": 1
+            },
+            {
+              "id": "2",
+              "nombre": "TSU / Univ. Incompleta",
+              "value": 2
+            },
+            {
+              "id": "3",
+              "nombre": "Universitaria Abogado",
+              "value": 2
+            },
+            {
+              "id": "4",
+              "nombre": "Universitaria Docente",
+              "value": 1
+            },
+            {
+              "id": "5",
+              "nombre": "Universitaria Ingeniero",
+              "value": 0
+            },
+            {
+              "id": "6",
+              "nombre": "Universitaria Otros",
+              "value": 1
+            },
+            {
+              "id": "7",
+              "nombre": "Desconocidos",
+              "value": 8
+            }
+          ]
+        },
+        {
+          "idformulario": "3",
+          "nombre": "Experiencia Docente",
+          "resultados": [
+            {
+              "id": "1",
+              "nombre": "Si",
+              "value": 6
+            },
+            {
+              "id": "2",
+              "nombre": "No",
+              "value": 9
+            }
+          ]
+        },
+        {
+          "idformulario": "4",
+          "nombre": "Organizacion",
+          "resultados": [
+            {
+              "id": "1",
+              "nombre": "AD",
+              "value": 15
+            },
+            {
+              "id": "2",
+              "nombre": "VPA",
+              "value": 23
+            },
+            {
+              "id": "3",
+              "nombre": "MPJ",
+              "value": 12
+            },
+            {
+              "id": "4",
+              "nombre": "UNTC",
+              "value": 56
+            },
+            {
+              "id": "5",
+              "nombre": "SUMATE",
+              "value": 23
+            },
+            {
+              "id": "6",
+              "nombre": "SC",
+              "value": 14
+            },
+            {
+              "id": "7",
+              "nombre": "CAUSA R",
+              "value": 34
+            },
+            {
+              "id": "8",
+              "nombre": "Otro Nacional",
+              "value": 23
+            },
+            {
+              "id": "9",
+              "nombre": "Otro Regional",
+              "value": 32
+            }
+          ]
+        },
+        {
+          "idformulario": "5",
+          "nombre": "Calificacion Formacion Electora",
+          "resultados": [
+            {
+              "id": "1",
+              "nombre": "Alta",
+              "value": 4
+            },
+            {
+              "id": "2",
+              "nombre": "Media",
+              "value": 11
+            }
+          ]
+        }
+      ]
+
+}}
+
