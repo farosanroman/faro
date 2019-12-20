@@ -390,44 +390,8 @@ return (
                      //fillOnMouseEnter={this.MouseEnter} 
          // fillOnClick={this.onFillMapClick}
        />  
-         <GeoJSONLayer
-           data={WORLD}
-           fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-           linePaint={{'line-color': 'darkred','line-width': 3}}
-                     //fillOnMouseEnter={this.MouseEnter} 
-         // fillOnClick={this.onFillMapClick}
-       />  
-         <GeoJSONLayer
-           data={COLOMBIA}
-           fillPaint={{'fill-color': 'red','fill-outline-color': 'purple','fill-opacity': 0.002}}
-           linePaint={{'line-color': 'red','line-width': 2}}
-                     //fillOnMouseEnter={this.MouseEnter} 
-         // fillOnClick={this.onFillMapClick}
-       />  
-
-          <GeoJSONLayer
-           data={USA}
-           fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-           linePaint={{'line-color': 'darkorange','line-width': 3}}
-                     //fillOnMouseEnter={this.MouseEnter} 
-         // fillOnClick={this.onFillMapClick}
-       />  
- <GeoJSONLayer
-          data={redpoint}
-          circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'red','circle-radius': 4, }}         
-          symbolLayout={{
-            'text-field': '{nombre0}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
-            
-          }}
-
-          symbolPaint={{
-            'text-color': 'black'
-          }}
-          />
+        
+       
  <GeoJSONLayer
           data={CENTROSRURALESGEO}
           circleLayout={{ visibility: 'visible' }}
@@ -466,6 +430,13 @@ return (
             'text-color': 'black'
           }}
           />
+               <GeoJSONLayer
+           data={COLOMBIA}
+           fillPaint={{'fill-color': 'red','fill-outline-color': 'purple','fill-opacity': 0.002}}
+           linePaint={{'line-color': 'red','line-width': 1}}
+                     //fillOnMouseEnter={this.MouseEnter} 
+         // fillOnClick={this.onFillMapClick}
+       />  
 
 </Map>
 
@@ -475,3 +446,38 @@ return (
 </Fragment>
 )
         }
+
+        /*
+
+          <GeoJSONLayer
+           data={COLOMBIA}
+           fillPaint={{'fill-color': 'red','fill-outline-color': 'purple','fill-opacity': 0.002}}
+           linePaint={{'line-color': 'red','line-width': 2}}
+                     //fillOnMouseEnter={this.MouseEnter} 
+         // fillOnClick={this.onFillMapClick}
+       />  
+
+          <GeoJSONLayer
+           data={USA}
+           fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
+           linePaint={{'line-color': 'darkorange','line-width': 3}}
+                     //fillOnMouseEnter={this.MouseEnter} 
+         // fillOnClick={this.onFillMapClick}
+       />  
+ <GeoJSONLayer
+          data={redpoint}
+          circleLayout={{ visibility: 'visible' }}
+         circlePaint={{'circle-color': 'red','circle-radius': 4, }}         
+          symbolLayout={{
+            'text-field': '{nombre0}',
+            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top',
+            
+          }}
+
+          symbolPaint={{
+            'text-color': 'black'
+          }}
+          />
+          */

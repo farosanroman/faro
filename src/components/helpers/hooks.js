@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+//https://itnext.io/how-to-create-react-custom-hooks-for-data-fetching-with-useeffect-74c5dc47000a <==WUAO
+//https://hooks-guide.netlify.com/
 //const data = useFetch("http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337");
 //ss  const data2 = useFetchPost("https://geofaro.azurewebsites.net/api/VinoTintoPostPersona?code=YAP4o9atasiNoeX/seAll5TsVA99bCsaaVO68XsnNoHHZ4YZ3UStQQ==",{ppa:"123",ppp:"ppa"});
  //OTO EJEMPLO CON falg is loading  https://medium.com/@cwlsn/how-to-fetch-data-with-react-hooks-in-a-minute-e0f9a15a44d6
