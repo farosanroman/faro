@@ -7,10 +7,10 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
 import Title from '../dashboard/title';
-import FaroPieChart from './faropiechart';
+import FaroPieChart from '../indicadores/faropiechart';
 //import FaroPieChart from './faropiechartborrar';
-import PieChartDE from './piechartde';
-import Total from './total';
+import PieChartDE from '../indicadores/piechartde';
+import Total from '../indicadores/total';
 import { Application } from '../../App';
 import {DASHBOARD} from '../../data/DASHBOARD.json';
 import {DASHBOARD2} from '../../data/DASHBOARD2.json';

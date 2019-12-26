@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -7,7 +7,10 @@ import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import {getPersona} from '../helpers/helperpersonas'
+import {useFetch}  from '../hooks/usefetch'
 import { Application } from '../../App';
+
+//url="https://openfaroapi.azurewebsites.net/api/personaget?identificacion=V3664511"
 const useStyles = makeStyles(theme => ({
     appBar: {
       position: 'relative',
@@ -60,7 +63,17 @@ export default function AsignacionCedula() {
     const [parroquia, setParroquia] = React.useState("");
     const [nombre, setNombre] = React.useState("");
     const [direccion, setDireccion] = React.useState("");
-
+    
+const [{ data, isLoading, isError }, fetchData] = useFetch("");
+    useEffect(() => {
+      alert(JSON.stringify(data)+" "+JSON.stringify(isLoading))  
+      if ((data!=undefined)&&(!isLoading))
+    
+      {
+      
+       
+      }
+    },[data,isLoading]);
    
     const handleChangeCambios=input=>e=>{
  
@@ -85,7 +98,7 @@ export default function AsignacionCedula() {
         }
         }
         const handleGetPersona = () => {   //de Faro
-  
+          fetchData('https://openfaroapi.azurewebsites.net/api/personaget?identificacion=V3664204');
             //this.setState({ isLoading: true });
            // alert('The value is: ' + JSON.stringify(cedula));
             //let cedula="V3664204";    

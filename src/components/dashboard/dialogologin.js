@@ -16,20 +16,12 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import { Application } from '../../App';
 
-import {useFetch}  from '../helpers/hooks'
-//import { red, blue } from 'material-ui/colors'
-//const redTheme = createMuiTheme({ palette: { primary: red } })
-//const blueTheme = createMuiTheme({ palette: { primary: blue } })
-//import logo from '../../farocirculo.png';
-//import {useFetch,useFetchPost} from '../tools/helperspersona'
-//import {getPersonaFaro} from '../tools/helperspersona'
-//import { datePickerDefaultProps } from '@material-ui/pickers/constants/prop-types';
-//LO LLAMAN DESDE EL HEADER
+import {useFetch}  from '../hooks/usefetch'
+
 var config = {
   apiKey: "AIzaSyDZ08hKl01qFilc3nJ4oRmO8wq49pcsw8s",
   authDomain: "vinotinto-7f56f.firebaseapp.com",
-  
- // projectId: "vinotinto-7f56f",
+// projectId: "vinotinto-7f56f",
 //  storageBucket: "vinotinto-7f56f.appspot.com",
 //  messagingSenderId: "892393449979",
 //  appId: "1:892393449979:web:f8a44a97924a8aeaee435e"
@@ -50,7 +42,7 @@ export default function DialogoLogin(props) {
 
 const [{ data, isLoading, isError }, fetchData] = useFetch("");
 useEffect(() => {
- // alert(JSON.stringify(data)+" "+JSON.stringify(isLoading))  
+  //alert(JSON.stringify(data)+" "+JSON.stringify(isLoading))  
   if ((data!=undefined)&&(!isLoading))
 
   {
@@ -231,46 +223,3 @@ if (input=="cedula"){
     </div>
   );
 }
-
-/*
-    //const [data] = useFetch(url);
-  
-    // props.login()  
-  useEffect(
-    () => {
-      
-      // Start it off by assuming the component is still mounted
-     if (url!=""){
-      setOpenSnackBar(true)
-      setMensajeSnackBar("Buscando Persona...")
-     }
-      let mounted = true;
-     
-      const loadData = async () => {
-        fetch("http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337")
-          .then(response => response.json())
-            .then(data =>{
-               // alert("HOOK"+JSON.stringify(data))
-                console.log("mounted fetch")
-                if (mounted) {
-                  setOpenSnackBar(false)
-                    setLogin(true)
-                    setPersona(data);
-                  }
-            }
-        
-                ) //setData(data));
-     
-      };
-       if (url!=""){
-      loadData();
-       }
-      return () => {
-        // When cleanup is called, toggle the mounted variable to false
-        console.log("on mounted")
-        mounted = false;
-      };
-    },
-    [url]
-  );
-*/

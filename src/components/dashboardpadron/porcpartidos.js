@@ -36,7 +36,7 @@ const data = [
 
 
 
-export default function Chart2() {
+export default function PorcPartidos() {
   return (
     <React.Fragment>
       <ResponsiveContainer>

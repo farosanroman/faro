@@ -47,7 +47,7 @@ var faros=[
           </div>
         );
       }
-export default function Login() {
+export default function PrimeraPagina() {
   const classes = useStyles();
   var pos = Math.floor((Math.random() * faros.length) + 1)-1;
   return (

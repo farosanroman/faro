@@ -39,11 +39,6 @@ import SendIcon from '@material-ui/icons/Send';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
 import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
-import ContactMailIcon from '@material-ui/icons/ContactMail';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import ReceiptIcon from '@material-ui/icons/Receipt';
-import ViewListIcon from '@material-ui/icons/ViewList';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import EditIcon from '@material-ui/icons/Edit';
@@ -52,35 +47,35 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { mainListItems, secondaryListItems } from './listItems';
-import { Pivote } from './indicadores/pivote'
+
 //import { Summary } from './summary'
 //import Chart from './chartpyramid';
 import Total from './indicadores/total';
-import Login from './dashboard/login';
+import PrimeraPagina from './dashboard/primerapagina';
 import About from './dashboard/about';
 import FaroPieChart from './indicadores/faropiechartborrar';
-
-import Indicadores from './indicadores/indicadores';
-
-import Chart1 from './indicadores/chart1';
-import Chart2 from './indicadores/chart2';
-//import Chart3 from './indicadores/chart3';
-import Chart4 from './indicadores/chart4';
-import ChartPyramid from './indicadores/chartpyramid';
-import ChartPieChart from './indicadores/chartpiechart';
-import Geo from './indicadores/geo';
+///////////////Equipo//////////////////
+import Indicadores from './dashboardpadron/indicadores';
+import Avance from './dashboardpadron/avance';
+import { Pivote } from './dashboardpadron/pivote'
+import Radar2 from './dashboardpadron/radar2';
+import ChartPyramid from './dashboardpadron/chartpyramid';
+import ChartPieChart from './dashboardpadron/chartpiechart';
+import Geo from './dashboardpadron/geo';
+import PorcPartidos from './dashboardpadron/porcpartidos';
+///////////////Equipo//////////////////
 import Historia from './inteligencia/historia';
 import Polylines from './inteligencia/polylines';
-import GeoCentros from './dashboard/geocentros';
+import GeoCentros from './inteligencia/geocentros';
 import AsignacionPasos from './personas/asignacionpasos'
 //import AsignacionDatos from './personas/asignaciondatosborrar';
-import SimpleTable from './mensajeria/simpletable';
-import Mensajes from './mensajeria/mensajes';
-import Intervalos from './mensajeria/intervalos';
-import Resultados from './mensajeria/resultados';
+import SimpleTable from './dashboardmensajeria/simpletable';
+import Mensajes from './dashboardmensajeria/mensajes';
+import Intervalos from './dashboardmensajeria/intervalos';
+import Resultados from './dashboardmensajeria/resultados';
 import DialogoGetPersona from './personas/dialogogetpersona'
 import DialogoLogin from './dashboard/dialogologin'
-import DialogoFiltros from './dashboard/dialogofiltros'
+import DialogoFiltros from './dashboardpadron/dialogofiltros'
 import Fotos from './dashboard/fotos';
 import Cursos     from      './formacion/cursos'
 import VinoTinto     from      './formacion/vinotinto'
@@ -198,7 +193,7 @@ function getStepContent(step) {
           <Grid item xs={12}>
          
                  <Paper >
-                 <Login />
+                 <PrimeraPagina />
                  </Paper>
                </Grid>
            </Grid>
@@ -311,37 +306,13 @@ export default function Dashboard() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <Divider />
-        <List>
-
-        <ListItem button onClick={handleComponent(12)}>
-      <ListItemIcon>
-        <PublicIcon />
-      </ListItemIcon>
-      <ListItemText primary="GeoElectoral" />
-    </ListItem>
-    <ListItem button  onClick={handleComponent(10)} >
-      <ListItemIcon>
-        <PlaceIcon />
-      </ListItemIcon>
-      <ListItemText primary="GeoCentros" />
-    </ListItem>
-    <ListItem button  onClick={handleComponent(11)} >
-      <ListItemIcon>
-        <HowToVoteIcon />
-      </ListItemIcon>
-      <ListItemText primary="Historia" />
-    </ListItem>
-    </List>
-              
-              <Divider />
-              <List>
-             
-        <ListItem button onClick={handleComponent(1)}>
+     
+      <List>
+       <ListItem button onClick={handleComponent(1)}>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Equipo" />
+      <ListItemText primary="Padron" />
     </ListItem>
 
         <ListItem button  onClick={handleComponent(0)} >
@@ -392,15 +363,35 @@ export default function Dashboard() {
       <ListItemIcon>
         <EditIcon />
       </ListItemIcon>
-      <ListItemText primary="Datos" />
+      <ListItemText primary="Asignacion" />
     </ListItem>
 
-
-   
-
-    
         </List>
         <Divider />
+        
+        <List>
+
+        <ListItem button onClick={handleComponent(12)}>
+      <ListItemIcon>
+        <PublicIcon />
+      </ListItemIcon>
+      <ListItemText primary="GeoElectoral" />
+    </ListItem>
+    <ListItem button  onClick={handleComponent(10)} >
+      <ListItemIcon>
+        <PlaceIcon />
+      </ListItemIcon>
+      <ListItemText primary="GeoCentros" />
+    </ListItem>
+    <ListItem button  onClick={handleComponent(11)} >
+      <ListItemIcon>
+        <HowToVoteIcon />
+      </ListItemIcon>
+      <ListItemText primary="Historia" />
+    </ListItem>
+    </List>
+              
+              <Divider />
         <List>
         <ListSubheader inset>Futuro</ListSubheader>
 
@@ -432,34 +423,19 @@ export default function Dashboard() {
       }
       <main className={classes.content}>
       <div className={classes.appBarSpacer} />
-  {(component==69)&&<About />}
-     
       {(component==100)&&
          <Paper className={classes.paper}>
                {getStepContent(component)}
            </Paper>
       }
-  
-   {(component==12)&&
-     <Container maxWidth="lg" className={classes.container}>
-                <Polylines />
-    </Container>}
-
-      {(component==9)&&
-     <Container maxWidth="lg" className={classes.container}>
-                <Fotos />
-    </Container>}
-    {(component==69)&&
-     <Container maxWidth="lg" className={classes.container}>
-                <VinoTinto />
-    </Container>}
-    {(component==1)&&
+  {false&&<div>!!!!!!!!!!!!Padron!!!!!!!!!!</div>}
+  {(component==1)&&
           <Container maxWidth="lg" className={classes.container}>   
            <Indicadores />
 
                <Pivote />
         <Paper className={fixedHeightPaper}>
-          <Chart1 />
+          <Avance />
         </Paper>
           </Container>
           }
@@ -486,36 +462,47 @@ export default function Dashboard() {
             </Grid>
       <Grid item xs={12} md={6} lg={6}>
         <Paper className={fixedHeightPaper}>
-           <Chart2 />
+           <PorcPartidos />
         </Paper>
       </Grid>
          
    
       <Grid item xs={12} md={6} lg={6}>
         <Paper className={fixedHeightPaper2}>
-           <Chart4 />
+           <Radar2 />
         </Paper>
       </Grid>
          </Grid>
 
 </Container>
 }
-                {(component==6)&&
-          <Container maxWidth="lg" className={classes.container}>
-                          <Cursos />
-          </Container>
-          }
-      {(component==2)&&
+{false&&<div>!!!!!!!!!!!!Mensajes!!!!!!!!!!</div>}
+{(component==2)&&
           <Container maxWidth="lg" className={classes.container}>
                           <Mensajes />
           </Container>
           }
-                {(component==3)&&
+             {(component==3)&&
           <Container maxWidth="lg" className={classes.container}>
                           <Intervalos />
           </Container>
           }
-      {(component==10)&&
+    {(component==4)&&
+        <Container maxWidth="lg" className={classes.container}>
+            <Resultados />
+      </Container>
+     }
+  {false&&<div>!!!!!!!!!!!!Persona Asignacion!!!!!!!!!!</div>}
+
+{(component==5)&&<AsignacionPasos/>}
+ 
+     
+  {false&&<div>!!!!!!!!!!!!Inteligencia!!!!!!!!!!</div>}
+   {(component==12)&&
+     <Container maxWidth="lg" className={classes.container}>
+                <Polylines />
+    </Container>}
+    {(component==10)&&
         <Container maxWidth="lg" className={classes.container}>
             <GeoCentros />
       </Container>
@@ -525,14 +512,30 @@ export default function Dashboard() {
             <Historia />
       </Container>
      }
+{false&&<div>!!!!!!!!!!!!Otros!!!!!!!!!!</div>}
+{(component==69)&&<About />}
+  
+      {(component==9)&&
+     <Container maxWidth="lg" className={classes.container}>
+                <Fotos />
+    </Container>}
+    {(component==69)&&
+     <Container maxWidth="lg" className={classes.container}>
+                <VinoTinto />
+    </Container>}
+   
+
+                {(component==6)&&
+          <Container maxWidth="lg" className={classes.container}>
+                          <Cursos />
+          </Container>
+          }
+     
+             
+
                         
-      {(component==4)&&
-        <Container maxWidth="lg" className={classes.container}>
-            <Resultados />
-      </Container>
-     }
-      {(component==5)&&<AsignacionPasos/>}
- 
+  
+     
 
          
  
@@ -543,3 +546,6 @@ export default function Dashboard() {
     </div>
   );
 }
+
+//ejemplos
+//https://flatlogic.com/templates/react-material-admin/demo

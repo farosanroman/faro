@@ -31,7 +31,7 @@ const data = [
 
 
 
-export default function Chart4() {
+export default function Radar2() {
   return (
     <React.Fragment>
       <ResponsiveContainer>

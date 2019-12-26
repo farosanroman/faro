@@ -19,7 +19,7 @@ const data = [
   createData('24:00', undefined),
 ];
 
-export default function Chart1() {
+export default function Avance() {
   return (
     <React.Fragment>
        <Title>Curva de Avance</Title>
