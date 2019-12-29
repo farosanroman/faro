@@ -5,10 +5,12 @@ import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
+import green from '@material-ui/core/colors/green';
+import orange from '@material-ui/core/colors/orange';
 import deepPurple from '@material-ui/core/colors/deepPurple';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import indigo from '@material-ui/core/colors/indigo';
-import cyan from '@material-ui/core/colors/cyan';
+import amber from '@material-ui/core/colors/amber';
 
 import logo from './logo.svg';
 import './App.css';
@@ -21,10 +23,13 @@ const theme = createMuiTheme({
   palette: {
     primary: indigo,
     secondary: red,
-    error: red
+    error: red,
+    warning: orange,
+    succeess:green,
+    info:amber,
   }
 });
-
+//alert(JSON.stringify(indigo))
 function App() {
   const initialState = () => JSON.parse(window.localStorage.getItem('farostorage14')) || defaultState;
   

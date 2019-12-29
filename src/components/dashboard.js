@@ -54,6 +54,7 @@ import Total from './indicadores/total';
 import PrimeraPagina from './dashboard/primerapagina';
 import About from './dashboard/about';
 import FaroPieChart from './indicadores/faropiechartborrar';
+import Log from './dashboardlog/log';
 ///////////////Equipo//////////////////
 import Indicadores from './dashboardpadron/indicadores';
 import Avance from './dashboardpadron/avance';
@@ -68,6 +69,7 @@ import Historia from './inteligencia/historia';
 import Polylines from './inteligencia/polylines';
 import GeoCentros from './inteligencia/geocentros';
 import AsignacionPasos from './personas/asignacionpasos'
+
 //import AsignacionDatos from './personas/asignaciondatosborrar';
 import SimpleTable from './dashboardmensajeria/simpletable';
 import Mensajes from './dashboardmensajeria/mensajes';
@@ -178,7 +180,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary
   },
   fixedHeight: {
-    height: 240,
+    height: 140,
   },
   
    fixedHeight2: {
@@ -193,6 +195,7 @@ function getStepContent(step) {
           <Grid item xs={12}>
          
                  <Paper >
+                   <Log />
                  <PrimeraPagina />
                  </Paper>
                </Grid>
