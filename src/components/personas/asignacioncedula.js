@@ -8,8 +8,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import {getPersona} from '../helpers/helperpersonas'
 import {useFetch}  from '../hooks/usefetch'
-import { Application } from '../../App';
-
+//import { Application } from '../../App';
+import { ApplicationPersona } from './asignacionpasos';
 //url="https://openfaroapi.azurewebsites.net/api/personaget?identificacion=V3664511"
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   }));
 export default function AsignacionCedula() {
     const classes = useStyles();
-    const { state, dispatch } = React.useContext(Application);
+    const { statep, dispatchp  } = React.useContext(ApplicationPersona);
     const [cedula, setCedula] = React.useState("");
     const [cedulaError, setCedulaError] = React.useState({flag:false,helper:"ok"});
     const [nombre1, setNombre1] = React.useState("");
@@ -66,11 +66,15 @@ export default function AsignacionCedula() {
     
 const [{ data, isLoading, isError }, fetchData] = useFetch("");
     useEffect(() => {
-      alert(JSON.stringify(data)+" "+JSON.stringify(isLoading))  
+      //alert(JSON.stringify(data)+" "+JSON.stringify(isLoading))  
+      dispatchp({
+        type: 'CEDULA',
+        stateprop: {a:1}
+      });
       if ((data!=undefined)&&(!isLoading))
-    
-      {
       
+      {
+        
        
       }
     },[data,isLoading]);
@@ -98,6 +102,7 @@ const [{ data, isLoading, isError }, fetchData] = useFetch("");
         }
         }
         const handleGetPersona = () => {   //de Faro
+          alert("get"+JSON.stringify(statep))
           fetchData('https://openfaroapi.azurewebsites.net/api/personaget?identificacion=V3664204');
             //this.setState({ isLoading: true });
            // alert('The value is: ' + JSON.stringify(cedula));
@@ -133,10 +138,10 @@ const [{ data, isLoading, isError }, fetchData] = useFetch("");
                  setParroquia(result.nombreparroquiacentrovotacion)
                  setNombre(result.nombrecentrovotacion)
                  setDireccion(result.direccioncentrovotacion) 
-                 dispatch({
-                  type: 'ASIGNACION',
-                  stateprop: result
-                });
+                 //dispatch({
+                 // type: 'ASIGNACION',
+                 // stateprop: result
+                //});
                  var rolesstr=""
                  /*
                  for (let ii = 0; ii < result[0].rol.length; ++ii) {

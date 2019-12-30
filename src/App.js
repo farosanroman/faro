@@ -14,9 +14,10 @@ import amber from '@material-ui/core/colors/amber';
 
 import logo from './logo.svg';
 import './App.css';
-import { reducer, defaultState } from './Context';
+
 
 import Dashboard from '../src/components/dashboard'
+import { reducer, defaultState } from './Context';
 export const Application = React.createContext({ state: null, dispatch: null });
 
 const theme = createMuiTheme({

@@ -14,6 +14,10 @@ import AsignacionCedula from './asignacioncedula';
 import AsignacionDirecciones from './asignaciondirecciones';
 import AsignacionRol from './asignacionrol';
 import AsignacionOrganizacion from './asignacionorganizacion';
+import { reducer, defaultState } from '../../ContextPersona';
+export const Application = React.createContext({ state: null, dispatch: null });
+export const ApplicationPersona = React.createContext({ statep: null, dispatchp: null });
+
 //import PaymentForm from './PaymentForm';
 //import Review from './Review';
 
@@ -90,6 +94,8 @@ function getStepContent(step) {
 }
 
 export default function AsignacionPasos() {
+  const [statep, dispatchp] = React.useReducer(reducer, defaultState);
+ 
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -130,7 +136,10 @@ export default function AsignacionPasos() {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep)}
+                 <ApplicationPersona.Provider value={{ statep, dispatchp }}>
+                 {getStepContent(activeStep)}
+                
+                 </ApplicationPersona.Provider>
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} className={classes.button}>
