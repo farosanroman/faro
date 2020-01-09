@@ -108,8 +108,8 @@ export const defaultState = {
             "texto": "ppazpurua@gmail.com"
           },
           {
-            "idrespuesta": "TC",
-            "respuesta": "TELEFONO CELULAR",
+            "idrespuesta": "TW",
+            "respuesta": "Twitter",
             "codcne": "",
             "descripcion": "",
             "codcnenombre": "",
@@ -126,7 +126,7 @@ export const defaultState = {
             "parroquianombre": "",
             "circunscripcionnombre": "",
             "centronombre": "",
-            "texto": "04124444444"
+            "texto": "@mitwitter"
           }
         ],
         "roles": [
@@ -150,49 +150,38 @@ export const defaultState = {
             "circunscripcionnombre": "",
             "centronombre": "VENEZUELA"
           }
-        ],
-        "formularios": [
-          {
-            "idorganizacion": "10",
-            "idevento": "",
-            "idtipoformulario": "FORM",
-            "tipoformulario": "FORMACION",
-            "idformulario": "4",
-            "formulario": "Organizacion",
-            "identificacion": "V3664204",
-            "preguntas": [
-              {
-                "idpregunta": "1",
-                "pregunta": "Organizacion",
-                "respuestas": [
-                  {
-                    "idrespuesta": "4",
-                    "respuesta": "UNTC",
-                    "seleccionada": 1
-                  }
-                ]
-              }
-            ]
-          }
         ]
       }    
     };
   
-  export const reducer = (stateP = defaultState, action) => {
+  export const reducer = (statep = defaultState, action) => {
+   // alert(JSON.stringify(statep))
       const { type, stateprop } = action;
       switch (type) {
+        case 'PERSONA':
+        //  alert("qqqq")
+        //  alert("stateprop "+JSON.stringify(stateprop))
+         // let persona0=statep.persona
+         // persona0.identificacion=stateprop
+        //  alert("PPA"+JSON.stringify(statep))
+         return { ...statep, persona: stateprop };
         case 'CEDULA':
-         alert(JSON.stringify(stateprop))
-        return { ...stateP, persona: stateprop };
+       // alert("CEDULA")
+        // alert(JSON.stringify(stateprop))
+        
+         let persona1=statep.persona
+         persona1.identificacion=stateprop
+        // alert("PPA"+JSON.stringify(statep))
+        return { ...statep, persona: persona1 };
    
      
        
         case 'RESET':
           window.localStorage.removeItem('vinotinto');
-          return { ...stateP, currentWeight: null };
+          return { ...statep, currentWeight: null };
     
         default:
-          return stateP;
+          return statep;
       }
     };
   

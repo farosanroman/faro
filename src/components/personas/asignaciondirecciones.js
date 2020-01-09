@@ -3,11 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import {getPersona} from '../helpers/helperpersonas'
-import { Application } from '../../App';
+//import Button from '@material-ui/core/Button';
+//import FormControlLabel from '@material-ui/core/FormControlLabel';
+//import Checkbox from '@material-ui/core/Checkbox';
+//import {getPersona} from '../helpers/helperpersonas'
+//import { Application } from '../../App';
+
+import { ApplicationPersona } from './asignacionpasos';
+import CircularProgress from '@material-ui/core/CircularProgress';
 const useStyles = makeStyles(theme => ({
     appBar: {
       position: 'relative',
@@ -46,8 +49,8 @@ const useStyles = makeStyles(theme => ({
   }));
 export default function AsignacionDirecciones() {
     const classes = useStyles();
-    const { state, dispatch } = React.useContext(Application);
-
+   // const { state, dispatch } = React.useContext(Application);
+    const { statep, dispatchp  } = React.useContext(ApplicationPersona);
     const [cedula, setCedula] = React.useState("");
     const [cedulaError, setCedulaError] = React.useState({flag:false,helper:"ok"});
     const [nombre1, setNombre1] = React.useState("");
@@ -55,7 +58,7 @@ export default function AsignacionDirecciones() {
     const [apellido1, setApellido1] = React.useState("");
     const [apellido2, setApellido2] = React.useState("");
     
-    const [correo, setCorreo] = React.useState("cc");
+    const [correo, setCorreo] = React.useState("ccccc@gmail.com");
     const [correoError, setCorreoError] = React.useState({flag:false,helper:"ok"});
   
     const [celular, setCelular] = React.useState("2129878787");
@@ -63,7 +66,8 @@ export default function AsignacionDirecciones() {
   
     const [twt, setTwt] = React.useState("");
     const [index, setIndex] = React.useState(1)
-    
+    const [flagCircular, setFlagCircular] = React.useState(false);
+
     const [inputs, setInputs] = React.useState([
       
         {
@@ -118,11 +122,13 @@ export default function AsignacionDirecciones() {
  //alert(JSON.stringify(state.asignacion))
    // setApellido1("state.asignacion.apellido1")    
    useEffect(() => {
-      setNombre1(state.asignacion.nombre1)
-      setNombre2(state.asignacion.nombre2)
-      setApellido1(state.asignacion.apellido1)
-      setApellido2(state.asignacion.apellido2)
-
+    // console.log(JSON.stringify(statep))
+   // alert("DIRECCIONES "+JSON.stringify(statep))
+      setNombre1(statep.persona.nombre1)
+      setNombre2(statep.persona.nombre2)
+      setApellido1(statep.persona.apellido1)
+      setApellido2(statep.persona.apellido2)
+      setCorreo("123")
   },[]);
   const onChange = ({ target: { id, value } }) => {
    alert(id+" "+value)

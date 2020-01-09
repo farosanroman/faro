@@ -8,8 +8,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import {getPersona} from '../helpers/helperpersonas'
 import {useFetch}  from '../hooks/usefetch'
+import {useFetchPost}  from '../hooks/usefetchpost'
 //import { Application } from '../../App';
 import { ApplicationPersona } from './asignacionpasos';
+import CircularProgress from '@material-ui/core/CircularProgress';
 //url="https://openfaroapi.azurewebsites.net/api/personaget?identificacion=V3664511"
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -63,18 +65,46 @@ export default function AsignacionCedula() {
     const [parroquia, setParroquia] = React.useState("");
     const [nombre, setNombre] = React.useState("");
     const [direccion, setDireccion] = React.useState("");
-    
+    const [flagCircular, setFlagCircular] = React.useState(false);
+
 const [{ data, isLoading, isError }, fetchData] = useFetch("");
-    useEffect(() => {
-      //alert(JSON.stringify(data)+" "+JSON.stringify(isLoading))  
-      dispatchp({
-        type: 'CEDULA',
-        stateprop: {a:1}
-      });
-      if ((data!=undefined)&&(!isLoading))
-      
+/*
+const [{ dataPost, isLoadingPost, isErrorPost }, postData] = useFetchPost('');
+useEffect(() => {
+ if (isLoadingPost) {
+    alert("post"+JSON.stringify(dataPost))
+    //  setFlagCircular(true)
+  }  
+/},[dataPost,isLoadingPost]);
+postData("https://f2020.azurewebsites.net/api/FaroFormulariosPersona?code=nbjfp6Cn8Mx3/WPr3DCwMXV8EZbfw2CB8UIMOTyfW8TYtlBSsbXGqw==",{id:{cedula:"V3664204"}})
+ */          
+useEffect(() => {
+      if (isLoading) {
+      //  setFlagCircular(true)
+      }
+      if ((data!=undefined)&&(!isLoading))      
       {
-        
+        setFlagCircular(false)
+       // alert("useEffect "+JSON.stringify(data)+" "+JSON.stringify(isLoading))  
+        setNombre1(data.nombre1) 
+        setNombre2(data.nombre2) 
+        setApellido1(data.apellido1) 
+        setApellido2(data.apellido2) 
+        setCodcne(data.codcncentrovotacion) 
+        setEstado(data.nombreestadocentrovotacion)
+        setMunicipio(data.nombremunicipiocentrovotacion)
+        setParroquia(data.nombreparroquiacentrovotacion)
+        setNombre(data.nombrecentrovotacion)
+        setDireccion(data.direccioncentrovotacion)
+       // alert("statep "+JSON.stringify(statep)) 
+        statep.persona.nombre1="NOMBRE1111"
+        statep.persona.nombre2="NOMBRE2222"
+        statep.persona.apellido1="APELLIDO1111"
+        statep.persona.apellido2="APELLIDO2222"
+        dispatchp({
+          type: 'PERSONA',
+          stateprop: statep.persona
+        });
        
       }
     },[data,isLoading]);
@@ -101,13 +131,15 @@ const [{ data, isLoading, isError }, fetchData] = useFetch("");
           setCedula(e.target.value)
         }
         }
+        
         const handleGetPersona = () => {   //de Faro
-          alert("get"+JSON.stringify(statep))
-          fetchData('https://openfaroapi.azurewebsites.net/api/personaget?identificacion=V3664204');
+         // alert("get"+JSON.stringify(statep))
+         setFlagCircular(true)
+         fetchData('https://openfaroapi.azurewebsites.net/api/personaget?identificacion=V3664204');
             //this.setState({ isLoading: true });
            // alert('The value is: ' + JSON.stringify(cedula));
             //let cedula="V3664204";    
-             
+                  /*
             getPersona(cedula,result => {  
               //alert("ppa")
                 //1alert(JSON.stringify(result))
@@ -143,49 +175,10 @@ const [{ data, isLoading, isError }, fetchData] = useFetch("");
                  // stateprop: result
                 //});
                  var rolesstr=""
-                 /*
-                 for (let ii = 0; ii < result[0].rol.length; ++ii) {
-                     rolesstr+=" | "+result[0].rol[ii].rol
-                 }
-                 const formDataPersona={
-                   "identificacion":result[0].identificacion,
-                   "nombre1":result[0].nombre1,
-                   "nombre2":result[0].nombre2,
-                   "apellido1":result[0].apellido1,
-                   "apellido2":result[0].apellido2,
-                   "sexo":result[0].sexo,
-                   "edad":result[0].edad,
-                   "fechanac":result[0].fechanac,
-                   "correo":correo,
-                   "telefono":celular,
-                   "estado":result[0].cv.estado,
-                   "municipio":result[0].cv.municipio,
-                   "parroquia":result[0].cv.parroquia,
-                   "codcne":result[0].cv.codcne,
-                   "nombre":result[0].cv.nombre,
-                   "accion":"",
-                   "rol": rolesstr,
-                   "direcciones":result[0].direcciones,
-                   "roles":result[0].rol
-                   
-                 
-                 };
-                  */
-                // formDataPersona.nombre2="Jose"
-                // formDataPersona.apellido1="Gonzales"
-                // formDataPersona.apellido2="Iturbe"
-               
-                 // dispatch({
-               //    type: 'PERSONA',
-               //    stateprop:formDataPersona
-               //  });  
-                // alert(JSON.stringify(formDataPersona.direcciones))
-                //GetPersona("")
-               //  }
-                 //this.setState({persona:formDataPersona,identificacion:imagecedula,isLoading:false})
-                 
-              });
                 
+                
+              });
+                */
           
         
         }
@@ -220,7 +213,7 @@ const [{ data, isLoading, isError }, fetchData] = useFetch("");
                   >
                    Buscar
                   </Button>
-
+                  {flagCircular&&<CircularProgress variant="indeterminate"   disableShrink  size={17}   thickness={4} className={classes.progress} />}
         </Grid>
         </Grid>
         <Typography variant="h6" gutterBottom>
