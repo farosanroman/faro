@@ -65,6 +65,7 @@ export default function AsignacionDirecciones() {
     const [celularError, setCelularError] = React.useState({flag:false,helper:"ok"});
   
     const [twt, setTwt] = React.useState("");
+    const [twtError, setTwtError] = React.useState("");
     const [index, setIndex] = React.useState(1)
     const [flagCircular, setFlagCircular] = React.useState(false);
 
@@ -164,20 +165,17 @@ export default function AsignacionDirecciones() {
           if (((ced.substring(0, 1)=='v')||(ced.substring(0, 1)=='V'))){       
             setCedulaError({flag:false,helper:"Sintaxis Correcta"})
               if (isNaN(ced.substring(1,ced.length)*1)){
-                setCedulaError({flag:true,helper:"Solo numeros despues de la V"})
-            
+                setCedulaError({flag:true,helper:"Solo numeros despues de la V"})            
               }else{
-                setCedulaError({flag:false,helper:"Vamos bien"})
-        
-              }
-        
+                setCedulaError({flag:false,helper:"Vamos bien"})        
+              }        
             }else{
             setCedulaError({flag:true,helper:"Falta la V al comienzo"})
                //this.setState({errorCelular:true,helperTextCelular:"Sintaxis Erronea"})
            }
           setCedula(e.target.value)
         }
-        if (input=="email"){
+        if (input=="EM"){
           const isValid = inputs[0].isValid(e.target.value);
           if (isValid){
             setCorreoError({flag:false,helper:"Sintaxis Correcta"})
@@ -185,10 +183,12 @@ export default function AsignacionDirecciones() {
           } else{
             setCorreoError({flag:true,helper:"Sintaxis Incorrecta"})
           }
-         // alert(isValid)         
+         // alert(isValid)  
+        // alert(JSON.stringify(statep.persona.direcciones))     
+      
           setCorreo(e.target.value)
         }
-        if (input=="phone"){
+        if (input=="TC"){
           const isValid = inputs[1].isValid(e.target.value);
           if (isValid){
             setCelularError({flag:false,helper:"Sintaxis Correcta"})
@@ -199,6 +199,35 @@ export default function AsignacionDirecciones() {
          // alert(isValid)         
           setCelular(e.target.value)
         }
+        if (input=="TW"){
+          const isValid = inputs[2].isValid(e.target.value);
+          if (isValid){
+            setTwtError({flag:false,helper:"Sintaxis Correcta"})
+        
+          } else{
+            setTwtError({flag:true,helper:"Sintaxis Incorrecta"})
+          }
+         // alert(isValid)  
+        // alert(JSON.stringify(statep.persona.direcciones))     
+      
+          setTwt(e.target.value)
+        }
+
+        let i=0
+        for (const index in statep.persona.direcciones) {
+          //alert('item  '+JSON.stringify(index))
+          if (statep.persona.direcciones[index].idrespuesta==input){
+             statep.persona.direcciones[index].texto=e.target.value
+             dispatchp({
+               type: 'PERSONA',
+               stateprop: statep.persona
+             });
+          }
+          i++;
+       }  
+        }
+        function cambio(item, index) {
+          statep.persona.direcciones[index].texto="99999999"; 
         }
     return (
     <React.Fragment>
@@ -210,6 +239,7 @@ export default function AsignacionDirecciones() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            disabled={true}
             id="firstName"
             name="firstName"
             label="Primer Nombre"
@@ -222,6 +252,7 @@ export default function AsignacionDirecciones() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            disabled={true}
             id="lastName"
             name="lastName"
             label="Segundo Nombre"
@@ -234,6 +265,7 @@ export default function AsignacionDirecciones() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            disabled={true}
             id="firstName"
             name="firstName"
             label="Primer Apellido"
@@ -246,6 +278,7 @@ export default function AsignacionDirecciones() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            disabled={true}
             id="lastName"
             name="lastName"
             label="Segundo Apellido"
@@ -268,7 +301,7 @@ export default function AsignacionDirecciones() {
             id="email"
             label="Correo"
             value={correo}
-            onChange={handleChangeCambios('email')}
+            onChange={handleChangeCambios('EM')}
             error={correoError.flag}     
             helperText={correoError.helper}
             defaultValue={correo}
@@ -284,7 +317,7 @@ export default function AsignacionDirecciones() {
             id="phone"
             label="Celular"
             value={celular}
-            onChange={handleChangeCambios('phone')}
+            onChange={handleChangeCambios('TC')}
             error={celularError.flag}     
             helperText={celularError.helper}
             defaultValue={celular}
@@ -295,14 +328,15 @@ export default function AsignacionDirecciones() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            required
-            id="twt"
-            name="lastName"
-            label="Twiter"
-            fullWidth
-            autoComplete="lname"
-            defaultValue={celular}
+            autoFocus
+            margin="dense"
+            id="twitter"
+            label="Twitter"
             value={twt}
+            onChange={handleChangeCambios('TW')}
+            error={twtError.flag}     
+            helperText={twtError.helper}
+            defaultValue={twt}
           />
         </Grid>
 

@@ -40,6 +40,13 @@
         "descripcion": "Sumate",
         "selected": true
       }
+      ,
+      {
+        "id":5,
+        "nombre": "INDEPENDIENTE",
+        "descripcion": "Sumate",
+        "selected": true
+      }
  
     ]
 }

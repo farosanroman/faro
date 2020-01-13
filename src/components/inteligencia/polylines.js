@@ -1,6 +1,7 @@
 import React, {useEffect, useState,Fragment } from 'react';
 //import { Application } from '../App';
 //import {antenacercana} from './helpers'
+//https://codesandbox.io/s/xenodochial-tu-pwly8  pintar
 import  MapGL,{Layer,Feature,ZoomControl,GeoJSONLayer,ScaleControl} from 'react-mapbox-gl';
 import { withStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
@@ -446,7 +447,7 @@ return (
 </Fragment>
 )
         }
-
+//https://codesandbox.io/s/xenodochial-tu-pwly8  PARA DIBUJAR
         /*
 
           <GeoJSONLayer

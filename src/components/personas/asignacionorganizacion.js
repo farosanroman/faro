@@ -26,6 +26,10 @@ import {getPersona} from '../helpers/helperpersonas'
 import {EEMMPP} from  '../../data/EEMMPP.json';
 import {roles} from  '../../data/roles.json';
 import {organizacion} from  '../../data/organizacion.json';
+import {militancia} from  '../../data/militancia.json';
+import {formacion} from  '../../data/formacion.json';
+import {experiencia} from  '../../data/experiencia.json';
+
 //import { Application } from '../../App';
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -74,17 +78,20 @@ export default function AsignacionOrganizacion() {
     const [apellido1, setApellido1] = React.useState("");
     const [apellido2, setApellido2] = React.useState("");
     
-    const [codestado, setCodigoEstado] = React.useState("");
-    const [posestado, setPosEstado] = React.useState(0);
-    const [codmunicipio, setCodigoMunicipio] = React.useState("");
-    const [posmunicipio, setPosMunicipio] = React.useState(0);
-   
-    const [codparroquia, setCodigoParroquia] = React.useState("");
-    const [posparroquia, setPosParroquia] = React.useState(0);
+    const [idorganizacion, setIdOrganizacion] = React.useState("");
+    const [nombreorganizacion, setNombreOrganizacion] = React.useState("");
+    const [idmilitancia, setIdMilitancia] = React.useState("");
+    const [nombremilitancia, setNombreMilitancia] = React.useState("");
+    const [idformacion, setIdFormacion] = React.useState("");
+    const [nombreformacion, setNombreFormacion] = React.useState("");
+    const [idexperiencia, setIdExperiencia] = React.useState("");
+    const [nombreexperiencia, setNombreExperiencia] = React.useState("");
+
     const { statep, dispatchp  } = React.useContext(ApplicationPersona);
     useEffect(() => {
       // console.log(JSON.stringify(statep))
      // alert("DIRECCIONES "+JSON.stringify(statep))
+    // alert(JSON.stringify(statep.persona.roles)) 
         setNombre1(statep.persona.nombre1)
         setNombre2(statep.persona.nombre2)
         setApellido1(statep.persona.apellido1)
@@ -92,32 +99,32 @@ export default function AsignacionOrganizacion() {
         //setCorreo("123")
     },[]);
     const handleChangeCambios=input=>e=>{
-        if (input=="formularios"){
-         //alert("cedula")
+        if (input=="organizacion"){
+         setIdOrganizacion(e.target.value)
+         var index =organizacion.findIndex(obj => obj.id==e.target.value);
+         setNombreOrganizacion(organizacion[index].nombre)
           //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
         }
-        if (input=="estado"){
-          //alert(JSON.stringify(e.target.value)) 
-          var index = EEMMPP.findIndex(obj => obj.cneestado==e.target.value);
-        // alert(index)
-          setCodigoEstado(e.target.value)
-          setPosEstado(index)
+        if (input=="militancia"){
+          setIdMilitancia(e.target.value)
+          var index =militancia.findIndex(obj => obj.id==e.target.value);
+          setNombreMilitancia(militancia[index].nombre)
+           //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
          }
-         if (input=="municipio"){
-          var index = EEMMPP[posestado].items.findIndex(obj => obj.cnemunicipio==e.target.value);
-          //alert(index)
-            setPosMunicipio(index)
-          setCodigoMunicipio(e.target.value)
+         if (input=="formacion"){
+          setIdFormacion(e.target.value)
+          var index =formacion.findIndex(obj => obj.id==e.target.value);
+          setNombreFormacion(militancia[index].nombre)
+           //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
          }
-         if (input=="parroquia"){
-          setCodigoParroquia(e.target.value)
-          var index = EEMMPP[posestado].items[posmunicipio].items.findIndex(obj => obj.cneparroquia==e.target.value);
-          //alert(index)
-            setPosParroquia(index)
+         if (input=="experiencia"){
+          setIdExperiencia(e.target.value)
+          var index =experiencia.findIndex(obj => obj.id==e.target.value);
+          setNombreExperiencia(experiencia[index].nombre)
+           //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
          }
-       
-        
        }
+       
        const handleCheckboxChangeRol = id => {
         // alert(id)
       //   dispatch({
@@ -135,10 +142,12 @@ export default function AsignacionOrganizacion() {
         <Typography variant="h6" gutterBottom>
         Registro Electoral
       </Typography>
+
         <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            disabled={true}
             id="firstName"
             name="firstName"
             label="Primer Nombre"
@@ -151,6 +160,7 @@ export default function AsignacionOrganizacion() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            disabled={true}
             id="lastName"
             name="lastName"
             label="Segundo Nombre"
@@ -163,6 +173,7 @@ export default function AsignacionOrganizacion() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            disabled={true}
             id="firstName"
             name="firstName"
             label="Primer Apellido"
@@ -175,6 +186,7 @@ export default function AsignacionOrganizacion() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            disabled={true}
             id="lastName"
             name="lastName"
             label="Segundo Apellido"
@@ -185,20 +197,22 @@ export default function AsignacionOrganizacion() {
           />
         </Grid>
         </Grid>
+        <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+
         <Typography variant="h6" gutterBottom>
         Organizacion
       </Typography>
       <FormControl component="fieldset" className={classes.formControl}>
       <List>
+        
      <ListItem role={undefined}>
-         <FormLabel component="legend" required error={error}>
-           Organizacion
-         </FormLabel>
+         
        </ListItem>
        <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Organizacion</InputLabel>
         <Select
-      value={codparroquia}
+      value={idorganizacion}
       onChange={handleChangeCambios('organizacion')}
     
         input={<Input name="Rol" id="age-helper" />}
@@ -208,21 +222,101 @@ export default function AsignacionOrganizacion() {
         </MenuItem>
         {organizacion.map((item, index) => (
                  <MenuItem value={item.id}>{item.nombre}</MenuItem>
-              
-               ))}
-       
+         ))}
+       </Select>
+      </FormControl>
+      </List>
+      </FormControl>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+
+<Typography variant="h6" gutterBottom>
+Militancia
+</Typography>
+<FormControl component="fieldset" className={classes.formControl}>
+<List>
+
+<FormControl className={classes.formControl}>
+<InputLabel id="demo-simple-select-label">Militancia</InputLabel>
+<Select
+value={idmilitancia}
+onChange={handleChangeCambios('militancia')}
+
+input={<Input name="Rol" id="age-helper" />}
+>
+<MenuItem value="">
+<em>None</em>
+</MenuItem>
+{militancia.map((item, index) => (
+ <MenuItem value={item.id}>{item.nombre}</MenuItem>
+))}
+</Select>
+</FormControl>
+</List>
+</FormControl>
+</Grid>
+      <Grid item xs={12} sm={6}>
+
+<Typography variant="h6" gutterBottom>
+Formacion
+</Typography>
+<FormControl component="fieldset" className={classes.formControl}>
+<List>
+
+<ListItem role={undefined}>
+ 
+</ListItem>
+<FormControl className={classes.formControl}>
+<InputLabel id="demo-simple-select-label">Formacion</InputLabel>
+<Select
+value={idformacion}
+onChange={handleChangeCambios('formacion')}
+
+input={<Input name="Rol" id="age-helper" />}
+>
+<MenuItem value="">
+  <em>None</em>
+</MenuItem>
+{formacion.map((item, index) => (
+         <MenuItem value={item.id}>{item.nombre}</MenuItem>
+ ))}
+</Select>
+</FormControl>
+</List>
+</FormControl>
+</Grid>
+<Grid item xs={12} sm={6}>
+
+<Typography variant="h6" gutterBottom>
+Experiencia
+</Typography>
+<FormControl component="fieldset" className={classes.formControl}>
+<List>
+
+<ListItem role={undefined}>
+ 
+</ListItem>
+<FormControl className={classes.formControl}>
+<InputLabel id="demo-simple-select-label">Experiencia</InputLabel>
+<Select
+value={idexperiencia}
+onChange={handleChangeCambios('experiencia')}
+
+input={<Input name="Rol" id="age-helper" />}
+>
+<MenuItem value="">
+  <em>None</em>
+</MenuItem>
+{experiencia.map((item, index) => (
+         <MenuItem value={item.id}>{item.nombre}</MenuItem>
+ ))}
+</Select>
+</FormControl>
+</List>
+</FormControl>
+</Grid>
+        </Grid>
       
-      </Select>
-      </FormControl>
-
-     
-      <Divider />
-       
-        <FormHelperText>Be careful</FormHelperText>
-
-        </List>
-        
-      </FormControl>
     </React.Fragment>
   );
 }

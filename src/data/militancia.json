@@ -1,0 +1,31 @@
+{
+    "militancia":
+    [
+      {
+        "id": 0,
+        "nombre": "Militante",
+        "descripcion": "Militante",
+        "selected": true
+      },
+      {
+        "id": 1,
+        "nombre": "Simpatizante",
+        "descripcion": "Simpatizante",
+        "selected": true
+      }
+      ,
+      {
+        "id": 2,
+        "nombre": "Voluntario",
+        "descripcion": "Universitaria",
+        "selected": true
+      }
+      ,
+      {
+        "id": 3,
+        "nombre": "Cuadro",
+        "descripcion": "Tecnico",
+        "selected": true
+      }
+    ]
+    }

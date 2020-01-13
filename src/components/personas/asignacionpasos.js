@@ -142,7 +142,7 @@ export default function AsignacionPasos() {
                  </ApplicationPersona.Provider>
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={classes.button}>
+                    <Button  onClick={handleBack} className={classes.button}>
                       Back
                     </Button>
                   )}
@@ -151,6 +151,7 @@ export default function AsignacionPasos() {
                     color="primary"
                     onClick={handleNext}
                     className={classes.button}
+                    disabled={false}
                   >
                     {activeStep === steps.length - 1 ? 'Asignar' : 'Proximo'}
                   </Button>
@@ -159,7 +160,7 @@ export default function AsignacionPasos() {
             )}
           </React.Fragment>
         </Paper>
-        <Copyright />
+       
       </main>
     </React.Fragment>
   );

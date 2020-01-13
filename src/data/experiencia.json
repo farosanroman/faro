@@ -1,0 +1,38 @@
+{
+    "experiencia":
+    [
+      {
+        "id": 0,
+        "nombre": "Testigo",
+        "descripcion": "Testigo",
+        "selected": true
+      },
+      {
+        "id": 1,
+        "nombre": "Observador",
+        "descripcion": "Observador",
+        "selected": true
+      }
+      ,
+      {
+        "id": 2,
+        "nombre": "ConteoRapido",
+        "descripcion": "Universitaria",
+        "selected": true
+      }
+      ,
+      {
+        "id": 3,
+        "nombre": "Movilizador",
+        "descripcion": "Tecnico",
+        "selected": true
+      },
+      
+      {
+        "id": 4,
+        "nombre": "Logistica",
+        "descripcion": "Pedagogico",
+        "selected": true
+      }
+    ]
+    }

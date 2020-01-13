@@ -236,6 +236,7 @@ useEffect(() => {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            disabled={true}
             id="lastName"
             name="lastName"
             label="Segundo Nombre"
@@ -248,6 +249,7 @@ useEffect(() => {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            disabled={true}
             id="firstName"
             name="firstName"
             label="Primer Apellido"
@@ -260,6 +262,7 @@ useEffect(() => {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            disabled={true}
             id="lastName"
             name="lastName"
             label="Segundo Apellido"

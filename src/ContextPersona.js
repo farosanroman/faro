@@ -149,6 +149,7 @@ export const defaultState = {
             "parroquianombre": "",
             "circunscripcionnombre": "",
             "centronombre": "VENEZUELA"
+            
           }
         ]
       }    
@@ -160,7 +161,7 @@ export const defaultState = {
       switch (type) {
         case 'PERSONA':
         //  alert("qqqq")
-        //  alert("stateprop "+JSON.stringify(stateprop))
+        // alert("stateprop "+JSON.stringify(stateprop))
          // let persona0=statep.persona
          // persona0.identificacion=stateprop
         //  alert("PPA"+JSON.stringify(statep))

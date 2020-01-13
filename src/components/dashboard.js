@@ -72,6 +72,7 @@ import AsignacionPasos from './personas/asignacionpasos'
 
 //import AsignacionDatos from './personas/asignaciondatosborrar';
 import SimpleTable from './dashboardmensajeria/simpletable';
+//import Chat from './dashboardmensajeria/chat';
 import Mensajes from './dashboardmensajeria/mensajes';
 import Intervalos from './dashboardmensajeria/intervalos';
 import Resultados from './dashboardmensajeria/resultados';
@@ -481,7 +482,9 @@ export default function Dashboard() {
 }
 {false&&<div>!!!!!!!!!!!!Mensajes!!!!!!!!!!</div>}
 {(component==2)&&
+
           <Container maxWidth="lg" className={classes.container}>
+                         
                           <Mensajes />
           </Container>
           }

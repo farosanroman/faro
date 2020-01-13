@@ -1,0 +1,38 @@
+{
+    "formacion":
+    [
+      {
+        "id": 0,
+        "nombre": "Primaria",
+        "descripcion": "Primaria",
+        "selected": true
+      },
+      {
+        "id": 1,
+        "nombre": "Bachiller",
+        "descripcion": "Bachiller",
+        "selected": true
+      }
+      ,
+      {
+        "id": 2,
+        "nombre": "Universitaria",
+        "descripcion": "Universitaria",
+        "selected": true
+      }
+      ,
+      {
+        "id": 3,
+        "nombre": "Tecnico",
+        "descripcion": "Tecnico",
+        "selected": true
+      },
+      
+      {
+        "id": 4,
+        "nombre": "Pedagogico",
+        "descripcion": "Pedagogico",
+        "selected": true
+      }
+    ]
+    }
