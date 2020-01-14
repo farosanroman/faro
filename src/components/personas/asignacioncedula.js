@@ -200,9 +200,6 @@ useEffect(() => {
           helperText={cedulaError.helper}
           defaultValue={cedula}
 
-          
-
-
 />
         </Grid>
         <Grid item xs={12} sm={6}>

@@ -6,6 +6,7 @@ export const defaultState = {
    
     persona:
     {
+      "id":"jsonlite",
         "flag": 1,
         "msj": "",
         "flagasignacion": 1,
@@ -14,15 +15,7 @@ export const defaultState = {
         "apellido1": "AZPURUA",
         "apellido2": "CALCAÑO",
         "identificacion": "V3664204",
-        "codcnecentrovotacion": "13160100700",
-        "nombrecentrovotacion": "COLEGIO SANTO TOMAS DE VILLANUEVA",
-        "idestadocentrovotacion": "13",
-        "nombreestadocentrovotacion": "MIRANDA",
-        "idmunicipiocentrovotacion": "16",
-        "nombremunicipiocentrovotacion": "BARUTA",
-        "idparroquiacentrovotacion": "01",
-        "nombreparroquiacentrovotacion": "BARUTA",
-        "direccioncentrovotacion": "URBANIZACION LAS MERCEDES DERECHA CALLE LA CINTA. IZQUIERDA CALLE CERRO QUINTERO. FRENTE CALLE LA CINTA 50 METROS DE CAVIM EDIFICIO",
+      
         "idnacionalidad": 243,
         "nacionalidad": "Uzbekistán",
         "idpaisnacimiento": 236,
@@ -61,7 +54,9 @@ export const defaultState = {
             "municipionombre": "BARUTA",
             "parroquianombre": "BARUTA",
             "circunscripcionnombre": "",
-            "centronombre": ""
+            "centronombre": "",
+            "direccioncentrovotacion": "URBANIZACION LAS MERCEDES DERECHA CALLE LA CINTA. IZQUIERDA CALLE CERRO QUINTERO. FRENTE CALLE LA CINTA 50 METROS DE CAVIM EDIFICIO",
+      
           }
         ],
         "direcciones": [
@@ -151,6 +146,92 @@ export const defaultState = {
             "centronombre": "VENEZUELA"
             
           }
+        ],
+        "caracteristicas": [
+          {
+            "idrespuesta": "000",
+            "respuesta": "ADDD",
+            "codcne": "00000000000",
+            "descripcion": "Soporte Electoral",
+            "codcnenombre": "",
+            "idfuncional": "1038",
+            "funcionalnombre": "Formación",
+            "lat": -66.47,
+            "lng": 9.09,
+            "idestado": "00",
+            "idmunicipio": "00",
+            "idparroquia": "00",
+            "idcircunscripcion": "0",
+            "estadonombre": "",
+            "municipionombre": "",
+            "parroquianombre": "",
+            "circunscripcionnombre": "",
+            "centronombre": "VENEZUELA"
+            
+          },
+          {
+            "idrespuesta": "000",
+            "respuesta": "ADDD",
+            "codcne": "00000000000",
+            "descripcion": "Soporte Electoral",
+            "codcnenombre": "",
+            "idfuncional": "1038",
+            "funcionalnombre": "Formación",
+            "lat": -66.47,
+            "lng": 9.09,
+            "idestado": "00",
+            "idmunicipio": "00",
+            "idparroquia": "00",
+            "idcircunscripcion": "0",
+            "estadonombre": "",
+            "municipionombre": "",
+            "parroquianombre": "",
+            "circunscripcionnombre": "",
+            "centronombre": "VENEZUELA"
+            
+          },
+          {
+            "idrespuesta": "000",
+            "respuesta": "ADDD",
+            "codcne": "00000000000",
+            "descripcion": "Soporte Electoral",
+            "codcnenombre": "",
+            "idfuncional": "1038",
+            "funcionalnombre": "Formación",
+            "lat": -66.47,
+            "lng": 9.09,
+            "idestado": "00",
+            "idmunicipio": "00",
+            "idparroquia": "00",
+            "idcircunscripcion": "0",
+            "estadonombre": "",
+            "municipionombre": "",
+            "parroquianombre": "",
+            "circunscripcionnombre": "",
+            "centronombre": "VENEZUELA"
+            
+          },
+          {
+            "idrespuesta": "000",
+            "respuesta": "ADDD",
+            "codcne": "00000000000",
+            "descripcion": "Soporte Electoral",
+            "codcnenombre": "",
+            "idfuncional": "1038",
+            "funcionalnombre": "Formación",
+            "lat": -66.47,
+            "lng": 9.09,
+            "idestado": "00",
+            "idmunicipio": "00",
+            "idparroquia": "00",
+            "idcircunscripcion": "0",
+            "estadonombre": "",
+            "municipionombre": "",
+            "parroquianombre": "",
+            "circunscripcionnombre": "",
+            "centronombre": "VENEZUELA"
+            
+          }
         ]
       }    
     };
@@ -164,9 +245,22 @@ export const defaultState = {
         // alert("stateprop "+JSON.stringify(stateprop))
          // let persona0=statep.persona
          // persona0.identificacion=stateprop
-        //  alert("PPA"+JSON.stringify(statep))
+       //  alert("REDUCER "+JSON.stringify(stateprop.caracteristicas))
          return { ...statep, persona: stateprop };
-        case 'CEDULA':
+         case 'CARACTERISTICAS':
+        //  alert("qqqq")
+        // alert("stateprop "+JSON.stringify(stateprop))
+         // let persona0=statep.persona
+         // persona0.identificacion=stateprop
+          let persona0=statep.persona
+           persona0.caracteristicas=stateprop
+        return { ...statep, persona: persona0 };
+         
+         case 'LOGIN':
+         // alert("REDUCER2 "+JSON.stringify(statep.persona.caracteristicas))
+
+         return { ...statep, flagLogin: stateprop };
+         case 'CEDULA':
        // alert("CEDULA")
         // alert(JSON.stringify(stateprop))
         
@@ -178,7 +272,7 @@ export const defaultState = {
      
        
         case 'RESET':
-          window.localStorage.removeItem('vinotinto');
+          window.localStorage.removeItem('contextpersona');
           return { ...statep, currentWeight: null };
     
         default:

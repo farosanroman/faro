@@ -77,6 +77,7 @@ export default function AsignacionOrganizacion() {
     const [nombre2, setNombre2] = React.useState("");
     const [apellido1, setApellido1] = React.useState("");
     const [apellido2, setApellido2] = React.useState("");
+    const { statep, dispatchp  } = React.useContext(ApplicationPersona);
     
     const [idorganizacion, setIdOrganizacion] = React.useState("");
     const [nombreorganizacion, setNombreOrganizacion] = React.useState("");
@@ -86,24 +87,57 @@ export default function AsignacionOrganizacion() {
     const [nombreformacion, setNombreFormacion] = React.useState("");
     const [idexperiencia, setIdExperiencia] = React.useState("");
     const [nombreexperiencia, setNombreExperiencia] = React.useState("");
-
-    const { statep, dispatchp  } = React.useContext(ApplicationPersona);
+    const [caracteristicas,setCaracteristicas]= React.useState({});
     useEffect(() => {
-      // console.log(JSON.stringify(statep))
+      console.log(JSON.stringify(statep))
      // alert("DIRECCIONES "+JSON.stringify(statep))
     // alert(JSON.stringify(statep.persona.roles)) 
         setNombre1(statep.persona.nombre1)
         setNombre2(statep.persona.nombre2)
         setApellido1(statep.persona.apellido1)
         setApellido2(statep.persona.apellido2)
+        //setIdOrganizacion(statep.persona.caracteristicas[0].idrespuesta)
         //setCorreo("123")
     },[]);
+    useEffect(() => {
+      //statep.persona.caracteristicas=caracteristicas
+     // alert("idrespuesta"+idorganizacion)
+      let car=[]
+      var d0={idrespuesta:idorganizacion,respuesta:nombreorganizacion,descripcion:nombreorganizacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
+      var d1={idrespuesta:idmilitancia,respuesta:nombremilitancia,descripcion:nombremilitancia,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
+      var d2={idrespuesta:idformacion,respuesta:nombreformacion,descripcion:nombreformacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
+      var d3={idrespuesta:idexperiencia,respuesta:nombreexperiencia,descripcion:nombreexperiencia,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
+      car.push(d0,d1,d2,d3)
+      statep.persona.caracteristicas=car
+      //setCaracteristicas(car)
+      //alert("useEffect "+JSON.stringify(car))
+
+      //if (caracteristicas.length>0){
+     // toggleComplete(statep.persona)
+     // }
+      dispatchp({
+        type: 'CARACTERISTICAS',
+        stateprop: car
+      });
+      //dispatchp({
+      //  type: 'LOGIN',
+      //  stateprop: true
+      //});
+      
+    },[idorganizacion,idformacion,idmilitancia,idexperiencia]);
+    function toggleComplete(persona) {
+      dispatchp({ type: 'PERSONA',stateprop: persona });
+    }
     const handleChangeCambios=input=>e=>{
+ 
         if (input=="organizacion"){
          setIdOrganizacion(e.target.value)
          var index =organizacion.findIndex(obj => obj.id==e.target.value);
+
          setNombreOrganizacion(organizacion[index].nombre)
           //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
+        
+         
         }
         if (input=="militancia"){
           setIdMilitancia(e.target.value)
@@ -114,27 +148,19 @@ export default function AsignacionOrganizacion() {
          if (input=="formacion"){
           setIdFormacion(e.target.value)
           var index =formacion.findIndex(obj => obj.id==e.target.value);
-          setNombreFormacion(militancia[index].nombre)
+          setNombreFormacion(formacion[index].nombre)
            //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
          }
          if (input=="experiencia"){
           setIdExperiencia(e.target.value)
+         // alert(e.target.value)
           var index =experiencia.findIndex(obj => obj.id==e.target.value);
           setNombreExperiencia(experiencia[index].nombre)
            //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
          }
+    
        }
-       
-       const handleCheckboxChangeRol = id => {
-        // alert(id)
-      //   dispatch({
-      //     type: 'FILTRO_ROLES',
-      //     stateprop: id
-      //   });
-       
-         //if (state.currentWeight) recalculate();
-       };
-       
+
        const error='ABC'
     return (
     <React.Fragment>
@@ -206,9 +232,7 @@ export default function AsignacionOrganizacion() {
       <FormControl component="fieldset" className={classes.formControl}>
       <List>
         
-     <ListItem role={undefined}>
-         
-       </ListItem>
+  
        <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Organizacion</InputLabel>
         <Select
@@ -316,7 +340,7 @@ input={<Input name="Rol" id="age-helper" />}
 </FormControl>
 </Grid>
         </Grid>
-      
+        <pre>{JSON.stringify(statep.persona.caracteristicas, null, 2)}</pre>
     </React.Fragment>
   );
 }

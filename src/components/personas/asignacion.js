@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { ApplicationPersona } from './asignacionpasos';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import Grid from '@material-ui/core/Grid';

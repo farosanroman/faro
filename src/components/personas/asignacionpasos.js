@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,7 +15,9 @@ import AsignacionDirecciones from './asignaciondirecciones';
 import AsignacionRol from './asignacionrol';
 import AsignacionOrganizacion from './asignacionorganizacion';
 import { reducer, defaultState } from '../../ContextPersona';
-export const Application = React.createContext({ state: null, dispatch: null });
+
+import {useFetchPost}  from '../hooks/usefetchpost'
+//export const Application = React.createContext({ state: null, dispatch: null });
 export const ApplicationPersona = React.createContext({ statep: null, dispatchp: null });
 
 //import PaymentForm from './PaymentForm';
@@ -98,9 +100,28 @@ export default function AsignacionPasos() {
  
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-
+  const [{ dataPost, isLoadingPost, isErrorPost }, postData] = useFetchPost('');
+  useEffect(() => {
+     dispatchp({
+        type: 'LOGIN',
+        stateprop: true
+      });
+   },[]);
+  useEffect(() => {
+   if (!isLoadingPost&&dataPost!=undefined) {
+     // alert("post"+JSON.stringify(dataPost))
+      //  setFlagCircular(true)
+    }  
+  },[dataPost,isLoadingPost]);
   const handleNext = () => {
+    if (activeStep==steps.length-1){
+      //alert(JSON.stringify(statep.persona.caracteristicas))
+      postData("https://f2020.azurewebsites.net/api/FaroFormularioPersonaPost?code=rkmGB0kHPzpU/Nxb7L8NT1PAw6jmOxslIH2eXiyjh9vmFIjFRFblAw==",statep.persona)
+
+      //setActiveStep(1)
+    }else{
     setActiveStep(activeStep + 1);
+    }
   };
 
   const handleBack = () => {
@@ -160,7 +181,7 @@ export default function AsignacionPasos() {
             )}
           </React.Fragment>
         </Paper>
-       
+        <pre>{JSON.stringify(statep.persona.caracteristicas, null, 2)}</pre>
       </main>
     </React.Fragment>
   );
