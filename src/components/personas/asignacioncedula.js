@@ -86,21 +86,56 @@ useEffect(() => {
       {
         setFlagCircular(false)
        // alert("useEffect "+JSON.stringify(data)+" "+JSON.stringify(isLoading))  
-        setNombre1(data.nombre1) 
-        setNombre2(data.nombre2) 
-        setApellido1(data.apellido1) 
-        setApellido2(data.apellido2) 
-        setCodcne(data.codcncentrovotacion) 
+       statep.persona.identificacion=data.identificacion
+       statep.persona.nombre1=data.nombre1
+       statep.persona.nombre2=data.nombre2
+       statep.persona.apellido1=data.apellido1
+       statep.persona.apellido2=data.apellido2
+       statep.persona.idnacionalidad= data.idnacionalidad
+       statep.persona.nacionalidad=data.nacionalidad
+       statep.persona.idpaisnacimiento=data.idpaisnacimiento
+       statep.persona.paisnacimiento=data.paisnacimiento
+       statep.persona.idestadocivil=data.idestadocivil
+       statep.persona.estadocivil=data.estadocivil
+       statep.persona.idsexo=data.idsexo
+       statep.persona.sexo=data.sexo
+       statep.persona.fechanacimientojson=data.fechanacimientojson
+       statep.persona.fechanacimientovar=data.fechanacimientovar
+       
+       let re=[{ 
+       "idpregunta":"XX",  
+       "idrespuesta": "RE",
+       "respuesta": "RE",
+       "codcne": data.codcnecentrovotacion,
+       "descripcion": "",
+       "codcnenombre": "",
+       "lat": -66.86699,
+       "lng": 10.48358,
+       "idestado": "",
+       "idmunicipio": "",
+       "idparroquia": "",
+       "idcircunscripcion": "",
+       "estadonombre":data.nombreestadocentrovotacion,
+       "municipionombre":data.nombremunicipiocentrovotacion,
+       "parroquianombre":data.nombreparroquiacentrovotacion,
+       "circunscripcionnombre": "",
+       "centronombre":data.nombrecentrovotacion,
+       "direccioncentrovotacion":data.direccioncentrovotacion,
+       }
+      ]
+      statep.persona.re=re
+       
+        setNombre1(statep.persona.nombre1) 
+        setNombre2(statep.persona.nombre2) 
+        setApellido1(statep.persona.apellido1) 
+        setApellido2(statep.persona.apellido2) 
+        setCodcne(data.codcnecentrovotacion) 
         setEstado(data.nombreestadocentrovotacion)
         setMunicipio(data.nombremunicipiocentrovotacion)
         setParroquia(data.nombreparroquiacentrovotacion)
         setNombre(data.nombrecentrovotacion)
         setDireccion(data.direccioncentrovotacion)
        // alert("statep "+JSON.stringify(statep)) 
-        statep.persona.nombre1="NOMBRE1111"
-        statep.persona.nombre2="NOMBRE2222"
-        statep.persona.apellido1="APELLIDO1111"
-        statep.persona.apellido2="APELLIDO2222"
         dispatchp({
           type: 'PERSONA',
           stateprop: statep.persona
@@ -272,12 +307,12 @@ useEffect(() => {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="lastName"
+            id="codcne"
             name="lastName"
             label="Cod CNE"
             fullWidth
             autoComplete="lname"
-            defaultValue={nombre2}
+            defaultValue={codcne}
             value={codcne}
           />
         </Grid>

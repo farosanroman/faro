@@ -17,6 +17,7 @@ import AsignacionOrganizacion from './asignacionorganizacion';
 import { reducer, defaultState } from '../../ContextPersona';
 
 import {useFetchPost}  from '../hooks/usefetchpost'
+import CircularProgress from '@material-ui/core/CircularProgress';
 //export const Application = React.createContext({ state: null, dispatch: null });
 export const ApplicationPersona = React.createContext({ statep: null, dispatchp: null });
 
@@ -101,6 +102,7 @@ export default function AsignacionPasos() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [{ dataPost, isLoadingPost, isErrorPost }, postData] = useFetchPost('');
+  const [flagCircular, setFlagCircular] = React.useState(false);
   useEffect(() => {
      dispatchp({
         type: 'LOGIN',
@@ -111,10 +113,15 @@ export default function AsignacionPasos() {
    if (!isLoadingPost&&dataPost!=undefined) {
      // alert("post"+JSON.stringify(dataPost))
       //  setFlagCircular(true)
+      setFlagCircular(false)
+      setActiveStep(0)
+
     }  
   },[dataPost,isLoadingPost]);
   const handleNext = () => {
+
     if (activeStep==steps.length-1){
+      setFlagCircular(true)
       //alert(JSON.stringify(statep.persona.caracteristicas))
       postData("https://f2020.azurewebsites.net/api/FaroFormularioPersonaPost?code=rkmGB0kHPzpU/Nxb7L8NT1PAw6jmOxslIH2eXiyjh9vmFIjFRFblAw==",statep.persona)
 
@@ -175,13 +182,13 @@ export default function AsignacionPasos() {
                     disabled={false}
                   >
                     {activeStep === steps.length - 1 ? 'Asignar' : 'Proximo'}
-                  </Button>
+                  </Button> {flagCircular&&<CircularProgress variant="indeterminate"   disableShrink  size={17}   thickness={4} className={classes.progress} />}
                 </div>
               </React.Fragment>
             )}
           </React.Fragment>
         </Paper>
-        <pre>{JSON.stringify(statep.persona.caracteristicas, null, 2)}</pre>
+        <pre>{JSON.stringify(statep.persona, null, 2)}</pre>
       </main>
     </React.Fragment>
   );

@@ -103,10 +103,10 @@ export default function AsignacionOrganizacion() {
       //statep.persona.caracteristicas=caracteristicas
      // alert("idrespuesta"+idorganizacion)
       let car=[]
-      var d0={idrespuesta:idorganizacion,respuesta:nombreorganizacion,descripcion:nombreorganizacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
-      var d1={idrespuesta:idmilitancia,respuesta:nombremilitancia,descripcion:nombremilitancia,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
-      var d2={idrespuesta:idformacion,respuesta:nombreformacion,descripcion:nombreformacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
-      var d3={idrespuesta:idexperiencia,respuesta:nombreexperiencia,descripcion:nombreexperiencia,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
+      var d0={idpregunta:"xxx",pregunta:"ORGANIZACION",idrespuesta:idorganizacion,respuesta:nombreorganizacion,descripcion:nombreorganizacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
+      var d1={idpregunta:"yyy",pregunta:"MILITANCIA",idrespuesta:idmilitancia,respuesta:nombremilitancia,descripcion:nombremilitancia,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
+      var d2={idpregunta:"zzz",pregunta:"FORMACION",idrespuesta:idformacion,respuesta:nombreformacion,descripcion:nombreformacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
+      var d3={idpregunta:"www",pregunta:"EXPERIENCIA",idrespuesta:idexperiencia,respuesta:nombreexperiencia,descripcion:nombreexperiencia,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
       car.push(d0,d1,d2,d3)
       statep.persona.caracteristicas=car
       //setCaracteristicas(car)
@@ -340,7 +340,7 @@ input={<Input name="Rol" id="age-helper" />}
 </FormControl>
 </Grid>
         </Grid>
-        <pre>{JSON.stringify(statep.persona.caracteristicas, null, 2)}</pre>
+       
     </React.Fragment>
   );
 }

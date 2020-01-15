@@ -99,6 +99,26 @@ export default function AsignacionRol() {
         setApellido2(statep.persona.apellido2)
         //setCorreo("123")
     },[]);
+    useEffect(() => {
+      statep.persona.roles[0].idrespuesta=idrol;
+      statep.persona.roles[0].respuesta=rol;
+      statep.persona.roles[0].descripcion=rol;
+      statep.persona.roles[0].codcne="00000000000";
+      statep.persona.roles[0].idestado=codestado;
+      statep.persona.roles[0].idmunicipio=codmunicipio;
+      statep.persona.roles[0].idparroquia=codparroquia;
+      statep.persona.roles[0].estadonombre=nombreestado;
+      statep.persona.roles[0].municipionombre=nombremunicipio;
+      statep.persona.roles[0].parroquianombre=nombreparroquia;
+      //alert(nombreestado)
+      //alert(roles[pos].id)
+      
+      dispatchp({
+        type: 'PERSONA',
+        stateprop: statep.persona
+      });
+      
+    },[codestado,codmunicipio,codparroquia,idrol]);
     const handleChangeCambios=input=>e=>{
         if (input=="formularios"){
          //alert("cedula")
@@ -128,28 +148,14 @@ export default function AsignacionRol() {
          }
          if (input=="rol"){
          var  pos = roles.map(function(e) { return e.id; }).indexOf(e.target.value);
+         setIdRol(roles[pos].id)
+         setRol(roles[pos].descripcion);
          // alert(EEMMPP.map(function(e) { return e.cneestado; }).indexOf("020000"));
           //alert(EEMMPP.findIndex(obj => obj.cneestado=="020000"))
           //alert(EEMMPP[2].items.findIndex(obj => obj.cnemunicipio=="020300"))
           //alert(EEMMPP[2].items[2].items.findIndex(obj => obj.cneparroquia=="020304"))
          // alert( e.target.value)
-          statep.persona.roles[0].idrespuesta=roles[pos].id;
-          statep.persona.roles[0].respuesta=roles[pos].descripcion;
-          statep.persona.roles[0].descripcion=roles[pos].descripcion;
-          statep.persona.roles[0].codcne="00000000000";
-          statep.persona.roles[0].idestado=codestado;
-          statep.persona.roles[0].idmunicipio=codmunicipio;
-          statep.persona.roles[0].idparroquia=codparroquia;
-          statep.persona.roles[0].estadonombre=nombreestado;
-          statep.persona.roles[0].municipionombre=nombremunicipio;
-          statep.persona.roles[0].parroquianombre=nombreparroquia;
-          //alert(nombreestado)
-          //alert(roles[pos].id)
-          setRol(roles[pos].id)
-          dispatchp({
-            type: 'PERSONA',
-            stateprop: statep.persona
-          });
+          
          // alert(JSON.stringify(statep.persona.roles)) 
       //    setCodigoParroquia(e.target.value)
        //   var index = EEMMPP[posestado].items[posmunicipio].items.findIndex(obj => obj.cneparroquia==e.target.value);
@@ -304,7 +310,7 @@ export default function AsignacionRol() {
        <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Rol</InputLabel>
         <Select
-      value={rol}
+      value={idrol}
       onChange={handleChangeCambios('rol')}
     
         input={<Input name="Rol" id="age-helper" />}
@@ -329,6 +335,7 @@ export default function AsignacionRol() {
         </List>
         
       </FormControl>
+     
     </React.Fragment>
   );
 }

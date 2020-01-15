@@ -24,10 +24,7 @@ export const defaultState = {
         "estadocivil": "",
         "idsexo": 0,
         "sexo": "",
-        "idestatus": 1,
-        "fechacreacionpersona": "2014/05/09",
-        "fechacreacionpersonavar": "09/05/2014",
-        "fechanacimiento": "1953/01/12",
+    
         "fechanacimientovar": "12/01/1953",
         "fechanacimientojson": "1953-01-12T00:00:00.000Z",
         "idtipopersona": 25,
@@ -61,6 +58,8 @@ export const defaultState = {
         ],
         "direcciones": [
           {
+            "idpregunta":"xxx",
+            "pregunta":"pregunta",
             "idrespuesta": "TC",
             "respuesta": "TELEFONO CELULAR",
             "codcne": "",
@@ -82,6 +81,9 @@ export const defaultState = {
             "texto": "04124444444"
           },
           {
+            "idpregunta":"xxx",
+            "pregunta":"pregunta",
+
             "idrespuesta": "EM",
             "respuesta": "EMAIL",
             "codcne": "",
@@ -103,6 +105,9 @@ export const defaultState = {
             "texto": "ppazpurua@gmail.com"
           },
           {
+            "idpregunta":"xxx",
+            "pregunta":"pregunta",
+
             "idrespuesta": "TW",
             "respuesta": "Twitter",
             "codcne": "",
@@ -126,6 +131,9 @@ export const defaultState = {
         ],
         "roles": [
           {
+            "idpregunta":"xxx",
+            "pregunta":"pregunta",
+
             "idrespuesta": "242",
             "respuesta": "Soporte Electoral",
             "codcne": "00000000000",
@@ -149,6 +157,9 @@ export const defaultState = {
         ],
         "caracteristicas": [
           {
+            "idpregunta":"xxx",
+            "pregunta":"pregunta",
+
             "idrespuesta": "000",
             "respuesta": "ADDD",
             "codcne": "00000000000",
@@ -170,6 +181,9 @@ export const defaultState = {
             
           },
           {
+            "idpregunta":"xxx",
+            "pregunta":"pregunta",
+
             "idrespuesta": "000",
             "respuesta": "ADDD",
             "codcne": "00000000000",
@@ -191,6 +205,9 @@ export const defaultState = {
             
           },
           {
+            "idpregunta":"xxx",
+            "pregunta":"pregunta",
+
             "idrespuesta": "000",
             "respuesta": "ADDD",
             "codcne": "00000000000",
@@ -212,6 +229,9 @@ export const defaultState = {
             
           },
           {
+            "idpregunta":"xxx",
+            "pregunta":"pregunta",
+
             "idrespuesta": "000",
             "respuesta": "ADDD",
             "codcne": "00000000000",
