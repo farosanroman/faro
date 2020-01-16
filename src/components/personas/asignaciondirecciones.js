@@ -58,10 +58,10 @@ export default function AsignacionDirecciones() {
     const [apellido1, setApellido1] = React.useState("");
     const [apellido2, setApellido2] = React.useState("");
     
-    const [correo, setCorreo] = React.useState("ccccc@gmail.com");
+    const [correo, setCorreo] = React.useState("");
     const [correoError, setCorreoError] = React.useState({flag:false,helper:"ok"});
   
-    const [celular, setCelular] = React.useState("2129878787");
+    const [celular, setCelular] = React.useState("");
     const [celularError, setCelularError] = React.useState({flag:false,helper:"ok"});
   
     const [twt, setTwt] = React.useState("");
