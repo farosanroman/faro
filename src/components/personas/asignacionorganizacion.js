@@ -78,17 +78,9 @@ export default function AsignacionOrganizacion() {
     const [apellido1, setApellido1] = React.useState("");
     const [apellido2, setApellido2] = React.useState("");
     const { statep, dispatchp  } = React.useContext(ApplicationPersona);
-    
-    const [idorganizacion, setIdOrganizacion] = React.useState("");
-    const [nombreorganizacion, setNombreOrganizacion] = React.useState("");
-    const [idmilitancia, setIdMilitancia] = React.useState("");
-    const [nombremilitancia, setNombreMilitancia] = React.useState("");
-    const [idformacion, setIdFormacion] = React.useState("");
-    const [nombreformacion, setNombreFormacion] = React.useState("");
-    const [idexperiencia, setIdExperiencia] = React.useState("");
-    const [nombreexperiencia, setNombreExperiencia] = React.useState("");
+        
     const [respuestas,setRespuestas]= React.useState([0,1,1,1,1,1]);
-    const [rrr,setRRR]= React.useState([]);
+    //const [rrr,setRRR]= React.useState([]);
     const [fecha,setFecha]= React.useState([]);
     const [values, dispatchvalues] = useReducer((state, action) => {
       return action ;
@@ -142,10 +134,7 @@ export default function AsignacionOrganizacion() {
       if (respuestas.length>0){r=respuestas[posList].idrespuesta}
       return r
     };
-    const REFRESH = () => {
-      alert("idselect "+JSON.stringify(respuestas))
-      setIdOrganizacion(Date())
-    };
+  
        const error='ABC'
     return (
     <React.Fragment>
