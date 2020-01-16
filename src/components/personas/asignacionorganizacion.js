@@ -94,93 +94,47 @@ export default function AsignacionOrganizacion() {
       return action ;
     }, [{idrespuesta:"3",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"}]);
     useEffect(() => {
-      //console.log(JSON.stringify(statep))
-     // alert("DIRECCIONES "+JSON.stringify(statep))
-    // alert(JSON.stringify(statep.persona.roles)) 
         setNombre1(statep.persona.nombre1)
         setNombre2(statep.persona.nombre2)
         setApellido1(statep.persona.apellido1)
         setApellido2(statep.persona.apellido2)
 
-     //////////////AQUI   armar las respuestas
+     //////////////AQUI   armar las respuestas para COMENZAR LA VENTANA DESDE EL INICIO Y CUAN VA PARA ATRAS
      var inicio = caracteristicasf[0].preguntas.map(function (item, index, array) {
  
       return {idpregunta:item.idpregunta,pregunta:item.pregunta,idrespuesta:"0",respuesta:"respuesta"}; 
    
   });
-  dispatchvalues(inicio)
+            dispatchvalues(inicio)
 
     },[]);
     useEffect(() => {
       //dispatchvalues(respuestas)
       let car=[]
       //var pos=caracteristicasf[0].preguntas[0]
-      var carr = values.map(function (item, index, array) {
- 
-        return {idpregunta:"xxx",pregunta:"ORGANIZACION",idrespuesta:item.idrespuesta,respuesta:item.respuesta,descripcion:nombreorganizacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}; 
-     
-    });
-      //var d0={idpregunta:"xxx",pregunta:"ORGANIZACION",idrespuesta:values[0].idrespuesta,respuesta:values[0].respuesta,descripcion:nombreorganizacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
-      //var d1={idpregunta:"yyy",pregunta:"MILITANCIA",idrespuesta:values[1].idrespuesta,respuesta:values[1].respuesta,descripcion:nombreorganizacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
-      //var d2={idpregunta:"zzz",pregunta:"FORMACION",idrespuesta:values[0].idrespuesta,respuesta:values[0].respuesta,descripcion:nombreorganizacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
-      //var d3={idpregunta:"www",pregunta:"EXPERIENCIA",idrespuesta:values[0].idrespuesta,respuesta:values[0].respuesta,descripcion:nombreorganizacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
-      //car.push(d0,d1,d2,d3)
-      statep.persona.caracteristicas=carr
-     
+       var carr = values.map(function (item, index, array) {
+           var indexr =caracteristicasf[0].preguntas[index].respuestas.findIndex(obj => obj.idrespuesta==item.idrespuesta)
+           var respuestachar="SIN RESPUESTA"
+           if (indexr>=0){
+              //alert(caracteristicasf[0].preguntas[index].respuestas[indexr].respuesta)
+              respuestachar=caracteristicasf[0].preguntas[index].respuestas[indexr].respuesta
+           }
+           return {idpregunta:"xxx",pregunta:"ORGANIZACION",idrespuesta:item.idrespuesta,respuesta:respuestachar,descripcion:respuestachar,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}; 
+      });
       dispatchp({
         type: 'CARACTERISTICAS',
         stateprop: carr
       });
     },[fecha]);
  
-/*
-    useEffect(() => {
-      //statep.persona.caracteristicas=caracteristicas
-     // alert("idrespuesta"+idorganizacion)
-     alert("useEffect "+JSON.stringify(values))
-      let car=[]
-      var d0={idpregunta:"xxx",pregunta:"ORGANIZACION",idrespuesta:idorganizacion,respuesta:nombreorganizacion,descripcion:nombreorganizacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
-      var d1={idpregunta:"yyy",pregunta:"MILITANCIA",idrespuesta:idmilitancia,respuesta:nombremilitancia,descripcion:nombremilitancia,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
-      var d2={idpregunta:"zzz",pregunta:"FORMACION",idrespuesta:idformacion,respuesta:nombreformacion,descripcion:nombreformacion,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
-      var d3={idpregunta:"www",pregunta:"EXPERIENCIA",idrespuesta:idexperiencia,respuesta:nombreexperiencia,descripcion:nombreexperiencia,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}
-      car.push(d0,d1,d2,d3)
-      statep.persona.caracteristicas=car
-      //setCaracteristicas(car)
-      //alert("useEffect "+JSON.stringify(car))
 
-      //if (caracteristicas.length>0){
-     // toggleComplete(statep.persona)
-     // }
-      dispatchp({
-        type: 'CARACTERISTICAS',
-        stateprop: car
-      });
-      //dispatchvalues(respuestas)
-      //dispatchvalues([1,2,3,2,4,4])
-      //dispatchp({
-      //  type: 'LOGIN',
-      //  stateprop: true
-      //});
-     // alert("rrrrr"+JSON.stringify(values))
-     
-    },[idorganizacion,idformacion,idmilitancia,idexperiencia,respuestas]);
-    */
  
     const handleChangeCambiosF=input=>e=>{
-   //  alert(input+" "+e.target.value)
-     //alert(JSON.stringify(caracteristicasf[0].preguntas[input].respuestas.findIndex(obj => obj.idrespuesta==e.target.value)))
-     //var index0 =caracteristicasf[0].preguntas[0].findIndex(obj => obj.idrespuesta==e.target.value);
-     // alert(index0)
-     //alert("values "+JSON.stringify(values))   
      var rrr=values
      rrr[input]={idrespuesta:e.target.value,respuesta:e.target.value}
      
-      alert("cambios "+JSON.stringify(rrr))   
-      //setRespuestas(rrr)   
       dispatchvalues(rrr)
       setFecha(Date())
-      //setIdOrganizacion(Date())
-      //setRRR(rrr)    
     }
     const idselect = (posList) => {
       alert("idselect "+JSON.stringify(respuestas))
@@ -192,40 +146,6 @@ export default function AsignacionOrganizacion() {
       alert("idselect "+JSON.stringify(respuestas))
       setIdOrganizacion(Date())
     };
-    /*
-    const handleChangeCambios=input=>e=>{
-      alert("useReducer "+JSON.stringify(values))
-        if (input=="organizacion"){
-         setIdOrganizacion(e.target.value)
-         var index =organizacion.findIndex(obj => obj.id==e.target.value);
-
-         setNombreOrganizacion(organizacion[index].nombre)
-          //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
-        
-         
-        }
-        if (input=="militancia"){
-          setIdMilitancia(e.target.value)
-          var index =militancia.findIndex(obj => obj.id==e.target.value);
-          setNombreMilitancia(militancia[index].nombre)
-           //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
-         }
-         if (input=="formacion"){
-          setIdFormacion(e.target.value)
-          var index =formacion.findIndex(obj => obj.id==e.target.value);
-          setNombreFormacion(formacion[index].nombre)
-           //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
-         }
-         if (input=="experiencia"){
-          setIdExperiencia(e.target.value)
-         // alert(e.target.value)
-          var index =experiencia.findIndex(obj => obj.id==e.target.value);
-          setNombreExperiencia(experiencia[index].nombre)
-           //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
-         }
-    
-       }
-*/
        const error='ABC'
     return (
     <React.Fragment>
