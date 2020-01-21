@@ -84,7 +84,7 @@ export default function AsignacionOrganizacion() {
     const [fecha,setFecha]= React.useState([]);
     const [values, dispatchvalues] = useReducer((state, action) => {
       return action ;
-    }, [{idrespuesta:"3",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"}]);
+    }, [{idrespuesta:"2",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"},{idrespuesta:"0",respuesta:"respuesta"}]);
     useEffect(() => {
         setNombre1(statep.persona.nombre1)
         setNombre2(statep.persona.nombre2)
@@ -92,11 +92,9 @@ export default function AsignacionOrganizacion() {
         setApellido2(statep.persona.apellido2)
 
      //////////////AQUI   armar las respuestas para COMENZAR LA VENTANA DESDE EL INICIO Y CUAN VA PARA ATRAS
-     var inicio = caracteristicasf[0].preguntas.map(function (item, index, array) {
- 
-      return {idpregunta:item.idpregunta,pregunta:item.pregunta,idrespuesta:"0",respuesta:"respuesta"}; 
-   
-  });
+     var inicio = caracteristicasf[0].preguntas.map(function (item, index, array) { 
+          return {idpregunta:item.idpregunta,pregunta:item.pregunta,idrespuesta:statep.persona.caracteristicas[index].idrespuesta,respuesta:"respuesta"}; 
+     });
             dispatchvalues(inicio)
 
     },[]);
@@ -205,7 +203,7 @@ export default function AsignacionOrganizacion() {
        <FormControl component="fieldset" className={classes.formControl}>
        <List>  
         <FormControl className={classes.formControl}>
-  <InputLabel id="demo-simple-select-label">{item.pregunta}</InputLabel>
+         <InputLabel id="demo-simple-select-label">{item.pregunta}</InputLabel>
          <Select
        value={values[index].idrespuesta}
        onChange={handleChangeCambiosF(index)}     

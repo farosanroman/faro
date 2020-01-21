@@ -129,7 +129,17 @@ export default function AsignacionDirecciones() {
       setNombre2(statep.persona.nombre2)
       setApellido1(statep.persona.apellido1)
       setApellido2(statep.persona.apellido2)
-      setCorreo("123")
+      statep.persona.direcciones.map((item, index) => {
+        if (item.idrespuesta=="TC"){
+            setCelular(item.texto)
+        }
+        if (item.idrespuesta=="EM"){
+          setCorreo(item.texto)
+      }
+      if (item.idrespuesta=="TW"){
+        setTwt(item.texto)
+      }
+      })
   },[]);
   const onChange = ({ target: { id, value } }) => {
    alert(id+" "+value)

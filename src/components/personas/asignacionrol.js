@@ -90,14 +90,21 @@ export default function AsignacionRol() {
     const [idrol, setIdRol] = React.useState(0);
     const [rol, setRol] = React.useState("rol");
     useEffect(() => {
-      // alert(JSON.stringify(statep.persona.direcciones))  
-      // console.log(JSON.stringify(statep))
-     // alert("DIRECCIONES "+JSON.stringify(statep))
+ 
         setNombre1(statep.persona.nombre1)
         setNombre2(statep.persona.nombre2)
         setApellido1(statep.persona.apellido1)
         setApellido2(statep.persona.apellido2)
-        //setCorreo("123")
+        setCodigoEstado(statep.persona.roles[0].idestado);
+        var indexe = EEMMPP.findIndex(obj => obj.cneestado==statep.persona.roles[0].idestado);
+        setPosEstado(indexe)
+        setCodigoMunicipio(statep.persona.roles[0].idmunicipio)
+        var indexm = EEMMPP[indexe].items.findIndex(obj => obj.cnemunicipio==statep.persona.roles[0].idmunicipio);
+        setPosMunicipio(indexm)
+        setCodigoParroquia(statep.persona.roles[0].idparroquia)
+        setIdRol(statep.persona.roles[0].idrespuesta)
+     
+      
     },[]);
     useEffect(() => {
       statep.persona.roles[0].idrespuesta=idrol;
@@ -112,10 +119,10 @@ export default function AsignacionRol() {
       statep.persona.roles[0].parroquianombre=nombreparroquia;
       //alert(nombreestado)
       //alert(roles[pos].id)
-      
+      //alert("roles "+JSON.stringify(statep.persona.roles[0].idmunicipio))
       dispatchp({
-        type: 'PERSONA',
-        stateprop: statep.persona
+        type: 'ROLES',
+        stateprop: statep.persona.roles
       });
       
     },[codestado,codmunicipio,codparroquia,idrol]);
@@ -150,17 +157,7 @@ export default function AsignacionRol() {
          var  pos = roles.map(function(e) { return e.id; }).indexOf(e.target.value);
          setIdRol(roles[pos].id)
          setRol(roles[pos].descripcion);
-         // alert(EEMMPP.map(function(e) { return e.cneestado; }).indexOf("020000"));
-          //alert(EEMMPP.findIndex(obj => obj.cneestado=="020000"))
-          //alert(EEMMPP[2].items.findIndex(obj => obj.cnemunicipio=="020300"))
-          //alert(EEMMPP[2].items[2].items.findIndex(obj => obj.cneparroquia=="020304"))
-         // alert( e.target.value)
-          
-         // alert(JSON.stringify(statep.persona.roles)) 
-      //    setCodigoParroquia(e.target.value)
-       //   var index = EEMMPP[posestado].items[posmunicipio].items.findIndex(obj => obj.cneparroquia==e.target.value);
-          //alert(index)
-        //    setPosParroquia(index)
+      
          }
        }
        const handleCheckboxChangeRol = id => {

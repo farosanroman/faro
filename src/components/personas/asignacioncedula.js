@@ -66,7 +66,7 @@ export default function AsignacionCedula() {
     const [nombre, setNombre] = React.useState("");
     const [direccion, setDireccion] = React.useState("");
     const [flagCircular, setFlagCircular] = React.useState(false);
-
+    const [dummy, setDummy] = React.useState("");
 const [{ data, isLoading, isError }, fetchData] = useFetch("");
 /*
 const [{ dataPost, isLoadingPost, isErrorPost }, postData] = useFetchPost('');
@@ -85,8 +85,26 @@ useEffect(() => {
       if ((data!=undefined)&&(!isLoading))      
       {
         setFlagCircular(false)
-       // alert("useEffect "+JSON.stringify(data)+" "+JSON.stringify(isLoading))  
-       statep.persona.identificacion=data.identificacion
+       // data=data[0]
+      
+       dispatchp({
+          type: 'PERSONA',
+          stateprop: data[0]
+        });
+        setDummy("dummy")
+        //dispatchp({
+        //  type: 'PERSONA',
+        //  stateprop: statep.persona
+        //});
+      }
+    },[data,isLoading]);
+
+    useEffect(() => {
+
+      if ((dummy!="")||(statep.persona!="")){
+     
+        /*
+      statep.persona.identificacion=data.identificacion
        statep.persona.nombre1=data.nombre1
        statep.persona.nombre2=data.nombre2
        statep.persona.apellido1=data.apellido1
@@ -124,26 +142,22 @@ useEffect(() => {
        }
       ]
       statep.persona.re=re
-       
+       */
+     
         setNombre1(statep.persona.nombre1) 
         setNombre2(statep.persona.nombre2) 
         setApellido1(statep.persona.apellido1) 
         setApellido2(statep.persona.apellido2) 
-        setCodcne(data.codcnecentrovotacion) 
-        setEstado(data.nombreestadocentrovotacion)
-        setMunicipio(data.nombremunicipiocentrovotacion)
-        setParroquia(data.nombreparroquiacentrovotacion)
-        setNombre(data.nombrecentrovotacion)
-        setDireccion(data.direccioncentrovotacion)
-       // alert("statep "+JSON.stringify(statep)) 
-        dispatchp({
-          type: 'PERSONA',
-          stateprop: statep.persona
-        });
+        setCodcne(statep.persona.re[0].codcne) 
+        setEstado(statep.persona.re[0].estadonombre)
+        setMunicipio(statep.persona.re[0].municipionombre)
+        setParroquia(statep.persona.re[0].parroquianombre)
+        setNombre(statep.persona.re[0].centronombre)
+        setDireccion(statep.persona.re[0].direccioncentrovotacion)
        
-      }
-    },[data,isLoading]);
-   
+    }
+    },[dummy]);
+
     const handleChangeCambios=input=>e=>{
  
         if (input=="cedula"){
@@ -238,13 +252,20 @@ useEffect(() => {
 />
         </Grid>
         <Grid item xs={12} sm={6}>
-       
+        <Button
+                   variant="outlined" color="primary"
+                   onClick={() =>{setFlagCircular(true)
+                    fetchData('https://f2020.azurewebsites.net/api/FaroFormularioBase?code=5mWvvpNVz/at91R4awZb7g/rSfVWeHbMSARrVFbEdZWtC2fWBaGtnQ==&id=jsonlite');}}
+                  >
+                   Buscar Pizarra
+         </Button>
         <Button
                    variant="outlined" color="primary"
                    onClick={handleGetPersona}
+                   
                   >
-                   Buscar
-                  </Button>
+                   Buscar Faro
+        </Button>
                   {flagCircular&&<CircularProgress variant="indeterminate"   disableShrink  size={17}   thickness={4} className={classes.progress} />}
         </Grid>
         </Grid>
