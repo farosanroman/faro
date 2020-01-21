@@ -79,7 +79,11 @@ const steps = ['Cedula', 'Direcciones', 'Rol','Organizacion','Asignacion'];
 function getStepContent(step) {
   switch (step) {
     case 0:
-        return <AsignacionCedula />
+        return (
+        
+        <AsignacionCedula />
+        
+        )
      // return <AddressForm />;
     case 1:
             return <AsignacionDirecciones />
@@ -98,12 +102,14 @@ function getStepContent(step) {
 
 export default function AsignacionPasos() {
   const [statep, dispatchp] = React.useReducer(reducer, defaultState);
- 
+  const { statepp, dispatchpp  } = React.useContext(ApplicationPersona);
+    
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [{ dataPost, isLoadingPost, isErrorPost }, postData] = useFetchPost('');
   const [flagCircular, setFlagCircular] = React.useState(false);
   useEffect(() => {
+   // alert("pasos "+JSON.stringify(statep.persona.caracteristicas[1]))
      dispatchp({
         type: 'LOGIN',
         stateprop: true
@@ -132,6 +138,8 @@ export default function AsignacionPasos() {
   };
 
   const handleBack = () => {
+   // alert("back "+JSON.stringify(statep.persona.caracteristicas[1]))
+     
     setActiveStep(activeStep - 1);
   };
 
@@ -165,7 +173,7 @@ export default function AsignacionPasos() {
             ) : (
               <React.Fragment>
                  <ApplicationPersona.Provider value={{ statep, dispatchp }}>
-                 {getStepContent(activeStep)}
+                     {getStepContent(activeStep)}
                 
                  </ApplicationPersona.Provider>
                 <div className={classes.buttons}>

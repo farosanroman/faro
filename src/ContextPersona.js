@@ -261,8 +261,7 @@ export const defaultState = {
       const { type, stateprop } = action;
       switch (type) {
         case 'PERSONA':
-        //  alert("qqqq")
-         
+     
          // let persona0=statep.persona
          // persona0.identificacion=stateprop
        //  alert("REDUCER "+JSON.stringify(stateprop.caracteristicas))
@@ -276,7 +275,7 @@ export const defaultState = {
              persona2.roles=stateprop
           return { ...statep, persona: persona2 };
          case 'CARACTERISTICAS':
-        //  alert("qqqq")
+         // alert("cccc")
         // alert("stateprop "+JSON.stringify(stateprop))
          // let persona0=statep.persona
          // persona0.identificacion=stateprop

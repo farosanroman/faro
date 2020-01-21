@@ -90,7 +90,8 @@ export default function AsignacionRol() {
     const [idrol, setIdRol] = React.useState(0);
     const [rol, setRol] = React.useState("rol");
     useEffect(() => {
- 
+     // alert("rol "+JSON.stringify(statep.persona.caracteristicas[1]))
+     
         setNombre1(statep.persona.nombre1)
         setNombre2(statep.persona.nombre2)
         setApellido1(statep.persona.apellido1)
@@ -107,6 +108,8 @@ export default function AsignacionRol() {
       
     },[]);
     useEffect(() => {
+     // alert("useEffect2 "+JSON.stringify(statep.persona.caracteristicas))
+
       statep.persona.roles[0].idrespuesta=idrol;
       statep.persona.roles[0].respuesta=rol;
       statep.persona.roles[0].descripcion=rol;
@@ -119,7 +122,6 @@ export default function AsignacionRol() {
       statep.persona.roles[0].parroquianombre=nombreparroquia;
       //alert(nombreestado)
       //alert(roles[pos].id)
-      //alert("roles "+JSON.stringify(statep.persona.roles[0].idmunicipio))
       dispatchp({
         type: 'ROLES',
         stateprop: statep.persona.roles
