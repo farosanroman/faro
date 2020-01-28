@@ -24,7 +24,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import {getPersona} from '../helpers/helperpersonas'
 import {EEMMPP} from  '../../data/EEMMPP.json';
-import {roles} from  '../../data/roles.json';
+import {rols} from  '../../data/rols.json';
+import {RolesFiltros} from  '../helpers/rolesfiltros';
 import {organizacion} from  '../../data/organizacion.json';
 //import { Application } from '../../App';
 
@@ -89,9 +90,19 @@ export default function AsignacionRol() {
     
     const [idrol, setIdRol] = React.useState(0);
     const [rol, setRol] = React.useState("rol");
-    useEffect(() => {
+    const [roles, setRoles] = React.useState(rols);
+    const [fecha,setFecha]= React.useState(new Date());
+      useEffect(() => {
      // alert("rol "+JSON.stringify(statep.persona.roles))
       // alert(EEMMPP[2].items[1].items.findIndex(obj => obj.cneparroquia=="020201"))
+     // setRoles(rols)
+     var r = rols.map(function (item, index, array) { 
+      if (item.idnodofuncional==9){
+          return item;
+      }
+      });
+      setRoles(r)
+
         setNombre1(statep.persona.nombre1)
         setNombre2(statep.persona.nombre2)
         setApellido1(statep.persona.apellido1)
@@ -193,9 +204,10 @@ export default function AsignacionRol() {
             setNombreParroquia(EEMMPP[posestado].items[posmunicipio].items[index].name)
          }
          if (input=="rol"){
-         var  pos = roles.map(function(e) { return e.id; }).indexOf(e.target.value);
-         setIdRol(roles[pos].id)
-         setRol(roles[pos].descripcion);
+          // alert(e.target.value)
+         var  pos = rols.map(function(e) { return e.id; }).indexOf(e.target.value);
+         setIdRol(rols[pos].id)
+         setRol(rols[pos].descripcion);
       
          }
        }
@@ -210,6 +222,7 @@ export default function AsignacionRol() {
        };
        
        const error='ABC'
+      // alert(JSON.stringify(roles))
     return (
     <React.Fragment>
     
@@ -354,7 +367,7 @@ export default function AsignacionRol() {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        {roles.map((item, index) => (
+        {rols.map((item, index) => (
                  <MenuItem value={item.id}>{item.nombre}</MenuItem>
               
                ))}

@@ -22,13 +22,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
-import {getPersona} from '../helpers/helperpersonas'
-import {EEMMPP} from  '../../data/EEMMPP.json';
-import {roles} from  '../../data/roles.json';
-import {organizacion} from  '../../data/organizacion.json';
-import {militancia} from  '../../data/militancia.json';
-import {formacion} from  '../../data/formacion.json';
-import {experiencia} from  '../../data/experiencia.json';
+//import {getPersona} from '../helpers/helperpersonas'
+//import {EEMMPP} from  '../../data/EEMMPP.json';
+//import {roles} from  '../../data/roles.json';
+//import {organizacion} from  '../../data/organizacion.json';
+//import {militancia} from  '../../data/militancia.json';
+//import {formacion} from  '../../data/formacion.json';
+//import {experiencia} from  '../../data/experiencia.json';
 import {caracteristicasf} from  '../../data/caracteristicasf.json';
 //import { Application } from '../../App';
 const useStyles = makeStyles(theme => ({
@@ -184,6 +184,9 @@ export default function AsignacionOrganizacion() {
      var car=statep.persona.caracteristicas
       // alert(JSON.stringify(car))
        car[input].idrespuesta=e.target.value
+       var indexr = caracteristicasf[0].preguntas[input].respuestas.findIndex(obj => obj.idrespuesta==e.target.value);
+      
+       car[input].respuesta=caracteristicasf[0].preguntas[input].respuestas[indexr].respuesta;
       setCaracteristicas(car)
     dispatchp({
       type: 'CARACTERISTICAS',
