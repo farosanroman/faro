@@ -205,9 +205,11 @@ export default function AsignacionRol() {
          }
          if (input=="rol"){
           // alert(e.target.value)
-         var  pos = rols.map(function(e) { return e.id; }).indexOf(e.target.value);
-         setIdRol(rols[pos].id)
-         setRol(rols[pos].descripcion);
+       //   alert("rol "+JSON.stringify(roles))
+         var pos=roles.findIndex(obj => obj.id==e.target.value);
+          //var  pos = roles.map(function(e) { return e.id; }).indexOf(e.target.value);
+         setIdRol(roles[pos].id)
+         setRol(roles[pos].descripcion);
       
          }
        }
@@ -223,6 +225,11 @@ export default function AsignacionRol() {
        
        const error='ABC'
       // alert(JSON.stringify(roles))
+      var sel = rols.map((r, i) => {
+       if (r.idnodofuncional==9) {
+          return <MenuItem value={r.id}>{r.nombre}</MenuItem>
+        }
+      });
     return (
     <React.Fragment>
     
@@ -367,10 +374,7 @@ export default function AsignacionRol() {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        {rols.map((item, index) => (
-                 <MenuItem value={item.id}>{item.nombre}</MenuItem>
-              
-               ))}
+        {sel}
        
       
       </Select>
