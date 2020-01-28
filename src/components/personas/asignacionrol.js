@@ -90,21 +90,58 @@ export default function AsignacionRol() {
     const [idrol, setIdRol] = React.useState(0);
     const [rol, setRol] = React.useState("rol");
     useEffect(() => {
-     // alert("rol "+JSON.stringify(statep.persona.caracteristicas[1]))
-     
+     // alert("rol "+JSON.stringify(statep.persona.roles))
+      // alert(EEMMPP[2].items[1].items.findIndex(obj => obj.cneparroquia=="020201"))
         setNombre1(statep.persona.nombre1)
         setNombre2(statep.persona.nombre2)
         setApellido1(statep.persona.apellido1)
         setApellido2(statep.persona.apellido2)
-        setCodigoEstado(statep.persona.roles[0].idestado);
         var indexe = EEMMPP.findIndex(obj => obj.cneestado==statep.persona.roles[0].idestado);
-        setPosEstado(indexe)
-        setCodigoMunicipio(statep.persona.roles[0].idmunicipio)
-        var indexm = EEMMPP[indexe].items.findIndex(obj => obj.cnemunicipio==statep.persona.roles[0].idmunicipio);
-        setPosMunicipio(indexm)
-        setCodigoParroquia(statep.persona.roles[0].idparroquia)
-        setIdRol(statep.persona.roles[0].idrespuesta)
+        if (indexe==-1){
+          setCodigoEstado("");        
+          setPosEstado(0)
+          setCodigoMunicipio("")
+          setPosMunicipio(0)
+          setCodigoParroquia("")
+          setIdRol(0)
+       
+        }else{
+          setPosEstado(indexe)
+          setCodigoEstado(statep.persona.roles[0].idestado);          
+          var indexm = EEMMPP[indexe].items.findIndex(obj => obj.cnemunicipio==statep.persona.roles[0].idmunicipio);
+          if (indexm==-1){
+            setCodigoMunicipio("")
+            setPosMunicipio(0)
+            setCodigoParroquia("")
+            setIdRol(0)
+         
+          }else{
+            setCodigoMunicipio(statep.persona.roles[0].idmunicipio)
+            setPosMunicipio(indexm)
+            var indexp = EEMMPP[indexe].items[indexm].items.findIndex(obj => obj.cneparroquia==statep.persona.roles[0].idparroquia);
+            if (indexp==-1){
+              setCodigoParroquia("")
+              setIdRol(0)
+          
+            }else{
+              setCodigoParroquia(statep.persona.roles[0].idparroquia)
+              setIdRol(indexp)
+              var indexr=statep.persona.roles[0].idrespuesta;
+              if (indexr==-1){ 
+                setIdRol("")
+              }else{
+                setIdRol(statep.persona.roles[0].idrespuesta)    
+              }
+            }
+          
+       //     setCodigoParroquia(statep.persona.roles[0].idparroquia)
+       //   setIdRol(statep.persona.roles[0].idrespuesta)
+       
+          }
+        }
      
+       
+        
       
     },[]);
     useEffect(() => {

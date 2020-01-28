@@ -86,12 +86,13 @@ useEffect(() => {
       {
         setFlagCircular(false)
        // data=data[0]
-      
+      // alert("fetch"+JSON.stringify(data))
        dispatchp({
           type: 'PERSONA',
           stateprop: data[0]
         });
         setDummy("dummy")
+
         //dispatchp({
         //  type: 'PERSONA',
         //  stateprop: statep.persona

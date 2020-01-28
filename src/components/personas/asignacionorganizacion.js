@@ -104,36 +104,62 @@ export default function AsignacionOrganizacion() {
      //setRespuestas()
     
      //statep.persona.caracteristicas
+        if (caracteristicasf[0].preguntas.length>statep.persona.caracteristicas.length){
+          for (var i = 0; i <= (caracteristicasf[0].preguntas.length-statep.persona.caracteristicas.length); i++) {
+            statep.persona.caracteristicas.push(  {
+              "idpregunta":"xxx",
+              "pregunta":"pregunta",
+  
+              "idrespuesta": "000",
+              "respuesta": "ADDD",
+              "codcne": "00000000000",
+              "descripcion": "Soporte Electoral",
+              "codcnenombre": "",
+              "idfuncional": "1038",
+              "funcionalnombre": "Formación",
+              "lat": -66.47,
+              "lng": 9.09,
+              "idestado": "00",
+              "idmunicipio": "00",
+              "idparroquia": "00",
+              "idcircunscripcion": "0",
+              "estadonombre": "",
+              "municipionombre": "",
+              "parroquianombre": "",
+              "circunscripcionnombre": "",
+              "centronombre": "VENEZUELA"
+              
+            })
+         }
+        }
+        dispatchp({
+          type: 'CARACTERISTICAS',
+          stateprop: statep.persona.caracteristicas
+        });
      var inicio = caracteristicasf[0].preguntas.map(function (item, index, array) { 
       //caracteristicasf[0].preguntas[index].respuestas[statep.persona.caracteristicas[index].idrespuesta].respuesta
       //alert(index+" "+statep.persona.caracteristicas[index].idrespuesta)
-          return statep.persona.caracteristicas[index].idrespuesta; 
+          //alert(statep.persona.caracteristicas[index])
+          var r=0;
+          if (statep.persona.caracteristicas[index]==undefined){
+               ///annador caracteristicas a persona
+          }else{
+           r=statep.persona.caracteristicas[index].idrespuesta   
+          }
+          return r; 
      });
            // dispatchvalues(inicio)
     
            setRespuestas(inicio)
-          // alert("uinicio "+JSON.stringify(inicio))
+           
     }
           },[]);
           
     useEffect(() => {
-      //dispatchvalues(respuestas)
      // alert("useEffect2 "+JSON.stringify(statep.persona.caracteristicas))
       //alert("useEffect3 "+JSON.stringify(respuestas))
       let car=[]
-      //var pos=caracteristicasf[0].preguntas[0]
-       //var carr = respuestas.map(function (item, index, array) {
-          // var indexr =caracteristicasf[0].preguntas[index].respuestas.findIndex(obj => obj.idrespuesta==item.idrespuesta)
-         //  var respuestachar="SIN RESPUESTA"
-      // alert(indexr)
-        //   if (indexr>=0){
-              //alert(caracteristicasf[0].preguntas[index].respuestas[indexr].respuesta)
-          //    respuestachar=caracteristicasf[0].preguntas[index].respuestas[indexr].respuesta
-          // }
-           //return {}
-         //  return {idpregunta:"xxx",pregunta:"ORGANIZACION",idrespuesta:respuestas[index],respuesta:respuestachar,descripcion:respuestachar,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}; 
-      //});
-     
+      
       if (JSON.stringify(caracteristicas) == "{}"){
         //alert("nada")
       }else{
@@ -152,30 +178,17 @@ export default function AsignacionOrganizacion() {
      // alert(JSON.stringify(statep.persona))
      var r=respuestas 
       r[input]=e.target.value
-
+     // alert(JSON.stringify(r))
       setRespuestas(r)
      
      var car=statep.persona.caracteristicas
       // alert(JSON.stringify(car))
        car[input].idrespuesta=e.target.value
-          
-     // var carr = respuestas.map(function (item, index, array) {
-        // var indexr =caracteristicasf[0].preguntas[index].respuestas.findIndex(obj => obj.idrespuesta==item.idrespuesta)
-     //    var respuestachar="SIN RESPUESTA"
-     //    return {idpregunta:"xxx",pregunta:"ORGANIZACION",idrespuesta:respuestas[index],respuesta:respuestachar,descripcion:respuestachar,codcne:"",idestado:"",estadonombre:"",idmunicipio:"",municipionombre:"",idparroquia:"",parroquianombre:""}; 
-    //});
-   //alert("fecha "+JSON.stringify(car))
-    setCaracteristicas(car)
-//    dispatchp({
-//      type: 'CARACTERISTICAS',
-//      stateprop: car
- //   });
-      //var rrr=respuestas
-     //rrr[input]=e.target.value
-      
-     //setRespuestas(rrr)
-      //dispatchval(rrr)
-      //setFecha(Date())
+      setCaracteristicas(car)
+    dispatchp({
+      type: 'CARACTERISTICAS',
+      stateprop: car
+    });
     }
 
 
@@ -249,23 +262,16 @@ export default function AsignacionOrganizacion() {
         </Grid>
         </Grid>
         <Grid container spacing={3}>
-     
-
-        {caracteristicasf[0].preguntas.map((item, index) => (
-             <Grid item xs={12} sm={6}>
-       <FormControl component="fieldset" className={classes.formControl}>
-       <List>  
-        <FormControl className={classes.formControl}>
-         <InputLabel id="demo-simple-select-label">{item.pregunta}</InputLabel>
-         <Select
-       value={respuestas[index]}
-       onChange={handleChangeCambiosF(index)}     
-         input={<Input name="Rol" id="age-helper" />}
-       >
-        
-         {item.respuestas.map((item, index) => (
-                  <MenuItem value={item.idrespuesta}>{item.respuesta}</MenuItem>
-          ))}
+          {caracteristicasf[0].preguntas.map((item, index) => (
+        <Grid item xs={12} sm={6}>
+           <FormControl component="fieldset" className={classes.formControl}>
+            <List>  
+            <FormControl className={classes.formControl}>
+             <InputLabel id="demo-simple-select-label">{item.pregunta}</InputLabel>
+             <Select value={respuestas[index]}  onChange={handleChangeCambiosF(index)}  input={<Input name="Rol" id="age-helper" />} >        
+                   {item.respuestas.map((item, index) => (
+                      <MenuItem value={item.idrespuesta}>{item.respuesta}</MenuItem>
+                    ))}
         </Select>
        </FormControl>
        </List>
