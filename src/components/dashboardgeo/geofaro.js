@@ -301,7 +301,7 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
     <Divider />
     <Grid container>
     
-      {personas.map((item, index) => (
+      {padron.map((item, index) => (
         <Grid item xl={2} md={3} sm={6} xs={12}>
             <SimpleCard testigo={item} />
       </Grid>
