@@ -29,9 +29,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CardPersona() {
+export default function CardPersona(prop) {
+    //console.log(persona)
+   // alert(prop)
   const classes = useStyles();
-
+  const [persona, setPersona] = React.useState(prop);
+  //alert(JSON.stringify(prop))
+  //alert(prop.persona.nombreapellido)
+  //alert(JSON.stringify(prop))
   return (
       
     <Card className={classes.card}>
@@ -53,8 +58,8 @@ export default function CardPersona() {
             </Avatar>
             </Grid>
          </Grid>
-          <Typography gutterBottom variant="h5" component="h2">
-            Fulanito de Tal y Cual
+          <Typography gutterBottom variant="h8" component="h3">
+           {prop.persona.nombreapellido}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             Tremendo Testigo de la Democracia

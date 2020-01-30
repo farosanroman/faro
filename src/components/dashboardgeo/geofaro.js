@@ -70,7 +70,22 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
   
 //alert('geo'+JSON.stringify(state))
     const classes = useStyles();
-    
+    let padronjson={
+      "type":"FeatureCollection",
+      "features":[]
+    }
+    //coordendas de centride de parroquias
+       const  padronfeatures=padron.map(p=>{               
+            return(
+              {
+                "type":"Feature",
+                "properties":{"nombre":p.nombreapellido,"codcne":p.codcne,"correo":p.correo,},                             
+                "geometry":{"type":"Point","coordinates":[p.lng,p.lat]
+                }
+              }
+        )     
+     })   
+     padronjson.features=padronfeatures;
     function onMapClick(evt) {
  
         var codcne=evt.features[0].properties.ID
@@ -213,6 +228,7 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
               onZoom={onZoom}
         //onClick={this._onClickMap}  
        > 
+       
          <GeoJSONLayer
           data={state.centros}
           circleLayout={{ visibility: 'visible' }}
@@ -253,10 +269,31 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
         <GeoJSONLayer
               data={PAMIRANDA}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': 'purple','line-width': 1.2}}
+              linePaint={{'line-color': 'purple','line-width': 1.5}}
              
             />
-      
+        <GeoJSONLayer
+          data={padronjson}
+          circleLayout={{ visibility: 'visible' }}
+         //circlePaint={{'circle-color': 'purple','circle-radius': state.radio, }} 
+         circlePaint={{'circle-color': 'dodgerblue','circle-radius': 6,'circle-opacity': 1,'circle-stroke-color': 'dodgerblue' , 'circle-stroke-width': 3,'circle-blur': 1}}         
+          
+        // onClick={onMapClick}     
+        circleOnClick={onCentroClick}
+        //   fillOnClick={this.onMapClick}  
+          symbolLayout={{
+            'text-field': '{nombre}',
+            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top',
+            "text-size": 10
+            
+          }}
+          symbolPaint={{
+            'text-color': 'black'
+          }}
+          />
+       
         <ZoomControl position={"bottomRight"} />
         </Map>
         </Grid>
@@ -277,70 +314,14 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
       {padron.map((item, index) => (
          <Grid item xl={2} md={3} sm={6} xs={12}>
      
-     <CardPersona />
+     <CardPersona persona={item}/>
      
           </Grid>
       ))}  
     
       </Grid>
 
-<Grid container spacing={2}>
-      <Grid item xl={2} md={3} sm={6} xs={12}>
-     
-      <CardPersona />
-     
-   </Grid>
-   <Grid item xl={2} md={3} sm={6} xs={12}>
 
-      <CardPersona />
-
-   </Grid>  
-   <Grid item xl={2} md={3} sm={6} xs={12}>
-     
-     <CardPersona />
-    
-  </Grid>
-  <Grid item xl={2} md={3} sm={6} xs={12}>
-
-     <CardPersona />
-
-  </Grid>  
-  <Grid item xl={2} md={3} sm={6} xs={12}>
-     
-     <CardPersona />
-    
-  </Grid>
-  <Grid item xl={2} md={3} sm={6} xs={12}>
-
-     <CardPersona />
-
-  </Grid>  
-  <Grid item xl={2} md={3} sm={6} xs={12}>
-
-<CardPersona />
-
-</Grid>  
-<Grid item xl={2} md={3} sm={6} xs={12}>
-
-<CardPersona />
-
-</Grid>
-<Grid item xl={2} md={3} sm={6} xs={12}>
-
-<CardPersona />
-
-</Grid>  
-<Grid item xl={2} md={3} sm={6} xs={12}>
-
-<CardPersona />
-
-</Grid>
-<Grid item xl={2} md={3} sm={6} xs={12}>
-
-<CardPersona />
-
-</Grid>  
-   </Grid>
       
 
       
