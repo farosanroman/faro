@@ -56,18 +56,18 @@ import About from './dashboard/about';
 import FaroPieChart from './indicadores/faropiechartborrar';
 import Log from './dashboardlog/log';
 ///////////////Equipo//////////////////
-import Indicadores from './dashboardpadron/indicadores';
-import Avance from './dashboardpadron/avance';
-import { Pivote } from './dashboardpadron/pivote'
-import Radar2 from './dashboardpadron/radar2';
-import ChartPyramid from './dashboardpadron/chartpyramid';
-import ChartPieChart from './dashboardpadron/chartpiechart';
-import Geo from './dashboardpadron/geo';
-import PorcPartidos from './dashboardpadron/porcpartidos';
+import Indicadores from './dashboardindicadores/indicadores';
+import Avance from './dashboardindicadores/avance';
+import { Pivote } from './dashboardindicadores/pivote'
+import Radar2 from './dashboardindicadores/radar2';
+import ChartPyramid from './dashboardindicadores/chartpyramid';
+import ChartPieChart from './dashboardindicadores/chartpiechart';
+import Geo from './dashboardindicadores/geo';
+import PorcPartidos from './dashboardindicadores/porcpartidos';
 ///////////////Equipo//////////////////
-import Historia from './inteligencia/historia';
-import Polylines from './inteligencia/polylines';
-import GeoCentros from './inteligencia/geocentros';
+import Historia from './dashboardgeo/historia';
+import Polylines from './dashboardgeo/polylines';
+import GeoCentros from './dashboardgeo/geofaro';
 import AsignacionPasos from './personas/asignacionpasos'
 
 //import AsignacionDatos from './personas/asignaciondatosborrar';
@@ -78,7 +78,7 @@ import Intervalos from './dashboardmensajeria/intervalos';
 import Resultados from './dashboardmensajeria/resultados';
 import DialogoGetPersona from './personas/dialogogetpersona'
 import DialogoLogin from './dashboard/dialogologin'
-import DialogoFiltros from './dashboardpadron/dialogofiltros'
+import DialogoFiltros from './dashboardindicadores/dialogofiltros'
 import Fotos from './dashboard/fotos';
 import Cursos     from      './formacion/cursos'
 import VinoTinto     from      './formacion/vinotinto'
@@ -332,7 +332,22 @@ export default function Dashboard() {
       </ListItemIcon>
       <ListItemText primary="Filtros" />
     </ListItem>.
-              
+    <Divider />
+        <List>
+        <ListItem button  onClick={handleComponent(10)} >
+      <ListItemIcon>
+        <PlaceIcon />
+      </ListItemIcon>
+      <ListItemText primary="GeoCentros" />
+    </ListItem>
+        <ListItem button onClick={handleComponent(5)}>
+      <ListItemIcon>
+        <EditIcon />
+      </ListItemIcon>
+      <ListItemText primary="Asignacion" />
+    </ListItem>
+
+        </List>   
         <Divider />
         <List>
        
@@ -360,17 +375,7 @@ export default function Dashboard() {
     
         </List>
               
-        <Divider />
-        <List>
        
-        <ListItem button onClick={handleComponent(5)}>
-      <ListItemIcon>
-        <EditIcon />
-      </ListItemIcon>
-      <ListItemText primary="Asignacion" />
-    </ListItem>
-
-        </List>
         <Divider />
         
         <List>
@@ -381,12 +386,7 @@ export default function Dashboard() {
       </ListItemIcon>
       <ListItemText primary="GeoElectoral" />
     </ListItem>
-    <ListItem button  onClick={handleComponent(10)} >
-      <ListItemIcon>
-        <PlaceIcon />
-      </ListItemIcon>
-      <ListItemText primary="GeoCentros" />
-    </ListItem>
+   
     <ListItem button  onClick={handleComponent(11)} >
       <ListItemIcon>
         <HowToVoteIcon />

@@ -14,6 +14,7 @@ import { Grid, Paper, Typography } from "@material-ui/core";
 import Icon from '../helpers/icon';
 import  MapGL,{Layer,Feature,ZoomControl,GeoJSONLayer} from 'react-mapbox-gl';
 import Centro     from      './centro'
+import CardPersona     from      './cardpersona'
 import Button from '@material-ui/core/Button';
 //import { Application } from '../App';
 
@@ -26,22 +27,31 @@ import {LIBERTADOR} from '../../data/libertador.json';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
 import {padron} from '../../data/padron.json';
-
+import {PAMIRANDA} from '../../data/PAMIRANDA.json';
+import Divider from '@material-ui/core/Divider';
 const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pzIn0.V8cqmZH6dFIcxtKoaWcZZw"
 const Map = MapGL({accessToken: TOKEN });
 const mapStyle = {  flex: 1,  height: "75vh",width: "100%"};
 const circleLayout= MapGL.CircleLayout = { visibility: 'visible' };
 const circlePaint= MapGL.CirclePaint = { 'circle-color': 'red', 'circle-radius': 3,};
 const linePaint = MapGL.LinePaint = {'line-color': 'orange', 'line-width': 1};
-const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'], 'text-offset': [0, 0.6], 'text-anchor': 'top'
-};
+const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'], 'text-offset': [0, 0.6], 'text-anchor': 'top'};
 //const useStyles = makeStyles({
+  
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1
+    },  paper: {
+      padding: theme.spacing(2),
+      display: 'flex',
+      overflow: 'auto',
+      flexDirection: 'column',
+     
     },
     card: {
-      maxWidth: 350,
+      maxWidth:450,
+      minWidth:300
+      
     },
     Paper:{ padding: theme.spacing(2,2),
     }
@@ -49,12 +59,13 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
   }));
   
 //export default function Geo({lnglat0,zoom0,centros0,GetCentros,GetPersonasCODCNE}) {
-  export default function GeoCentros() {
+  export default function GeoFaro() {
   const { state, dispatch } = React.useContext(Application);
 
   const [centros, setCentros] = React.useState([]);
   const [personas, setPersonas] = React.useState([]);
- 
+  const [TESTIGOS, setTESTIGOS] = React.useState( new Array(1000));
+
   //alert("GEOOOOOoooo "+JSON.stringify(state))
   
 //alert('geo'+JSON.stringify(state))
@@ -180,6 +191,9 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
         //alert(JSON.stringify(centros))
        // const radiocentro=3;
        // if (state.zoom>12) radiocentro=10
+     
+       
+     
   return (
     <Fragment>
       <div className={classes.root}>
@@ -202,7 +216,9 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
          <GeoJSONLayer
           data={state.centros}
           circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'purple','circle-radius': state.radio, }}  
+         //circlePaint={{'circle-color': 'purple','circle-radius': state.radio, }} 
+         circlePaint={{'circle-color': 'white','circle-radius': 3,'circle-opacity': 1,'circle-stroke-color': 'purple' , 'circle-stroke-width': 1}}         
+          
         // onClick={onMapClick}     
         circleOnClick={onCentroClick}
         //   fillOnClick={this.onMapClick}  
@@ -222,7 +238,7 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
               <GeoJSONLayer
               data={ESTADOSGEO}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': 'darkblue','line-width': 1}}
+              linePaint={{'line-color': 'darkblue','line-width': 2}}
               fillOnClick={onMapClick}           
             />
                  <GeoJSONLayer
@@ -235,9 +251,9 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
           
         />
         <GeoJSONLayer
-              data={LIBERTADOR}
+              data={PAMIRANDA}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': 'purple','line-width': .5}}
+              linePaint={{'line-color': 'purple','line-width': 1.2}}
              
             />
       
@@ -245,14 +261,89 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
         </Map>
         </Grid>
     </Grid>
+    <Divider />
     <Grid container>
-      
+    
       {personas.map((item, index) => (
         <Grid item xl={2} md={3} sm={6} xs={12}>
-   <SimpleCard testigo={item} />
-   </Grid>
+            <SimpleCard testigo={item} />
+      </Grid>
       ))}
       </Grid>
+
+
+      <Grid container spacing={2}>
+          
+      {padron.map((item, index) => (
+         <Grid item xl={2} md={3} sm={6} xs={12}>
+     
+     <CardPersona />
+     
+          </Grid>
+      ))}  
+    
+      </Grid>
+
+<Grid container spacing={2}>
+      <Grid item xl={2} md={3} sm={6} xs={12}>
+     
+      <CardPersona />
+     
+   </Grid>
+   <Grid item xl={2} md={3} sm={6} xs={12}>
+
+      <CardPersona />
+
+   </Grid>  
+   <Grid item xl={2} md={3} sm={6} xs={12}>
+     
+     <CardPersona />
+    
+  </Grid>
+  <Grid item xl={2} md={3} sm={6} xs={12}>
+
+     <CardPersona />
+
+  </Grid>  
+  <Grid item xl={2} md={3} sm={6} xs={12}>
+     
+     <CardPersona />
+    
+  </Grid>
+  <Grid item xl={2} md={3} sm={6} xs={12}>
+
+     <CardPersona />
+
+  </Grid>  
+  <Grid item xl={2} md={3} sm={6} xs={12}>
+
+<CardPersona />
+
+</Grid>  
+<Grid item xl={2} md={3} sm={6} xs={12}>
+
+<CardPersona />
+
+</Grid>
+<Grid item xl={2} md={3} sm={6} xs={12}>
+
+<CardPersona />
+
+</Grid>  
+<Grid item xl={2} md={3} sm={6} xs={12}>
+
+<CardPersona />
+
+</Grid>
+<Grid item xl={2} md={3} sm={6} xs={12}>
+
+<CardPersona />
+
+</Grid>  
+   </Grid>
+      
+
+      
  </div>
     </Fragment>
 
