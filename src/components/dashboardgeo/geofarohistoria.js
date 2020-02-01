@@ -72,77 +72,7 @@ export default function GeoFaroHistoria() {
           content: 'Third panel content...'
         }
         ]);
-  const [personas,setPersonas]=useState(
-    [
-    {idrol:1,rol:"Rol 1111",personas:[
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-    
-    ]}
-    ,
-    
-    {idrol:1,rol:"Rol 1111",personas:[
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-    
-    ]}
-    ,
-    {idrol:1,rol:"Rol 1111",personas:[
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-      {cedula:"",nombreapellido:"pedro aaaa",apellido:"azpurua"},
-    
-    
-    ]}
-    
-    ]
-  )    
-  const [items, setItems] = useState([
-    { rol: 'First Item', timestamp: new Date() },
-    { name: 'Second Item', timestamp: new Date() },
-    { name: 'Third Item', timestamp: new Date() }
-  ]);
-  const [miembrosmesa, setMiembros] = useState([
-    { rol: 'Presidente', nombre:'Luis Perez (0412)9798978' },
-    { rol: 'Secretario', nombre:'Jose Cuervo (0412)9289828' },
-    { rol: 'Miembro', nombre:'Ramona Lewis (0412)9827282' },
-    { rol: 'Reserva', nombre:'Jose William (0412)9287722' },
-
-  ]);
-  const [juntas, setJuntas] = useState([
-    { rol: 'Presidente', nombre:'Jonni Perez (0412)9798978' },
-    { rol: 'Secretario', nombre:'Ricardo Gomez (0412)9289828' },
-
-  ]);
-  const [testigos, setTestigos] = useState([
-    { rol: 'Testigo Principal', nombre:'Jonni Perez (0412)9798978' },
-    { rol: 'Testigo Suplente', nombre:'Ricardo Gomez (0412)9289828' },
-    { rol: 'Testigo Suplente', nombre:'Ricardo Gomez (0412)9289828' },
-    { rol: 'Logistica', nombre:'Ricardo Gomez (0412)9289828' },
-    { rol: 'SOS', nombre:'Ricardo Gomez (0412)9289828' },
-
-  ]);
-  const [observadores, setObservadores] = useState([
-    { rol: 'Coordinador Observacion', nombre:'Jonni Perez (0412)9798978' },
-    { rol: 'Comunicaciones', nombre:'Ricardo Gomez (0412)9289828' },
-    { rol: 'Monitor Conteo Rapido', nombre:'Ricardo Gomez (0412)9289828' },
-    { rol: 'Logistica', nombre:'Ricardo Gomez (0412)9289828' },
-    { rol: 'SOS', nombre:'Ricardo Gomez (0412)9289828' },
-    { rol: 'Punto VinoTinto', nombre:'Ricardo Gomez (0412)9289828' },
-
-  ]);
-console.log(state.rolespersonas)
+  
   return (
     <Fragment>
 

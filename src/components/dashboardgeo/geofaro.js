@@ -53,8 +53,8 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
      
     },
     card: {
-      maxWidth:340,
-      minWidth:300,
+      maxWidth:300,
+      minWidth:160,
       boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
       "&:hover": {
         boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
@@ -319,7 +319,7 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
     <Grid container spacing={2}>
     
       {atc.map((item, index) => (
-        <Grid item xl={3} md={3} sm={6} xs={12}>
+        <Grid item xl={3} md={3} sm={3} xs={12}>
             <SimpleCard persona={item} />
       </Grid>
       ))}
