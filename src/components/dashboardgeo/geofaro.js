@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Avatar from '@material-ui/core/Avatar';
 //import CardBody from '@material-ui/core/CardBody';
 //import CardTitle from '@material-ui/core/CardTitle';
 //import CardText from '@material-ui/core/CardText';
@@ -13,14 +14,15 @@ import CardContent from '@material-ui/core/CardContent';
 import { Grid, Paper, Typography } from "@material-ui/core";
 import Icon from '../helpers/icon';
 import  MapGL,{Layer,Feature,ZoomControl,GeoJSONLayer} from 'react-mapbox-gl';
-import Centro     from      './centro'
+import GeoFaroHistoria     from      './geofarohistoria'
+import GeoFaroResumen     from      './geofaroresumen'
 import CardPersona     from      './cardpersona'
 import Button from '@material-ui/core/Button';
 //import { Application } from '../App';
 
 //import {ESTADOSGEO} from '../data/ESTADOSGEO.json';
-
-
+import {useFetch}  from '../hooks/usefetch'
+import {useFetchPost}  from '../hooks/usefetchpost'
 import {resultados,getLocation,getPersona,getPersonasCODCNE,getCentrosCODCNE} from '../helpers/helpers'
 //import {CENTROSVOTACION} from '../../data/centrosvotacion.json';
 import {LIBERTADOR} from '../../data/libertador.json';
@@ -28,7 +30,9 @@ import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
 import {padron} from '../../data/padron.json';
 import {PAMIRANDA} from '../../data/PAMIRANDA.json';
+import {atc} from '../../data/atc.json';
 import Divider from '@material-ui/core/Divider';
+import { grey } from '@material-ui/core/colors';
 const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pzIn0.V8cqmZH6dFIcxtKoaWcZZw"
 const Map = MapGL({accessToken: TOKEN });
 const mapStyle = {  flex: 1,  height: "75vh",width: "100%"};
@@ -37,7 +41,7 @@ const circlePaint= MapGL.CirclePaint = { 'circle-color': 'red', 'circle-radius':
 const linePaint = MapGL.LinePaint = {'line-color': 'orange', 'line-width': 1};
 const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'], 'text-offset': [0, 0.6], 'text-anchor': 'top'};
 //const useStyles = makeStyles({
-  
+ // alert(JSON.stringify(atc[0]))
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1
@@ -49,12 +53,29 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
      
     },
     card: {
-      maxWidth:450,
-      minWidth:300
+      maxWidth:340,
+      minWidth:300,
+      boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+      "&:hover": {
+        boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+      }
       
     },
     Paper:{ padding: theme.spacing(2,2),
-    }
+    },
+   
+    media: {
+      height: 140,
+    },
+    avatarlarge: {
+      backgroundColor: grey[500],margin: 5,
+      width: 50,
+      height: 50,
+      alignSelf:"center"
+    },
+    divider: {
+      margin: 10
+    },
    // toolbarMargin: theme.mixins.toolbar
   }));
   
@@ -66,10 +87,24 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
   const [personas, setPersonas] = React.useState([]);
   const [TESTIGOS, setTESTIGOS] = React.useState( new Array(1000));
 
+  const [{ data, isLoading, isError }, fetchData] = useFetch("");
   //alert("GEOOOOOoooo "+JSON.stringify(state))
   
 //alert('geo'+JSON.stringify(state))
     const classes = useStyles();
+
+    useEffect(() => {
+      if (isLoading) {
+      //  setFlagCircular(true)
+      }
+      if ((data!=undefined)&&(!isLoading))      
+      {
+       // setFlagCircular(false)
+       // data=data[0]
+      alert("fetch"+JSON.stringify(data))
+      
+      }
+    },[data,isLoading]);
     let padronjson={
       "type":"FeatureCollection",
       "features":[]
@@ -87,10 +122,12 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
      })   
      padronjson.features=padronfeatures;
     function onMapClick(evt) {
- 
+      
         var codcne=evt.features[0].properties.ID
         var centro=evt.features[0].properties.ESTADO
-       // alert(codcne)
+      
+        fetchData('https://f2020.azurewebsites.net/api/FaroPersonasCentroGet?code=pNHwI2vpHlgY2la6to4uUECNsX7wdSsgKwKwCB6sX/8b2pmb0/N2Sg==&id=131801022');
+        // alert(codcne)
         getCentrosCODCNE(codcne,result => {  
          //alert(JSON.stringify(result))
          setCentros(result) 
@@ -110,10 +147,7 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
             )     
          })   
          centrosjson.features=featurescentrosjson;
-        //alert('DidMount '+JSON.stringify(centrosjson))
-        //var intzoom = Math.round( zoom );
-        //setCentros(centrosjson)
-        //const arrayzoom=[intzoom]
+       
         dispatch({
          type: 'CENTROS',
          stateprop:centrosjson
@@ -140,18 +174,8 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
         } )
        
        })
-       
-        
-                 // setCentros(centros);
-                //alert(JSON.stringify(centrosjson))
-            
-            //alert(JSON.stringify(evt.features[0].properties.ID))
-            //this.props.onsetgeojson(evt.features[0].properties.COD_ESTADO,evt.features[0].properties.ESTADO)
-         }
+  }
    function onCentroClick(evt) {
-     //console.log("evt evt evt evt evt")
-     //console.log(evt.features[0].properties)
-     //alert(JSON.stringify(''+evt.features[0].properties.codcne.substring(0,2)))
     //GetPersonasCODCNE(evt.features[0].properties.codcne.substring(0,2),evt.features[0].properties.nombre,[state.zoom],state.zoom)
     getPersonasCODCNE(evt.features[0].properties.codcne.substring(0,2),result => {  
      console.log(result)
@@ -176,18 +200,7 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
             }
          }
         }
-    //      alert(JSON.stringify(map))
-         // console.log(map)
-         // dispatch({
-           // type: 'ROLESPERSONAS',
-          //  stateprop:map
-          //});  
-          
-          //this.setState({persona:formDataPersona,identificacion:imagecedula,isLoading:false})
-         //var intzoom = Math.round( zoom );
-         //intzoom=intzoom.toString()
-        // console.log(intzoom)
-         //this.setState({zoom:[intzoom],lnglat:lnglat,centro:centro,rolespersonas:map,isLoading:false})
+ 
          
       });
         
@@ -203,23 +216,17 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
             console.log(map.getZoom())
             //setZoom2(map.getZoom())
           }
-        //alert(JSON.stringify(centros))
-       // const radiocentro=3;
-       // if (state.zoom>12) radiocentro=10
-     
-       
+     //  alert()
      
   return (
     <Fragment>
       <div className={classes.root}>
-     <Grid container >
+      <Grid container spacing={2}>
      
-      <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-        <Centro/>
-      </Grid>
-      <Grid item xs={12} sm={12} md={8} lg={4} xl={8}>
+     
+      <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
         <Map        
-              //style="mapbox://styles/mapbox/streets-v8"
+             // style="mapbox://styles/mapbox/streets-v8"
              // style="mapbox://styles/mapbox/dark-v9"
                style="mapbox://styles/mapbox/light-v9"
               center={state.lnglat} 
@@ -298,32 +305,25 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
         </Map>
         </Grid>
     </Grid>
+    <Grid container spacing={2} justify="center">
+    <Grid item xl={6} md={6} sm={6} xs={12}>
+        <GeoFaroHistoria/>
+      </Grid>
+     
+      <Grid item xl={6} md={6} sm={6} xs={12}>
+        <GeoFaroResumen/>
+      </Grid>
+      </Grid>
+
     <Divider />
-    <Grid container>
+    <Grid container spacing={2}>
     
-      {padron.map((item, index) => (
-        <Grid item xl={2} md={3} sm={6} xs={12}>
-            <SimpleCard testigo={item} />
+      {atc.map((item, index) => (
+        <Grid item xl={3} md={3} sm={6} xs={12}>
+            <SimpleCard persona={item} />
       </Grid>
       ))}
       </Grid>
-
-
-      <Grid container spacing={2}>
-          
-      {padron.map((item, index) => (
-         <Grid item xl={2} md={3} sm={6} xs={12}>
-     
-     <CardPersona persona={item}/>
-     
-          </Grid>
-      ))}  
-    
-      </Grid>
-
-
-      
-
       
  </div>
     </Fragment>
@@ -332,39 +332,45 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
 }
 //export default Geof;
 
- function SimpleCard({testigo}) {
+ function SimpleCard({persona}) {
+//https://codesandbox.io/s/50l225l964
+  // alert(JSON.stringify(testigo))
  const classes = useStyles();
  // const bull = <span className={classes.bullet}>•</span>;
+ var RANDOM=Math.floor(Math.random() * (70- 1 + 1) + 1);
+var url ="https://i.pravatar.cc/100?img="+RANDOM
  function handleSubmit(event) {
-  //alert(JSON.stringify(this.state.testigo))
-  //this.setState({cedula:"cedula",celular:"celular8888",email:"email888"})
-  // this.props.onsetdatospersonales('98989898')
- //  this.props.setCurrentClick(this.state.testigo.properties.celular,this.state.testigo.properties.correo)
-// this.setState({celular: '0414222'});
 
- //alert('A name was submitted: ' + this.state.value);
-// this.onSetDatosPersonales("aa")
 
 };
   return (
 
 <Card className={classes.card}>
 <CardContent>
+<Grid container 
+       spacing={0}
+       direction="column"
+       alignItems="center"
+       justify='center'
+        
+         >
+           <Grid item >
+         <Avatar aria-label="recipe"  src={url} className={classes.avatarlarge} >
+            
+            </Avatar>
+            </Grid>
+         </Grid>
   <Typography className={classes.title} color="textSecondary" gutterBottom>
-  {testigo.rol}
+  {"Testigo"}
   </Typography>
-  <Typography variant="h5" component="h2">
-  {testigo.nombreapellido}
+  <Typography gutterBottom variant="h8" component="h5">
+  {persona.nombre1} {persona.apellido1}
   </Typography>
   <Typography className={classes.pos} color="textSecondary">
-  {testigo.celular}-{testigo.correo}
+  {"o412-6345638"}-{"ppwilsom@gmail.com"}
   </Typography>
-  <Typography variant="body2" component="p">
-  
-            {testigo.nombre}, {testigo.descripcion}
+  <Divider className={classes.divider} light />
 
-  
-  </Typography>
 </CardContent>
 <CardActions>
 <Button  color="success" onClick={handleSubmit}>Cambios</Button>

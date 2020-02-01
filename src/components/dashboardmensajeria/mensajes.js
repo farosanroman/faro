@@ -10,7 +10,7 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import ReactDOM from 'react-dom';
 
 import {Editor} from 'primereact/editor';
-
+//https://www.slatejs.org/examples/richtext
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import  MapGL,{Layer,Feature,ZoomControl,GeoJSONLayer,ScaleControl} from 'react-mapbox-gl';

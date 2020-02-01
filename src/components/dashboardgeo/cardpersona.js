@@ -23,8 +23,8 @@ const useStyles = makeStyles({
   },
   avatarlarge: {
     backgroundColor: grey[500],margin: 5,
-    width: 150,
-    height: 150,
+    width: 50,
+    height: 50,
     alignSelf:"center"
   },
 });
@@ -53,17 +53,28 @@ export default function CardPersona(prop) {
         
          >
            <Grid item >
-         <Avatar aria-label="recipe"  src={"https://pbs.twimg.com/profile_images/1084274289090744320/M10oqLPc_400x400.jpg"} className={classes.avatarlarge} >
+         <Avatar aria-label="recipe"  src={"https://i.pravatar.cc/100"} className={classes.avatarlarge} >
             
             </Avatar>
             </Grid>
          </Grid>
-          <Typography gutterBottom variant="h8" component="h3">
-           {prop.persona.nombreapellido}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Tremendo Testigo de la Democracia
-          </Typography>
+         
+          <Typography className={classes.title} color="textSecondary" gutterBottom>
+  {"testigo.rol"}
+  </Typography>
+  <Typography gutterBottom variant="h8" component="h3">
+  {prop.persona.nombreapellido}
+  </Typography>
+  <Typography className={classes.pos} color="textSecondary">
+  {"testigo.celular"}-{"testigo.correo"}
+  </Typography>
+  <Typography variant="body2" component="p">
+  
+            {"testigo.nombre"}, {"testigo.descripcion"}
+
+  
+  </Typography>
+
         </CardContent>
       </CardActionArea>
       <CardActions>

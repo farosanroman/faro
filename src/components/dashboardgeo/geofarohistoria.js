@@ -37,17 +37,17 @@ import {totalCentros} from '../helpers/helpers'
 //const useStyles = makeStyles({
   const useStyles = makeStyles(theme => ({
     card: {
-      maxWidth: 400,
-      minWidth: 350,
+      maxWidth: 350,
+      minWidth: 300,
     },
-    Paper:{ padding: theme.spacing(2,2)},
-    Paper2:{padding:1,marginTop:1,marginBottom:10,height:80}
+    Paper:{ padding: theme.spacing(2,2),height:100},
+    Paper2:{padding:1,marginTop:1,marginBottom:10,height:100}
 
    // toolbarMargin: theme.mixins.toolbar
   }));
-  const style2={   Paper:{padding:1,marginTop:1,marginBottom:10,height:80}
+  const style2={   Paper:{padding:1,marginTop:1,marginBottom:10,height:50}
 }
-export default function Centro() {
+export default function GeoFaroHistoria() {
   const { state, dispatch } = React.useContext(Application);
  // alert(centro)
  //resultado0=state.resultados
@@ -148,7 +148,7 @@ console.log(state.rolespersonas)
 
 
   
-      <Grid container spacing={5} justify="center">
+      <Grid container spacing={2} justify="center">
             <Grid item key={0}>
             <Card className={classes.card}>
 
@@ -158,8 +158,8 @@ console.log(state.rolespersonas)
         <Paper style={style2.Paper}>
 
                 
-<Typography gutterBottom variant="h6" component="h2">
-{state.centro}
+              <Typography gutterBottom variant="h6" component="h2">
+Resultados de: {state.centro}
 </Typography>
 </Paper>
           <Table><TableRow><TableCell>
@@ -230,68 +230,15 @@ console.log(state.rolespersonas)
                   </td></tr></table>
                   </Paper>
         </CardContent>
-        <Eventos />
               </CardActionArea>
 
               
 
-            <CardActions>
-           
-            <IconButton
-                  color="primary"
-                 // className={classes.button}
-                  aria-label="Upload picture"
-                 component="span"
-                 //onClick={()=>goDown()}
-                >
-                  <Icon icon={'down'} />
-                </IconButton>
-                <IconButton
-                  color="primary"
-                 // className={classes.button}
-                  aria-label="Upload picture"
-                 component="span"
-                 //onClick={()=>goUp()}
-                >
-                 <Icon icon={'up'} />
-                </IconButton>
-              </CardActions>
+          
             </Card>
             </Grid>
             </Grid>
 
-{
-state.rolespersonas.map((roles,index)=>(
-
-          <ExpansionPanel
-            key={1}
-            disabled={false}
-          >
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography>{roles.rol}</Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>
- <List>
-      {roles.personas.map((item, index) => (
-        <ListItem key={index} button dense>
-          <ListItemText
-            primary={item.nombreapellido}
-            secondary={item.nombreapellido}
-          />
-                  </ListItem>
-      ))}
-    </List>
-         </Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-
-
-
-))
-
-
-}
 
         
 
