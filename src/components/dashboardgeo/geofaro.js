@@ -188,8 +188,14 @@ setCentrosgeojson(centrosjson)
    useEffect(() => {
     setFlagCircular(false)
    //alert("centros "+JSON.stringify(centros))
-    //setCentros(result) 
-   //coordendas de centride de parroquias
+   resultados(centros,resultados=>{
+    //alert(JSON.stringify(resultados))
+    dispatch({
+     type: 'RESULTADOS',
+     stateprop:resultados
+   });    
+   //this.setState({zoom:[intzoom],lnglat:lnglat,rolespersonas:[],centro:nombre,centros:centrosjson,resultado:resultados,isLoading:false}) 
+  } )
       const  featurescentrosjson=centros.map(o=>{               
            return(
              {
@@ -229,20 +235,7 @@ setCentrosgeojson(centrosjson)
         fetchData('https://faro2018consultas.azurewebsites.net/api/centrosxcodcne?codcne='+codcne);
         
         // alert(codcne)
-        getCentrosCODCNE(codcne,result => {  
-         //alert(JSON.stringify(result))
-         //setCentros(result) 
-     
-        resultados(result,resultados=>{
-          //alert(JSON.stringify(resultados))
-          dispatch({
-           type: 'RESULTADOS',
-           stateprop:resultados
-         });    
-         //this.setState({zoom:[intzoom],lnglat:lnglat,rolespersonas:[],centro:nombre,centros:centrosjson,resultado:resultados,isLoading:false}) 
-        } )
-       
-       })
+
        dispatch({
          type: 'CENTRO',
          stateprop:centro
