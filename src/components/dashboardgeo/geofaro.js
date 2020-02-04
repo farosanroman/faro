@@ -102,9 +102,13 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
 //alert('geo'+JSON.stringify(state))
     const classes = useStyles();
     useEffect(() => {
+    //  dispatch({
+    //    type: 'RESET',
+    //    stateprop:123
+    //  });   
       setFlagCircular(false)
       //alert("state.centros "+JSON.stringify(state.centros))
-      const  featurescentrosjson=centros.map(o=>{               
+      const  featurescentrosjson=state.centros.map(o=>{               
         return(
           {
             "type":"Feature",

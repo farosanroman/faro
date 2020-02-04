@@ -32,13 +32,13 @@ const theme = createMuiTheme({
 });
 //alert(JSON.stringify(indigo))
 function App() {
-  const initialState = () => JSON.parse(window.localStorage.getItem('farostorage14')) || defaultState;
+  const initialState = () => JSON.parse(window.localStorage.getItem('farostorage20')) || defaultState;
   
   const [state, dispatch] = React.useReducer(reducer, initialState());
  // alert(JSON.stringify(state))
   
   React.useEffect(() => {
-    window.localStorage.setItem('farostorage14', JSON.stringify(state));
+    window.localStorage.setItem('farostorage20', JSON.stringify(state));
   }, [state]);
 
   return (
