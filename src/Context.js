@@ -69,35 +69,7 @@ export const defaultState = {
       }
     ]
   ,
-    experienciaelectoral:[
-      { name: 'Alta', value: 400 },
-      { name: 'Media', value: 800 },
-      { name: 'Baja', value: 100 },
-      { name: 'Desconocida', value: 300 }
-    ],
-    educacion:[
-      { name: 'Basica', value: 400 },
-    { name: 'Media', value: 1200 },
-    { name: 'TSUUniv', value: 300 }, 
-    { name: 'Desconocida', value: 300 }
-    ],
-    docente:[
-      { name: 'SI', value: 400 },
-      { name: 'NO', value: 800 }
-     
-    ],
-    previos:[
-      { name: 'SI', value: 600 },
-      { name: 'NO', value: 300 }
-     
-    ],
-    calificacion:[
-      { name: 'Alta', value: 1400 },
-      { name: 'Media', value: 1300 },
-      { name: 'Baja', value: 300 },
-      { name: 'Incompleta', value: 200 },
-      { name: 'SinFormacion', value: 200 }
-    ],
+    
     login:{id:"id",type:"login",name:"mister",photoURL:"https://image.shutterstock.com/image-vector/photo-camera-icon-260nw-197166461.jpg",email:"",phone:"",cedula:""}, //FIREBASE AUTH
     geolocation:{country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"},
     position:{ latitude:9, longitude:-66, timestamp:0, accuracy:0, error:null },  //hook
@@ -111,7 +83,7 @@ export const defaultState = {
    
     rolespersonas:[],
     centro:"Centro de Votacion",
-    centros:null,
+    centros:[],
     resultados:{electores:0,centros:0,mesas:0,votos:0,unidad:0,oficialismo:0,otros:0,nulos:0,porcunidad:0,porcoficialismo:0,participacion:0},
     ruta:{
       "type":"FeatureCollection",

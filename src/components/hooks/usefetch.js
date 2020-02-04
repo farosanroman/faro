@@ -9,22 +9,25 @@ import { useState, useEffect } from "react";
 //https://hooks-guide.netlify.com/
 //en click
 export const useFetch = (url) => {
-
+ 
    const [data, setData] = useState();
    const [isLoading, setIsLoading] = useState(false);
    const [isError, setIsError] = useState(false);
- 
+   
+   //const [option, setOption] = useState("");
+ //alert("useFetch")
    // Just pass the variables that changes in each new fetch requisition
    const fetchData = async (url) => {
+     //alert(o)
+       
        setIsError(false);
        setIsLoading(true);
        try {
          //const response = await axios.get(url);
        //  alert(url)
-         const response = await fetch(url);
-        
+         const response = await fetch(url);        
          const data = await response.json();
-        // alert("useFetch"+JSON.stringify(data))  
+         //alert("useFetch"+JSON.stringify(data))  
          setData(data);
        } catch (error) {
          setIsError(true);

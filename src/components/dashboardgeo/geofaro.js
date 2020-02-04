@@ -16,11 +16,14 @@ import Icon from '../helpers/icon';
 import  MapGL,{Layer,Feature,ZoomControl,GeoJSONLayer} from 'react-mapbox-gl';
 import GeoFaroHistoria     from      './geofarohistoria'
 import GeoFaroResumen     from      './geofaroresumen'
+import GeoFaroActividad     from      './geofaroactividad'
 import CardPersona     from      './cardpersona'
 import Button from '@material-ui/core/Button';
 //import { Application } from '../App';
 
 //import {ESTADOSGEO} from '../data/ESTADOSGEO.json';
+
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {useFetch}  from '../hooks/usefetch'
 import {useFetchPost}  from '../hooks/usefetchpost'
 import {resultados,getLocation,getPersona,getPersonasCODCNE,getCentrosCODCNE} from '../helpers/helpers'
@@ -83,87 +86,153 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
   export default function GeoFaro() {
   const { state, dispatch } = React.useContext(Application);
 
-  const [centros, setCentros] = React.useState([]);
-  const [personas, setPersonas] = React.useState([]);
-  const [TESTIGOS, setTESTIGOS] = React.useState( new Array(1000));
 
-  const [{ data, isLoading, isError }, fetchData] = useFetch("");
+  
+  const [{ data, isLoading, isErrorPersonas,option }, fetchData] = useFetch("");
+  //const [optionn, setOptionn] = React.useState("");
+  const [centros,setCentros]=React.useState(state.centros);
+  const [centrosgeojson,setCentrosgeojson]=React.useState([]);
+  
+//  const [GeoJsonCentros,setGeoJsonCentros]= React.useState([]);
+  const [personas,setPersonas]=React.useState([]);
+  const [personasgeojson,setPersonasgeojson]=React.useState([]);
+  const [flagCircular, setFlagCircular] = React.useState(false);
   //alert("GEOOOOOoooo "+JSON.stringify(state))
   
 //alert('geo'+JSON.stringify(state))
     const classes = useStyles();
-
     useEffect(() => {
+      setFlagCircular(false)
+      //alert("state.centros "+JSON.stringify(state.centros))
+      const  featurescentrosjson=centros.map(o=>{               
+        return(
+          {
+            "type":"Feature",
+            "properties":{"nombre":o.nombrecentro,"codcne":o.codcne,"correo":o.correo,},                             
+            "geometry":{"type":"Point","coordinates":[o.lng,o.lat]
+            }
+          }
+    )     
+ })
+ //centrosjson.features=featurescentrosjson;
+ let centrosjson={
+   "type":"FeatureCollection",
+   "features":featurescentrosjson
+ }
+setCentrosgeojson(centrosjson)  
+      //alert("centros "+JSON.stringify())
+      //setCentros(result) 
+     //coordendas de centride de parroquias
+        
+   
+     //alert("punto "+JSON.stringify(centrosjson))   
+     //setPunto(centrosjson)
+    
+   },[]);
+    useEffect(() => {
+      //alert("in "+option)
+      
       if (isLoading) {
-      //  setFlagCircular(true)
+        setFlagCircular(true)
       }
+      //alert(data[0].type)
       if ((data!=undefined)&&(!isLoading))      
       {
-       // setFlagCircular(false)
-       // data=data[0]
-      alert("fetch"+JSON.stringify(data))
       
+       if ((data.length>0)&&(data[0].type=="padron")){
+        //alert("padron"+JSON.stringify(data))
+        setPersonas(data)
+  
+       }
+       if ((data.length>0)&&(data[0].type)!="padron"){
+        setCentros(data)
+  
+       }
       }
     },[data,isLoading]);
+
+    useEffect(() => {
+      setFlagCircular(false)
+     // alert("personas sss "+JSON.stringify(personas))
+      
     let padronjson={
       "type":"FeatureCollection",
       "features":[]
     }
     //coordendas de centride de parroquias
-       const  padronfeatures=padron.map(p=>{               
+       const  padronfeatures=personas.map(p=>{               
             return(
               {
                 "type":"Feature",
                 "properties":{"nombre":p.nombreapellido,"codcne":p.codcne,"correo":p.correo,},                             
-                "geometry":{"type":"Point","coordinates":[p.lng,p.lat]
+                "geometry":{"type":"Point","coordinates":[p.re[0].lng,p.re[0].lat]
                 }
               }
         )     
      })   
-     padronjson.features=padronfeatures;
+     const  padronfeatures2=padron.map(p=>{               
+      return(
+        {
+          "type":"Feature",
+          "properties":{"nombre":p.nombreapellido,"codcne":p.codcne,"correo":p.correo,},                             
+          "geometry":{"type":"Point","coordinates":[p.lng,p.lat]
+          }
+        }
+  )     
+})   
+     padronjson.features=padronfeatures2;
+     //alert("personas 222 "+JSON.stringify(padronjson))
+     setPersonasgeojson(padronjson)
+   },[personas]);
+   
+   useEffect(() => {
+    setFlagCircular(false)
+   //alert("centros "+JSON.stringify(centros))
+    //setCentros(result) 
+   //coordendas de centride de parroquias
+      const  featurescentrosjson=centros.map(o=>{               
+           return(
+             {
+               "type":"Feature",
+               "properties":{"nombre":o.nombrecentro,"codcne":o.codcne,"correo":o.correo,},                             
+               "geometry":{"type":"Point","coordinates":[o.lng,o.lat]
+               }
+             }
+       )     
+    })
+    //centrosjson.features=featurescentrosjson;
+    let centrosjson={
+      "type":"FeatureCollection",
+      "features":featurescentrosjson
+    }
+ 
+   //alert("punto "+JSON.stringify(centrosjson))   
+   //setPunto(centrosjson)
+    setCentrosgeojson(centrosjson)
+    // setGeoJsonCentros(centrosjson)
+   dispatch({
+    type: 'CENTROS',
+    stateprop:centros
+  });
+  
+ },[centros]);
+
+
+
     function onMapClick(evt) {
       
         var codcne=evt.features[0].properties.ID
         var centro=evt.features[0].properties.ESTADO
-      
+        setCentrosgeojson([])
         fetchData('https://f2020.azurewebsites.net/api/FaroPersonasCentroGet?code=pNHwI2vpHlgY2la6to4uUECNsX7wdSsgKwKwCB6sX/8b2pmb0/N2Sg==&id=131801022');
+        
+        fetchData('https://faro2018consultas.azurewebsites.net/api/centrosxcodcne?codcne='+codcne);
+        
         // alert(codcne)
         getCentrosCODCNE(codcne,result => {  
          //alert(JSON.stringify(result))
-         setCentros(result) 
-         let centrosjson={
-          "type":"FeatureCollection",
-          "features":[]
-        }
-        //coordendas de centride de parroquias
-           const  featurescentrosjson=result.map(o=>{               
-                return(
-                  {
-                    "type":"Feature",
-                    "properties":{"nombre":o.nombrecentro,"codcne":o.codcne,"correo":o.correo,},                             
-                    "geometry":{"type":"Point","coordinates":[o.lng,o.lat]
-                    }
-                  }
-            )     
-         })   
-         centrosjson.features=featurescentrosjson;
-       
-        dispatch({
-         type: 'CENTROS',
-         stateprop:centrosjson
-       });
-       
-       dispatch({
-         type: 'CENTRO',
-         stateprop:centro
-       });    
-       dispatch({
-         type: 'LNGLAT',
-         stateprop:[evt.lngLat.lng,evt.lngLat.lat]
-       });  
-       
-       //alert("GEO status.centros   "+JSON.stringify(centros))
-        //console.log(intzoom)
+         //setCentros(result) 
+     
         resultados(result,resultados=>{
           //alert(JSON.stringify(resultados))
           dispatch({
@@ -174,6 +243,15 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
         } )
        
        })
+       dispatch({
+         type: 'CENTRO',
+         stateprop:centro
+       });    
+
+       dispatch({
+        type: 'LNGLAT',
+        stateprop:[evt.lngLat.lng,evt.lngLat.lat]
+      });  
   }
    function onCentroClick(evt) {
     //GetPersonasCODCNE(evt.features[0].properties.codcne.substring(0,2),evt.features[0].properties.nombre,[state.zoom],state.zoom)
@@ -213,10 +291,10 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
               type: 'ZOOM',
               stateprop:[map.getZoom()]
             });  
-            console.log(map.getZoom())
+            //console.log(map.getZoom())
             //setZoom2(map.getZoom())
           }
-     //  alert()
+     // alert(JSON.stringify(state.centros))
      
   return (
     <Fragment>
@@ -236,8 +314,26 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
         //onClick={this._onClickMap}  
        > 
        
+               
+          <GeoJSONLayer
+              data={ESTADOSGEO}
+              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
+              linePaint={{'line-color': 'darkblue','line-width': 2}}
+              fillOnClick={onMapClick}           
+          />
+          <GeoJSONLayer
+              data={CIUDADESGEO}
+              fillPaint={{'fill-color': 'black','fill-outline-color': 'purple','fill-opacity': 0.1}}
+              linePaint={{'line-color': 'darkgray','line-width': .3
+          }}          
+        />
+        <GeoJSONLayer
+              data={PAMIRANDA}
+              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
+              linePaint={{'line-color': 'purple','line-width': 1.5}}             
+        />
          <GeoJSONLayer
-          data={state.centros}
+          data={centrosgeojson}
           circleLayout={{ visibility: 'visible' }}
          //circlePaint={{'circle-color': 'purple','circle-radius': state.radio, }} 
          circlePaint={{'circle-color': 'white','circle-radius': 3,'circle-opacity': 1,'circle-stroke-color': 'purple' , 'circle-stroke-width': 1}}         
@@ -257,61 +353,34 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
             'text-color': 'black'
           }}
           />
-        
-              <GeoJSONLayer
-              data={ESTADOSGEO}
-              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': 'darkblue','line-width': 2}}
-              fillOnClick={onMapClick}           
-            />
-                 <GeoJSONLayer
-          data={CIUDADESGEO}
-          fillPaint={{'fill-color': 'black','fill-outline-color': 'purple','fill-opacity': 0.1}}
-          linePaint={{
-            'line-color': 'darkgray',
-            'line-width': .3
-          }}
-          
-        />
+ 
         <GeoJSONLayer
-              data={PAMIRANDA}
-              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': 'purple','line-width': 1.5}}
-             
-            />
-        <GeoJSONLayer
-          data={padronjson}
+          data={personasgeojson}
           circleLayout={{ visibility: 'visible' }}
          //circlePaint={{'circle-color': 'purple','circle-radius': state.radio, }} 
-         circlePaint={{'circle-color': 'dodgerblue','circle-radius': 6,'circle-opacity': 1,'circle-stroke-color': 'dodgerblue' , 'circle-stroke-width': 3,'circle-blur': 1}}         
+          circlePaint={{'circle-color': 'dodgerblue','circle-radius': 2,'circle-opacity': 1,'circle-stroke-color': 'dodgerblue' , 'circle-stroke-width': 1,'circle-blur': .1}}         
           
         // onClick={onMapClick}     
-        circleOnClick={onCentroClick}
+          circleOnClick={onCentroClick}
         //   fillOnClick={this.onMapClick}  
-          symbolLayout={{
-            'text-field': '{nombre}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
-            "text-size": 10
-            
-          }}
-          symbolPaint={{
-            'text-color': 'black'
-          }}
-          />
+          symbolLayout={{'text-field': '{nombre}','text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],'text-offset': [0, 0.6],'text-anchor': 'top', "text-size": 10 }}
+          symbolPaint={{ 'text-color': 'black'}}
+        />
        
         <ZoomControl position={"bottomRight"} />
         </Map>
         </Grid>
     </Grid>
+    {flagCircular&&<CircularProgress variant="indeterminate"   disableShrink  size={17}   thickness={4} className={classes.progress} />}
     <Grid container spacing={2} justify="center">
-    <Grid item xl={6} md={6} sm={6} xs={12}>
+    <Grid item xl={4} md={4} sm={6} xs={12}>
         <GeoFaroHistoria/>
       </Grid>
-     
-      <Grid item xl={6} md={6} sm={6} xs={12}>
+      <Grid item xl={4} md={4} sm={6} xs={12}>
         <GeoFaroResumen/>
+      </Grid>
+      <Grid item xl={4} md={4} sm={6} xs={12}>
+        <GeoFaroActividad/>
       </Grid>
       </Grid>
 
