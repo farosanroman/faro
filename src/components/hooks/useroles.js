@@ -1,0 +1,281 @@
+import { useState } from "react";
+
+ export const useRoles = initialRoles => {
+  
+  const [roles, setRoles] = useState(initialRoles);
+  const [rolesfiltrados, setRolesFiltrados] = useState(initialRoles);
+  
+  //alert(JSON.stringify(initialRoles))
+  const handleFiltro = async (idfuncional) => {
+  // alert(idfuncional)
+   setRolesFiltrados(roles.filter(r => r.idnodofuncional == idfuncional ))
+  
+  }
+  return [
+    rolesfiltrados,
+    handleFiltro
+   // e => {
+   //     setRoles(initialRoles)
+      //setRoles({
+      //  ...values,
+      //  [e.target.name]: e.target.value
+      //});
+    //}
+  ];
+};
+var initialRoles=
+[
+    {
+      "id": 48,
+      "nombre": "Soporte Tecnología de Información",
+      "descripcion": "Soporte Tecnología de Información",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 150,
+      "nombre": "Coordinador Electoral",
+      "descripcion": "Coordinador Electoral",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 151,
+      "nombre": "Coordinador de Activismo",
+      "descripcion": "Coordinador de Activismo",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 152,
+      "nombre": "Coordinador De Comunicaciones Y Medios",
+      "descripcion": "Coordinador De Comunicaciones Y Medios",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 153,
+      "nombre": "Responsable de Formación",
+      "descripcion": "Responsable de Formación",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 154,
+      "nombre": "Responsable de Miembros de Mesa",
+      "descripcion": "Responsable de Miembros de Mesa",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 156,
+      "nombre": "Testigo ante Junta Electoral",
+      "descripcion": "Testigo ante Junta Electoral",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 157,
+      "nombre": "Jefe De Comando",
+      "descripcion": "Jefe De Comando",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 158,
+      "nombre": "Enlace GTAE",
+      "descripcion": "Enlace GTAE",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 168,
+      "nombre": "Lider de Conteo Rápido",
+      "descripcion": "Lider de Conteo Rápido",
+      "niveldesde": 1,
+      "nivelhasta": 1,
+      "idnodofuncional": 1031,
+      "selected": true
+    },
+    {
+      "id": 170,
+      "nombre": "Operador de Conteo Rápido",
+      "descripcion": "Operador de Conteo Rápido",
+      "niveldesde": 1,
+      "nivelhasta": 1,
+      "idnodofuncional": 1031,
+      "selected": true
+    },
+    {
+      "id": 222,
+      "nombre": "Soporte de Conteo Rápido",
+      "descripcion": "Soporte de Conteo Rápido",
+      "niveldesde": 1,
+      "nivelhasta": 1,
+      "idnodofuncional": 1031,
+      "selected": true
+    },
+    {
+      "id": 223,
+      "nombre": "Coordinador de Movilizacion",
+      "descripcion": "Coordinador de Movilizacion",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 224,
+      "nombre": "Responsable del Padrón Electoral",
+      "descripcion": "Responsable del Padrón Electoral",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 225,
+      "nombre": "Enlace ante ORE - CNE",
+      "descripcion": "Enlace ante ORE - CNE",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 226,
+      "nombre": "Enlace Plan Republica",
+      "descripcion": "Enlace Plan Republica",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 227,
+      "nombre": "Transcriptor",
+      "descripcion": "Transcriptor",
+      "niveldesde": 1,
+      "nivelhasta": 7,
+      "idnodofuncional": 9,
+      "selected": true
+    },
+    {
+      "id": 229,
+      "nombre": "Formadores Nacionales",
+      "descripcion": "Formadores Nacionales",
+      "niveldesde": 1,
+      "nivelhasta": 1,
+      "idnodofuncional": 1038,
+      "selected": true
+    },
+    {
+      "id": 230,
+      "nombre": "Enlaces Formacion UCAB",
+      "descripcion": "Enlaces Formacion UCAB",
+      "niveldesde": 3,
+      "nivelhasta": 3,
+      "idnodofuncional": 1038,
+      "selected": true
+    },
+    {
+      "id": 231,
+      "nombre": "Facilitadores",
+      "descripcion": "Facilitadores",
+      "niveldesde": 3,
+      "nivelhasta": 7,
+      "idnodofuncional": 1038,
+      "selected": true
+    },
+    {
+      "id": 232,
+      "nombre": "Observador",
+      "descripcion": "Observador",
+      "niveldesde": 1,
+      "nivelhasta": 11,
+      "idnodofuncional": 1038,
+      "selected": true
+    },
+    {
+      "id": 242,
+      "nombre": "Soporte Formacion",
+      "descripcion": "Soporte Formacion",
+      "niveldesde": 1,
+      "nivelhasta": 12,
+      "idnodofuncional": 1038,
+      "selected": true
+    },
+    {
+      "id": 243,
+      "nombre": "Transcriptor Formacion",
+      "descripcion": "Transcriptor Formacion",
+      "niveldesde": 1,
+      "nivelhasta": 11,
+      "idnodofuncional": 1038,
+      "selected": true
+    },
+    {
+      "id": 244,
+      "nombre": "Facilitador Inactivo",
+      "descripcion": "Facilitador Inactivo",
+      "niveldesde": 3,
+      "nivelhasta": 3,
+      "idnodofuncional": 1038,
+      "selected": true
+    },
+    {
+      "id": 245,
+      "nombre": "Observador Inactivo",
+      "descripcion": "Observador Inactivo",
+      "niveldesde": 3,
+      "nivelhasta": 3,
+      "idnodofuncional": 1038,
+      "selected": true
+    },
+    {
+      "id": 246,
+      "nombre": " Coordinador de Partido",
+      "descripcion": "Coordinador de Partido",
+      "niveldesde": 3,
+      "nivelhasta": 3,
+      "idnodofuncional": 1038,
+      "selected": true
+    },
+    {
+      "id": 247,
+      "nombre": "Observador 9D",
+      "descripcion": "Observador 9D",
+      "niveldesde": 11,
+      "nivelhasta": 11,
+      "idnodofuncional": 1038,
+      "selected": true
+    },
+    {
+      "id": 253,
+      "nombre": "Elector",
+      "descripcion": "Elector",
+      "niveldesde": 11,
+      "nivelhasta": 11,
+      "idnodofuncional": 1038,
+      "selected": true
+    }
+   ]
+//  const [values2, handleChange2] = useForm({ firstName: "", lastName: "" });

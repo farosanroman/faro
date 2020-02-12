@@ -10,16 +10,16 @@ export const defaultState = {
         "flag": 1,
         "msj": "",
         "flagasignacion": 1,
-        "nombre1": "PEDRO",
-        "nombre2": "PABLO",
-        "apellido1": "AZPURUA",
-        "apellido2": "CALCAÑO",
-        "identificacion": "V3664204",
+        "nombre1": "",
+        "nombre2": "",
+        "apellido1": "",
+        "apellido2": "",
+        "identificacion": "",
       
-        "idnacionalidad": 243,
-        "nacionalidad": "Uzbekistán",
-        "idpaisnacimiento": 236,
-        "paisnacimiento": "Uzbekistán",
+        "idnacionalidad": 0,
+        "nacionalidad": "",
+        "idpaisnacimiento": 0,
+        "paisnacimiento": "",
         "idestadocivil": 0,
         "estadocivil": "",
         "idsexo": 0,
@@ -38,7 +38,7 @@ export const defaultState = {
           {
             "idrespuesta": "RE",
             "respuesta": "RE",
-            "codcne": "131601007",
+            "codcne": "",
             "descripcion": "",
             "codcnenombre": "",
             "lat": -66.86699,
@@ -47,12 +47,12 @@ export const defaultState = {
             "idmunicipio": "",
             "idparroquia": "",
             "idcircunscripcion": "",
-            "estadonombre": "MIRANDA",
-            "municipionombre": "BARUTA",
-            "parroquianombre": "BARUTA",
+            "estadonombre": "",
+            "municipionombre": "",
+            "parroquianombre": "",
             "circunscripcionnombre": "",
             "centronombre": "",
-            "direccioncentrovotacion": "URBANIZACION LAS MERCEDES DERECHA CALLE LA CINTA. IZQUIERDA CALLE CERRO QUINTERO. FRENTE CALLE LA CINTA 50 METROS DE CAVIM EDIFICIO",
+            "direccioncentrovotacion":"",
       
           }
         ],
@@ -268,7 +268,7 @@ export const defaultState = {
          return { ...statep, persona: stateprop };
          case 'ROLES':
           //  alert("qqqq")
-          // alert("stateprop "+JSON.stringify(stateprop))
+         // alert("REDUCE stateprop "+JSON.stringify(stateprop))
            // let persona0=statep.persona
            // persona0.identificacion=stateprop
             let persona2=statep.persona

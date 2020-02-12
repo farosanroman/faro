@@ -7,8 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+//import MaterialTable from 'material-table';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Divider from '@material-ui/core/Divider';
@@ -17,16 +16,36 @@ import Link from '@material-ui/core/Link';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import IconButton from '@material-ui/core/IconButton';
+
+import Avatar from '@material-ui/core/Avatar';
+
+
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import { Delete, Edit,Email } from '@material-ui/icons';
+
+import PersonIcon from '@material-ui/icons/Person';
+import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
 import MenuItem from '@material-ui/core/MenuItem';
-import {getPersona} from '../helpers/helperpersonas'
+//import {getPersona} from '../helpers/helperpersonas'
 import {EEMMPP} from  '../../data/EEMMPP.json';
 import {rols} from  '../../data/rols.json';
 import {RolesFiltros} from  '../helpers/rolesfiltros';
 import {organizacion} from  '../../data/organizacion.json';
+import {useRoles}  from '../hooks/useroles'
 //import { Application } from '../../App';
 
 const useStyles = makeStyles(theme => ({
@@ -92,16 +111,21 @@ export default function AsignacionRol() {
     const [rol, setRol] = React.useState("rol");
     const [roles, setRoles] = React.useState(rols);
     const [fecha,setFecha]= React.useState(new Date());
+    const [rolesfuncionales, handleFiltros] = useRoles(rols);
+  
       useEffect(() => {
-     // alert("rol "+JSON.stringify(statep.persona.roles))
+     //alert("useEFFECT rol "+JSON.stringify(statep.persona.roles))
       // alert(EEMMPP[2].items[1].items.findIndex(obj => obj.cneparroquia=="020201"))
      // setRoles(rols)
+
+     handleFiltros(9)
+    
      var r = rols.map(function (item, index, array) { 
       if (item.idnodofuncional==9){
           return item;
       }
       });
-      setRoles(r)
+       setRoles(r)
 
         setNombre1(statep.persona.nombre1)
         setNombre2(statep.persona.nombre2)
@@ -156,26 +180,44 @@ export default function AsignacionRol() {
       
     },[]);
     useEffect(() => {
-     // alert("useEffect2 "+JSON.stringify(statep.persona.caracteristicas))
+      //alert(JSON.stringify(rolesfuncionales))
+      if (idrol>0){
+      //alert("useEffect2 "+JSON.stringify(statep.persona.caracteristicas))
+     var r=
+     {
+       "idformulario":"ROL",
+       "formulario":"ROL",
+      "idpregunta":"ROL",
+      "pregunta":"Asignacion",
 
-      statep.persona.roles[0].idrespuesta=idrol;
-      statep.persona.roles[0].respuesta=rol;
-      statep.persona.roles[0].descripcion=rol;
-      statep.persona.roles[0].codcne="00000000000";
-      statep.persona.roles[0].idestado=codestado;
-      statep.persona.roles[0].idmunicipio=codmunicipio;
-      statep.persona.roles[0].idparroquia=codparroquia;
-      statep.persona.roles[0].estadonombre=nombreestado;
-      statep.persona.roles[0].municipionombre=nombremunicipio;
-      statep.persona.roles[0].parroquianombre=nombreparroquia;
-      //alert(nombreestado)
-      //alert(roles[pos].id)
+      "idrespuesta": idrol,
+      "respuesta": rol,
+      "codcne":codestado+codmunicipio+codparroquia,
+      "descripcion": rol,
+      "codcnenombre": "",
+      "idfuncional": "1038",
+      "funcionalnombre": "Formación",
+      "lat": -66.47,
+      "lng": 9.09,
+      "idestado": codestado,
+      "idmunicipio": codmunicipio,
+      "idparroquia": codparroquia,
+      "idcircunscripcion": "0",
+      "estadonombre":nombreestado,
+      "municipionombre": nombremunicipio,
+      "parroquianombre":nombreparroquia,
+      "circunscripcionnombre": "",
+      "centronombre": "VENEZUELA"
+      
+    }
+    var roles=statep.persona.roles
+    roles.push(r)
       dispatchp({
         type: 'ROLES',
-        stateprop: statep.persona.roles
+        stateprop: roles
       });
-      
-    },[codestado,codmunicipio,codparroquia,idrol]);
+    }
+    },[idrol]);
     const handleChangeCambios=input=>e=>{
         if (input=="formularios"){
          //alert("cedula")
@@ -222,7 +264,22 @@ export default function AsignacionRol() {
        
          //if (state.currentWeight) recalculate();
        };
-       
+       function onDeleteRol(index,e){
+        //alert(item)
+       // delete(id){
+       //   this.setState(prevState => ({
+       //       data: prevState.data.filter(el => el != id )
+       //   }));
+       //}
+        var array=statep.persona.roles;
+
+        array.splice(index, 1);
+        dispatchp({
+          type: 'ROLES',
+          stateprop: array
+        });
+       // handleFiltros(1031)
+      }
        const error='ABC'
       // alert(JSON.stringify(roles))
       var sel = rols.map((r, i) => {
@@ -230,6 +287,10 @@ export default function AsignacionRol() {
           return <MenuItem value={r.id}>{r.nombre}</MenuItem>
         }
       });
+      var selroles =rolesfuncionales.map((r, i) => {
+           return <MenuItem value={r.id}>{r.nombre}</MenuItem>
+        
+       });
     return (
     <React.Fragment>
     
@@ -290,6 +351,54 @@ export default function AsignacionRol() {
           />
         </Grid>
         </Grid>
+       
+
+<ExpansionPanel
+            key={33}
+            disabled={false}
+          >
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography>{'Roles'}</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography>
+              <List >
+              {statep.persona.roles.map((item, index) => (
+                
+              
+                <ListItem key={index}  >
+                <ListItemAvatar onClick={() =>onDeleteRol(index)}>
+                    <Avatar>
+                      <SportsSoccerIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                <ListItemText
+                 primary={item.codcne+' '+item.respuesta}
+                 secondary={item.estadonombre+'/'+item.municipionombre+'/'+item.parroquianombre}
+                /> 
+             
+                <IconButton onClick={() =>onDeleteRol(index)}>
+                       <Delete />
+                     </IconButton>
+                  
+                </ListItem>
+ 
+          
+                 ))}
+                    {/* <ListItem button onClick={() => onAccionCaracteristica('roles','new',0)}>
+          <ListItemAvatar>
+            <Avatar>
+              <AddIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Añadir rol." />
+        </ListItem> */}
+           </List>
+            </Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+
+
         <Typography variant="h6" gutterBottom>
         Rol
       </Typography>
@@ -374,8 +483,11 @@ export default function AsignacionRol() {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        {sel}
        
+        {rolesfuncionales.map((r, i) => (
+           <MenuItem value={r.id}>{r.nombre}</MenuItem>
+        ))
+      }
       
       </Select>
       </FormControl>
