@@ -25,8 +25,8 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 //import {observadores} from '../data/observadores.json';
 //import {antenas} from '../data/antenas.json';
 //import {celular} from '../data/celular.json';
-import {WORLD} from '../../data/world.json';
-import {USA} from '../../data/USA.json';
+//import {WORLD} from '../../data/world.json';
+//import {USA} from '../../data/USA.json';
 //import {COLOMBIA} from '../../data/COLOMBIA.json';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
@@ -440,38 +440,3 @@ return (
 </Fragment>
 )
         }
-//https://codesandbox.io/s/xenodochial-tu-pwly8  PARA DIBUJAR
-        /*
-
-          <GeoJSONLayer
-           data={COLOMBIA}
-           fillPaint={{'fill-color': 'red','fill-outline-color': 'purple','fill-opacity': 0.002}}
-           linePaint={{'line-color': 'red','line-width': 2}}
-                     //fillOnMouseEnter={this.MouseEnter} 
-         // fillOnClick={this.onFillMapClick}
-       />  
-
-          <GeoJSONLayer
-           data={USA}
-           fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-           linePaint={{'line-color': 'darkorange','line-width': 3}}
-                     //fillOnMouseEnter={this.MouseEnter} 
-         // fillOnClick={this.onFillMapClick}
-       />  
- <GeoJSONLayer
-          data={redpoint}
-          circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'red','circle-radius': 4, }}         
-          symbolLayout={{
-            'text-field': '{nombre0}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
-            
-          }}
-
-          symbolPaint={{
-            'text-color': 'black'
-          }}
-          />
-          */

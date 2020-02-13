@@ -61,6 +61,7 @@ export default function AsignacionCedula() {
     const [flagCircular, setFlagCircular] = React.useState(false);
     const [dummy, setDummy] = React.useState("");
 const [{ data, isLoading, isError }, fetchData] = useFetch("");
+//const [{ data9, isLoading9, isError9 }, fetchData9] = useFetch("");
 /*
 const [{ dataPost, isLoadingPost, isErrorPost }, postData] = useFetchPost('');
 useEffect(() => {
@@ -71,9 +72,7 @@ useEffect(() => {
 /},[dataPost,isLoadingPost]);
 postData("https://f2020.azurewebsites.net/api/FaroFormulariosPersona?code=nbjfp6Cn8Mx3/WPr3DCwMXV8EZbfw2CB8UIMOTyfW8TYtlBSsbXGqw==",{id:{cedula:"V3664204"}})
  */      
-useEffect(() => {
 
-},[])
 useEffect(() => {
       if (isLoading) {
       //  setFlagCircular(true)
