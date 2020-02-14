@@ -111,7 +111,7 @@ export default function AsignacionRol() {
     const [rol, setRol] = React.useState("rol");
     const [roles, setRoles] = React.useState(rols);
     const [fecha,setFecha]= React.useState(new Date());
-    const [rolesfuncionales, handleFiltros] = useRoles(rols);
+    const [rolesfuncionales,funcionales, handleFiltros] = useRoles(rols);
   
       useEffect(() => {
      //alert("useEFFECT rol "+JSON.stringify(statep.persona.roles))
@@ -473,7 +473,27 @@ export default function AsignacionRol() {
          </FormLabel>
        </ListItem>
        <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Rol</InputLabel>
+        <InputLabel id="demo-simple-select-label">Funcional</InputLabel>
+        <Select
+      value={idrol}
+      onChange={handleChangeCambios('rol')}
+    
+        input={<Input name="Rol" id="age-helper" />}
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+       
+        {funcionales.map((r, i) => (
+           <MenuItem value={r.idfuncional}>{r.funcional}</MenuItem>
+        ))
+      }
+      
+      </Select>
+      </FormControl>
+
+      <FormControl className={classes.formControl}>
+      <InputLabel id="demo-simple-select-label">Rol</InputLabel>
         <Select
       value={idrol}
       onChange={handleChangeCambios('rol')}

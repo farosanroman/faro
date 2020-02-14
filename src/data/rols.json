@@ -8,6 +8,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Formacion",
         "selected": true
       },
       {
@@ -17,6 +18,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Formacion",
         "selected": true
       },
       {
@@ -26,6 +28,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Formacion",
         "selected": true
       },
       {
@@ -35,6 +38,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Formacion",
         "selected": true
       },
       {
@@ -44,6 +48,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Formacion",
         "selected": true
       },
       {
@@ -53,6 +58,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Formacion",
         "selected": true
       },
       {
@@ -62,6 +68,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Formacion",
         "selected": true
       },
       {
@@ -71,6 +78,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Formacion",
         "selected": true
       },
       {
@@ -80,6 +88,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Formacion",
         "selected": true
       },
       {
@@ -89,6 +98,7 @@
         "niveldesde": 1,
         "nivelhasta": 1,
         "idnodofuncional": 1031,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -98,6 +108,7 @@
         "niveldesde": 1,
         "nivelhasta": 1,
         "idnodofuncional": 1031,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -107,6 +118,7 @@
         "niveldesde": 1,
         "nivelhasta": 1,
         "idnodofuncional": 1031,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -116,6 +128,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -125,6 +138,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -133,7 +147,9 @@
         "descripcion": "Enlace ante ORE - CNE",
         "niveldesde": 1,
         "nivelhasta": 7,
+
         "idnodofuncional": 9,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -143,6 +159,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -152,6 +169,7 @@
         "niveldesde": 1,
         "nivelhasta": 7,
         "idnodofuncional": 9,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -161,6 +179,7 @@
         "niveldesde": 1,
         "nivelhasta": 1,
         "idnodofuncional": 1038,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -170,6 +189,7 @@
         "niveldesde": 3,
         "nivelhasta": 3,
         "idnodofuncional": 1038,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -179,6 +199,7 @@
         "niveldesde": 3,
         "nivelhasta": 7,
         "idnodofuncional": 1038,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -188,6 +209,7 @@
         "niveldesde": 1,
         "nivelhasta": 11,
         "idnodofuncional": 1038,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -197,6 +219,7 @@
         "niveldesde": 1,
         "nivelhasta": 12,
         "idnodofuncional": 1038,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -206,6 +229,7 @@
         "niveldesde": 1,
         "nivelhasta": 11,
         "idnodofuncional": 1038,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -215,6 +239,7 @@
         "niveldesde": 3,
         "nivelhasta": 3,
         "idnodofuncional": 1038,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -224,6 +249,7 @@
         "niveldesde": 3,
         "nivelhasta": 3,
         "idnodofuncional": 1038,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -233,6 +259,7 @@
         "niveldesde": 3,
         "nivelhasta": 3,
         "idnodofuncional": 1038,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -242,6 +269,7 @@
         "niveldesde": 11,
         "nivelhasta": 11,
         "idnodofuncional": 1038,
+        "funcional":"Acivismo",
         "selected": true
       },
       {
@@ -251,6 +279,7 @@
         "niveldesde": 11,
         "nivelhasta": 11,
         "idnodofuncional": 1038,
+        "funcional":"Acivismo",
         "selected": true
       }
      ]

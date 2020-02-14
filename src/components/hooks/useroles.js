@@ -2,6 +2,7 @@ import { useState } from "react";
 
  export const useRoles = initialRoles => {
   
+  const [funcionales, setFUncionales] = useState(initialfuncionales);
   const [roles, setRoles] = useState(initialRoles);
   const [rolesfiltrados, setRolesFiltrados] = useState(initialRoles);
   
@@ -12,7 +13,7 @@ import { useState } from "react";
   
   }
   return [
-    rolesfiltrados,
+    rolesfiltrados,funcionales,
     handleFiltro
    // e => {
    //     setRoles(initialRoles)
@@ -23,6 +24,13 @@ import { useState } from "react";
     //}
   ];
 };
+var initialfuncionales=
+[
+  {"idfuncional":9,"funcional":"Formacion"},
+  {"idfuncional":10,"funcional":"Activismo"},
+  {"idfuncional":11,"funcional":"Observacion"},
+  {"idfuncional":12,"funcional":"Conteo Rapido"},
+]
 var initialRoles=
 [
     {
