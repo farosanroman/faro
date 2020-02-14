@@ -1,0 +1,290 @@
+{"datarolesfuncionales":
+[
+    {
+      "idrol": "48",
+      "rol": "Soporte Tecnología de Información",
+      "descripcion": "Soporte Tecnología de Información",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "150",
+      "rol": "Coordinador Electoral",
+      "descripcion": "Coordinador Electoral",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "151",
+      "rol": "Coordinador de Activismo",
+      "descripcion": "Coordinador de Activismo",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "152",
+      "rol": "Coordinador De Comunicaciones Y Medios",
+      "descripcion": "Coordinador De Comunicaciones Y Medios",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "153",
+      "rol": "Responsable de Formación",
+      "descripcion": "Responsable de Formación",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "154",
+      "rol": "Responsable de Miembros de Mesa",
+      "descripcion": "Responsable de Miembros de Mesa",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "156",
+      "rol": "Testigo ante Junta Electoral",
+      "descripcion": "Testigo ante Junta Electoral",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "157",
+      "rol": "Jefe De Comando",
+      "descripcion": "Jefe De Comando",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "158",
+      "rol": "Enlace GTAE",
+      "descripcion": "Enlace GTAE",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "168",
+      "rol": "Lider de Conteo Rápido",
+      "descripcion": "Lider de Conteo Rápido",
+      "nidedesderol": "1",
+      "nivelhastarol": "1",
+      "idfuncional": "1031",
+      "funcional": "Conteo Rapido",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "1"
+    },
+    {
+      "idrol": "170",
+      "rol": "Operador de Conteo Rápido",
+      "descripcion": "Operador de Conteo Rápido",
+      "nidedesderol": "1",
+      "nivelhastarol": "1",
+      "idfuncional": "1031",
+      "funcional": "Conteo Rapido",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "1"
+    },
+    {
+      "idrol": "222",
+      "rol": "Soporte de Conteo Rápido",
+      "descripcion": "Soporte de Conteo Rápido",
+      "nidedesderol": "1",
+      "nivelhastarol": "1",
+      "idfuncional": "1031",
+      "funcional": "Conteo Rapido",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "1"
+    },
+    {
+      "idrol": "223",
+      "rol": "Coordinador de Movilizacion",
+      "descripcion": "Coordinador de Movilizacion",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "224",
+      "rol": "Responsable del Padrón Electoral",
+      "descripcion": "Responsable del Padrón Electoral",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "225",
+      "rol": "Enlace ante ORE - CNE",
+      "descripcion": "Enlace ante ORE - CNE",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "226",
+      "rol": "Enlace Plan Republica",
+      "descripcion": "Enlace Plan Republica",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "227",
+      "rol": "Transcriptor",
+      "descripcion": "Transcriptor",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "9",
+      "funcional": "Comando",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "7"
+    },
+    {
+      "idrol": "229",
+      "rol": "Formador Nacional",
+      "descripcion": "Formador Nacional",
+      "nidedesderol": "1",
+      "nivelhastarol": "1",
+      "idfuncional": "1038",
+      "funcional": "Formación",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "12"
+    },
+    {
+      "idrol": "230",
+      "rol": "Activista",
+      "descripcion": "Activista",
+      "nidedesderol": "11",
+      "nivelhastarol": "11",
+      "idfuncional": "1038",
+      "funcional": "Formación",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "12"
+    },
+    {
+      "idrol": "231",
+      "rol": "Testigo Formado",
+      "descripcion": "Testigo Formado",
+      "nidedesderol": "11",
+      "nivelhastarol": "11",
+      "idfuncional": "1038",
+      "funcional": "Formación",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "12"
+    },
+    {
+      "idrol": "232",
+      "rol": "Coordinador Formación",
+      "descripcion": "Coordinador Formación",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "1038",
+      "funcional": "Formación",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "12"
+    },
+    {
+      "idrol": "242",
+      "rol": "Soporte Electoral",
+      "descripcion": "Soporte Electoral",
+      "nidedesderol": "1",
+      "nivelhastarol": "3",
+      "idfuncional": "1038",
+      "funcional": "Formación",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "12"
+    },
+    {
+      "idrol": "243",
+      "rol": "Transcriptor",
+      "descripcion": "Transcriptor",
+      "nidedesderol": "1",
+      "nivelhastarol": "3",
+      "idfuncional": "1038",
+      "funcional": "Formación",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "12"
+    },
+    {
+      "idrol": "244",
+      "rol": "Facilitador",
+      "descripcion": "Facilitador",
+      "nidedesderol": "3",
+      "nivelhastarol": "7",
+      "idfuncional": "1038",
+      "funcional": "Formación",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "12"
+    },
+    {
+      "idrol": "245",
+      "rol": "Coordinador de Centro de Votacion",
+      "descripcion": "Coordinador de Centro de Votacion",
+      "nidedesderol": "11",
+      "nivelhastarol": "11",
+      "idfuncional": "1038",
+      "funcional": "Formación",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "12"
+    },
+    {
+      "idrol": "247",
+      "rol": "Coordinador Electoral",
+      "descripcion": "Coordinador Electoral",
+      "nidedesderol": "1",
+      "nivelhastarol": "7",
+      "idfuncional": "1038",
+      "funcional": "Formación",
+      "niveldesdefuncional": "1",
+      "nivelhastafuncional": "12"
+    }
+  ]
+}

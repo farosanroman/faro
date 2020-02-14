@@ -43,6 +43,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 //import {getPersona} from '../helpers/helperpersonas'
 import {EEMMPP} from  '../../data/EEMMPP.json';
 import {rols} from  '../../data/rols.json';
+import {datarolesfuncionales} from  '../../data/rolesfuncionales.json';
 import {RolesFiltros} from  '../helpers/rolesfiltros';
 import {organizacion} from  '../../data/organizacion.json';
 import {useRoles}  from '../hooks/useroles'
@@ -109,9 +110,12 @@ export default function AsignacionRol() {
     
     const [idrol, setIdRol] = React.useState(0);
     const [rol, setRol] = React.useState("rol");
+    const [idfuncional, setIdFuncional] = React.useState(0);
+    const [funcional, setFuncional] = React.useState("rol");
     const [roles, setRoles] = React.useState(rols);
     const [fecha,setFecha]= React.useState(new Date());
-    const [rolesfuncionales,funcionales, handleFiltros] = useRoles(rols);
+
+    const [rolesfuncionales,funcionales, handleFiltros] = useRoles(datarolesfuncionales);
   
       useEffect(() => {
      //alert("useEFFECT rol "+JSON.stringify(statep.persona.roles))
@@ -195,8 +199,8 @@ export default function AsignacionRol() {
       "codcne":codestado+codmunicipio+codparroquia,
       "descripcion": rol,
       "codcnenombre": "",
-      "idfuncional": "",
-      "funcionalnombre": "",
+      "idfuncional": idfuncional,
+      "funcionalnombre": funcional,
       "lat": 0,
       "lng": 0,
       "idestado": codestado,
@@ -245,13 +249,24 @@ export default function AsignacionRol() {
             setPosParroquia(index)
             setNombreParroquia(EEMMPP[posestado].items[posmunicipio].items[index].name)
          }
+         if (input=="funcional"){
+          // alert(e.target.value)
+       //   alert("rol "+JSON.stringify(roles))
+         var pos=funcionales.findIndex(obj => obj.idfuncional==e.target.value);
+          //var  pos = roles.map(function(e) { return e.id; }).indexOf(e.target.value);
+          
+         handleFiltros(e.target.value)
+         setIdFuncional(funcionales[pos].idfuncional)
+         setFuncional(funcionales[pos].funcional);
+      
+         }
          if (input=="rol"){
           // alert(e.target.value)
        //   alert("rol "+JSON.stringify(roles))
-         var pos=roles.findIndex(obj => obj.id==e.target.value);
+         var pos=rolesfuncionales.findIndex(obj => obj.idrol==e.target.value);
           //var  pos = roles.map(function(e) { return e.id; }).indexOf(e.target.value);
-         setIdRol(roles[pos].id)
-         setRol(roles[pos].descripcion);
+         setIdRol(rolesfuncionales[pos].idrol)
+         setRol(rolesfuncionales[pos].rol);
       
          }
        }
@@ -475,8 +490,8 @@ export default function AsignacionRol() {
        <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Funcional</InputLabel>
         <Select
-      value={idrol}
-      onChange={handleChangeCambios('rol')}
+      value={idfuncional}
+      onChange={handleChangeCambios('funcional')}
     
         input={<Input name="Rol" id="age-helper" />}
       >
@@ -505,7 +520,7 @@ export default function AsignacionRol() {
         </MenuItem>
        
         {rolesfuncionales.map((r, i) => (
-           <MenuItem value={r.id}>{r.nombre}</MenuItem>
+           <MenuItem value={r.idrol}>{r.rol}</MenuItem>
         ))
       }
       
