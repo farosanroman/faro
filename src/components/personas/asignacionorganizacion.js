@@ -92,33 +92,32 @@ export default function AsignacionOrganizacion() {
       //alert("useEffect1 "+JSON.stringify(statep.persona.caracteristicas.length))
       //alert("useEffect1 "+JSON.stringify(caracteristicasf[0]))
       
-     //alert("orga "+JSON.stringify(statep.persona.caracteristicas[1]))
-     //console.log(statep.persona.caracteristicas)
-     if (statep.persona.caracteristicas[0]!=undefined){
+   
+     //if (statep.persona.caracteristicas[0]!=undefined){
         setNombre1(statep.persona.nombre1)
         setNombre2(statep.persona.nombre2)
         setApellido1(statep.persona.apellido1)
         setApellido2(statep.persona.apellido2)
      
-     //////////////AQUI   armar las respuestas para COMENZAR LA VENTANA DESDE EL INICIO Y CUAN VA PARA ATRAS
-     //setRespuestas()
-    
-     //statep.persona.caracteristicas
-        if (caracteristicasf[0].preguntas.length>statep.persona.caracteristicas.length){
-          for (var i = 0; i <= (caracteristicasf[0].preguntas.length-statep.persona.caracteristicas.length); i++) {
-            statep.persona.caracteristicas.push(  {
+        var car0=statep.persona.caracteristicas;
+       // alert(JSON.stringify(car0))
+        caracteristicasf[0].preguntas.map(function (item, index, array) { 
+          if (car0[index]==undefined){
+           
+            car0.push(
+       {
               "idpregunta":"xxx",
               "pregunta":"pregunta",
   
-              "idrespuesta": "000",
-              "respuesta": "ADDD",
-              "codcne": "00000000000",
-              "descripcion": "Soporte Electoral",
+              "idrespuesta": "0",
+              "respuesta": "SIN",
+              "codcne": "",
+              "descripcion": "",
               "codcnenombre": "",
-              "idfuncional": "1038",
-              "funcionalnombre": "Formación",
-              "lat": -66.47,
-              "lng": 9.09,
+              "idfuncional": "",
+              "funcionalnombre": "",
+              "lat": 0,
+              "lng": 0,
               "idestado": "00",
               "idmunicipio": "00",
               "idparroquia": "00",
@@ -127,49 +126,45 @@ export default function AsignacionOrganizacion() {
               "municipionombre": "",
               "parroquianombre": "",
               "circunscripcionnombre": "",
-              "centronombre": "VENEZUELA"
-              
-            })
-         }
-        }
-        dispatchp({
-          type: 'CARACTERISTICAS',
-          stateprop: statep.persona.caracteristicas
+              "centronombre": ""
+       }      
+            )
+          } 
         });
-     var inicio = caracteristicasf[0].preguntas.map(function (item, index, array) { 
-      //caracteristicasf[0].preguntas[index].respuestas[statep.persona.caracteristicas[index].idrespuesta].respuesta
-      //alert(index+" "+statep.persona.caracteristicas[index].idrespuesta)
-          //alert(statep.persona.caracteristicas[index])
+
+      //alert(JSON.stringify(car0))
+        var inicio = caracteristicasf[0].preguntas.map(function (item, index, array) { 
+     
           var r=0;
-          if (statep.persona.caracteristicas[index]==undefined){
-               ///annador caracteristicas a persona
+          if (car0[index]==undefined){
           }else{
            r=statep.persona.caracteristicas[index].idrespuesta   
           }
           return r; 
      });
-           // dispatchvalues(inicio)
-    
            setRespuestas(inicio)
-           
-    }
-          },[]);
+           dispatchp({
+            type: 'CARACTERISTICAS',
+            stateprop: car0
+          });     
+    //}
+     },[]);
           
-    useEffect(() => {
-     // alert("useEffect2 "+JSON.stringify(statep.persona.caracteristicas))
-      //alert("useEffect3 "+JSON.stringify(respuestas))
-      let car=[]
+    // useEffect(() => {
+    //  // alert("useEffect2 "+JSON.stringify(statep.persona.caracteristicas))
+    //   //alert("useEffect3 "+JSON.stringify(respuestas))
+    //   let car=[]
       
-      if (JSON.stringify(caracteristicas) == "{}"){
-        //alert("nada")
-      }else{
-        //alert("cambio de caracteristicas  "+JSON.stringify(caracteristicas))
-      dispatchp({
-        type: 'CARACTERISTICAS',
-        stateprop: caracteristicas
-      });
-    }
-    },[caracteristicas]);
+    //   if (JSON.stringify(caracteristicas) == "{}"){
+    //     //alert("nada")
+    //   }else{
+    //     //alert("cambio de caracteristicas  "+JSON.stringify(caracteristicas))
+    //   dispatchp({
+    //     type: 'CARACTERISTICAS',
+    //     stateprop: caracteristicas
+    //   });
+    // }
+    // },[caracteristicas]);
  
 
  
@@ -195,12 +190,7 @@ export default function AsignacionOrganizacion() {
     }
 
 
-    const idselect = (posList) => {
-      alert("idselect "+JSON.stringify(respuestas))
-      var r=0
-      if (respuestas.length>0){r=respuestas[posList].idrespuesta}
-      return r
-    };
+ 
   
        const error='ABC'
     return (

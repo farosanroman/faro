@@ -134,7 +134,7 @@ useEffect(() => {
         const handleGetPersona = () => {   //de Faro
          // alert("get"+JSON.stringify(statep))
          setFlagCircular(true)
-         fetchData('http://openfaroapi.azurewebsites.net/api/personagetv2?idorganizacion=10&identificacion=V21119337')
+         fetchData('http://openfaroapi.azurewebsites.net/api/personagetv2?idorganizacion=10&identificacion=V11309550')
          //fetchData('https://openfaroapi.azurewebsites.net/api/personaget?identificacion=V3664204');
           
           
