@@ -29,7 +29,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Faro del Cabo de San Roman
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -90,10 +90,10 @@ function getStepContent(step) {
       //return <PaymentForm />;
     case 2:
             return <AsignacionRol />
-            case 3:
-                    return <AsignacionOrganizacion />
-                    case 4:
-                            return <Copyright />
+    case 3:
+            return <AsignacionOrganizacion />
+    case 4:
+        return <Copyright />
      // return <Review />;
     default:
       throw new Error('Unknown step');
