@@ -221,7 +221,7 @@ export default function Dashboard() {
   const [flagFiltros, setFlagFiltros] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [component, setComponente] = React.useState(100);
-  const [{ data, isLoading, isError }, fetchData] = useFetch("");
+  //const [{ data, isLoading, isError }, fetchData] = useFetch("");
   //if ((data!=undefined)){
   //{
    // alert("ok")
@@ -245,9 +245,9 @@ export default function Dashboard() {
   }
   const handleComponent = value => () => {
     setComponente(value)
-    if (value==1){
-       fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V3664204');
-    }
+    //if (value==1){
+    //   fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V3664204');
+    //}
     if (value==8){
      setFlagFiltros(true);
      setComponente(1)

@@ -47,6 +47,7 @@ import {datarolesfuncionales} from  '../../data/rolesfuncionales.json';
 import {RolesFiltros} from  '../helpers/rolesfiltros';
 import {organizacion} from  '../../data/organizacion.json';
 import {useRoles}  from '../hooks/useroles'
+import {useCODCNE}  from '../hooks/usecodcne'
 //import { Application } from '../../App';
 
 const useStyles = makeStyles(theme => ({
@@ -117,19 +118,23 @@ export default function AsignacionRol() {
 
     const [rolesfuncionales,funcionales, handleFiltros] = useRoles(datarolesfuncionales);
   
-      useEffect(() => {
+
+    const [rolesfuncionales2,funcionales2, handleFiltros2] = useRoles(datarolesfuncionales);
+    const [estados,municipios, parroquias,handleCODCNE] = useCODCNE(EEMMPP);
+
+    useEffect(() => {
      //alert("useEFFECT rol "+JSON.stringify(statep.persona.roles))
       // alert(EEMMPP[2].items[1].items.findIndex(obj => obj.cneparroquia=="020201"))
      // setRoles(rols)
 
      handleFiltros(9)
-    
-     var r = rols.map(function (item, index, array) { 
-      if (item.idnodofuncional==9){
-          return item;
-      }
-      });
-       setRoles(r)
+     //handleFiltros2(1031)
+     //var r = rols.map(function (item, index, array) { 
+     // if (item.idnodofuncional==9){
+     //     return item;
+     // }
+     // });
+      // setRoles(r)
 
         setNombre1(statep.persona.nombre1)
         setNombre2(statep.persona.nombre2)
@@ -228,33 +233,38 @@ export default function AsignacionRol() {
           //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
         }
         if (input=="estado"){
+          //alert(JSON.stringify(estados))
           //alert(JSON.stringify(e.target.value)) 
-          var index = EEMMPP.findIndex(obj => obj.cneestado==e.target.value);
+          var index = estados.findIndex(obj => obj.idestado==e.target.value);
         // alert(index)
           setCodigoEstado(e.target.value)
           setPosEstado(index)
-          setNombreEstado(EEMMPP[index].name)
-         }
+          setNombreEstado(estados[index].estado)
+         // alert(e.target.value)
+          handleCODCNE(e.target.value)
+        
+        }
          if (input=="municipio"){
-          var index = EEMMPP[posestado].items.findIndex(obj => obj.cnemunicipio==e.target.value);
+          var index = municipios.findIndex(obj => obj.idmunicipio==e.target.value);
           //alert(index)
             setPosMunicipio(index)
           setCodigoMunicipio(e.target.value)
-          setNombreMunicipio(EEMMPP[posestado].items[index].name)
+          setNombreMunicipio(municipios[index].municipio)
+          handleCODCNE(e.target.value)
          }
          if (input=="parroquia"){
           setCodigoParroquia(e.target.value)
-          var index = EEMMPP[posestado].items[posmunicipio].items.findIndex(obj => obj.cneparroquia==e.target.value);
+          var index = parroquias.findIndex(obj => obj.idparroquia==e.target.value);
           //alert(index)
             setPosParroquia(index)
-            setNombreParroquia(EEMMPP[posestado].items[posmunicipio].items[index].name)
+            setNombreParroquia(parroquias[index].parroquia)
          }
          if (input=="funcional"){
           // alert(e.target.value)
        //   alert("rol "+JSON.stringify(roles))
          var pos=funcionales.findIndex(obj => obj.idfuncional==e.target.value);
           //var  pos = roles.map(function(e) { return e.id; }).indexOf(e.target.value);
-          
+        //  alert("1031 "+JSON.stringify(rolesfuncionales2))
          handleFiltros(e.target.value)
          setIdFuncional(funcionales[pos].idfuncional)
          setFuncional(funcionales[pos].funcional);
@@ -433,8 +443,8 @@ export default function AsignacionRol() {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        {EEMMPP.map((item, index) => (
-                 <MenuItem value={item.cneestado}>{item.name}</MenuItem>
+        {estados.map((item, index) => (
+                 <MenuItem value={item.idestado}>{item.estado}</MenuItem>
               
                ))}
        
@@ -451,9 +461,9 @@ export default function AsignacionRol() {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        {EEMMPP[posestado].items.map((item, index) => (
+        {municipios.map((item, index) => (
                 
-                <MenuItem value={item.cnemunicipio}>{item.name}</MenuItem>
+                <MenuItem value={item.idmunicipio}>{item.municipio}</MenuItem>
               
                ))}
        
@@ -471,8 +481,8 @@ export default function AsignacionRol() {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        {EEMMPP[posestado].items[posmunicipio].items.map((item, index) => (
-                 <MenuItem value={item.cneparroquia}>{item.name}</MenuItem>
+        {parroquias.map((item, index) => (
+                 <MenuItem value={item.idparroquia}>{item.parroquia}</MenuItem>
               
                ))}
        

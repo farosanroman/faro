@@ -10,24 +10,27 @@ import { useState, useEffect } from "react";
 //en click
 export const useFetch = (url) => {
  
-   const [data, setData] = useState();
+   const [data, setData] = useState([]);
    const [isLoading, setIsLoading] = useState(false);
    const [isError, setIsError] = useState(false);
    
    //const [option, setOption] = useState("");
  //alert("useFetch")
+ 
+ //useEffect(() => {
+ // fetchData(url);
+//}, [url]);
    // Just pass the variables that changes in each new fetch requisition
-   const fetchData = async (url) => {
-     //alert(o)
+   const fetchData = async (url2) => {
        
        setIsError(false);
        setIsLoading(true);
        try {
          //const response = await axios.get(url);
        //  alert(url)
-         const response = await fetch(url);        
+         const response = await fetch(url2);        
          const data = await response.json();
-         //alert("useFetch"+JSON.stringify(data))  
+         //alert(url2+ " useFetch www " +JSON.stringify(data))  
          setData(data);
        } catch (error) {
          setIsError(true);
@@ -35,11 +38,8 @@ export const useFetch = (url) => {
        setIsLoading(false);
      };
  
-   useEffect(() => {
-     fetchData(url);
-   }, [url]);
  
-   return [{ data, isLoading, isError }, fetchData];
+   return [ data, isLoading, isError , fetchData];
  };
 // // fetchData('https://openfaroapi.azurewebsites.net/api/personaget?identificacion='+callback[0].cedula)
  

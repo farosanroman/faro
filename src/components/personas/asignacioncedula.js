@@ -60,7 +60,8 @@ export default function AsignacionCedula() {
     const [codcne, setCodcne] = React.useState("");
     const [flagCircular, setFlagCircular] = React.useState(false);
     const [dummy, setDummy] = React.useState("");
-const [{ data, isLoading, isError }, fetchData] = useFetch("");
+const [ data, isLoading, isError , fetchData] = useFetch("");
+const [ data2, isLoading2, isError2 , fetchData2] = useFetch("");
 //const [{ data9, isLoading9, isError9 }, fetchData9] = useFetch("");
 /*
 const [{ dataPost, isLoadingPost, isErrorPost }, postData] = useFetchPost('');
@@ -72,44 +73,56 @@ useEffect(() => {
 /},[dataPost,isLoadingPost]);
 postData("https://f2020.azurewebsites.net/api/FaroFormulariosPersona?code=nbjfp6Cn8Mx3/WPr3DCwMXV8EZbfw2CB8UIMOTyfW8TYtlBSsbXGqw==",{id:{cedula:"V3664204"}})
  */      
-
+useEffect(() => {
+//alert("asignacoin cdula")
+},[]);  
 useEffect(() => {
       if (isLoading) {
       //  setFlagCircular(true)
       }
       if ((data!=undefined)&&(!isLoading))      
       {
+      //  alert("data")
         setFlagCircular(false)
        // data=data[0]
-      // alert("fetch"+JSON.stringify(data))
+     //  alert("useEffect eeee "+data.length+' '+JSON.stringify(data)+' ')
        dispatchp({
           type: 'PERSONA',
           stateprop: data[0]
         });
-        setDummy("dummy")
-
-        //dispatchp({
-        //  type: 'PERSONA',
-        //  stateprop: statep.persona
-        //});
+       // setDummy("dummy")
+       if (data.length>0){
+        setNombre1(data[0].nombre1) 
+        setNombre2(data[0].nombre2) 
+        setApellido1(data[0].apellido1) 
+        setApellido2(data[0].apellido2) 
+       }
       }
     },[data,isLoading]);
 
-    useEffect(() => {
 
-      if ((dummy!="")||(statep.persona!="")){
+    // useEffect(() => {
+    //   alert(JSON.stringify("undefined "+JSON.stringofy(statep.persona)))
+    //   if ( ((dummy!="")||(statep.persona!=""))&&(statep.persona!=undefined)){
      
+    //    alert("!=undefined")
+    //     setNombre1(statep.persona.nombre1) 
+    //     setNombre2(statep.persona.nombre2) 
+    //     setApellido1(statep.persona.apellido1) 
+    //     setApellido2(statep.persona.apellido2) 
        
-        setNombre1(statep.persona.nombre1) 
-        setNombre2(statep.persona.nombre2) 
-        setApellido1(statep.persona.apellido1) 
-        setApellido2(statep.persona.apellido2) 
-       
-    }
-    },[dummy]);
+    // }
+    // },[dummy]);
+
+  useEffect(() => {
+    alert("data2 "+JSON.stringify(data2))
+  },[data2]);
+
 
     const handleChangeCambios=input=>e=>{
- 
+     
+    //  alert("data2"+JSON.stringify(data2))
+     
         if (input=="cedula"){
         //  console.log(e.target.value)
           var ced=e.target.value
@@ -134,9 +147,10 @@ useEffect(() => {
         const handleGetPersona = () => {   //de Faro
          // alert("get"+JSON.stringify(statep))
          setFlagCircular(true)
+         fetchData2('https://f2020.azurewebsites.net/api/FaroFormularioBase?code=5mWvvpNVz/at91R4awZb7g/rSfVWeHbMSARrVFbEdZWtC2fWBaGtnQ==&id=jsonlite');
+    
          fetchData('http://openfaroapi.azurewebsites.net/api/personagetv2?idorganizacion=10&identificacion=V11309550')
-         //fetchData('https://openfaroapi.azurewebsites.net/api/personaget?identificacion=V3664204');
-          
+        
           
         
         }
@@ -244,10 +258,12 @@ useEffect(() => {
             fullWidth
             autoComplete="lname"
             defaultValue={codcne}
-            value={statep.persona.re[0].codcne}
+             value={(statep.persona==undefined) ?'': statep.persona.re[0].codcne }
+            //value={statep.persona.re[0].codcne }
           />
-        </Grid>
-        <Grid item xs={12} sm={6}>
+          </Grid>
+                
+ <Grid item xs={12} sm={6}>
           <TextField
             required
             id="lastName"
@@ -256,7 +272,9 @@ useEffect(() => {
             fullWidth
             autoComplete="lname"
             defaultValue={""}
-            value={statep.persona.re[0].estadonombre}
+            value={(statep.persona==undefined) ?'': statep.persona.re[0].estadonombre }
+           
+           // value={statep.persona.re[0].estadonombre}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -268,7 +286,9 @@ useEffect(() => {
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
-            value={statep.persona.re[0].municipionombre}
+            value={(statep.persona==undefined) ?'': statep.persona.re[0].municipionombre }
+           
+            // value={statep.persona.re[0].municipionombre}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -280,7 +300,8 @@ useEffect(() => {
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
-            value={statep.persona.re[0].parroquianombre}
+            value={(statep.persona==undefined) ?'': statep.persona.re[0].parroquianombre }
+          
           />
         </Grid>
         <Grid item xs={12} sm={12}>
@@ -292,8 +313,8 @@ useEffect(() => {
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
-            value={statep.persona.re[0].centronombre}
-            
+            value={(statep.persona==undefined) ?'': statep.persona.re[0].centronombre }
+           
           />
         </Grid>
         <Grid item xs={12} sm={12}>
@@ -305,13 +326,12 @@ useEffect(() => {
             fullWidth
             autoComplete="Direccion"
             defaultValue={""}
-            value={statep.persona.re[0].centrodireccion}
+            value={(statep.persona==undefined) ?'': statep.persona.re[0].centrodirecion }
             multiline
             rows="4"
           />
 
         </Grid>
-
       </Grid>
     </React.Fragment>
   );

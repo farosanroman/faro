@@ -81,7 +81,7 @@ useEffect(() => {
   //setOpenSnackBar(true)
   //setMensajeSnackBar("Autenticando en Twitter...")
  //A U T O M A T I C O
- fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
+ //fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
   firebase.auth().onAuthStateChanged(
     user=>{
       
@@ -103,9 +103,9 @@ function SignIn(user) {
   setLoginAuth(login)
   setOpenSnackBar(true)
   setMensajeSnackBar("Buscando Persona...")
-  fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
+ // fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
   //AQUI LA LA AUTENTICACION
- // props.login()
+  props.login()
 }
 
 //alert("fetchDATA"+JSON.stringify(state)) 
@@ -116,9 +116,9 @@ function handleGetLogin()  {   //de Faro
   //Cuando no se activa el autimatico
   setOpenSnackBar(true)
   setMensajeSnackBar("Autenticando a ")
-  if (cedula=='xxx'){
-      fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
-    }
+ // if (cedula=='xxx'){
+ //     fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
+ //   }
   }
     
   
