@@ -88,7 +88,7 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
 
 
   
-  const [{ data, isLoading, isErrorPersonas,option }, fetchData] = useFetch("");
+  const [data, isLoading, isError , fetchData] = useFetch("");
   //const [optionn, setOptionn] = React.useState("");
   const [centros,setCentros]=React.useState(state.centros);
   const [centrosgeojson,setCentrosgeojson]=React.useState([]);
@@ -234,8 +234,8 @@ setCentrosgeojson(centrosjson)
         var codcne=evt.features[0].properties.ID
         var centro=evt.features[0].properties.ESTADO
         setCentrosgeojson([])
-        fetchData('https://f2020.azurewebsites.net/api/FaroPersonasCentroGet?code=pNHwI2vpHlgY2la6to4uUECNsX7wdSsgKwKwCB6sX/8b2pmb0/N2Sg==&id=131801022');
-        
+        //fetchData('https://f2020.azurewebsites.net/api/FaroPersonasCentroGet?code=pNHwI2vpHlgY2la6to4uUECNsX7wdSsgKwKwCB6sX/8b2pmb0/N2Sg==&id=131801022');
+       // codcne="130101"
         fetchData('https://faro2018consultas.azurewebsites.net/api/centrosxcodcne?codcne='+codcne);
         
         // alert(codcne)

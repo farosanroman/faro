@@ -16,6 +16,7 @@ import Link from '@material-ui/core/Link';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
+//import IconButton from '@material-ui/core/IconButton';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -37,6 +38,9 @@ import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import { Delete, Edit,Email } from '@material-ui/icons';
 
+
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PersonIcon from '@material-ui/icons/Person';
 import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -126,7 +130,7 @@ export default function AsignacionRol() {
      //alert("useEFFECT rol "+JSON.stringify(statep.persona.roles))
       // alert(EEMMPP[2].items[1].items.findIndex(obj => obj.cneparroquia=="020201"))
      // setRoles(rols)
-
+     
      handleFiltros(9)
      //handleFiltros2(1031)
      //var r = rols.map(function (item, index, array) { 
@@ -190,42 +194,7 @@ export default function AsignacionRol() {
     },[]);
     useEffect(() => {
       //alert(JSON.stringify(rolesfuncionales))
-      if (idrol>0){
-      //alert("useEffect2 "+JSON.stringify(statep.persona.caracteristicas))
-     var r=
-     {
-       "idformulario":"ROL",
-       "formulario":"ROL",
-      "idpregunta":"ROL",
-      "pregunta":"Asignacion",
-
-      "idrespuesta": idrol,
-      "respuesta": rol,
-      "codcne":codestado+codmunicipio+codparroquia,
-      "descripcion": rol,
-      "codcnenombre": "",
-      "idfuncional": idfuncional,
-      "funcionalnombre": funcional,
-      "lat": 0,
-      "lng": 0,
-      "idestado": codestado,
-      "idmunicipio": codmunicipio,
-      "idparroquia": codparroquia,
-      "idcircunscripcion": "0",
-      "estadonombre":nombreestado,
-      "municipionombre": nombremunicipio,
-      "parroquianombre":nombreparroquia,
-      "circunscripcionnombre": "",
-      "centronombre": "VENEZUELA"
-      
-    }
-    var roles=statep.persona.roles
-    roles.push(r)
-      dispatchp({
-        type: 'ROLES',
-        stateprop: roles
-      });
-    }
+     
     },[idrol]);
     const handleChangeCambios=input=>e=>{
         if (input=="formularios"){
@@ -280,6 +249,7 @@ export default function AsignacionRol() {
       
          }
        }
+   
        const handleCheckboxChangeRol = id => {
         // alert(id)
       //   dispatch({
@@ -289,6 +259,44 @@ export default function AsignacionRol() {
        
          //if (state.currentWeight) recalculate();
        };
+       const handleAdd=input=>{
+        if (idrol>0){
+          //alert("useEffect2 "+JSON.stringify(statep.persona.caracteristicas))
+         var r=
+         {
+           "idformulario":"ROL",
+           "formulario":"ROL",
+          "idpregunta":"ROL",
+          "pregunta":"Asignacion",
+    
+          "idrespuesta": idrol,
+          "respuesta": rol,
+          "codcne":codestado+codmunicipio+codparroquia,
+          "descripcion": rol,
+          "codcnenombre": "",
+          "idfuncional": idfuncional,
+          "funcionalnombre": funcional,
+          "lat": 0,
+          "lng": 0,
+          "idestado": codestado,
+          "idmunicipio": codmunicipio,
+          "idparroquia": codparroquia,
+          "idcircunscripcion": "0",
+          "estadonombre":nombreestado,
+          "municipionombre": nombremunicipio,
+          "parroquianombre":nombreparroquia,
+          "circunscripcionnombre": "",
+          "centronombre": "VENEZUELA"
+          
+        }
+        var roles=statep.persona.roles
+        roles.push(r)
+          dispatchp({
+            type: 'ROLES',
+            stateprop: roles
+          });
+        }
+       }
        function onDeleteRol(index,e){
         //alert(item)
        // delete(id){
@@ -536,7 +544,12 @@ export default function AsignacionRol() {
       
       </Select>
       </FormControl>
+      <IconButton
+                onClick={handleAdd}
 
+>
+          <AddCircleOutlineIcon />
+      </IconButton>
      
       <Divider />
        

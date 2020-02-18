@@ -67,7 +67,7 @@ import PorcPartidos from './dashboardindicadores/porcpartidos';
 ///////////////Equipo//////////////////
 import Historia from './dashboardgeo/historia';
 import Polylines from './dashboardgeo/polylines';
-import GeoCentros from './dashboardgeo/geofaro';
+import GeoFaro from './dashboardgeo/geofaro';
 import AsignacionPasos from './personas/asignacionpasos'
 
 //import AsignacionDatos from './personas/asignaciondatosborrar';
@@ -432,33 +432,29 @@ export default function Dashboard() {
                {getStepContent(component)}
            </Paper>
       }
-  {false&&<div>!!!!!!!!!!!!Padron!!!!!!!!!!</div>}
+  {false&&<div>!!!!!!!!!!!!Indicadores!!!!!!!!!!</div>}
   {(component==1)&&
-          <Container maxWidth="lg" className={classes.container}>   
+  <Container maxWidth="lg" className={classes.container}>   
            <Indicadores />
-
-               <Pivote />
+          <Pivote />
         <Paper className={fixedHeightPaper}>
           <Avance />
         </Paper>
-          </Container>
+   </Container>
           }
-           {(component==0)&&
+  {(component==0)&&
  <Container maxWidth="lg" className={classes.container}>
- 
-<Grid container spacing={3}>
-      
-
-<Grid item xs={12} sm={6} md={6}>
-<Paper className={fixedHeightPaper2}>
-  <ChartPieChart /></Paper>
-</Grid>
-<Grid item xs={12} sm={6} md={6}>
-<Paper className={fixedHeightPaper2}>
-<ChartPyramid />
-  </Paper>
-</Grid>
-
+   <Grid container spacing={3}>
+   <Grid item xs={12} sm={6} md={6}>
+     <Paper className={fixedHeightPaper2}>
+         <ChartPieChart /></Paper>
+    </Grid>
+    <Grid item xs={12} sm={6} md={6}>
+    <Paper className={fixedHeightPaper2}>
+    <ChartPyramid />
+     </Paper>
+    </Grid>
+{false&&<div>!!!!!!!!!!!!Padron!!!!!!!!!!</div>}
 <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <Geo />
@@ -480,15 +476,13 @@ export default function Dashboard() {
 
 </Container>
 }
-{false&&<div>!!!!!!!!!!!!Mensajes!!!!!!!!!!</div>}
+{false&&<div>!!!!!!!!!!!!Mensajes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>}
 {(component==2)&&
-
-          <Container maxWidth="lg" className={classes.container}>
-                         
-                          <Mensajes />
-          </Container>
+      <Container maxWidth="lg" className={classes.container}>
+           <Mensajes />
+      </Container>
           }
-             {(component==3)&&
+  {(component==3)&&
           <Container maxWidth="lg" className={classes.container}>
                           <Intervalos />
           </Container>
@@ -498,21 +492,23 @@ export default function Dashboard() {
             <Resultados />
       </Container>
      }
-  {false&&<div>!!!!!!!!!!!!Persona Asignacion!!!!!!!!!!</div>}
+      {false&&<div>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111!!!!!!!FARO V2!!!!!!!!!!</div>}
+    {(component==10)&&
+        <Container maxWidth="lg" className={classes.container}>
+            <GeoFaro />
+      </Container>
+     }
+  {false&&<div>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Persona Asignacion!!!!!!!!!!</div>}
 
 {(component==5)&&<AsignacionPasos/>}
  
      
-  {false&&<div>!!!!!!!!!!!!Inteligencia!!!!!!!!!!</div>}
+  {false&&<div>!!!!!!!!!!!!POLYLINES EL CORAZON!!!!!!!!!!</div>}
    {(component==12)&&
      <Container maxWidth="lg" className={classes.container}>
                 <Polylines />
     </Container>}
-    {(component==10)&&
-        <Container maxWidth="lg" className={classes.container}>
-            <GeoCentros />
-      </Container>
-     }
+   
     {(component==11)&&
         <Container maxWidth="lg" className={classes.container}>
             <Historia />

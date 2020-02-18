@@ -115,7 +115,7 @@ useEffect(() => {
     // },[dummy]);
 
   useEffect(() => {
-    alert("data2 "+JSON.stringify(data2))
+  //  alert("data2 "+JSON.stringify(data2))
   },[data2]);
 
 
@@ -147,7 +147,7 @@ useEffect(() => {
         const handleGetPersona = () => {   //de Faro
          // alert("get"+JSON.stringify(statep))
          setFlagCircular(true)
-         fetchData2('https://f2020.azurewebsites.net/api/FaroFormularioBase?code=5mWvvpNVz/at91R4awZb7g/rSfVWeHbMSARrVFbEdZWtC2fWBaGtnQ==&id=jsonlite');
+       //  fetchData2('https://f2020.azurewebsites.net/api/FaroFormularioBase?code=5mWvvpNVz/at91R4awZb7g/rSfVWeHbMSARrVFbEdZWtC2fWBaGtnQ==&id=jsonlite');
     
          fetchData('http://openfaroapi.azurewebsites.net/api/personagetv2?idorganizacion=10&identificacion=V11309550')
         

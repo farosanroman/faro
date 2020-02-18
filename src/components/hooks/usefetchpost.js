@@ -43,7 +43,7 @@ export const useFetchPost = (url,message) => {
      
     }, [url,message]);
     
-    return  [{ dataPost, isLoadingPost, isErrorPost }, postData];
+    return  [ dataPost, isLoadingPost, isErrorPost , postData];
 }
 
 //https://itnext.io/how-to-create-react-custom-hooks-for-data-fetching-with-useeffect-74c5dc47000a <==WUAO

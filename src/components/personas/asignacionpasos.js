@@ -106,7 +106,9 @@ export default function AsignacionPasos() {
     
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [{ dataPost, isLoadingPost, isErrorPost }, postData] = useFetchPost('');
+  const [ dataPost, isLoadingPost, isErrorPost , postData] = useFetchPost('');
+  
+  const [ dataPost2, isLoadingPost2, isErrorPost2 , postData2] = useFetchPost('');
   const [flagCircular, setFlagCircular] = React.useState(false);
   useEffect(() => {
    // alert("pasos "+JSON.stringify(statep.persona.caracteristicas[1]))
@@ -117,19 +119,30 @@ export default function AsignacionPasos() {
    },[]);
   useEffect(() => {
    if (!isLoadingPost&&dataPost!=undefined) {
-     // alert("post"+JSON.stringify(dataPost))
+      alert("post"+JSON.stringify(dataPost))
       //  setFlagCircular(true)
       setFlagCircular(false)
       setActiveStep(0)
 
     }  
   },[dataPost,isLoadingPost]);
+  useEffect(() => {
+    if (!isLoadingPost2&&dataPost2!=undefined) {
+       alert("post"+JSON.stringify(dataPost2))
+       //  setFlagCircular(true)
+       setFlagCircular(false)
+       setActiveStep(0)
+ 
+     }  
+   },[dataPost2,isLoadingPost2]);
   const handleNext = () => {
 
     if (activeStep==steps.length-1){
       setFlagCircular(true)
       //alert(JSON.stringify(statep.persona.caracteristicas))
-      postData("https://f2020.azurewebsites.net/api/FaroFormularioPersonaPost?code=rkmGB0kHPzpU/Nxb7L8NT1PAw6jmOxslIH2eXiyjh9vmFIjFRFblAw==",statep.persona)
+      postData("https://openfaroapi.azurewebsites.net/api/personaspost",ppaa)
+
+     // postData2("https://f2020.azurewebsites.net/api/FaroFormularioPersonaPost?code=rkmGB0kHPzpU/Nxb7L8NT1PAw6jmOxslIH2eXiyjh9vmFIjFRFblAw==",statep.persona)
 
       //setActiveStep(1)
     }else{
@@ -200,4 +213,355 @@ export default function AsignacionPasos() {
       </main>
     </React.Fragment>
   );
+}
+
+
+var ppaa=
+{
+  "flag": "1",
+  "msj": "",
+  "flagasignacion": "1",
+  "idorganizacion": "10",
+  "organizacion": "Mesa de la Unidad Democrática",
+  "nombre1": "ALZRIN",
+  "nombre2": "OLEVITH",
+  "apellido1": "ORTA",
+  "apellido2": "",
+  "identificacion": "V11309550",
+  
+  "id": "V11309550",
+  "pasaporte": "V11309550",
+  "idnacionalidad": 245,
+  "nacionalidad": "Venezuela",
+  "idpaisnacimiento": 245,
+  "paisnacimiento": "Venezuela",
+  "idestadocivil": 2,
+  "estadocivil": "Casado(a)",
+  "idsexo": 2,
+  "sexo": "Masculino",
+  "fechanacimientovar": "1972/12/13",
+  "fechanacimientojson": "1972-12-13T00:00:00.000Z",
+  "idtipopersona": 25,
+  "tipopersona": 25,
+  "idprofesion": 40,
+  "profesion": "SIN ASIGNAR",
+  "idocupacion": "",
+  "ocupacion": "",
+  "idcaracteristicaopcion": 7,
+  "re": [
+    {
+      "idformulario": "RE",
+      "formulario": "Registro Electoral Nacional",
+      "idpregunta": "RE",
+      "pregunta": "Centro de Votación",
+      "idrespuesta": "RE",
+      "respuesta": "130902021",
+      "codcne": "130902021",
+      "descripcion": "",
+      "codcnenombre": "",
+      "idfuncional": "",
+      "funcionalnombre": "",
+      "lat": 10.49501,
+      "lng": -66.82804,
+      "idestado": "",
+      "idmunicipio": "",
+      "idparroquia": "",
+      "idcircunscripcion": "",
+      "idcentro": "",
+      "idmesa": "",
+      "estadonombre": "MIRANDA",
+      "municipionombre": "SUCRE",
+      "parroquianombre": "LEONCIO MARTINEZ",
+      "circunscripcionnombre": "",
+      "centronombre": "",
+      "centrodireccion": "",
+      "texto": "130902021"
+    }
+  ],
+  "direcciones": [
+    {
+      "idformulario": "DIR",
+      "formulario": "Direcciones",
+      "idpregunta": "DIR",
+      "pregunta": "Direcciones",
+      "idrespuesta": "TW",
+      "respuesta": "@alzrin",
+      "codcne": "",
+      "descripcion": "",
+      "codcnenombre": "",
+      "idfuncional": "",
+      "funcionalnombre": "",
+      "lat": 0,
+      "lng": 0,
+      "idestado": "",
+      "idmunicipio": "",
+      "idparroquia": "",
+      "idcircunscripcion": "",
+      "idcentro": "",
+      "idmesa": "",
+      "estadonombre": "",
+      "municipionombre": "",
+      "parroquianombre": "",
+      "circunscripcionnombre": "",
+      "centronombre": "",
+      "centrodireccion": "",
+      "texto": "@alzrin"
+    },
+    {
+      "idformulario": "DIR",
+      "formulario": "Direcciones",
+      "idpregunta": "DIR",
+      "pregunta": "Direcciones",
+      "idrespuesta": "TC",
+      "respuesta": "04168330312",
+      "codcne": "",
+      "descripcion": "",
+      "codcnenombre": "",
+      "idfuncional": "",
+      "funcionalnombre": "",
+      "lat": 0,
+      "lng": 0,
+      "idestado": "",
+      "idmunicipio": "",
+      "idparroquia": "",
+      "idcircunscripcion": "",
+      "idcentro": "",
+      "idmesa": "",
+      "estadonombre": "",
+      "municipionombre": "",
+      "parroquianombre": "",
+      "circunscripcionnombre": "",
+      "centronombre": "",
+      "centrodireccion": "",
+      "texto": "04168330312"
+    },
+    {
+      "idformulario": "DIR",
+      "formulario": "Direcciones",
+      "idpregunta": "DIR",
+      "pregunta": "Direcciones",
+      "idrespuesta": "EM",
+      "respuesta": "alzrin@gmail.com",
+      "codcne": "",
+      "descripcion": "",
+      "codcnenombre": "",
+      "idfuncional": "",
+      "funcionalnombre": "",
+      "lat": 0,
+      "lng": 0,
+      "idestado": "",
+      "idmunicipio": "",
+      "idparroquia": "",
+      "idcircunscripcion": "",
+      "idcentro": "",
+      "idmesa": "",
+      "estadonombre": "",
+      "municipionombre": "",
+      "parroquianombre": "",
+      "circunscripcionnombre": "",
+      "centronombre": "",
+      "centrodireccion": "",
+      "texto": "alzrin@gmail.com"
+    }
+  ],
+  "roles": [
+    {
+      "idformulario": "ROL",
+      "formulario": "Rol",
+      "idpregunta": "ROL",
+      "pregunta": "Asignacion",
+      "idrespuesta": "242",
+      "respuesta": "Soporte Electoral",
+      "codcne": "00000000000",
+      "descripcion": "",
+      "codcnenombre": "",
+      "idfuncional": "1038",
+      "funcionalnombre": "Formación",
+      "lat": 9.09,
+      "lng": -66.47,
+      "idestado": "00",
+      "idmunicipio": "00",
+      "idparroquia": "00",
+      "idcircunscripcion": "0",
+      "idcentro": "000",
+      "idmesa": "",
+      "estadonombre": "",
+      "municipionombre": "",
+      "parroquianombre": "",
+      "circunscripcionnombre": "",
+      "centronombre": "VENEZUELA",
+      "centrodireccion": "",
+      "texto": "00000000000"
+    }
+  ],
+  "caracteristicas": [
+    {
+      "idformulario": "FORM",
+      "formulario": "Caracteristicas",
+      "idpregunta": "1",
+      "pregunta": "Experiencia Electoral",
+      "idrespuesta": "1",
+      "respuesta": "Alta",
+      "codcne": "",
+      "descripcion": "",
+      "codcnenombre": "",
+      "idfuncional": "",
+      "funcionalnombre": "",
+      "lat": 0,
+      "lng": 0,
+      "idestado": "",
+      "idmunicipio": "",
+      "idparroquia": "",
+      "idcircunscripcion": "",
+      "idcentro": "",
+      "idmesa": "",
+      "estadonombre": "",
+      "municipionombre": "",
+      "parroquianombre": "",
+      "circunscripcionnombre": "",
+      "centronombre": "",
+      "centrodireccion": "",
+      "texto": "Alta"
+    },
+    {
+      "idformulario": "FORM",
+      "formulario": "Caracteristicas",
+      "idpregunta": "2",
+      "pregunta": "Formacion",
+      "idrespuesta": "2",
+      "respuesta": "TSU / Univ. Incompleta",
+      "codcne": "",
+      "descripcion": "",
+      "codcnenombre": "",
+      "idfuncional": "",
+      "funcionalnombre": "",
+      "lat": 0,
+      "lng": 0,
+      "idestado": "",
+      "idmunicipio": "",
+      "idparroquia": "",
+      "idcircunscripcion": "",
+      "idcentro": "",
+      "idmesa": "",
+      "estadonombre": "",
+      "municipionombre": "",
+      "parroquianombre": "",
+      "circunscripcionnombre": "",
+      "centronombre": "",
+      "centrodireccion": "",
+      "texto": "TSU / Univ. Incompleta"
+    },
+    {
+      "idformulario": "FORM",
+      "formulario": "Caracteristicas",
+      "idpregunta": "3",
+      "pregunta": "Experiencia Docente",
+      "idrespuesta": "1",
+      "respuesta": "Si",
+      "codcne": "",
+      "descripcion": "",
+      "codcnenombre": "",
+      "idfuncional": "",
+      "funcionalnombre": "",
+      "lat": 0,
+      "lng": 0,
+      "idestado": "",
+      "idmunicipio": "",
+      "idparroquia": "",
+      "idcircunscripcion": "",
+      "idcentro": "",
+      "idmesa": "",
+      "estadonombre": "",
+      "municipionombre": "",
+      "parroquianombre": "",
+      "circunscripcionnombre": "",
+      "centronombre": "",
+      "centrodireccion": "",
+      "texto": "Si"
+    },
+    {
+      "idformulario": "FORM",
+      "formulario": "Caracteristicas",
+      "idpregunta": "4",
+      "pregunta": "Organizacion",
+      "idrespuesta": "6",
+      "respuesta": "SC",
+      "codcne": "",
+      "descripcion": "",
+      "codcnenombre": "",
+      "idfuncional": "",
+      "funcionalnombre": "",
+      "lat": 0,
+      "lng": 0,
+      "idestado": "",
+      "idmunicipio": "",
+      "idparroquia": "",
+      "idcircunscripcion": "",
+      "idcentro": "",
+      "idmesa": "",
+      "estadonombre": "",
+      "municipionombre": "",
+      "parroquianombre": "",
+      "circunscripcionnombre": "",
+      "centronombre": "",
+      "centrodireccion": "",
+      "texto": "SC"
+    },
+    {
+      "idformulario": "FORM",
+      "formulario": "Caracteristicas",
+      "idpregunta": "5",
+      "pregunta": "Calificacion Formacion Electoral",
+      "idrespuesta": "2",
+      "respuesta": "Media",
+      "codcne": "",
+      "descripcion": "",
+      "codcnenombre": "",
+      "idfuncional": "",
+      "funcionalnombre": "",
+      "lat": 0,
+      "lng": 0,
+      "idestado": "",
+      "idmunicipio": "",
+      "idparroquia": "",
+      "idcircunscripcion": "",
+      "idcentro": "",
+      "idmesa": "",
+      "estadonombre": "",
+      "municipionombre": "",
+      "parroquianombre": "",
+      "circunscripcionnombre": "",
+      "centronombre": "",
+      "centrodireccion": "",
+      "texto": "Media"
+    },
+    {
+      "idformulario": "FORM",
+      "formulario": "Caracteristicas",
+      "idpregunta": "6",
+      "pregunta": "Formación Electoral 2018",
+      "idrespuesta": "2",
+      "respuesta": "No",
+      "codcne": "",
+      "descripcion": "",
+      "codcnenombre": "",
+      "idfuncional": "",
+      "funcionalnombre": "",
+      "lat": 0,
+      "lng": 0,
+      "idestado": "",
+      "idmunicipio": "",
+      "idparroquia": "",
+      "idcircunscripcion": "",
+      "idcentro": "",
+      "idmesa": "",
+      "estadonombre": "",
+      "municipionombre": "",
+      "parroquianombre": "",
+      "circunscripcionnombre": "",
+      "centronombre": "",
+      "centrodireccion": "",
+      "texto": "No"
+    }
+  ]
 }
