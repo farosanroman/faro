@@ -325,7 +325,7 @@ setCentrosgeojson(centrosjson)
           }}          
         />
         <GeoJSONLayer
-              data={PAMIRANDA}
+              data={LIBERTADOR}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
               linePaint={{'line-color': 'purple','line-width': 1.5}}             
         />

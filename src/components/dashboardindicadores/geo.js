@@ -219,7 +219,7 @@ return (
    center={pos} 
    //center={[state.position.latitude,state.position.longitude]} 
     zoom={[zoom]}
-   //onZoom={onZoom}
+   onZoom={onZoom}
    onResize={onResize}
    containerStyle={mapStyle}        
    onControlClick={onControlClick}
