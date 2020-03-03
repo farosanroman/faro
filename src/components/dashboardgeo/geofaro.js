@@ -24,6 +24,8 @@ import Button from '@material-ui/core/Button';
 //import {ESTADOSGEO} from '../data/ESTADOSGEO.json';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {useGeoJson}  from '../hooks/usegeojson'
+
 import {useFetch}  from '../hooks/usefetch'
 import {useFetchPost}  from '../hooks/usefetchpost'
 import {resultados,getLocation,getPersona,getPersonasCODCNE,getCentrosCODCNE} from '../helpers/helpers'
@@ -99,6 +101,8 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
   const [personas,setPersonas]=React.useState([]);
   const [personasgeojson,setPersonasgeojson]=React.useState([]);
   const [flagCircular, setFlagCircular] = React.useState(false);
+  const[geojson,handleGeoJson]=useGeoJson({"type":"FeatureCollection","features":[]   })
+
   //alert("GEOOOOOoooo "+JSON.stringify(state))
   
 //alert('geo'+JSON.stringify(state))
@@ -108,7 +112,7 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
     //    type: 'RESET',
     //    stateprop:123
     //  });   
-    fetchDataP('http://openfaroapi.azurewebsites.net/api/motorpersonasjson2020?idorganizacion=10&codigocne=06&roles=245,230&idformulario=FORM&idpregunta=4&idrespuesta=1&idformulariofiltro=RE');
+    fetchDataP('http://openfaroapi.azurewebsites.net/api/motorpersonasjson2020?idorganizacion=10&codigocne=13&roles=245,230&idformulario=FORM&idpregunta=4&idrespuesta=1&idformulariofiltro=RE');
 
       setFlagCircular(false)
       //alert("state.centros "+JSON.stringify(state.centros))
@@ -147,6 +151,7 @@ setCentrosgeojson(centrosjson)
   
       //  }
        if ((data.length>0)&&(data[0].type)!="padron"){
+         
         setCentros(data)
   
        }
@@ -158,56 +163,16 @@ setCentrosgeojson(centrosjson)
       if (isLoadingP) {
         setFlagCircular(true)
       }
-      //alert(data[0].type)
-      if ((dataP!=undefined)&&(!isLoadingP))      
+      //alert(JSON.stringify(dataP))
+      if ((dataP.length>0)&&(dataP!=undefined)&&(!isLoadingP))      
       {
-        setPersonas(dataP)
+        if (dataP[0].flag>0){
+          handleGeoJson(dataP)
+
+        }
       }
     },[dataP,isLoadingP]);
 
-    useEffect(() => {
-      setFlagCircular(false)
-     // alert("personas sss "+JSON.stringify(personas))
-      
-    let padronjson={
-      "type":"FeatureCollection",
-      "features":[]
-    }
-    //coordendas de centride de parroquias
-       const  padronfeatures=personas.map(p=>{               
-            return(
-              {
-                "type":"Feature",
-                "properties":{"nombre":p.nombreapellido,"codcne":p.codcne,"correo":p.correo,},                             
-                "geometry":{"type":"Point","coordinates":[p.re[0].lng,p.re[0].lat]
-                }
-              }
-        )     
-     })   
-     const  padronfeatures2=padron.map(p=>{               
-      return(
-        {
-          "type":"Feature",
-          "properties":{"nombre":p.nombreapellido,"codcne":p.codcne,"correo":p.correo,},                             
-          "geometry":{"type":"Point","coordinates":[p.lng,p.lat]
-          }
-        }
-  )     
-})   
-const  padronfeatures3=personas.map(p=>{               
-  return(
-    {
-      "type":"Feature",
-      "properties":{"nombre":p.nombre1+" "+p.apellido1,"codcne":"","correo":"p.correo"},                             
-      "geometry":{"type":"Point","coordinates":[p.re[0].lng,p.re[0].lat]
-      }
-    }
-)     
-})  
-     padronjson.features=padronfeatures3;
-     //alert("personas 222 "+JSON.stringify(padronjson))
-     setPersonasgeojson(padronjson)
-   },[personas]);
    ///////////////////////////////////////////////////
    useEffect(() => {
     setFlagCircular(false)
@@ -246,7 +211,6 @@ const  padronfeatures3=personas.map(p=>{
   });
   
  },[centros]);
-
 
 
     function onMapClick(evt) {
@@ -377,10 +341,10 @@ const  padronfeatures3=personas.map(p=>{
           />
  
         <GeoJSONLayer
-          data={personasgeojson}
+          data={geojson}
           circleLayout={{ visibility: 'visible' }}
          //circlePaint={{'circle-color': 'purple','circle-radius': state.radio, }} 
-          circlePaint={{'circle-color': 'dodgerblue','circle-radius': 3,'circle-opacity': 1,'circle-stroke-color': 'dodgerblue' , 'circle-stroke-width': 1,'circle-blur': .1}}         
+          circlePaint={{'circle-color': 'dodgerblue','circle-radius': 6,'circle-opacity': 1,'circle-stroke-color': 'dodgerblue' , 'circle-stroke-width': 1,'circle-blur': .1}}         
           
         // onClick={onMapClick}     
           circleOnClick={onCentroClick}
