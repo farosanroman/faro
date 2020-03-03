@@ -89,6 +89,8 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
 
   
   const [data, isLoading, isError , fetchData] = useFetch("");
+  const [dataP, isLoadingP, isErrorP , fetchDataP] = useFetch("");
+
   //const [optionn, setOptionn] = React.useState("");
   const [centros,setCentros]=React.useState(state.centros);
   const [centrosgeojson,setCentrosgeojson]=React.useState([]);
@@ -106,6 +108,8 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
     //    type: 'RESET',
     //    stateprop:123
     //  });   
+    fetchDataP('http://openfaroapi.azurewebsites.net/api/motorpersonasjson2020?idorganizacion=10&codigocne=06&roles=245,230&idformulario=FORM&idpregunta=4&idrespuesta=1&idformulariofiltro=RE');
+
       setFlagCircular(false)
       //alert("state.centros "+JSON.stringify(state.centros))
       const  featurescentrosjson=state.centros.map(o=>{               
@@ -125,13 +129,7 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
  }
 setCentrosgeojson(centrosjson)  
       //alert("centros "+JSON.stringify())
-      //setCentros(result) 
-     //coordendas de centride de parroquias
-        
-   
-     //alert("punto "+JSON.stringify(centrosjson))   
-     //setPunto(centrosjson)
-    
+
    },[]);
     useEffect(() => {
       //alert("in "+option)
@@ -143,17 +141,29 @@ setCentrosgeojson(centrosjson)
       if ((data!=undefined)&&(!isLoading))      
       {
       
-       if ((data.length>0)&&(data[0].type=="padron")){
-        //alert("padron"+JSON.stringify(data))
-        setPersonas(data)
+      //  if ((data.length>0)&&(data[0].type=="padron")){
+      //   //alert("padron"+JSON.stringify(data))
+      //   setPersonas(data)
   
-       }
+      //  }
        if ((data.length>0)&&(data[0].type)!="padron"){
         setCentros(data)
   
        }
       }
     },[data,isLoading]);
+    useEffect(() => {
+      //alert("in "+option)
+      
+      if (isLoadingP) {
+        setFlagCircular(true)
+      }
+      //alert(data[0].type)
+      if ((dataP!=undefined)&&(!isLoadingP))      
+      {
+        setPersonas(dataP)
+      }
+    },[dataP,isLoadingP]);
 
     useEffect(() => {
       setFlagCircular(false)
@@ -184,11 +194,21 @@ setCentrosgeojson(centrosjson)
         }
   )     
 })   
-     padronjson.features=padronfeatures2;
+const  padronfeatures3=personas.map(p=>{               
+  return(
+    {
+      "type":"Feature",
+      "properties":{"nombre":p.nombre1+" "+p.apellido1,"codcne":"","correo":"p.correo"},                             
+      "geometry":{"type":"Point","coordinates":[p.re[0].lng,p.re[0].lat]
+      }
+    }
+)     
+})  
+     padronjson.features=padronfeatures3;
      //alert("personas 222 "+JSON.stringify(padronjson))
      setPersonasgeojson(padronjson)
    },[personas]);
-   
+   ///////////////////////////////////////////////////
    useEffect(() => {
     setFlagCircular(false)
    //alert("centros "+JSON.stringify(centros))
@@ -327,7 +347,12 @@ setCentrosgeojson(centrosjson)
         <GeoJSONLayer
               data={LIBERTADOR}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': 'purple','line-width': 1.5}}             
+              linePaint={{'line-color': 'purple','line-width': .5}}             
+        />
+              <GeoJSONLayer
+              data={PAMIRANDA}
+              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
+              linePaint={{'line-color': 'purple','line-width': .5}}             
         />
          <GeoJSONLayer
           data={centrosgeojson}
@@ -355,7 +380,7 @@ setCentrosgeojson(centrosjson)
           data={personasgeojson}
           circleLayout={{ visibility: 'visible' }}
          //circlePaint={{'circle-color': 'purple','circle-radius': state.radio, }} 
-          circlePaint={{'circle-color': 'dodgerblue','circle-radius': 2,'circle-opacity': 1,'circle-stroke-color': 'dodgerblue' , 'circle-stroke-width': 1,'circle-blur': .1}}         
+          circlePaint={{'circle-color': 'dodgerblue','circle-radius': 3,'circle-opacity': 1,'circle-stroke-color': 'dodgerblue' , 'circle-stroke-width': 1,'circle-blur': .1}}         
           
         // onClick={onMapClick}     
           circleOnClick={onCentroClick}
