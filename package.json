@@ -14,7 +14,7 @@
     "babel-polyfill": "^6.26.0",
     "devextreme": "19.1.6",
     "devextreme-react": "19.1.6",
-    "firebase": "^7.2.3",
+    "firebase": "^7.9.3",
     "mapbox-gl": "^1.4.0",
     "material-table": "^1.51.0",
     "material-ui-icons": "^1.0.0-beta.36",
