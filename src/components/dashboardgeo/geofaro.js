@@ -25,6 +25,8 @@ import Button from '@material-ui/core/Button';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {useGeoJson}  from '../hooks/usegeojson'
+import {useParroquias}  from '../hooks/useparroquias'
+
 
 import {useFetch}  from '../hooks/usefetch'
 import {useFetchPost}  from '../hooks/usefetchpost'
@@ -87,9 +89,6 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
 //export default function Geo({lnglat0,zoom0,centros0,GetCentros,GetPersonasCODCNE}) {
   export default function GeoFaro() {
   const { state, dispatch } = React.useContext(Application);
-
-
-  
   const [data, isLoading, isError , fetchData] = useFetch("");
   const [dataP, isLoadingP, isErrorP , fetchDataP] = useFetch("");
 
@@ -102,13 +101,15 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
   const [personasgeojson,setPersonasgeojson]=React.useState([]);
   const [flagCircular, setFlagCircular] = React.useState(false);
   const[geojson,handleGeoJson]=useGeoJson({"type":"FeatureCollection","features":[]   })
-
+  const[parroquias0a25porc,parroquias25a50porc,parroquias50a75porc,parroquias75a100porc,handleParroquiasGeoJson]=useParroquias({"type":"FeatureCollection","features":[]   })
+  
   //alert("GEOOOOOoooo "+JSON.stringify(state))
   
 //alert('geo'+JSON.stringify(state))
     const classes = useStyles();
     useEffect(() => {
-    //  dispatch({
+      handleParroquiasGeoJson(PAMIRANDA)
+      //  dispatch({
     //    type: 'RESET',
     //    stateprop:123
     //  });   
@@ -133,8 +134,10 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
  }
 setCentrosgeojson(centrosjson)  
       //alert("centros "+JSON.stringify())
-
+      
    },[]);
+
+
     useEffect(() => {
       //alert("in "+option)
       
@@ -313,10 +316,30 @@ setCentrosgeojson(centrosjson)
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
               linePaint={{'line-color': 'purple','line-width': .5}}             
         />
-              <GeoJSONLayer
+              {/* <GeoJSONLayer
               data={PAMIRANDA}
-              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
+              fillPaint={{'fill-color': '{COLOR}','fill-outline-color': 'purple','fill-opacity': 1}}
               linePaint={{'line-color': 'purple','line-width': .5}}             
+        /> */}
+           <GeoJSONLayer
+              data={parroquias0a25porc}
+              fillPaint={{'fill-color': 'white','fill-outline-color': 'red','fill-opacity': .3}}
+              linePaint={{'line-color': 'red','line-width': 1}}             
+        />
+        <GeoJSONLayer
+              data={parroquias25a50porc}
+              fillPaint={{'fill-color': 'orange','fill-outline-color': 'red','fill-opacity': .3}}
+              linePaint={{'line-color': 'red','line-width': 1}}             
+        />
+            <GeoJSONLayer
+              data={parroquias50a75porc}
+              fillPaint={{'fill-color': 'green','fill-outline-color': 'red','fill-opacity': .3}}
+              linePaint={{'line-color': 'red','line-width': 1}}             
+        />
+            <GeoJSONLayer
+              data={parroquias75a100porc}
+              fillPaint={{'fill-color': 'dodgerblue','fill-outline-color': 'red','fill-opacity': .3}}
+              linePaint={{'line-color': 'red','line-width':1}}             
         />
          <GeoJSONLayer
           data={centrosgeojson}
@@ -344,7 +367,7 @@ setCentrosgeojson(centrosjson)
           data={geojson}
           circleLayout={{ visibility: 'visible' }}
          //circlePaint={{'circle-color': 'purple','circle-radius': state.radio, }} 
-          circlePaint={{'circle-color': 'dodgerblue','circle-radius': 6,'circle-opacity': 1,'circle-stroke-color': 'dodgerblue' , 'circle-stroke-width': 1,'circle-blur': .1}}         
+          circlePaint={{'circle-color': 'purple','circle-radius': 3,'circle-opacity': 1,'circle-stroke-color': 'purple' , 'circle-stroke-width': 1,'circle-blur': .1}}         
           
         // onClick={onMapClick}     
           circleOnClick={onCentroClick}

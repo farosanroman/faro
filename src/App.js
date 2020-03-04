@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState } from 'react';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
@@ -12,6 +12,7 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import indigo from '@material-ui/core/colors/indigo';
 import amber from '@material-ui/core/colors/amber';
 
+import Login from './components/dashboard/login'
 import logo from './logo.svg';
 import './App.css';
 
@@ -36,7 +37,12 @@ function App() {
   
   const [state, dispatch] = React.useReducer(reducer, initialState());
  // alert(JSON.stringify(state))
-  
+
+ const [pag, setPag] = useState(0);
+ const onLoginClick = () => {  
+
+     setPag(1)
+ }  
   React.useEffect(() => {
     window.localStorage.setItem('farostorage20', JSON.stringify(state));
   }, [state]);
@@ -45,7 +51,10 @@ function App() {
     <Application.Provider value={{ state, dispatch }}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Dashboard />
+      {(pag==0)&&<Login loginclick={onLoginClick} />}
+     {(pag==1)&&<Dashboard />}
+  
+
     </ThemeProvider>
   </Application.Provider>
    
@@ -53,6 +62,7 @@ function App() {
 }
 
 export default App;
+
 //https://codepen.io/kelvinzhang/pen/jpoRMm?editors=1010
 //https://codepen.io/ivjose/pen/EyjGKa   TARJETA 
 //https://medium.com/@reginald.johnson

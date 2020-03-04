@@ -54,7 +54,7 @@ import Total from './indicadores/total';
 import PrimeraPagina from './dashboard/primerapagina';
 import About from './dashboard/about';
 import FaroPieChart from './indicadores/faropiechartborrar';
-import Log from './dashboardlog/log';
+//import Log from './dashboardlog/log';
 ///////////////Equipo//////////////////
 import Indicadores from './dashboardindicadores/indicadores';
 import Avance from './dashboardindicadores/avance';
@@ -77,7 +77,7 @@ import Mensajes from './dashboardmensajeria/mensajes';
 import Intervalos from './dashboardmensajeria/intervalos';
 import Resultados from './dashboardmensajeria/resultados';
 import DialogoGetPersona from './personas/dialogogetpersona'
-import DialogoLogin from './dashboard/dialogologin'
+//import DialogoLogin from './dashboard/dialogologin'
 import DialogoFiltros from './dashboardindicadores/dialogofiltros'
 import Fotos from './dashboard/fotos';
 import Cursos     from      './formacion/cursos'
@@ -196,7 +196,7 @@ function getStepContent(step) {
           <Grid item xs={12}>
          
                  <Paper >
-                   <Log />
+                   {/* <Log /> */}
                  <PrimeraPagina />
                  </Paper>
                </Grid>
@@ -279,7 +279,7 @@ export default function Dashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Pizarra Electoral
+            Pizarra Electrónica
           </Typography>
           
           <IconButton color="inherit">
@@ -543,7 +543,7 @@ export default function Dashboard() {
  
         <Copyright />
        {flagFiltros&& <DialogoFiltros onClick={handleFiltro}/>}
-       {flagLogin&& <DialogoLogin login={handleLogin} />}
+       {/* {flagLogin&& <DialogoLogin login={handleLogin} />} */}
       </main>
     </div>
   );
