@@ -216,11 +216,11 @@ function getStepContent(step) {
 }
 export default function Dashboard() {
   const classes = useStyles();
-  const [flagDrawer, setFlagDrawer] = React.useState(false);
+  const [flagDrawer, setFlagDrawer] = React.useState(true);
   const [flagLogin, setFlagLogin] = React.useState(false);
   const [flagFiltros, setFlagFiltros] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const [component, setComponente] = React.useState(100);
+  const [component, setComponente] = React.useState(1);      //////<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 1 
   //const [{ data, isLoading, isError }, fetchData] = useFetch("");
   //if ((data!=undefined)){
   //{
@@ -293,7 +293,6 @@ export default function Dashboard() {
             </Badge>
           </IconButton>
 
-          <Button  onClick={handleLoginOpen} color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
      
@@ -432,7 +431,7 @@ export default function Dashboard() {
                {getStepContent(component)}
            </Paper>
       }
-  {false&&<div>!!!!!!!!!!!!Indicadores!!!!!!!!!!</div>}
+  {false&&<div>!!!!!!!!!!!!Indicadores ARRANCA AQIO ARRANCA AQUI ARRANCA QUI!!!!!!!!!!</div>  }    
   {(component==1)&&
   <Container maxWidth="lg" className={classes.container}>   
            <Indicadores />

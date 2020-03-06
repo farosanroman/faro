@@ -108,6 +108,7 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
 //alert('geo'+JSON.stringify(state))
     const classes = useStyles();
     useEffect(() => {
+     
       handleParroquiasGeoJson(PAMIRANDA)
       //  dispatch({
     //    type: 'RESET',
@@ -133,7 +134,7 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
    "features":featurescentrosjson
  }
 setCentrosgeojson(centrosjson)  
-      //alert("centros "+JSON.stringify())
+     
       
    },[]);
 

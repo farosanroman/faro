@@ -11,9 +11,11 @@ import FaroPieChart from '../indicadores/faropiechart';
 //import FaroPieChart from './faropiechartborrar';
 import PieChartDE from '../indicadores/piechartde';
 import Total from '../indicadores/total';
+import CircleTotal from '../indicadores/circletotal';
 import { Application } from '../../App';
 import {DASHBOARD} from '../../data/DASHBOARD.json';
 import {DASHBOARD2} from '../../data/DASHBOARD2.json';
+import CurveTotal from '../indicadores/curvetotal';
 //import { StateStoring } from 'devextreme-react/data-grid';
 //alert(JSON.stringify(DASHBOARD))
 
@@ -116,12 +118,16 @@ export default function Indicadores() {
 
 // alert("indicadores "+JSON.stringify(DASHBOARD2.dashboard[3].resultados))
     return (
-        <div className={classes.root}>     
+        <div className={classes.root}>    
+         
         <Container maxWidth="lg" className={classes.container}>   
-      
+        <CircleTotal /> 
+        <CurveTotal />
       <Grid container spacing={3}>
-      <Grid item xs={12} sm={6} md={3}>
+      {/* <Grid item xs={12} sm={6} md={3}>
+       
            <Paper className={fixedHeightPaper}>
+             
            <Total indicador={'Total'}/>
              </Paper>
            </Grid>      <Grid item xs={12} sm={6} md={3}>
@@ -137,7 +143,7 @@ export default function Indicadores() {
            <Paper className={fixedHeightPaper}>
            <Total indicador={'Retirados'}/>
              </Paper>
-           </Grid>     
+           </Grid>      */}
            {DASHBOARD2.dashboard.map((item, index) => (
               <Grid item xs={12} sm={6} md={3}>
               <Paper className={fixedHeightPaper}>

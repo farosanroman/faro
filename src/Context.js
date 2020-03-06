@@ -103,16 +103,16 @@ export const defaultState = {
           // alert(JSON.stringify(stateprop))
         return { ...state, asignacion: stateprop };
    
-        case 'FLAGLOGIN':
-         // alert("FLAGLOGIN en reducer "+JSON.stringify(stateprop))
-        return { ...state, flagLogin: stateprop };
+       
        case 'GEOLOCATION':
          // alert(JSON.stringify(stateprop))
        return { ...state, geolocation: stateprop };
-  
+       case 'FLAGLOGIN':
+        // alert("FLAGLOGIN en reducer "+JSON.stringify(stateprop))
+       return { ...state, flagLogin: stateprop };
       case 'LOGIN':
           //FIREBASE
-         // alert("LOGIN en reducer"+JSON.stringify(stateprop)   
+        //  alert("LOGIN en reducer"+JSON.stringify(stateprop)   )
         return { ...state, login: stateprop };
       
       case 'LNGLAT':

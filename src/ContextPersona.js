@@ -3,7 +3,7 @@
 export const defaultState = {
    
     flagLogin:false,
-   
+   loginauth:{uid:"0",name:"",photoURL:"",email:"",phone:"",cedula:"",lat:0,lng:0},
     persona:
     {
       "id":"jsonlite",
@@ -283,10 +283,15 @@ export const defaultState = {
            persona0.caracteristicas=stateprop
         return { ...statep, persona: persona0 };
          
-         case 'LOGIN':
+         case 'FLAGLOGIN':
          // alert("REDUCER2 "+JSON.stringify(statep.persona.caracteristicas))
 
          return { ...statep, flagLogin: stateprop };
+         case 'LOGINAUTH':
+         //alert("REDUCER2 "+JSON.stringify(statep.persona.caracteristicas))
+
+         return { ...statep, loginauth: stateprop };
+
          case 'CEDULA':
        // alert("CEDULA")
         // alert(JSON.stringify(stateprop))

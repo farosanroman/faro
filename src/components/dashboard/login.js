@@ -22,6 +22,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase'
+import { Application } from '../../App';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -73,7 +74,7 @@ const config = {
     //signInSuccessUrl: '/signedIn',
     // We will display Google and Facebook as auth providers.
     signInOptions: [
-      //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         //  firebase.auth.FacebookAuthProvider.PROVIDER_ID,
         //  firebase.auth.GithubAuthProvider.PROVIDER_ID,
@@ -84,6 +85,7 @@ const config = {
   };
   firebase.initializeApp(config);
 export default function Login(props) {
+  const { state, dispatch } = React.useContext(Application);
   const classes = useStyles();
   const [loginauth, setLoginAuth] = useState({uid:"0",name:"",photoURL:"",email:"",phone:"",cedula:"",lat:0,lng:0})
 
@@ -98,7 +100,7 @@ export default function Login(props) {
    //A U T O M A T I C O
     firebase.auth().onAuthStateChanged(
       user=>{
-        alert(JSON.stringify(user))
+       // alert(JSON.stringify(user))
         //console.log(JSON.stringify(user))
        //setLoginAuth(login)
         SignIn(user)
@@ -108,20 +110,31 @@ export default function Login(props) {
      
 },[]);
 function SignIn(user) {
-    //  alert("firebase user "+JSON.stringify(user))
+      //alert("firebase user "+JSON.stringify(user))
       var login={id:user.providerData[0].uid,name:user.displayName,photoURL:user.photoURL,email:user.email,phone:user.metadata.phoneNumber,cedula:"",photo:"",lat:0,lng:0}
-      alert(JSON.stringify(login))
-      setMensajeSnackBar(JSON.stringify(login))
       setLoginAuth(login)
+      // alert(JSON.stringify(login))
+      //setMensajeSnackBar(user.displayName)
       setOpenSnackBar(true)
-      setMensajeSnackBar("Buscando Persona...")
-     // fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
+      setMensajeSnackBar("Autenticando la asignacion del correo:"+user.email+" de "+user.displayName)
+      dispatch({
+        type: 'FLAGLOGIN',
+        stateprop:true
+      });
+      dispatch({
+        type: 'LOGIN',
+        stateprop:login
+      });
+      // fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
       //AQUI LA LA AUTENTICACION
-      props.loginclick()
+     
     }
 function handleCloseSnackBar() {
     // onClick("V3664204")
-     setOpenSnackBar(false)
+    //setLoginAuth(login)
+    props.loginclick() 
+       
+    setOpenSnackBar(false)
    }
 //   const uiConfig = {
 //     signInFlow: 'popup',
@@ -154,7 +167,7 @@ function handleCloseSnackBar() {
 
         
           <Typography variant="h6" color="inherit" noWrap>
-            Formacion Tecnologica
+            Digital World
           </Typography>
         </Toolbar>
       </AppBar>
@@ -162,7 +175,7 @@ function handleCloseSnackBar() {
         {/* Hero unit */}
         <Snackbar
           open={openSnackBar}
-          autoHideDuration={3000}
+          autoHideDuration={5000}
           onClose={handleCloseSnackBar}
           anchorOrigin={{ vertical:'bottom', horizontal:'left' }}
        >
@@ -173,15 +186,15 @@ function handleCloseSnackBar() {
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
-              Pizarra Electronica
+              Digital World
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-            Proyecto de "SoftWare Abierto" en JavaScript  utilizando React.js, Material, Node.js, CosmosDB y MapBox para su construccion. Cada componente esta especialmente diseñado basado en funciones y hooks de React.
-            
+            The rapid growth of the digital world brings with it lots of challenges and opportunities for science, the economy, and society. Digitalisation and new technologies are everywhere - cloud computing, artificial intelligence, big data, and the Internet of things are transforming the world we live in. The increasing ubiquity of devices and the availability of data has global implications that need useful, innovative and reusable solutions.
                </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
+                <StyledFirebaseAuth uiConfig={config} firebaseAuth={firebase.auth()} />
                   <Button  variant="contained" color="primary"  onClick={() => props.loginclick()}>
                   Login
                   </Button>
@@ -197,15 +210,15 @@ function handleCloseSnackBar() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://hdboost.com.ng/loads/2018/11/internet-of-things-hdboost.png"
+                    image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNSS0fPAp5FoonWe8iRjyjAYTFpisvBmQTSLyfXPwg6nUOep8f"
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutAntenasterBottom variant="h5" component="h2">
-                      Interconexión
+                    Information systems
                     </Typography>
                     <Typography>
-                      Con la aparición de la tecnologia 5G nuevas fronteras de interrelaciones estan por ocurrir. 
+                    Information systems focus on integrating information technology solutions and business processes to meet the information needs of businesses and other enterprises.
                     </Typography>
                   </CardContent>
                 </Card>
@@ -214,15 +227,15 @@ function handleCloseSnackBar() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://socialengineindia.com/images/home/expert1.png"
+                    image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR4yO0mK4EqtUFj0SMbzgvmJUTgLAGgbTzbhxY5VoRvi9vvPjSx"
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Conocimiento
+                    Digital banking
                     </Typography>
                     <Typography>
-                      Una nueva sociedad se estaran construyendo a traves la creacion de conocimiento colaborativo.
+                    Digital Banking is the application of technology to every programme and activity undertaken by financial institutions and their customers. Financial technology (or FinTech) is part of the broad definition of digital banking.
                     </Typography>
                   </CardContent>
                 </Card>
@@ -236,10 +249,10 @@ function handleCloseSnackBar() {
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      GeoMapas
+                      Big Data
                     </Typography>
                     <Typography>
-                      Dashboard de representacion GeoEspacial de interacciones del conocimiento.
+                    Big data refers to extremely large data sets that may be analysed computationally to reveal patterns, trends, and associations, especially relating to human behaviour and interactions.
                     </Typography>
                   </CardContent>
                 </Card>
