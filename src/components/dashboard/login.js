@@ -133,8 +133,8 @@ function handleCloseSnackBar() {
     // onClick("V3664204")
     //setLoginAuth(login)
     props.loginclick() 
-       
     setOpenSnackBar(false)
+
    }
 //   const uiConfig = {
 //     signInFlow: 'popup',
@@ -175,7 +175,7 @@ function handleCloseSnackBar() {
         {/* Hero unit */}
         <Snackbar
           open={openSnackBar}
-          autoHideDuration={5000}
+          autoHideDuration={2000}
           onClose={handleCloseSnackBar}
           anchorOrigin={{ vertical:'bottom', horizontal:'left' }}
        >

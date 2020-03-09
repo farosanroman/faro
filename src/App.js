@@ -40,7 +40,7 @@ function App() {
 
  const [pag, setPag] = useState(0);
  const onLoginClick = () => {  
-
+   //  alert("onLoginClick")
      setPag(1)
  }  
   React.useEffect(() => {
@@ -51,8 +51,8 @@ function App() {
     <Application.Provider value={{ state, dispatch }}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {(pag==0)&&<Login loginclick={onLoginClick} />}
-     {(pag==1)&&<Dashboard />}
+          {(pag==0)&&<Login loginclick={onLoginClick} />}
+          {(pag==1)&&<Dashboard />}
   
 
     </ThemeProvider>
