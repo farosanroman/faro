@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Title from '../dashboard/title';
 import FaroPieChart from '../indicadores/faropiechart';
 //import FaroPieChart from './faropiechartborrar';
-import PieChartDE from '../indicadores/piechartde';
+//import PieChartDE from '../indicadores/piechartde';
 import Total from '../indicadores/total';
 //import CircleTotal from '../indicadores/circletotal';
 import { Application } from '../../App';
@@ -20,7 +20,8 @@ import TotalCircle from '../indicadores/totalcircle';
 import TotalCurve from '../indicadores/totalcurve';
 import TotalPie from '../indicadores/totalpie';
 import TotalPie2 from '../indicadores/totalpie2';
-import CurveTotal from '../indicadores/curvetotal';
+
+import TotalDemografy from '../indicadores/totaldemografy';
 //import { StateStoring } from 'devextreme-react/data-grid';
 //alert(JSON.stringify(DASHBOARD))
 
@@ -184,35 +185,9 @@ export default function Indicadores() {
      </Grid>
      
      </Grid>
-      {/* <Grid container spacing={3}>
-      <Grid item xs={12} sm={6} md={3}>
-           <Paper className={fixedHeightPaper}>
-           <Total indicador={'Semanal'}/>
-             </Paper>
-           </Grid>     
-           <Grid item xs={12} sm={6} md={3}>
-           <Paper className={fixedHeightPaper}> 
-           <Total indicador={'Trimestral'}/>
-             </Paper>
-           </Grid>      <Grid item xs={12} sm={6} md={3}>
-           <Paper className={fixedHeightPaper}>
-           <Total indicador={'Retirados'}/>
-             </Paper>
-           </Grid>   
-           </Grid >
-        <CurveTotal />
-
+     
+     
       <Grid container spacing={3}>
-
-      <Grid item xs={12} sm={6} md={3}>
-       
-           <Paper className={fixedHeightPaper}>
-             
-           <Total indicador={'Total'}/>
-             </Paper>
-      </Grid> 
-      </Grid>       */}
-      {/* <Grid container spacing={3}>
            {DASHBOARD2.dashboard.map((item, index) => (
               <Grid item xs={12} sm={6} md={3}>
               <Paper className={fixedHeightPaper}>
@@ -225,7 +200,10 @@ export default function Indicadores() {
                ))}  
 
 
-        </Grid>        */}
+        </Grid>   
+        <TotalDemografy />
+
+         
    </Container>
 </div>
     );

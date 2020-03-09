@@ -134,12 +134,12 @@ const handleChangeCambios=input=>e=>{
 
   return (
     <div>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" >
+      {/* <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" >
         <DialogTitle id="form-dialog-title">Filtros</DialogTitle>
         <DialogContent>
           <DialogContentText >
             Criterios de Filtros.
-          </DialogContentText>
+          </DialogContentText> */}
          
       <FormControl component="fieldset" className={classes.formControl}>
       <List>
@@ -286,8 +286,13 @@ const handleChangeCambios=input=>e=>{
      
       <Divider />
       
-
-        </DialogContent>
+      <Button onClick={handleClose} color="primary">
+            Cancelar
+          </Button>
+          <Button onClick={handleFiltro} color="primary">
+            Guardar
+          </Button>
+        {/* </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancelar
@@ -296,7 +301,7 @@ const handleChangeCambios=input=>e=>{
             Guardar
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
     </div>
   );
 }

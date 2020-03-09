@@ -40,6 +40,7 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
 import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
 
+
 import MenuIcon from '@material-ui/icons/Menu';
 import EditIcon from '@material-ui/icons/Edit';
 import PeopleIcon from '@material-ui/icons/People';
@@ -61,8 +62,8 @@ import Indicadores from './dashboardindicadores/indicadores';
 //import Avance from './indicadores/avance';
 import { Pivote } from './dashboardindicadores/pivote'
 import Radar2 from './dashboardindicadores/radar2';
-import ChartPyramid from './dashboardindicadores/chartpyramid';
-import ChartPieChart from './dashboardindicadores/chartpiechart';
+import ChartPyramid from './dashboardindicadores/chartpyramidBORRAR';
+import ChartPieChart from './dashboardindicadores/chartpiechartBORRAR';
 import Geo from './dashboardindicadores/geo';
 import PorcPartidos from './dashboardindicadores/porcpartidos';
 ///////////////Equipo//////////////////
@@ -221,6 +222,7 @@ export default function Dashboard() {
   const [flagLogin, setFlagLogin] = React.useState(false);
   const [flagFiltros, setFlagFiltros] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [openFiltro, setOpenFiltro] = React.useState(false);
   const [state, setState] = React.useState({
     top: true,
     left: true,
@@ -248,10 +250,11 @@ export default function Dashboard() {
     //setOpen(false);
   };
   const toggleDrawer = (side, open) => event => {
+ 
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
+    
     setState({ ...state, [side]: open });
   };
   const handleFiltro=()=>{
@@ -335,9 +338,9 @@ export default function Dashboard() {
       <List>
        <ListItem button onClick={handleComponent(1)}>
       <ListItemIcon>
-        <PeopleIcon />
+        <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Padron" />
+      <ListItemText primary="Dashboard" />
     </ListItem>
 
         <ListItem button  onClick={handleComponent(0)} >
@@ -347,12 +350,7 @@ export default function Dashboard() {
       <ListItemText primary="Distribucion" />
     </ListItem>
     </List>
-    <ListItem button  onClick={handleComponent(8)} >
-      <ListItemIcon>
-      <BrightnessHighIcon />
-      </ListItemIcon>
-      <ListItemText primary="Filtros" />
-    </ListItem>.
+   
     <Divider />
         <List>
         <ListItem button  onClick={handleComponent(10)} >
@@ -445,7 +443,22 @@ export default function Dashboard() {
     
         </List>
       </Drawer>
+      
       }
+      
+       <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}
+      classes={{
+        paper: classes.drawerPaper2,
+      }}
+
+      >
+    
+         <DialogoFiltros onClick={handleFiltro}/>
+       
+        {/* {sideList('right')} */}
+      </Drawer>
+
+
       <main className={classes.content}>
       <div className={classes.appBarSpacer} />
       {(component==100)&&
@@ -466,15 +479,7 @@ export default function Dashboard() {
   {(component==0)&&
  <Container maxWidth="lg" className={classes.container}>
    <Grid container spacing={3}>
-   <Grid item xs={12} sm={6} md={6}>
-     <Paper className={fixedHeightPaper2}>
-         <ChartPieChart /></Paper>
-    </Grid>
-    <Grid item xs={12} sm={6} md={6}>
-    <Paper className={fixedHeightPaper2}>
-    <ChartPyramid />
-     </Paper>
-    </Grid>
+  
 {false&&<div>!!!!!!!!!!!!Padron!!!!!!!!!!</div>}
 <Grid item xs={12}>
               <Paper className={classes.paper}>

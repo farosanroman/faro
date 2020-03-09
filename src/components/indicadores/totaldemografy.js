@@ -19,7 +19,7 @@ import Title from '../dashboard/title';
 import Chart from 'react-apexcharts';
 
 
-export default function CurveTotal() {
+export default function TotalDemografy() {
    
             const chart50Options = {
                 chart: {
@@ -273,74 +273,9 @@ export default function CurveTotal() {
 <div className="donut">
 <Chart options={options} series={series222} type="bar" width="580" />
       
-        <Chart options={piechart.options} series={piechart.series} type="donut" width="380" />
+     
       </div>
-                <Grid container spacing={4}>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Card className="pl-3 pt-3 mb-4">
-                            <div className="d-flex justify-content-between">
-                                <div className="pr-4 flex-grow-1 text-nowrap">
-                                    <div className="text-uppercase font-weight-bold font-size-xs mb-2">
-                                        Asignaciones
-                </div>
-                                    <div className="font-weight-bold">
-                                        <div className="font-size-xxl mb-1">54</div>
-                                        <div className="text-success">
-                                            <span>67%</span>
-                                            {/* <FontAwesomeIcon icon={['fas', 'angle-up']} className="ml-2" /> */}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="d-flex align-items-center pt-2">
-                                    <Chart options={chart50Options} series={chart50Data} type="area" height={104} />
-                                </div>
-                            </div>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Card className="pl-3 pt-3 mb-4">
-                            <div className="d-flex justify-content-between">
-                                <div className="pr-4 flex-grow-1 text-nowrap">
-                                    <div className="text-uppercase font-weight-bold font-size-xs mb-2">
-                                        Comunicaciones
-                </div>
-                                    <div className="font-weight-bold">
-                                        <div className="font-size-xxl mb-1">$456</div>
-                                        <div className="text-danger">
-                                            <span>32%</span>
-                                            {/* <FontAwesomeIcon icon={['fas', 'angle-down']} className="ml-2" /> */}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="d-flex align-items-center pt-2">
-                                    <Chart options={chart51Options} series={chart51Data} type="area" height={104} />
-                                </div>
-                            </div>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                        <Card className="pl-3 pt-3 mb-4">
-                            <div className="d-flex justify-content-between">
-                                <div className="pr-4 flex-grow-1 text-nowrap">
-                                    <div className="text-uppercase font-weight-bold font-size-xs mb-2">
-                                        Incidentes
-                </div>
-                                    <div className="font-weight-bold">
-                                        <div className="font-size-xxl mb-1">$674</div>
-                                        <div className="text-danger">
-                                            <span>21%</span>
-                                            {/* <FontAwesomeIcon icon={['fas', 'angle-down']} className="ml-2" /> */}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="d-flex align-items-center pt-2">
-                                    <Chart options={chart52Options} series={chart52Data} type="area" height={104} />
-                                </div>
-                            </div>
-                        </Card>
-                    </Grid>
-                </Grid>
-
+  
             </React.Fragment>
         );
 }
