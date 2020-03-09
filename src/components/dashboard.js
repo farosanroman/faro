@@ -46,6 +46,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import TuneIcon from '@material-ui/icons/Tune';
 import { mainListItems, secondaryListItems } from './listItems';
 
 //import { Summary } from './summary'
@@ -220,6 +221,12 @@ export default function Dashboard() {
   const [flagLogin, setFlagLogin] = React.useState(false);
   const [flagFiltros, setFlagFiltros] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [state, setState] = React.useState({
+    top: true,
+    left: true,
+    bottom: false,
+    right: false,
+  });
   const [component, setComponente] = React.useState(1);      //////<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 1 
   //const [{ data, isLoading, isError }, fetchData] = useFetch("");
   //if ((data!=undefined)){
@@ -239,6 +246,13 @@ export default function Dashboard() {
     setFlagLogin(false)
    // setComponente(101)
     //setOpen(false);
+  };
+  const toggleDrawer = (side, open) => event => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState({ ...state, [side]: open });
   };
   const handleFiltro=()=>{
    setFlagFiltros(false)
@@ -292,7 +306,15 @@ export default function Dashboard() {
               <VisibilityIcon />
             </Badge>
           </IconButton>
-
+          <IconButton
+            edge="end"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={toggleDrawer('right', true)}
+            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+          >
+            <TuneIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
      
