@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent,useEffect,useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
-import Title from '../dashboard/title';
+
 import FaroPieChart from '../indicadores/faropiechart';
 //import FaroPieChart from './faropiechartborrar';
 //import PieChartDE from '../indicadores/piechartde';
@@ -22,6 +22,7 @@ import TotalPie from '../indicadores/totalpie';
 import TotalPie2 from '../indicadores/totalpie2';
 
 import TotalDemografy from '../indicadores/totaldemografy';
+import {useFetch}  from '../hooks/usefetch'
 //import { StateStoring } from 'devextreme-react/data-grid';
 //alert(JSON.stringify(DASHBOARD))
 
@@ -121,16 +122,33 @@ export default function Indicadores() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const fixedHeightPaper2 = clsx(classes.paper, classes.fixedHeight2);
   const { state, dispatch } = React.useContext(Application);
-
+  const [ data, isLoading, isError , fetchData] = useFetch("");
+  const [flag,setFlag]= useState(false);
+ // alert(JSON.stringify(state.login))
 // alert("indicadores "+JSON.stringify(DASHBOARD2.dashboard[3].resultados))
+useEffect(() => {   
+  fetchData('http://openfaroapi.azurewebsites.net/api/autenticacionapp?login=ppazpurua@gmail.com&clave=9999&idfaroaplicacion=3&plataforma=SIN&uuid=SIN')
+       
+},[]);
+useEffect(() => {
+  if (isLoading) {
+  //  setFlagCircular(true)
+  }
+  if ((data!=undefined)&&(!isLoading)&&(data.length>0))      
+  {
+   // alert(JSON.stringify(data))
+   setFlag(true)
+  }
+},[data,isLoading]);
     return (
         <div className={classes.root}>    
          
         <Container maxWidth="lg" className={classes.container}>  
 
+{flag&&
         <Grid container spacing={3}>
       <Grid item xs={12} sm={6} md={3}>
-           <TotalCircle titulo={'Asignaciones Totales'} indicador={'Totalhh'} color={'#1bc943'} bcolor={"rgba(27, 201, 67, 0.15)"} porc={45} total={23000} leyenda={'Total Acumulado'}/>
+           <TotalCircle titulo={'Asignaciones Totales'} indicador={'Totalhh'} color={'#1bc943'} bcolor={"rgba(27, 201, 67, 0.15)"} porc={45} total={0} leyenda={'Total Acumulado'}/>
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
            <TotalCircle titulo={'Trimestral'} indicador={'Totalhh'} color={"dodgerblue"} bcolor={'rgb(230, 240, 255)'} porc={45} total={23000} leyenda={'Total Acumulado'}/>
@@ -142,9 +160,9 @@ export default function Indicadores() {
            <TotalCircle titulo={'Retiros'} indicador={'Totalhh'} color={'#f83245'} bcolor={'rgb(255, 235, 230)'} porc={10} total={1200} leyenda={'Total Acumulado'}/>
       </Grid>
       </Grid>
-
+}
       <Grid container spacing={3}>
-      
+   
       <Grid item xs={12} md={4} sm={6}>
          <TotalCurve titulo={'Totales'} color={'#1bc943'} data={[
                 {

@@ -9,20 +9,37 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
+
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+
+
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import Footer from './footer'
 import Avatar from '@material-ui/core/Avatar';
-
+import MouseIcon from '@material-ui/icons/Mouse';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase'
+
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { Application } from '../../App';
+import {useFetch}  from '../hooks/usefetch'
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -34,6 +51,14 @@ function Copyright() {
 }
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+  inline: {
+    display: 'inline',
+  },
   icon: {
     marginRight: theme.spacing(2),
   },
@@ -88,21 +113,19 @@ export default function Login(props) {
   const { state, dispatch } = React.useContext(Application);
   const classes = useStyles();
   const [loginauth, setLoginAuth] = useState({uid:"0",name:"",photoURL:"",email:"",phone:"",cedula:"",lat:0,lng:0})
-
+  const [open, setOpen] = useState(false);
+  const [pos, setPos] = useState(null);
   const [flag, setFlag] = useState(false);
   const [flagAsignacion, setFlagAsignacion] = useState(false);
   const [openSnackBar,setOpenSnackBar]= useState(true);
   const [mensajeSnackBar,setMensajeSnackBar]= useState("");
+  const [ data, isLoading, isError , fetchData] = useFetch("");
   useEffect(() => {   
     //alert(user)
-    //setOpenSnackBar(true)
-    //setMensajeSnackBar("Autenticando en Twitter...(useEffect)")
-   //A U T O M A T I C O
     firebase.auth().onAuthStateChanged(
       user=>{
        // alert(JSON.stringify(user))
-        //console.log(JSON.stringify(user))
-       //setLoginAuth(login)
+   
         SignIn(user)
       }
   
@@ -111,30 +134,70 @@ export default function Login(props) {
 },[]);
 function SignIn(user) {
       //alert("firebase user "+JSON.stringify(user))
-      var login={id:user.providerData[0].uid,name:user.displayName,photoURL:user.photoURL,email:user.email,phone:user.metadata.phoneNumber,cedula:"",photo:"",lat:0,lng:0}
+      var login={id:user.providerData[0].uid,name:user.displayName,photoURL:user.photoURL,email:user.email,phone:user.metadata.phoneNumber,cedula:"",photo:"",lat:0,lng:0,idorg:0,org:"",idfuncional:0,funcional:"",idrol:0,rol:"",codcne:"000000000"}
       setLoginAuth(login)
-      // alert(JSON.stringify(login))
+   
+      //alert(JSON.stringify(login.email))
       //setMensajeSnackBar(user.displayName)
       setOpenSnackBar(true)
-      setMensajeSnackBar("Autenticando la asignacion del correo:"+user.email+" de "+user.displayName)
-      dispatch({
-        type: 'FLAGLOGIN',
-        stateprop:true
-      });
-      dispatch({
-        type: 'LOGIN',
-        stateprop:login
-      });
+      if (login.email!=""){
+        setMensajeSnackBar("Autenticando la asignacion del correo:"+user.email+" de "+user.displayName)
+        
+        fetchData('http://openfaroapi.azurewebsites.net/api/autenticacionapp?login=ppazpurua@gmail.com&clave=9999&idfaroaplicacion=3&plataforma=SIN&uuid=SIN')
+       
       // fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
       //AQUI LA LA AUTENTICACION
-     
+    }else{
+      
+      setMensajeSnackBar("Debe presionar el Boton de Google para autenticarse...")
     }
+
+  }
+  useEffect(() => {
+    if (isLoading) {
+    //  setFlagCircular(true)
+    }
+    if ((data!=undefined)&&(!isLoading)&&(data.length>0))      
+    {
+    //  alert(JSON.stringify(data))
+      setOpen(true)
+    }
+  },[data,isLoading]);
+  function login(pos){
+           loginauth.idorg=data[pos].idorganizacion;
+           loginauth.org=data[pos].nombreorganizacion;
+           loginauth.idfuncional=data[pos].idnodofuncional
+           loginauth.funcional=data[pos].nombrenodofuncional
+           loginauth.idrol=data[pos].idrol
+          loginauth.rol=data[pos].nombrerol
+           loginauth.codcne=data[pos].codigocanonicocne
+      
+          // alert(JSON.stringify(loginauth))
+
+           setOpen(false)
+
+           props.loginclick() 
+           dispatch({
+             type: 'FLAGLOGIN',
+             stateprop:true
+           });
+           dispatch({
+             type: 'LOGIN',
+             stateprop:loginauth
+           });
+    
+  }
+  
 function handleCloseSnackBar() {
     // onClick("V3664204")
     //setLoginAuth(login)
-    props.loginclick() 
-    setOpenSnackBar(false)
+    if (state.flagLogin==true){
+     // props.loginclick() 
+      setOpenSnackBar(false)
+    }else{
+      setMensajeSnackBar("Debe presionar el Boton de Google para autenticarse...")
 
+    }
    }
 //   const uiConfig = {
 //     signInFlow: 'popup',
@@ -185,11 +248,66 @@ function handleCloseSnackBar() {
         </Snackbar>
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
+          {/* onClose={handleClose} */}
+          <Dialog open={open}  aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Seleccion del Rol</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Seleccione el Funcional, Rol y su Codigo CNE para poder ingresar.
+          </DialogContentText>
+        <List className={classes.root}>
+     
+     
+      {data.map((item, index) => (
+        <div>
+      <Divider variant="inset" component="li" />
+     <ListItem alignItems="flex-start">
+        <ListItemAvatar onClick={() =>login(index)}>
+        <Avatar>
+                      <MouseIcon />
+                    </Avatar>
+        </ListItemAvatar>
+        <ListItemText
+          primary={item.nombreorganizacion}
+          secondary={
+            <React.Fragment>
+          <Grid container >
+          <Grid item key={12} xs={12} sm={12} md={12}>
+          
+              <Typography variant="h6" component="h6"
+               
+              >
+               {item.nombrenodofuncional}
+              </Typography>
+              </Grid>
+          <Grid item key={11} xs={12} sm={12} md={12}>
+              
+              <Typography variant="h3" component="h1"
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+               {item.nombrerol}
+              </Typography>
+              </Grid></Grid>
+              {item.codigocanonicocne+" "+item.nombrenodoorganizacional}
+            </React.Fragment>
+            
+          }
+        />
+        
+      </ListItem>
+      </div>
+      ))}
+    </List>
+    </DialogContent>
+      </Dialog>
             <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
               Digital World
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-            The rapid growth of the digital world brings with it lots of challenges and opportunities for science, the economy, and society. Digitalisation and new technologies are everywhere - cloud computing, artificial intelligence, big data, and the Internet of things are transforming the world we live in. The increasing ubiquity of devices and the availability of data has global implications that need useful, innovative and reusable solutions.
+            Digitalisation and new technologies are everywhere - cloud computing, artificial intelligence, big data, and the Internet of things are transforming the world we live in. The increasing ubiquity of devices and the availability of data has global implications that need useful, innovative and reusable solutions.
                </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
