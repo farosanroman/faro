@@ -19,7 +19,7 @@ import Title from '../dashboard/title';
 //import Chart from 'react-google-charts';
 //https://github.com/alex3165/react-mapbox-gl/issues/763
 //https://www.youtube.com/watch?v=JJatzkPcmoI
-//https://github.com/leighhalliday/mapbox-react-demo
+//https://github.com/leighhalliday/mapbox-react-demo CLASIC react-mapbox-gl UBER
 var linearoja={"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[-66,9],[-80.31606674194336,25.77392392167507]]}}]}
 const style={   Paper:{padding:1,marginTop:1,marginBottom:1}}
 const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pzIn0.V8cqmZH6dFIcxtKoaWcZZw"

@@ -60,7 +60,7 @@ import FaroPieChart from './indicadores/faropiechartborrar';
 ///////////////Equipo//////////////////
 import Indicadores from './dashboardindicadores/indicadores';
 //import Avance from './indicadores/avance';
-import { Pivote } from './dashboardindicadores/pivote'
+
 import Radar2 from './dashboardindicadores/radar2';
 import ChartPyramid from './dashboardindicadores/chartpyramidBORRAR';
 import ChartPieChart from './dashboardindicadores/chartpiechartBORRAR';
@@ -470,7 +470,7 @@ export default function Dashboard() {
   {(component==1)&&
   <Container maxWidth="lg" className={classes.container}>   
            <Indicadores />
-          <Pivote />
+        
         {/* <Paper className={fixedHeightPaper}>
           <Avance />
         </Paper> */}

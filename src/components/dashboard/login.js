@@ -92,48 +92,88 @@ const useStyles = makeStyles(theme => ({
 
 const cards = [1, 2, 3];
 const config = {
-    apiKey: 'AIzaSyDZ08hKl01qFilc3nJ4oRmO8wq49pcsw8s',
-    authDomain: 'vinotinto-7f56f.firebaseapp.com',
-    signInFlow: 'popup',
-    // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-    //signInSuccessUrl: '/signedIn',
-    // We will display Google and Facebook as auth providers.
-    signInOptions: [
-      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        //  firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        //  firebase.auth.GithubAuthProvider.PROVIDER_ID,
-          firebase.auth.EmailAuthProvider.PROVIDER_ID,
-         // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-         // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-    ],
-  };
-  firebase.initializeApp(config);
+  apiKey: 'AIzaSyDZ08hKl01qFilc3nJ4oRmO8wq49pcsw8s',
+  authDomain: 'vinotinto-7f56f.firebaseapp.com',
+  signInFlow: 'popup',
+  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+  //signInSuccessUrl: '/signedIn',
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+   // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      //  firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      //  firebase.auth.GithubAuthProvider.PROVIDER_ID,
+     //   firebase.auth.EmailAuthProvider.PROVIDER_ID,
+       // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+       // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+  ],
+  callbacks: {
+    // Avoid redirects after sign-in.
+    
+    signInSuccessWithAuthResult: () => false
+  }
+  // ,callbacks:{
+  //          signInSuccess:(user)=>{
+  //           alert(JSON.stringify(user))
+  //            //SignIn(user)
+  //          }
+  //        }
+};
+firebase.initializeApp(config);
+//https://github.com/firebase/firebaseui-web-react#using-firebaseauth-with-local-state
+//https://stackoverflow.com/questions/60420906/how-do-i-implement-firebase-authentication-with-local-state-with-hooks
 export default function Login(props) {
   const { state, dispatch } = React.useContext(Application);
   const classes = useStyles();
   const [loginauth, setLoginAuth] = useState({uid:"0",name:"",photoURL:"",email:"",phone:"",cedula:"",lat:0,lng:0})
   const [open, setOpen] = useState(false);
+  const [flagDialog, setFlagDialog] = useState(false);
+  
   const [pos, setPos] = useState(null);
   const [flag, setFlag] = useState(false);
   const [flagAsignacion, setFlagAsignacion] = useState(false);
   const [openSnackBar,setOpenSnackBar]= useState(true);
   const [mensajeSnackBar,setMensajeSnackBar]= useState("");
   const [ data, isLoading, isError , fetchData] = useFetch("");
-  useEffect(() => {   
-    //alert(user)
-    firebase.auth().onAuthStateChanged(
-      user=>{
-       // alert(JSON.stringify(user))
-   
-        SignIn(user)
-      }
+
+  const [signedIn, setSignIn]= useState(false);
+  useEffect(() => {
+
+    const unregisterAuthObserver = firebase.auth()
+      .onAuthStateChanged(
+        (user) => {
+         // alert(JSON.stringify(user))
+          SignIn(user)
+          //setSignIn({isSignedIn: !!user})
+        }
+      );
   
-    )
+    // Now you either return just unregisterAuthObserver
+    // which will be called when the component is unmounted
+    return unregisterAuthObserver;
+  
+    // or you create a function if you want more login when the component is unmounted
+    // return () => {
+    //   unregisterAuthObserver();
+    //   console.log("Sdd");
+    // }
+  
+  }, []); // Important, pass an empty array so to execute useEffect hook only once
+
+//   useEffect(() => {   
+//     //alert(user)
+//     firebase.auth().onAuthStateChanged(
+//       user=>{
+//        // alert(JSON.stringify(user))
+   
+//         SignIn(user)
+//       }
+  
+//     )
      
-},[]);
+// },[]);
 function SignIn(user) {
-      //alert("firebase user "+JSON.stringify(user))
+     // alert("firebase user "+JSON.stringify(user))
       var login={id:user.providerData[0].uid,name:user.displayName,photoURL:user.photoURL,email:user.email,phone:user.metadata.phoneNumber,cedula:"",photo:"",lat:0,lng:0,idorg:0,org:"",idfuncional:0,funcional:"",idrol:0,rol:"",codcne:"000000000"}
       setLoginAuth(login)
    
@@ -142,8 +182,9 @@ function SignIn(user) {
       setOpenSnackBar(true)
       if (login.email!=""){
         setMensajeSnackBar("Autenticando la asignacion del correo:"+user.email+" de "+user.displayName)
-        
-        fetchData('http://openfaroapi.azurewebsites.net/api/autenticacionapp?login=ppazpurua@gmail.com&clave=9999&idfaroaplicacion=3&plataforma=SIN&uuid=SIN')
+        const url='http://openfaroapi.azurewebsites.net/api/autenticacionapp?login=q'+user.email+'&clave=9999&idfaroaplicacion=3&plataforma=SIN&uuid=SIN'
+        console.log(url)
+        fetchData(url)
        
       // fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
       //AQUI LA LA AUTENTICACION
@@ -154,13 +195,20 @@ function SignIn(user) {
 
   }
   useEffect(() => {
+    //alert(JSON.stringify(data))
     if (isLoading) {
     //  setFlagCircular(true)
     }
     if ((data!=undefined)&&(!isLoading)&&(data.length>0))      
     {
-    //  alert(JSON.stringify(data))
+      if (data[0].id==1){
+     // alert(JSON.stringify(data))
       setOpen(true)
+      }else{
+        setFlagDialog(true)
+   
+      }
+      //ROJO
     }
   },[data,isLoading]);
   function login(pos){
@@ -199,28 +247,34 @@ function handleCloseSnackBar() {
 
     }
    }
-//   const uiConfig = {
-//     signInFlow: 'popup',
-//     // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-//     //signInSuccessUrl: '/signedIn',
-//     // We will display Google and Facebook as auth providers.
-//     signInOptions: [
-//       firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-//      // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-//         //  firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-//         //  firebase.auth.GithubAuthProvider.PROVIDER_ID,
-//        //   firebase.auth.EmailAuthProvider.PROVIDER_ID,
-//          // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-//          // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-//     ],
-//     callbacks:{
-//       signInSuccess:(user)=>{
-//        alert(JSON.stringify(user))
-//         //SignIn(user)
-//       }
-//     }
-//   };
-
+   const handleClose = () => {
+   setFlagDialog(false);
+  };
+  //////////////////////////////////////
+//////////////LOGIN////////////////////
+ /////////////////////////////
+ ////////////////////////////////////
+ const uiConfig = {
+  signInFlow: 'popup',
+  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+  //signInSuccessUrl: '/signedIn',
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+  //  firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      //  firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      //  firebase.auth.GithubAuthProvider.PROVIDER_ID,
+     //   firebase.auth.EmailAuthProvider.PROVIDER_ID,
+       // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+       // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+  ],
+  callbacks:{
+    signInSuccess:(user)=>{
+     // alert(JSON.stringify(user))
+      SignIn(user)
+    }
+  }
+};
   return (
     <React.Fragment>
       <CssBaseline />
@@ -303,6 +357,22 @@ function handleCloseSnackBar() {
     </List>
     </DialogContent>
       </Dialog>
+      <Dialog  aria-labelledby="simple-dialog-title" open={flagDialog}
+             PaperProps={{
+              style: {
+                  backgroundColor: "red",
+                  color:"white"
+              },
+           }}
+            >
+                     <DialogTitle id="simple-dialog-title">{loginauth.email+' No ha sido registrado en FV2'} </DialogTitle>
+                     <DialogActions>
+          <Button onClick={handleClose} color="white">
+            Cerrar
+          </Button>
+          
+        </DialogActions>
+      </Dialog>
             <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
               Digital World
             </Typography>
@@ -312,7 +382,7 @@ function handleCloseSnackBar() {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                <StyledFirebaseAuth uiConfig={config} firebaseAuth={firebase.auth()} />
+                <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
                   <Button  variant="contained" color="primary"  onClick={() => props.loginclick()}>
                   Login
                   </Button>
