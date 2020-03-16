@@ -3,17 +3,45 @@
 export const defaultState = {
    
     flagLogin:false,
-   
+
+    
+    login:{id:"id",type:"login",name:"mister",photoURL:"https://image.shutterstock.com/image-vector/photo-camera-icon-260nw-197166461.jpg",email:"",phone:"",cedula:"",lat:0,lng:0,idorg:0,org:"",idfuncional:0,funcional:"",idrol:0,rol:"",codcne:"000000000"}, //FIREBASE AUTH
+    geolocation:{country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"},
+    position:{ latitude:9, longitude:-66, timestamp:0, accuracy:0, error:null },  //hook
+    ///// GeoJSON
+
+    funcionales:[
+      {idfuncional:1,funcional:"Comando 2020","selected": true},
+      {idfuncional:2,funcional:"Formacion","selected": false},
+      {idfuncional:3,funcional:"Conteo Rapido","selected": false}
+   ],
     organizacion:
     [
       {
         "id": 0,"nombre": "AD","descripcion": "Accion Democratica",
         "selected": true,
         value: 800
+      },
+      {
+        "id": 1,"nombre": "PJ","descripcion": "Primero Justicia",
+        "selected": true,
+        value: 800
+      },
+      {
+        "id": 2,"nombre": "VP","descripcion": "Voluntad Popular",
+        "selected": true,
+        value: 800
+      }
+      ,
+      
+      {
+        "id": 3,"nombre": "UNT","descripcion": "Un Nuevo Tiempo",
+        "selected": true,
+        value: 800
       }
  
- 
     ],
+  
     roles:
     [
       {
@@ -32,11 +60,8 @@ export const defaultState = {
       }
     ]
   ,
-    
-    login:{id:"id",type:"login",name:"mister",photoURL:"https://image.shutterstock.com/image-vector/photo-camera-icon-260nw-197166461.jpg",email:"",phone:"",cedula:"",lat:0,lng:0,idorg:0,org:"",idfuncional:0,funcional:"",idrol:0,rol:"",codcne:"000000000"}, //FIREBASE AUTH
-    geolocation:{country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"},
-    position:{ latitude:9, longitude:-66, timestamp:0, accuracy:0, error:null },  //hook
-    ///// GeoJSON
+
+
     lnglat:[-66.9188,10.508],
     zoom:[12],
     radio:3,
@@ -89,6 +114,20 @@ export const defaultState = {
          return { ...state,radio:radio, zoom: stateprop };
       //////////////////////////////////////
       ////////////////////////////////////
+      case 'FILTRO_FUNCIONALES':
+       // alert("stateprop"+stateprop)
+        let funcionales=state.funcionales.map((funcional) => {
+          
+          if (funcional.idfuncional==stateprop){ 
+                 funcional.selected=true}
+                 else
+                 {funcional.selected=false}
+           
+          return funcional;
+         });
+        return {
+          ...state, funcionales:funcionales
+        };
       case 'FILTRO_ORGANIZACION':
        // alert(stateprop)
         //alert(JSON.stringify(state.organizacion))

@@ -80,7 +80,7 @@ import Intervalos from './dashboardmensajeria/intervalos';
 import Resultados from './dashboardmensajeria/resultados';
 import DialogoGetPersona from './personas/dialogogetpersona'
 //import DialogoLogin from './dashboard/dialogologin'
-import DialogoFiltros from './dashboardindicadores/dialogofiltros'
+import DialogoFiltros from './dashboard/dialogofiltros'
 import Fotos from './dashboard/fotos';
 import Cursos     from      './formacion/cursos'
 import VinoTinto     from      './formacion/vinotinto'
@@ -250,7 +250,7 @@ export default function Dashboard() {
     //setOpen(false);
   };
   const toggleDrawer = (side, open) => event => {
- 
+    
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
@@ -258,7 +258,11 @@ export default function Dashboard() {
     setState({ ...state, [side]: open });
   };
   const handleFiltro=()=>{
-   setFlagFiltros(false)
+   // alert("handleFiltros")
+    setState({ ...state, ['right']: false });
+  
+    //setFlagDrawer(false)
+  //  //setFlagFiltros(false)
   }
   const handleComponent = value => () => {
     setComponente(value)
@@ -568,7 +572,7 @@ export default function Dashboard() {
          
  
         <Copyright />
-       {flagFiltros&& <DialogoFiltros onClick={handleFiltro}/>}
+       {/* {flagFiltros&& <DialogoFiltros onClick={handleFiltro}/>} */}
        {/* {flagLogin&& <DialogoLogin login={handleLogin} />} */}
       </main>
     </div>

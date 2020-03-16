@@ -59,7 +59,8 @@ export default function DialogoFiltros(props) {
     const [open, setOpen] = React.useState(true);
     const { state, dispatch } = React.useContext(Application);
 
-    
+    const [posfuncional, setPosFuncional] = React.useState(""); 
+    const [idfuncional, setIdFuncional] = React.useState(""); 
     const [codestado, setCodigoEstado] = React.useState("");
     const [posestado, setPosEstado] = React.useState(0);
     const [codmunicipio, setCodigoMunicipio] = React.useState("");
@@ -74,7 +75,18 @@ export default function DialogoFiltros(props) {
     //const { AD, PJ, VP } = state;
     //const error = [ AD, PJ, VP].filter(v => v).length !== 2;
 const error='ABC'
+useEffect(() => {
+  //alert(JSON.stringify(state.funcionales))
+  //Aqui se ve el codcne y se actualia el estado municipio y parrouia
+  var index = state.funcionales.findIndex(obj => obj.selected==true);
+  //alert(index)
+  if (index==-1)index=0
+  setIdFuncional(state.funcionales[index].idfuncional)
 
+}, []); // Important, pass an empty array so to execute useEffect hook only once
+useEffect(() => {
+//alert()
+}, [state.funcionales]); 
 const handleCheckboxChange = id => {
  // alert(id)
   dispatch({
@@ -95,9 +107,15 @@ const handleCheckboxChangeRol = id => {
  };
  
 const handleChangeCambios=input=>e=>{
-      if (input=="formularios"){
-       //alert("cedula")
-        //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
+      if (input=="funcional"){
+        var index = state.funcionales.findIndex(obj => obj.idfuncional==e.target.value);
+        // alert(index)
+         dispatch({
+          type: 'FILTRO_FUNCIONALES',
+          stateprop: state.funcionales[index].idfuncional
+        });
+          setIdFuncional(e.target.value)
+          setPosFuncional(index)
       }
       if (input=="estado"){
         //alert(JSON.stringify(e.target.value)) 
@@ -121,15 +139,15 @@ const handleChangeCambios=input=>e=>{
      
       
      }
-
+     function handleClose() {
+      props.onClick()
+     }
     function handleFiltro()  {   //de Faro
         props.onClick()
         }
           
         
-          function handleClose() {
-           props.onClick()
-          }
+         
     
 
   return (
@@ -141,8 +159,31 @@ const handleChangeCambios=input=>e=>{
             Criterios de Filtros.
           </DialogContentText> */}
          
-      <FormControl component="fieldset" className={classes.formControl}>
+      {/* <FormControl component="fieldset" className={classes.formControl}> */}
+     
       <List>
+      <FormLabel component="legend" required error={error}>
+            Funcional
+          </FormLabel>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-label">Funcional</InputLabel>
+        <Select
+        value={idfuncional}
+        onChange={handleChangeCambios('funcional')}
+         input={<Input name="Municipio" id="age-helper" />}
+       >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        {state.funcionales.map((item, index) => (
+                
+                <MenuItem value={item.idfuncional}>{item.funcional}</MenuItem>
+              
+               ))}
+       
+      
+      </Select>
+      </FormControl>
       <FormLabel component="legend" required error={error}>
             Nodos Geograficos
           </FormLabel>
@@ -236,7 +277,7 @@ const handleChangeCambios=input=>e=>{
             );
           })}
           <ListItem role={undefined}>
-            <FormHelperText>One or more plates must be checked</FormHelperText>
+            <FormHelperText>Seleccione uno o varios partidos.</FormHelperText>
           </ListItem>
         </FormGroup>
         <Divider />
@@ -272,17 +313,15 @@ const handleChangeCambios=input=>e=>{
            );
          })}
          <ListItem role={undefined}>
-           <FormHelperText>One or more plates must be checked</FormHelperText>
+           <FormHelperText>Seleccione uno o varios Roles</FormHelperText>
          </ListItem>
        </FormGroup>
      
       <Divider />
        
-        <FormHelperText>Be careful</FormHelperText>
-
         </List>
         
-      </FormControl>
+      {/* </FormControl> */}
      
       <Divider />
       
@@ -290,7 +329,7 @@ const handleChangeCambios=input=>e=>{
             Cancelar
           </Button>
           <Button onClick={handleFiltro} color="primary">
-            Guardar
+            Filtrar
           </Button>
         {/* </DialogContent>
         <DialogActions>

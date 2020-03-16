@@ -1,6 +1,10 @@
 import React, { useState,Fragment,useEffect,useMemo } from 'react';
 import { Application } from '../../App';
 import { makeStyles } from '@material-ui/core/styles';
+//import  voronoi, {turf } from '@turf/voronoi';
+//import  { randomPoint } from '@turf/random';
+//import turf , {  randomPoint } from '@turf/turf';
+import { greatCircle, point ,randomPoint,voronoi} from '@turf/turf';
 
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -24,10 +28,6 @@ import Button from '@material-ui/core/Button';
 //import {ESTADOSGEO} from '../data/ESTADOSGEO.json';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {useGeoJson}  from '../hooks/usegeojson'
-import {useParroquias}  from '../hooks/useparroquias'
-
-
 import {useFetch}  from '../hooks/usefetch'
 import {useFetchPost}  from '../hooks/usefetchpost'
 import {resultados,getLocation,getPersona,getPersonasCODCNE,getCentrosCODCNE} from '../helpers/helpers'
@@ -89,9 +89,10 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
 //export default function Geo({lnglat0,zoom0,centros0,GetCentros,GetPersonasCODCNE}) {
   export default function GeoFaro() {
   const { state, dispatch } = React.useContext(Application);
-  const [data, isLoading, isError , fetchData] = useFetch("");
-  const [dataP, isLoadingP, isErrorP , fetchDataP] = useFetch("");
 
+
+  
+  const [data, isLoading, isError , fetchData] = useFetch("");
   //const [optionn, setOptionn] = React.useState("");
   const [centros,setCentros]=React.useState(state.centros);
   const [centrosgeojson,setCentrosgeojson]=React.useState([]);
@@ -100,22 +101,16 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
   const [personas,setPersonas]=React.useState([]);
   const [personasgeojson,setPersonasgeojson]=React.useState([]);
   const [flagCircular, setFlagCircular] = React.useState(false);
-  const[geojson,handleGeoJson]=useGeoJson({"type":"FeatureCollection","features":[]   })
-  const[parroquias0a25porc,parroquias25a50porc,parroquias50a75porc,parroquias75a100porc,handleParroquiasGeoJson]=useParroquias({"type":"FeatureCollection","features":[]   })
-  
   //alert("GEOOOOOoooo "+JSON.stringify(state))
   
 //alert('geo'+JSON.stringify(state))
     const classes = useStyles();
     useEffect(() => {
      
-      handleParroquiasGeoJson(PAMIRANDA)
-      //  dispatch({
+    //  dispatch({
     //    type: 'RESET',
     //    stateprop:123
     //  });   
-    fetchDataP('http://openfaroapi.azurewebsites.net/api/motorpersonasjson2020?idorganizacion=10&codigocne=13&roles=245,230&idformulario=FORM&idpregunta=4&idrespuesta=1&idformulariofiltro=RE');
-
       setFlagCircular(false)
       //alert("state.centros "+JSON.stringify(state.centros))
       const  featurescentrosjson=state.centros.map(o=>{               
@@ -134,11 +129,15 @@ const symbolLayout= MapGL.SymbolLayout = { 'text-field': '{nombre}', 'text-font'
    "features":featurescentrosjson
  }
 setCentrosgeojson(centrosjson)  
-     
-      
+      //alert("centros "+JSON.stringify())
+      //setCentros(result) 
+     //coordendas de centride de parroquias
+        
+   
+     //alert("punto "+JSON.stringify(centrosjson))   
+     //setPunto(centrosjson)
+    
    },[]);
-
-
     useEffect(() => {
       //alert("in "+option)
       
@@ -149,35 +148,184 @@ setCentrosgeojson(centrosjson)
       if ((data!=undefined)&&(!isLoading))      
       {
       
-      //  if ((data.length>0)&&(data[0].type=="padron")){
-      //   //alert("padron"+JSON.stringify(data))
-      //   setPersonas(data)
+       if ((data.length>0)&&(data[0].type=="padron")){
+        //alert("padron"+JSON.stringify(data))
+        setPersonas(data)
   
-      //  }
+       }
        if ((data.length>0)&&(data[0].type)!="padron"){
-         
         setCentros(data)
-  
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        var points=[]
+        for (let i = 0; i < data.length; ++i) { 
+           points.push({
+            "type":"Feature",
+            "properties":{},                             
+            "geometry":{"type":"Point","coordinates":[data[i].lng,data[i].lat]
+            }
+          })
+        }
+        let Voronoijson={
+          "type":"FeatureCollection",
+          "bbox": [-66.94, 10.52, -66.88, 10.5],
+
+          "features":points
+        }
+        console.log("logggg")
+        console.log(JSON.stringify(points))
+        var options = {
+          bbox: [-66.94, 10.52, -66.88, 10.5]
+        };
+
+ var voroni=
+        {
+          "type": "FeatureCollection",
+          "bbox": [143, -38, 146, -35],
+          "features": [
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  144.33837890625,
+                  -37.14280344371683
+                ]
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  144.931640625,
+                  -37.35269280367274
+                ]
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  145.140380859375,
+                  -36.456636011596196
+                ]
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  145.469970703125,
+                  -36.77409249464194
+                ]
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  145.755615234375,
+                  -37.090239803072066
+                ]
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  145.4150390625,
+                  -37.52715361723378
+                ]
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  145.887451171875,
+                  -37.483576550426996
+                ]
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  144.60205078125,
+                  -36.57142382346275
+                ]
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  144.86572265625,
+                  -37.596824001083654
+                ]
+              }
+            }
+          ]
+        }
+       var voronoiPolygons = voronoi(Voronoijson, options);
+      console.log(JSON.stringify(voronoiPolygons))
+        
+
+        
        }
       }
     },[data,isLoading]);
+
     useEffect(() => {
-      //alert("in "+option)
+      setFlagCircular(false)
+     // alert("personas sss "+JSON.stringify(personas))
       
-      if (isLoadingP) {
-        setFlagCircular(true)
-      }
-      //alert(JSON.stringify(dataP))
-      if ((dataP.length>0)&&(dataP!=undefined)&&(!isLoadingP))      
-      {
-        if (dataP[0].flag>0){
-          handleGeoJson(dataP)
-
+    let padronjson={
+      "type":"FeatureCollection",
+      "features":[]
+    }
+    //coordendas de centride de parroquias
+       const  padronfeatures=personas.map(p=>{               
+            return(
+              {
+                "type":"Feature",
+                "properties":{"nombre":p.nombreapellido,"codcne":p.codcne,"correo":p.correo,},                             
+                "geometry":{"type":"Point","coordinates":[p.re[0].lng,p.re[0].lat]
+                }
+              }
+        )     
+     })   
+     const  padronfeatures2=padron.map(p=>{               
+      return(
+        {
+          "type":"Feature",
+          "properties":{"nombre":p.nombreapellido,"codcne":p.codcne,"correo":p.correo,},                             
+          "geometry":{"type":"Point","coordinates":[p.lng,p.lat]
+          }
         }
-      }
-    },[dataP,isLoadingP]);
-
-   ///////////////////////////////////////////////////
+  )     
+})   
+     padronjson.features=padronfeatures2;
+     //alert("personas 222 "+JSON.stringify(padronjson))
+     setPersonasgeojson(padronjson)
+   },[personas]);
+   
    useEffect(() => {
     setFlagCircular(false)
    //alert("centros "+JSON.stringify(centros))
@@ -215,6 +363,7 @@ setCentrosgeojson(centrosjson)
   });
   
  },[centros]);
+
 
 
     function onMapClick(evt) {
@@ -315,32 +464,7 @@ setCentrosgeojson(centrosjson)
         <GeoJSONLayer
               data={LIBERTADOR}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': 'purple','line-width': .5}}             
-        />
-              {/* <GeoJSONLayer
-              data={PAMIRANDA}
-              fillPaint={{'fill-color': '{COLOR}','fill-outline-color': 'purple','fill-opacity': 1}}
-              linePaint={{'line-color': 'purple','line-width': .5}}             
-        /> */}
-           <GeoJSONLayer
-              data={parroquias0a25porc}
-              fillPaint={{'fill-color': 'white','fill-outline-color': 'red','fill-opacity': .3}}
-              linePaint={{'line-color': 'red','line-width': 1}}             
-        />
-        <GeoJSONLayer
-              data={parroquias25a50porc}
-              fillPaint={{'fill-color': 'orange','fill-outline-color': 'red','fill-opacity': .3}}
-              linePaint={{'line-color': 'red','line-width': 1}}             
-        />
-            <GeoJSONLayer
-              data={parroquias50a75porc}
-              fillPaint={{'fill-color': 'green','fill-outline-color': 'red','fill-opacity': .3}}
-              linePaint={{'line-color': 'red','line-width': 1}}             
-        />
-            <GeoJSONLayer
-              data={parroquias75a100porc}
-              fillPaint={{'fill-color': 'dodgerblue','fill-outline-color': 'red','fill-opacity': .3}}
-              linePaint={{'line-color': 'red','line-width':1}}             
+              linePaint={{'line-color': 'purple','line-width': 1.5}}             
         />
          <GeoJSONLayer
           data={centrosgeojson}
@@ -365,10 +489,10 @@ setCentrosgeojson(centrosjson)
           />
  
         <GeoJSONLayer
-          data={geojson}
+          data={personasgeojson}
           circleLayout={{ visibility: 'visible' }}
          //circlePaint={{'circle-color': 'purple','circle-radius': state.radio, }} 
-          circlePaint={{'circle-color': 'purple','circle-radius': 3,'circle-opacity': 1,'circle-stroke-color': 'purple' , 'circle-stroke-width': 1,'circle-blur': .1}}         
+          circlePaint={{'circle-color': 'dodgerblue','circle-radius': 2,'circle-opacity': 1,'circle-stroke-color': 'dodgerblue' , 'circle-stroke-width': 1,'circle-blur': .1}}         
           
         // onClick={onMapClick}     
           circleOnClick={onCentroClick}

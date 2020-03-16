@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import Circle from 'react-circle';
 import CountUp from 'react-countup';
 
@@ -8,76 +8,106 @@ import Box from '@material-ui/core/Box';
 import { Grid, Paper, Typography } from "@material-ui/core";
 
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-
 import Title from '../dashboard/title';
 import Chart from 'react-apexcharts';
 
 //import Title from '../dashboard/title';
 export default function TotalPie(props) {
-   
+  const [ colors, setColors ] = React.useState([]);
+  const [ resultados, setResultados ] = React.useState( []);
+  const [ labels, setLabels ] = React.useState( []);
+  
+  useEffect(() => {
+ //   console.log(JSON.stringify(props))
+ //   alert(JSON.stringify(props.resultados))
+var respuestas=[]
+var colores=[]
+var cantidades=[]
+var p = props.resultados.map(function (respuesta, index) {
+  respuestas.push(respuesta.respuesta)
+  cantidades.push(respuesta.cant)
+  //colores.push(partido.partido)
+  return respuesta; 
+
+});
+setResultados(cantidades)
+setLabels(respuestas)
+setColors(['#FFFFFF', '#FDD017','#F88017', '#2554C7', '#000080'])
+  }, []); // Important, pass an empty array so to execute useEffect hook only once
+
+ //  var colors=['#FFFFFF', '#FDD017','#F88017', '#2554C7', '#000080']
            
-            const piechart= {
-                fill: {
-                  
-                    opacity: 1,
-                    type: "gradient",
-                    gradient: {
-                      shade: "dark",
-                      type: "vertical",
-                      shadeIntensity: 0.35,
-                      gradientToColors: undefined,
-                      inverseColors: false,
-                      opacityFrom: 0.85,
-                      opacityTo: 0.85,
-                      stops: [90, 0, 100]
-                    }
-                  },
-                options: {
+        //    const piechart= {
+               
+            var     options= {
                     stroke: {
-                        width: 1,
+                        width: 0,
                       },
-                    colors: ['#FFFFFF', '#FDD017','#F88017', '#2554C7', '#000080'],
-                    labels: ['AD', 'PJ', 'VP', 'UNT', 'CAUSAR'],
-                    chart: {
-                        width: 250,
+                  //  // colors:colors,
+                    labels: labels,
+                    dataLabels: {
+                      dropShadow: {
+                        enabled: false
+                      },
+                      textAnchor: 'middle',
+                      
+                    },
+                    // chart: {
+                    //     width: 350,
+                    //     type: 'donut',
+                        
+                    //   },
+                    // fill: {
+                  
+                    // opacity: 1,
+                    // type: "gradient",
+                    // gradient: {
+                    //   shade: "dark",
+                    //   type: "vertical",
+                    //   shadeIntensity: 0.35,
+                    //   gradientToColors: undefined,
+                    //   inverseColors: false,
+                    //   opacityFrom: 0.85,
+                    //   opacityTo: 0.85,
+                    //   stops: [90, 0, 100]
+                    // }
+                  //},
+                      // plotOptions: {
+                      //   pie: {
+                      //     expandOnClick: false
+                      //   }
+                      // },
+                    
+                      // legend: {
+                      //   position: "bottom",
+                      //   horizontalAlign: "right"
+                      // }
+                      chart: {
                         type: 'donut',
-                        dropShadow: {
-                          enabled: true,
-                          color: '000000',
-                          top: -1,
-                          left: 1,
-                          blur: 1,
-                          opacity: 0.2
-                        }
                       },
+                      
                       responsive: [{
-                        breakpoint: 380,
+                        breakpoint: 350,
                         options: {
                           chart: {
-                            width: 270
+                            width: 200
                           },
                           legend: {
                             position: 'bottom'
                           }
                         }
                       }],
-                     
-                },
+          //      },
                 
-                series: [58, 55, 41, 17, 15],
+   
                
         }
-        
+        var                 series=resultados
                     return (
             <React.Fragment>
 <div className="donut">
 <Title>{props.titulo}</Title>
-        <Chart options={piechart.options} series={piechart.series} type="donut" width="380" />
+        <Chart options={options} series={series} type="donut" width="360" />
       </div>
 
             </React.Fragment>

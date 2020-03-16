@@ -19,7 +19,6 @@ import {DASHBOARD2} from '../../data/DASHBOARD2.json';
 import TotalCircle from '../indicadores/totalcircle';
 import TotalCurve from '../indicadores/totalcurve';
 import TotalPie from '../indicadores/totalpie';
-import TotalPie2 from '../indicadores/totalpie2';
 
 import TotalDemografy from '../indicadores/totaldemografy';
 import { Pivote } from './pivote'
@@ -125,7 +124,8 @@ export default function Indicadores() {
   const { state, dispatch } = React.useContext(Application);
   const [ data, isLoading, isError , fetchData] = useFetch("");
   const [flag,setFlag]= useState(false);
-  const [flagCircular, setFlagCircular] = React.useState(false);   
+  const [flagCircular, setFlagCircular] = React.useState(false); 
+  const [indicadores,SetIndicadores]=React.useState({})  
  // alert(JSON.stringify(state.login))
 // alert("indicadores "+JSON.stringify(DASHBOARD2.dashboard[3].resultados))
 useEffect(() => {   
@@ -142,6 +142,11 @@ useEffect(() => {
    // alert(JSON.stringify(data))
    setFlag(true)
    setFlagCircular(false)
+   SetIndicadores(
+     {"indicadores":[{"indicador":"total","requerido":3640,"cant":16,"porc":33.33},{"indicador":"trimestral","requerido":3640,"cant":12,"porc":2.22},{"indicador":"semanal","requerido":3640,"cant":2,"porc":2.33},{"indicador":"retirados","requerido":0,"cant":0}],
+     "partidos":[{"respuesta":"AD","requerido":0,"cant":3},{"respuesta":"CAUSA R","requerido":0,"cant":2},{"respuesta":"MPJ","requerido":0,"cant":3},{"respuesta":"Otro Nacional","requerido":0,"cant":4},{"respuesta":"Otro Regional","requerido":0,"cant":12},{"respuesta":"SC","requerido":0,"cant":2},{"respuesta":"SUMATE","requerido":0,"cant":23},{"respuesta":"UNTC","requerido":0,"cant":4},{"respuesta":"VPA","requerido":0,"cant":1}],
+     "roles":[{"respuesta":"Coordinador Formación","requerido":80,"cant":6},{"respuesta":"Soporte Electoral","requerido":80,"cant":4}]}
+   )
   }
 },[data,isLoading]);
     return (
@@ -153,19 +158,33 @@ useEffect(() => {
        
         <Grid container spacing={3}>
       <Grid item xs={12} sm={6} md={3}>
-           <TotalCircle titulo={'Asignaciones Totales'} indicador={'Totalhh'} color={'#1bc943'} bcolor={"rgba(27, 201, 67, 0.15)"} porc={45} total={0} leyenda={'Total Acumulado'}/>
+           <TotalCircle titulo={'Asignaciones Totales'} indicador={'Totalhh'} color={'#1bc943'} bcolor={"rgba(27, 201, 67, 0.15)"} porc={indicadores.indicadores[0].porc} total={indicadores.indicadores[0].cant} leyenda={'Total Acumulado'}/>
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-           <TotalCircle titulo={'Trimestral'} indicador={'Totalhh'} color={"dodgerblue"} bcolor={'rgb(230, 240, 255)'} porc={45} total={23000} leyenda={'Total Acumulado'}/>
+           <TotalCircle titulo={'Trimestral'} indicador={'Totalhh'} color={"dodgerblue"} bcolor={'rgb(230, 240, 255)'} porc={indicadores.indicadores[1].porc} total={indicadores.indicadores[1].cant} leyenda={'Total Acumulado'}/>
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-           <TotalCircle titulo={'Semanal'} indicador={'Totalhh'} color={"#11c5db"} bcolor={'rgb(230, 247, 255)'} porc={45} total={23000} leyenda={'Total Acumulado'}/>
+           <TotalCircle titulo={'Semanal'} indicador={'Totalhh'} color={"#11c5db"} bcolor={'rgb(230, 247, 255)'} porc={indicadores.indicadores[2].porc} total={indicadores.indicadores[2].cant} leyenda={'Total Acumulado'}/>
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
            <TotalCircle titulo={'Retiros'} indicador={'Totalhh'} color={'#f83245'} bcolor={'rgb(255, 235, 230)'} porc={10} total={1200} leyenda={'Total Acumulado'}/>
       </Grid>
       </Grid>
-
+      <Grid container spacing={3}>
+      
+      <Grid item xs={12} md={6} sm={12}>
+      <Paper className={fixedHeightPaper2}>
+         <TotalPie resultados={indicadores.partidos} titulo={'Partidos'} />
+      </Paper>
+     </Grid>
+     <Grid item xs={12} md={6} sm={12}>
+      <Paper className={fixedHeightPaper2}>
+         <TotalPie resultados={indicadores.roles} titulo={'Roles'} />
+      </Paper>
+     </Grid>
+    
+     </Grid>
+     
       <Grid container spacing={3}>
    
       <Grid item xs={12} md={4} sm={6}>
@@ -194,20 +213,6 @@ useEffect(() => {
       </Grid>
       </Grid>
 
-      <Grid container spacing={3}>
-      
-      <Grid item xs={12} md={6} sm={12}>
-      <Paper className={fixedHeightPaper2}>
-         <TotalPie titulo={'Partidos'} />
-      </Paper>
-     </Grid>
-     <Grid item xs={12} md={6} sm={12}>
-      <Paper className={fixedHeightPaper2}>
-         <TotalPie2 titulo={'Roles'} />
-      </Paper>
-     </Grid>
-     
-     </Grid>
      
      
       <Grid container spacing={3}>
