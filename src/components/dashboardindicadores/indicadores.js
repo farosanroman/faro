@@ -18,9 +18,12 @@ import {DASHBOARD2} from '../../data/DASHBOARD2.json';
 
 import TotalCircle from '../indicadores/totalcircle';
 import TotalCurve from '../indicadores/totalcurve';
+import TotalDonut from '../indicadores/totaldonut';
 import TotalPie from '../indicadores/totalpie';
 
 import TotalDemografy from '../indicadores/totaldemografy';
+import HeatMap from '../indicadores/heatmap';
+
 import { Pivote } from './pivote'
 import {useFetch}  from '../hooks/usefetch'
 //import { StateStoring } from 'devextreme-react/data-grid';
@@ -115,38 +118,47 @@ const useStyles = makeStyles(theme => ({
    fixedHeight2: {
     height: 400,
   },
+  
+  fixedHeightPie: {
+    height: 450,
+  },
+  
 }));
 export default function Indicadores() {
   //static jsfiddleUrl = 'https://jsfiddle.net/alidingling/c9pL8k61/';
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const fixedHeightPaper2 = clsx(classes.paper, classes.fixedHeight2);
+  const fixedHeightPaperPie = clsx(classes.paper, classes.fixedHeightPie);
+  
   const { state, dispatch } = React.useContext(Application);
   const [ data, isLoading, isError , fetchData] = useFetch("");
   const [flag,setFlag]= useState(false);
   const [flagCircular, setFlagCircular] = React.useState(false); 
-  const [indicadores,SetIndicadores]=React.useState({})  
+  const [indicadores,SetIndicadores]=React.useState({}) 
+   
  // alert(JSON.stringify(state.login))
 // alert("indicadores "+JSON.stringify(DASHBOARD2.dashboard[3].resultados))
 useEffect(() => {   
   setFlagCircular(true)
-  fetchData('http://openfaroapi.azurewebsites.net/api/autenticacionapp?login=ppazpurua@gmail.com&clave=9999&idfaroaplicacion=3&plataforma=SIN&uuid=SIN')
+  fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?idorganizacion=&codigocne=&funcionalcaracteristicas=1039&idpartido=&roles=248,249')
        
 },[]);
 useEffect(() => {
   if (isLoading) {
   //  setFlagCircular(true)
   }
-  if ((data!=undefined)&&(!isLoading)&&(data.length>0))      
+  //alert(JSON.stringify(data))
+  if ((data!=undefined)&&(!isLoading)&&(JSON.stringify(data)!="[]"))      
   {
    // alert(JSON.stringify(data))
    setFlag(true)
    setFlagCircular(false)
+   console.log(JSON.stringify(data.indicadores[0]))
    SetIndicadores(
-     {"indicadores":[{"indicador":"total","requerido":3640,"cant":16,"porc":33.33},{"indicador":"trimestral","requerido":3640,"cant":12,"porc":2.22},{"indicador":"semanal","requerido":3640,"cant":2,"porc":2.33},{"indicador":"retirados","requerido":0,"cant":0}],
-     "partidos":[{"respuesta":"AD","requerido":0,"cant":3},{"respuesta":"CAUSA R","requerido":0,"cant":2},{"respuesta":"MPJ","requerido":0,"cant":3},{"respuesta":"Otro Nacional","requerido":0,"cant":4},{"respuesta":"Otro Regional","requerido":0,"cant":12},{"respuesta":"SC","requerido":0,"cant":2},{"respuesta":"SUMATE","requerido":0,"cant":23},{"respuesta":"UNTC","requerido":0,"cant":4},{"respuesta":"VPA","requerido":0,"cant":1}],
-     "roles":[{"respuesta":"Coordinador Formación","requerido":80,"cant":6},{"respuesta":"Soporte Electoral","requerido":80,"cant":4}]}
+   data
    )
+  
   }
 },[data,isLoading]);
     return (
@@ -160,62 +172,94 @@ useEffect(() => {
       <Grid item xs={12} sm={6} md={3}>
            <TotalCircle titulo={'Asignaciones Totales'} indicador={'Totalhh'} color={'#1bc943'} bcolor={"rgba(27, 201, 67, 0.15)"} porc={indicadores.indicadores[0].porc} total={indicadores.indicadores[0].cant} leyenda={'Total Acumulado'}/>
       </Grid>
-      <Grid item xs={12} sm={6} md={3}>
+
+     <Grid item xs={12} sm={6} md={3}>
            <TotalCircle titulo={'Trimestral'} indicador={'Totalhh'} color={"dodgerblue"} bcolor={'rgb(230, 240, 255)'} porc={indicadores.indicadores[1].porc} total={indicadores.indicadores[1].cant} leyenda={'Total Acumulado'}/>
       </Grid>
-      <Grid item xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
            <TotalCircle titulo={'Semanal'} indicador={'Totalhh'} color={"#11c5db"} bcolor={'rgb(230, 247, 255)'} porc={indicadores.indicadores[2].porc} total={indicadores.indicadores[2].cant} leyenda={'Total Acumulado'}/>
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-           <TotalCircle titulo={'Retiros'} indicador={'Totalhh'} color={'#f83245'} bcolor={'rgb(255, 235, 230)'} porc={10} total={1200} leyenda={'Total Acumulado'}/>
+           <TotalCircle titulo={'Retiros'} indicador={'Totalhh'} color={'#f83245'} bcolor={'rgb(255, 235, 230)'} porc={0} total={0} leyenda={'Total Acumulado'}/>
+    
       </Grid>
       </Grid>
+
+      <Grid container spacing={3}>
+   
+   <Grid item xs={12} md={12} sm={12}>
+      <TotalCurve titulo={'Totales'} color={'#1bc943'} data={[
+             {
+                 name: 'Orders',
+                 data: [0, 10, 22, 43, 46, 56, 84, 145]
+             }
+         ]}/>
+   </Grid>
+   {/* <Grid item xs={12} md={4} sm={6}>
+   <TotalCurve titulo={'Trimestre'} color={"#11c5db"} data={[
+             {
+                 name: 'Orders',
+                 data: [0, 10, 22, 43, 46, 56, 64, 95]
+             }
+         ]}/>
+   </Grid>
+   <Grid item xs={12} md={4} sm={6}>
+   <TotalCurve titulo={'Retiros'} color={'#f83245'} data={[
+             {
+                 name: 'Orders',
+                 data: [0, 10, 22, 43, 46, 66, 54, 85]
+             }
+         ]}/>
+   </Grid> */}
+   </Grid>
+
+
       <Grid container spacing={3}>
       
       <Grid item xs={12} md={6} sm={12}>
       <Paper className={fixedHeightPaper2}>
-         <TotalPie resultados={indicadores.partidos} titulo={'Partidos'} />
+         <TotalDonut resultados={indicadores.partidos} titulo={'Partidos'} />
       </Paper>
      </Grid>
      <Grid item xs={12} md={6} sm={12}>
       <Paper className={fixedHeightPaper2}>
-         <TotalPie resultados={indicadores.roles} titulo={'Roles'} />
+         <TotalDonut resultados={indicadores.roles} titulo={'Roles'} />
       </Paper>
-     </Grid>
+     </Grid> 
     
      </Grid>
-     
-      <Grid container spacing={3}>
-   
-      <Grid item xs={12} md={4} sm={6}>
-         <TotalCurve titulo={'Totales'} color={'#1bc943'} data={[
-                {
-                    name: 'Orders',
-                    data: [0, 10, 22, 43, 46, 26, 24, 45]
-                }
-            ]}/>
-      </Grid>
-      <Grid item xs={12} md={4} sm={6}>
-      <TotalCurve titulo={'Trimestre'} color={"#11c5db"} data={[
-                {
-                    name: 'Orders',
-                    data: [0, 10, 22, 43, 46, 26, 24, 45]
-                }
-            ]}/>
-      </Grid>
-      <Grid item xs={12} md={4} sm={6}>
-      <TotalCurve titulo={'Retiros'} color={'#f83245'} data={[
-                {
-                    name: 'Orders',
-                    data: [0, 10, 22, 43, 46, 26, 24, 45]
-                }
-            ]}/>
-      </Grid>
-      </Grid>
+    
+     <Grid container spacing={3}>
+     <Grid item xs={12} sm={12} md={6}>
+                  <Paper className={fixedHeightPaper2}>
+                           <HeatMap />
+                  </Paper>
+            </Grid>
+              <Grid item xs={12} sm={12} md={6}>
+                  <Paper className={fixedHeightPaper2}>             
+                         <TotalDemografy resultados={indicadores.sexo} total={indicadores.indicadores[0].cant}/>
+                 </Paper>
+              </Grid>
+         
+          </Grid>     
 
      
-     
       <Grid container spacing={3}>
+      {indicadores.caracteristicas.map((item, index) => (
+      <Grid item xs={12} sm={6} md={3}>
+      <Paper className={fixedHeightPaperPie}>
+     
+      <TotalPie indicador={'Organizacion'} titulo={'Experiencia'} resultados={item}/>
+
+        </Paper>
+      </Grid>    
+
+      ))}
+             
+         
+             
+        </Grid>   
+      {/* <Grid container spacing={3}>
            {DASHBOARD2.dashboard.map((item, index) => (
               <Grid item xs={12} sm={6} md={3}>
               <Paper className={fixedHeightPaper}>
@@ -228,10 +272,10 @@ useEffect(() => {
                ))}  
 
 
-        </Grid>   
-        <TotalDemografy />
-      <Pivote />
+        </Grid>    */}
          
+      {/* <Pivote />
+          */}
    </Container>
 }
 </div>

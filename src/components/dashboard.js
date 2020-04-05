@@ -218,6 +218,7 @@ function getStepContent(step) {
 }
 export default function Dashboard() {
   const classes = useStyles();
+  
   const [flagDrawer, setFlagDrawer] = React.useState(true);
   const [flagLogin, setFlagLogin] = React.useState(false);
   const [flagFiltros, setFlagFiltros] = React.useState(false);
@@ -351,7 +352,7 @@ export default function Dashboard() {
       <ListItemIcon>
         <PersonPinCircleIcon />
       </ListItemIcon>
-      <ListItemText primary="Distribucion" />
+      <ListItemText primary="GeoBitacora" />
     </ListItem>
     </List>
    
@@ -363,15 +364,16 @@ export default function Dashboard() {
       </ListItemIcon>
       <ListItemText primary="GeoCentros" />
     </ListItem>
-        <ListItem button onClick={handleComponent(5)}>
+
+        {/* <ListItem button onClick={handleComponent(5)}>
       <ListItemIcon>
         <EditIcon />
       </ListItemIcon>
       <ListItemText primary="Asignacion" />
-    </ListItem>
+    </ListItem> */}
 
         </List>   
-        <Divider />
+        {/* <Divider />
         <List>
        
     <ListItem button onClick={handleComponent(2)}>
@@ -396,7 +398,7 @@ export default function Dashboard() {
       <ListItemText primary="Resultados" />
     </ListItem>
     
-        </List>
+        </List> */}
               
        
         <Divider />

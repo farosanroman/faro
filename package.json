@@ -13,7 +13,7 @@
     "@turf/random": "^6.0.2",
     "@turf/turf": "^5.1.6",
     "@turf/voronoi": "^5.1.5",
-    "apexcharts": "^3.16.1",
+    "apexcharts": "^3.17.0",
     "babel-polyfill": "^6.26.0",
     "devextreme": "19.1.6",
     "devextreme-react": "19.1.6",

@@ -62,9 +62,13 @@ function App() {
 }
 
 export default App;
+//HOOKS 
+//https://www.youtube.com/watch?v=-G43PbpmGrA
+//https://www.youtube.com/watch?v=cjBm0HnYcqw BEST ON CONTEXT AND REDUCER   BEST BEST BEST OjO
 
 //https://codepen.io/kelvinzhang/pen/jpoRMm?editors=1010
 //https://codepen.io/ivjose/pen/EyjGKa   TARJETA 
 //https://medium.com/@reginald.johnson
 //https://medium.com/hackernoon/accepting-payments-in-a-react-native-app-part-1-9cb09a271f59
 //https://medium.com/react-native-training/accepting-payments-in-a-react-native-app-part-3-c22828ecab13
+

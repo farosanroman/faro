@@ -38,6 +38,7 @@ import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
 import {padron} from '../../data/padron.json';
 import {PAMIRANDA} from '../../data/PAMIRANDA.json';
 import {atc} from '../../data/atc.json';
+import {voronoijson} from '../../data/voronoijson.json';
 import Divider from '@material-ui/core/Divider';
 import { grey } from '@material-ui/core/colors';
 const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pzIn0.V8cqmZH6dFIcxtKoaWcZZw"
@@ -155,136 +156,37 @@ setCentrosgeojson(centrosjson)
        }
        if ((data.length>0)&&(data[0].type)!="padron"){
         setCentros(data)
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        var points=[]
-        for (let i = 0; i < data.length; ++i) { 
-           points.push({
-            "type":"Feature",
-            "properties":{},                             
-            "geometry":{"type":"Point","coordinates":[data[i].lng,data[i].lat]
-            }
-          })
-        }
-        let Voronoijson={
-          "type":"FeatureCollection",
-          "bbox": [-66.94, 10.52, -66.88, 10.5],
+        
+        
+        
+        // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        // var points=[]
+        // for (let i = 0; i < data.length; ++i) { 
+        //   if (data[i].lat>0){
+        //   points.push({
+        //     "type":"Feature",
+        //     "properties":{},                             
+        //     "geometry":{"type":"Point","coordinates":[data[i].lng,data[i].lat]
+        //     }
+        //   })
+        // }}
+        
+        // let Voronoijson={
+        //   "type":"FeatureCollection",
+        //   "bbox": [-72.6, 9, -66.38, 11.83],
 
-          "features":points
-        }
-        console.log("logggg")
-        console.log(JSON.stringify(points))
-        var options = {
-          bbox: [-66.94, 10.52, -66.88, 10.5]
-        };
-
- var voroni=
-        {
-          "type": "FeatureCollection",
-          "bbox": [143, -38, 146, -35],
-          "features": [
-            {
-              "type": "Feature",
-              "properties": {},
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  144.33837890625,
-                  -37.14280344371683
-                ]
-              }
-            },
-            {
-              "type": "Feature",
-              "properties": {},
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  144.931640625,
-                  -37.35269280367274
-                ]
-              }
-            },
-            {
-              "type": "Feature",
-              "properties": {},
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  145.140380859375,
-                  -36.456636011596196
-                ]
-              }
-            },
-            {
-              "type": "Feature",
-              "properties": {},
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  145.469970703125,
-                  -36.77409249464194
-                ]
-              }
-            },
-            {
-              "type": "Feature",
-              "properties": {},
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  145.755615234375,
-                  -37.090239803072066
-                ]
-              }
-            },
-            {
-              "type": "Feature",
-              "properties": {},
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  145.4150390625,
-                  -37.52715361723378
-                ]
-              }
-            },
-            {
-              "type": "Feature",
-              "properties": {},
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  145.887451171875,
-                  -37.483576550426996
-                ]
-              }
-            },
-            {
-              "type": "Feature",
-              "properties": {},
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  144.60205078125,
-                  -36.57142382346275
-                ]
-              }
-            },
-            {
-              "type": "Feature",
-              "properties": {},
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  144.86572265625,
-                  -37.596824001083654
-                ]
-              }
-            }
-          ]
-        }
-       var voronoiPolygons = voronoi(Voronoijson, options);
-      console.log(JSON.stringify(voronoiPolygons))
+        //   "features":points
+        // }
+        // console.log("logggg")
+        // console.log(JSON.stringify(points))
+        // var options = {
+        //   bbox: [-72.6, 9, -61.97, 11.83]
+        // };
+        // var voronoiPolygons0 = voronoi({
+        //   "type": "FeatureCollection",
+        //   "features": points}, options);
+        //    console.log("voronoi")
+        //   console.log(JSON.stringify(voronoiPolygons0))
         
 
         
@@ -448,7 +350,15 @@ setCentrosgeojson(centrosjson)
         //onClick={this._onClickMap}  
        > 
        
-               
+       <GeoJSONLayer
+          data={voronoijson}
+          fillPaint={{'fill-color': 'gray','fill-outline-color': 'white','fill-opacity': 0.005}}
+          linePaint={{
+            'line-color': 'red',
+            'line-width': .3
+          }}
+          
+        />   
           <GeoJSONLayer
               data={ESTADOSGEO}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
@@ -464,7 +374,7 @@ setCentrosgeojson(centrosjson)
         <GeoJSONLayer
               data={LIBERTADOR}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': 'purple','line-width': 1.5}}             
+              linePaint={{'line-color': 'purple','line-width': 2}}             
         />
          <GeoJSONLayer
           data={centrosgeojson}

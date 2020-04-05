@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React ,{useEffect} from 'react';
 import Circle from 'react-circle';
 import CountUp from 'react-countup';
 
@@ -19,179 +19,62 @@ import Title from '../dashboard/title';
 import Chart from 'react-apexcharts';
 
 
-export default function TotalDemografy() {
-   
-            const chart50Options = {
-                chart: {
-                    toolbar: {
-                        show: false
-                    },
-                    sparkline: {
-                        enabled: true
-                    }
-                },
-                dataLabels: {
-                        enabled: false
-                    },
-                stroke: {
-                    color: '#11c5db',
-                    width: 3
-                },
-                colors: ['#11c5db'],
-                legend: {
-                    show: false
-                },
-                xaxis: {
-                    crosshairs: {
-                        width: 0
-                    }
-                },
-                markers: {
-                    size: 0
-                },
-                yaxis: {
-                    min: 0
-                }
-            }
-            const chart50Data = [
-                {
-                    name: 'Orders',
-                    data: [0, 10, 22, 43, 46, 26, 24, 45]
-                }
-            ]
+export default function TotalDemografy(props) {
+  const [ colors, setColors ] = React.useState([]);
+  const [ resultados, setResultados ] = React.useState( []);
+  const [ labels, setLabels ] = React.useState( []);
+  const [ masculinos, setMasculinos ] = React.useState(  [0.4, 0.65, 0.76, 0.88,     1.5, 2.1,   2.9, 3.8,    3.9,   4.2,   4,    4.3, 4.1, 4.2, 4.5, ]);
+  const [ femeninos, setFemeninos ] = React.useState(   [-0.8, -1.05, -1.06, -1.18, -1.4, -2.2, -2.85, -3.7, -3.96, -4.22, -4.3, -4.4, -4.1, -4, -4.1   ]);
+ 
+  useEffect(() => {
+ //   console.log(JSON.stringify(props))
+ //   alert(JSON.stringify(props.resultados))
+var respuestas=[]
+var colores=[]
+var cantmasculinos=[]
+var cantfemeninos=[]
 
-            const chart51Options = {
-                chart: {
-                    toolbar: {
-                        show: false
-                    },
-                    sparkline: {
-                        enabled: true
-                    }
-                },
-                dataLabels: {
-                        enabled: false
-                    },
-                stroke: {
-                    color: '#1bc943',
-                    width: 3
-                },
-                colors: ['#1bc943'],
-                legend: {
-                    show: false
-                },
-                xaxis: {
-                    crosshairs: {
-                        width: 0
-                    }
-                },
-                markers: {
-                    size: 0
-                },
-                yaxis: {
-                    min: 0
-                }
-            }
-            const chart51Data = [
-                {
-                    name: 'Orders',
-                    data: [0, 43, 24, 56, 35, 56, 65]
-                }
-            ]
+//alert(JSON.stringify(props.resultados[0].masculino))
+//alert(JSON.stringify(props.total))
+var p = props.resultados.masculino.map(function (resp, index) {
+   //respuestas.push(resp.nombre)
+   cantmasculinos.push(resp.total/(props.total*1.0)*100.00)
+//   //colores.push(partido.partido)
+//   return resp; 
 
-            const chart52Options = {
-                chart: {
-                    toolbar: {
-                        show: false
-                    },
-                    sparkline: {
-                        enabled: true
-                    }
-                },
-                dataLabels: {
-                        enabled: false
-                    },
-                stroke: {
-                    color: '#4191ff',
-                    width: 3
-                },
-                colors: ['#4191ff'],
-                legend: {
-                    show: false
-                },
-                xaxis: {
-                    crosshairs: {
-                        width: 0
-                    }
-                },
-                markers: {
-                    size: 0
-                },
-                yaxis: {
-                    min: 0
-                }
-            }
-            const chart52Data = [
-                {
-                    name: 'Orders',
-                    data: [0, 7, 18, 28, 23, 24, 62, 43]
-                }
-            ]
-            const piechart= {
-                options: {
-                    stroke: {
-                        width: 1,
-                      },
-                    colors: ['#FFFFFF', '#FDD017','#F88017', '#2554C7', '#000080'],
-                    labels: ['AD', 'PJ', 'VP', 'UNT', 'CAUSAR'],
-                    chart: {
-                        width: 380,
-                        type: 'donut',
-                        dropShadow: {
-                          enabled: true,
-                          color: '000000',
-                          top: -1,
-                          left: 1,
-                          blur: 1,
-                          opacity: 0.3
-                        }
-                      },
-                      responsive: [{
-                        breakpoint: 480,
-                        options: {
-                          chart: {
-                            width: 200
-                          },
-                          legend: {
-                            position: 'bottom'
-                          }
-                        }
-                      }],
-                      title: {
-                        text: "Favourite Movie Type"
-                      },
-                },
-                
-                series: [58, 55, 41, 17, 15],
-               
-        }
+ });
+ var p = props.resultados.femenino.map(function (resp, index) {
+  //respuestas.push(resp.nombre)
+  cantfemeninos.push((-1.0)*resp.total/props.total*100.0)
+//   //colores.push(partido.partido)
+//   return resp; 
+
+});
+setMasculinos(cantmasculinos)
+setFemeninos(cantfemeninos)
+setLabels(respuestas)
+setColors(['#FFFFFF', '#FDD017','#F88017', '#2554C7', '#000080'])
+  }, []); // Important, pass an empty array so to execute useEffect hook only once
+
+
+         
         var options = {
-            series: [{
-            name: 'Males',
-            data: [0.4, 0.65, 0.76, 0.88, 1.5, 2.1, 2.9, 3.8, 3.9, 4.2, 4, 4.3, 4.1, 4.2, 4.5,
-              3.9, 3.5, 3
-            ]
-          },
-          {
-            name: 'Females',
-            data: [-0.8, -1.05, -1.06, -1.18, -1.4, -2.2, -2.85, -3.7, -3.96, -4.22, -4.3, -4.4,
-              -4.1, -4, -4.1, -3.4, -3.1, -2.8
-            ]
-          }
-          ],
+          //   series: [{
+          //   name: 'Males',
+          //   data: [0.4, 0.65, 0.76, 0.88, 1.5, 2.1, 2.9, 3.8, 3.9, 4.2, 4, 4.3, 4.1, 4.2, 4.5,
+          //     3.9, 3.5, 3
+          //   ]
+          // },
+          // {
+          //   name: 'Females',
+          //   data: [-0.8, -1.05, -1.06, -1.18, -1.4, -2.2, -2.85, -3.7, -3.96, -4.22, -4.3, -4.4,
+          //     -4.1, -4, -4.1, -3.4, -3.1, -2.8
+          //   ]
+          // }
+          // ],
             chart: {
             type: 'bar',
-            height: 640,
+            height: 700,
             stacked: true
           },
           colors: ['#008FFB', '#FF4560'],
@@ -218,8 +101,8 @@ export default function TotalDemografy() {
             }
           },
           yaxis: {
-            min: -5,
-            max: 5,
+            min: -20,
+            max: 20,
             title: {
               // text: 'Age',
             },
@@ -238,15 +121,14 @@ export default function TotalDemografy() {
             }
           },
           title: {
-            text: 'Mauritius population pyramid 2011'
+            text: 'Piramide Poblacional'
           },
           xaxis: {
             categories: ['85+', '80-84', '75-79', '70-74', '65-69', '60-64', '55-59', '50-54',
-              '45-49', '40-44', '35-39', '30-34', '25-29', '20-24', '15-19', '10-14', '5-9',
-              '0-4'
+              '45-49', '40-44', '35-39', '30-34', '25-29', '20-24', '15-19', 
             ],
             title: {
-              text: 'Percent'
+              text: 'Porcentaje'
             },
             labels: {
               formatter: function (val) {
@@ -256,22 +138,18 @@ export default function TotalDemografy() {
           },
           };
           var series222= [{
-            name: 'Males',
-            data: [0.4, 0.65, 0.76, 0.88, 1.5, 2.1, 2.9, 3.8, 3.9, 4.2, 4, 4.3, 4.1, 4.2, 4.5,
-              3.9, 3.5, 3
-            ]
+            name: 'Masculinos',
+            data: masculinos 
           },
           {
-            name: 'Females',
-            data: [-0.8, -1.05, -1.06, -1.18, -1.4, -2.2, -2.85, -3.7, -3.96, -4.22, -4.3, -4.4,
-              -4.1, -4, -4.1, -3.4, -3.1, -2.8
-            ]
+            name: 'Femeninos',
+            data: femeninos
           }
           ]
                     return (
             <React.Fragment>
 <div className="donut">
-<Chart options={options} series={series222} type="bar" width="580" />
+<Chart options={options} series={series222} type="bar" width="450" />
       
      
       </div>

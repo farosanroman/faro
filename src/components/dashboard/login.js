@@ -138,7 +138,6 @@ export default function Login(props) {
 
   const [signedIn, setSignIn]= useState(false);
   useEffect(() => {
-
     const unregisterAuthObserver = firebase.auth()
       .onAuthStateChanged(
         (user) => {
@@ -188,6 +187,21 @@ function SignIn(user) {
        
       // fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
       //AQUI LA LA AUTENTICACION
+      var log={
+             "type":"Feature",
+             "properties":{"mail":"ppazpu@gmail.com",
+                           "timestamp":new Date(), 
+                           "sistema":"FaroV2",
+                           "idorganiacion":1,"organizacion":"AD",
+                           "idfuncional":2,"funcional":"Comando",
+                           "codcne":1212122929,"nombrecodcne":"Colegio XYZ",
+                           "idrol":202,rol:"coordinador"},  
+                           "evento":"login",
+                           "trigger":{"accion":"correo","destino":"ppaz@gmail.com","mensaje":"Password nuevo es 234","status":false,"fechaaccion":"2020-022-02"},                            
+             "geometry":{"type":"Point","coordinates":["lng","lat"]
+             }
+           }
+      var log={mail:"ppazpu@gmail.com",idorganiacion:1,organizacion:"AD",idfuncional:2,funcional:"Comando",codcne:1212122929,nombrecodcne:"Colegio XYZ",idrol:202,rol:"coordinador",}
     }else{
       
       setMensajeSnackBar("Debe presionar el Boton de Google para autenticarse...")
@@ -365,7 +379,7 @@ function handleCloseSnackBar() {
               },
            }}
             >
-                     <DialogTitle id="simple-dialog-title">{loginauth.email+' No ha sido registrado en FV2'} </DialogTitle>
+                     <DialogTitle id="simple-dialog-title">{loginauth.email+' No ha sido registrado en FV2. Por favor comuniquese con el Coordinador Electoral'} </DialogTitle>
                      <DialogActions>
           <Button onClick={handleClose} color="white">
             Cerrar
@@ -377,15 +391,15 @@ function handleCloseSnackBar() {
               Digital World
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-            Digitalisation and new technologies are everywhere - cloud computing, artificial intelligence, big data, and the Internet of things are transforming the world we live in. The increasing ubiquity of devices and the availability of data has global implications that need useful, innovative and reusable solutions.
+            Digitalisation and new technologies are everywhere - cloud computing, artificial intelligence, big data, and the Internet of things are transforming the world we live in.
                </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
                 <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-                  <Button  variant="contained" color="primary"  onClick={() => props.loginclick()}>
+                  {/* <Button  variant="contained" color="primary"  onClick={() => props.loginclick()}>
                   Login
-                  </Button>
+                  </Button> */}
                 </Grid>
               </Grid>
             </div>
@@ -423,7 +437,7 @@ function handleCloseSnackBar() {
                     Digital banking
                     </Typography>
                     <Typography>
-                    Digital Banking is the application of technology to every programme and activity undertaken by financial institutions and their customers. Financial technology (or FinTech) is part of the broad definition of digital banking.
+                    Digital Banking is the application of technology to every programme and activity undertaken by financial institutions and their customers.
                     </Typography>
                   </CardContent>
                 </Card>
@@ -450,7 +464,7 @@ function handleCloseSnackBar() {
       </main>
       {/* Footer */}
       <Footer />
-      <footer className={classes.footer}>
+      {/* <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
           Footer
         </Typography>
@@ -458,7 +472,7 @@ function handleCloseSnackBar() {
           Detalles de Pizarra Electronica
         </Typography>
         <Copyright />
-      </footer>
+      </footer> */}
       {/* End footer */}
     </React.Fragment>
   );

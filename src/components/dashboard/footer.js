@@ -6,7 +6,7 @@ import Divider from "@material-ui/core/Divider";
 const Footer = () => (
   <div style={{ maxWidth: 700, margin: "auto", textAlign: "center" }}>
     <Typography variant="caption" align={"center"}>
-     Pizarra Electronica © Copyright 2020
+     Pizarra Electronica © Copyright Faro de San Roman 2020
     </Typography>
     <Divider style={{ margin: "24px auto", width: 60 }} />
     <Grid container justify={"center"} spacing={2}>

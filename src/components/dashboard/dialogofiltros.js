@@ -32,7 +32,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import { Application } from '../../App';
 
-import {useFetch}  from '../helpers/hooks'
+import {useFetch}  from '../hooks/usefetch'
 import {EEMMPP} from  '../../data/EEMMPP.json';
 import {roles} from  '../../data/roles.json';
 import {organizacion} from  '../../data/organizacion.json';
@@ -61,6 +61,9 @@ export default function DialogoFiltros(props) {
 
     const [posfuncional, setPosFuncional] = React.useState(""); 
     const [idfuncional, setIdFuncional] = React.useState(""); 
+    const [posrol, setPosRol] = React.useState(""); 
+    const [idrol, setIdrol] = React.useState(""); 
+
     const [codestado, setCodigoEstado] = React.useState("");
     const [posestado, setPosEstado] = React.useState(0);
     const [codmunicipio, setCodigoMunicipio] = React.useState("");
@@ -68,6 +71,9 @@ export default function DialogoFiltros(props) {
    
     const [codparroquia, setCodigoParroquia] = React.useState("");
     const [posparroquia, setPosParroquia] = React.useState(0);
+    const [ dataF, isLoadingF, isErrorF , fetchDataF] = useFetch("");
+    const [ dataR, isLoadingR, isErrorR , fetchDataR] = useFetch("");
+
     const handleChange = name => event => {
       //setState({ ...state, [name]: event.target.checked });
     };
@@ -76,6 +82,8 @@ export default function DialogoFiltros(props) {
     //const error = [ AD, PJ, VP].filter(v => v).length !== 2;
 const error='ABC'
 useEffect(() => {
+  fetchDataF('https://openfaroapi.azurewebsites.net/api/pizarragetnodosfuncionales?idorganizacion=&codigocne=00000000000&idrol=')
+  
   //alert(JSON.stringify(state.funcionales))
   //Aqui se ve el codcne y se actualia el estado municipio y parrouia
   var index = state.funcionales.findIndex(obj => obj.selected==true);
@@ -84,10 +92,17 @@ useEffect(() => {
   setIdFuncional(state.funcionales[index].idfuncional)
 
 }, []); // Important, pass an empty array so to execute useEffect hook only once
+//useEffect(() => {
+ 
+//}, [dataF]); 
+
+useEffect(() => {
+  fetchDataR('https://openfaroapi.azurewebsites.net/api/pizarragetroles?idorganizacion=&codigocne=00000000000&idnodofuncional=1038')
+}, [idfuncional]); 
 useEffect(() => {
 //alert()
 }, [state.funcionales]); 
-const handleCheckboxChange = id => {
+const handleCheckboxChangePartido = id => {
  // alert(id)
   dispatch({
     type: 'FILTRO_ORGANIZACION',
@@ -97,7 +112,7 @@ const handleCheckboxChange = id => {
   //if (state.currentWeight) recalculate();
 };
 const handleCheckboxChangeRol = id => {
-  // alert(id)
+  alert(id)
    dispatch({
      type: 'FILTRO_ROLES',
      stateprop: id
@@ -110,10 +125,21 @@ const handleChangeCambios=input=>e=>{
       if (input=="funcional"){
         var index = state.funcionales.findIndex(obj => obj.idfuncional==e.target.value);
         // alert(index)
-         dispatch({
-          type: 'FILTRO_FUNCIONALES',
-          stateprop: state.funcionales[index].idfuncional
-        });
+        //  dispatch({
+        //   type: 'FILTRO_FUNCIONALES',
+        //   stateprop: state.funcionales[index].idfuncional
+        // });
+          setIdFuncional(e.target.value)
+          setPosFuncional(index)
+      }
+      if (input=="rol"){
+        alert(e.target.value)
+        var index = state.funcionales.findIndex(obj => obj.idfuncional==e.target.value);
+        // alert(index)
+        //  dispatch({
+        //   type: 'FILTRO_FUNCIONALES',
+        //   stateprop: state.funcionales[index].idfuncional
+        // });
           setIdFuncional(e.target.value)
           setPosFuncional(index)
       }
@@ -175,13 +201,17 @@ const handleChangeCambios=input=>e=>{
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        {state.funcionales.map((item, index) => (
+        {/* {state.funcionales.map((item, index) => (
                 
                 <MenuItem value={item.idfuncional}>{item.funcional}</MenuItem>
               
                ))}
-       
-      
+        */}
+       {dataF.map((item, index) => (
+                
+                <MenuItem value={item.idnodofuncional}>{item.nombrenodofuncional}</MenuItem>
+              
+               ))}
       </Select>
       </FormControl>
       <FormLabel component="legend" required error={error}>
@@ -260,7 +290,7 @@ const handleChangeCambios=input=>e=>{
                 role={undefined}
                 dense
                 button
-                onClick={() => handleCheckboxChange(id)}
+                onClick={() => handleCheckboxChangePartido(id)}
               >
                 <ListItemIcon>
                   <Checkbox
@@ -288,7 +318,31 @@ const handleChangeCambios=input=>e=>{
          </FormLabel>
        </ListItem>
      <FormGroup>
-         {state.roles.map(({ id,nombre, selected }) => {
+     {dataR.map(({ idrol,nombrerol }) => {
+           const labelId ='lista';
+           return (
+             <ListItem
+               key={idrol}
+               role={undefined}
+               dense
+               button
+               onClick={() => handleCheckboxChangeRol(idrol)}
+             >
+               <ListItemIcon>
+                 <Checkbox
+                   edge="start"
+                   checked={true}
+                   value={idrol}
+                   tabIndex={-1}
+                   disableRipple
+                   inputProps={{ 'aria-labelledby': labelId }}
+                 />
+               </ListItemIcon>
+               <ListItemText id={labelId} primary={nombrerol} />
+             </ListItem>
+           );
+         })}
+         {/* {state.roles.map(({ id,nombre, selected }) => {
            const labelId ='lista';
            return (
              <ListItem
@@ -311,7 +365,7 @@ const handleChangeCambios=input=>e=>{
                <ListItemText id={labelId} primary={nombre} />
              </ListItem>
            );
-         })}
+         })} */}
          <ListItem role={undefined}>
            <FormHelperText>Seleccione uno o varios Roles</FormHelperText>
          </ListItem>
@@ -326,7 +380,7 @@ const handleChangeCambios=input=>e=>{
       <Divider />
       
       <Button onClick={handleClose} color="primary">
-            Cancelar
+            Cerrar
           </Button>
           <Button onClick={handleFiltro} color="primary">
             Filtrar
