@@ -30,7 +30,7 @@
     "react-firebaseui": "^4.0.0",
     "react-geocode": "^0.2.1",
     "react-mapbox-gl": "^4.6.0",
-    "react-scripts": "3.2.0",
+    "react-scripts": "^3.4.1",
     "recharts": "^1.7.1",
     "turf": "^3.0.14"
   },

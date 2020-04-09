@@ -60,7 +60,7 @@ export default function DialogoFiltros(props) {
     const { state, dispatch } = React.useContext(Application);
 
     const [posfuncional, setPosFuncional] = React.useState(""); 
-    const [idfuncional, setIdFuncional] = React.useState(""); 
+    const [idfuncional, setIdFuncional] = React.useState(state.idfuncional); 
     const [posrol, setPosRol] = React.useState(""); 
     const [idrol, setIdrol] = React.useState(""); 
 
@@ -97,7 +97,7 @@ useEffect(() => {
 //}, [dataF]); 
 
 useEffect(() => {
-  fetchDataR('https://openfaroapi.azurewebsites.net/api/pizarragetroles?idorganizacion=&codigocne=00000000000&idnodofuncional=1038')
+  fetchDataR('https://openfaroapi.azurewebsites.net/api/pizarragetroles?idorganizacion=&codigocne=00000000000&idnodofuncional='+idfuncional)
 }, [idfuncional]); 
 useEffect(() => {
 //alert()

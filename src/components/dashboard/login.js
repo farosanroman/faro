@@ -40,6 +40,9 @@ import firebase from 'firebase'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { Application } from '../../App';
 import {useFetch}  from '../hooks/usefetch'
+import {useFetchPost}  from '../hooks/usefetchpost'
+import {useGeolocation}  from '../hooks/usegeolocation'
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -137,6 +140,8 @@ export default function Login(props) {
   const [ data, isLoading, isError , fetchData] = useFetch("");
 
   const [signedIn, setSignIn]= useState(false);
+  const [ dataPost, isLoadingPost, isErrorPost , postData] = useFetchPost('');
+  const stategeo = useGeolocation();
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth()
       .onAuthStateChanged(
@@ -173,6 +178,7 @@ export default function Login(props) {
 // },[]);
 function SignIn(user) {
      // alert("firebase user "+JSON.stringify(user))
+     console.log(JSON.stringify(user))
       var login={id:user.providerData[0].uid,name:user.displayName,photoURL:user.photoURL,email:user.email,phone:user.metadata.phoneNumber,cedula:"",photo:"",lat:0,lng:0,idorg:0,org:"",idfuncional:0,funcional:"",idrol:0,rol:"",codcne:"000000000"}
       setLoginAuth(login)
    
@@ -187,20 +193,8 @@ function SignIn(user) {
        
       // fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
       //AQUI LA LA AUTENTICACION
-      var log={
-             "type":"Feature",
-             "properties":{"mail":"ppazpu@gmail.com",
-                           "timestamp":new Date(), 
-                           "sistema":"FaroV2",
-                           "idorganiacion":1,"organizacion":"AD",
-                           "idfuncional":2,"funcional":"Comando",
-                           "codcne":1212122929,"nombrecodcne":"Colegio XYZ",
-                           "idrol":202,rol:"coordinador"},  
-                           "evento":"login",
-                           "trigger":{"accion":"correo","destino":"ppaz@gmail.com","mensaje":"Password nuevo es 234","status":false,"fechaaccion":"2020-022-02"},                            
-             "geometry":{"type":"Point","coordinates":["lng","lat"]
-             }
-           }
+     
+     
       var log={mail:"ppazpu@gmail.com",idorganiacion:1,organizacion:"AD",idfuncional:2,funcional:"Comando",codcne:1212122929,nombrecodcne:"Colegio XYZ",idrol:202,rol:"coordinador",}
     }else{
       
@@ -225,6 +219,7 @@ function SignIn(user) {
       //ROJO
     }
   },[data,isLoading]);
+  
   function login(pos){
            loginauth.idorg=data[pos].idorganizacion;
            loginauth.org=data[pos].nombreorganizacion;
@@ -233,9 +228,54 @@ function SignIn(user) {
            loginauth.idrol=data[pos].idrol
           loginauth.rol=data[pos].nombrerol
            loginauth.codcne=data[pos].codigocanonicocne
-      
+         console.log(JSON.stringify(data[pos]))
           // alert(JSON.stringify(loginauth))
+          var logcosmosdb={
+            "type": "Feature",
+            "properties": {
+                "mail": loginauth.email,
+                "timestamp": new Date(),
+                "sistema": "PizarraV1",
+                "idorganiacion": data[pos].idorganizacion,
+                "organizacion": data[pos].nombreorganizacion,
+                "idfuncional": data[pos].idnodofuncional,
+                "funcional": data[pos].nombrenodofuncional,
+                "codcne":data[pos].codigocanonicocne,
+                "nombrecodcne": data[pos].nombrenodoorganizacional,
+                "idrol": data[pos].idrol,
+                "rol": data[pos].nombrerol,
+                "idpartido":data[pos].idpartido,
+                "partido":data[pos].nombrepartido,
 
+                "plataforma": "",
+                "modelo": "",
+                "version": "80",
+                "speed": "",
+                "ip": "",
+                "evento": "login",
+                "descripcion": "Acceso al sistema FARO2.0 de : GABRIEL BOYERIZO",
+                "idbitacorasql": 0,
+                "trigger": {
+                    "accion": "sinaccion",
+                    "destino": loginauth.email,
+                    "mensaje": "Acceso al sistema FARO2.0 de : GABRIEL BOYERIZO",
+                    "status": false,
+                    "fechaaccion": "2020-04-06T11:25:50.436Z"
+                },
+                "flag": 1,
+                "msj": "Proceso exitoso"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  stategeo.longitude,
+                  stategeo.latitude
+                ]
+            },
+        }
+        postData("https://faronosql.azurewebsites.net/api/LogPost",logcosmosdb)
+   
+        console.log(logcosmosdb)
            setOpen(false)
 
            props.loginclick() 

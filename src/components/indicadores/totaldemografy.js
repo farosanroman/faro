@@ -101,8 +101,8 @@ setColors(['#FFFFFF', '#FDD017','#F88017', '#2554C7', '#000080'])
             }
           },
           yaxis: {
-            min: -20,
-            max: 20,
+            min: -10,
+            max: 15,
             title: {
               // text: 'Age',
             },

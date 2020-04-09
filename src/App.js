@@ -65,6 +65,7 @@ export default App;
 //HOOKS 
 //https://www.youtube.com/watch?v=-G43PbpmGrA
 //https://www.youtube.com/watch?v=cjBm0HnYcqw BEST ON CONTEXT AND REDUCER   BEST BEST BEST OjO
+//https://kentcdodds.com/blog/the-state-reducer-pattern-with-react-hooks  reducer in custom Kent
 
 //https://codepen.io/kelvinzhang/pen/jpoRMm?editors=1010
 //https://codepen.io/ivjose/pen/EyjGKa   TARJETA 

@@ -88,6 +88,11 @@ export const defaultState = {
   export const reducer = (state = defaultState, action) => {
       const { type, stateprop } = action;
       switch (type) {
+        case 'LOGIN':
+          //FIREBASE
+        //  alert("LOGIN en reducer"+JSON.stringify(stateprop)   )
+        return { ...state, login: stateprop };
+      
         case 'ASIGNACION':
           // alert(JSON.stringify(stateprop))
         return { ...state, asignacion: stateprop };
@@ -99,11 +104,7 @@ export const defaultState = {
        case 'FLAGLOGIN':
         // alert("FLAGLOGIN en reducer "+JSON.stringify(stateprop))
        return { ...state, flagLogin: stateprop };
-      case 'LOGIN':
-          //FIREBASE
-        //  alert("LOGIN en reducer"+JSON.stringify(stateprop)   )
-        return { ...state, login: stateprop };
-      
+     
       case 'LNGLAT':
           return { ...state, lnglat: stateprop };
       case 'POSITION':

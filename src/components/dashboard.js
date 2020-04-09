@@ -364,8 +364,8 @@ export default function Dashboard() {
       </ListItemIcon>
       <ListItemText primary="GeoCentros" />
     </ListItem>
-
-        {/* <ListItem button onClick={handleComponent(5)}>
+{/* 
+        <ListItem button onClick={handleComponent(5)}>
       <ListItemIcon>
         <EditIcon />
       </ListItemIcon>
@@ -373,7 +373,7 @@ export default function Dashboard() {
     </ListItem> */}
 
         </List>   
-        {/* <Divider />
+         {/* <Divider />
         <List>
        
     <ListItem button onClick={handleComponent(2)}>
@@ -398,7 +398,7 @@ export default function Dashboard() {
       <ListItemText primary="Resultados" />
     </ListItem>
     
-        </List> */}
+        </List>  */}
               
        
         <Divider />
