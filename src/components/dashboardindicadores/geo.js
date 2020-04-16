@@ -1,5 +1,7 @@
 import React, {useEffect, useState,Fragment } from 'react';
 import { Application } from '../../App';
+import {useFetch} from '../hooks/usefetch'; 
+import CircularProgress from '@material-ui/core/CircularProgress';
 //import {antenacercana} from './helpers'
 import  MapGL,{Layer,Feature,ZoomControl,GeoJSONLayer,ScaleControl} from 'react-mapbox-gl';
 import { withStyles } from '@material-ui/core/styles';
@@ -12,7 +14,9 @@ import {antenas} from '../../data/antenas.json';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
 import {LIBERTADOR} from '../../data/libertador.json';
+import {PAMIRANDA} from '../../data/PAMIRANDA.json';
 import {usePosition} from '../../hooks/useposition';
+import {voronoijson} from '../../data/voronoijson.json';
 //import {useGeolocation} from '../hooks/usegeolocation';
 import { greatCircle, point,circle } from '@turf/turf';
 import Title from '../dashboard/title';
@@ -43,6 +47,10 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
   
 //   alert(JSON.stringify(antfl))
     const classes = useStyles();
+    const [personasjson, setPersonasJson]=useState({"type":"FeatureCollection","features":[] });
+    const [flagCircular, setFlagCircular] = React.useState(false); 
+    const [data, isLoading, isError , fetchData] = useFetch(""); 
+
     const [pos, setPos] = React.useState([-66.9188,10.508]);
     //const { state, dispatch } = React.useContext(Application);
     const [state,setState]=useState( {
@@ -70,7 +78,53 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
     const [zoom, setZoom] = useState([6]);
     const { latitude, longitude, timestamp, accuracy, error } = usePosition();
   //  const stategeo = useGeolocation();
+  useEffect(() => {
+    //alert(JSON.stringify(contextKPI))
+   // contextKPI.addKPI({
+   //   firstName: 'ssssssssswww',
+   //   lastName: '2222222222222222'
+   // });
+   // alert(JSON.stringify(contextKPI))
+   // alert("indicadores "+JSON.stringify(context))
+   //var a=kpigeojson(celular)
+ // console.log(JSON.stringify(kpigeojson('GEOJSON')))
+ // handleKPIDay(kpigeojson('GEOJSON'))
+ fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido=1&idnodofuncional=1039&roles=');
+    
+},[]);
+useEffect(() => {
+  //alert("in "+option)
+ //alert(JSON.stringify(data))
+  if (isLoading) {
+    setFlagCircular(true)
+  }
+  //alert(data[0].type)
+  if ((data!=undefined)&&(!isLoading))      
+  {
+   // console.log(JSON.stringify(data))
+   //alert("fetch"+JSON.stringify(data))
+   const  featurespersonasjson=data.map(d=>{               
+    return(
+      {
+        "type":"Feature",
+        "properties":{"nombre":"o.cellid"},                             
+        "geometry":{"type":"Point","coordinates":[d.lng,d.lat ]
+        }
+      }
+)     
+})   
+
+let personasFeatureCollection={
+  "type":"FeatureCollection",
+  "features":featurespersonasjson
+}
+setPersonasJson(personasFeatureCollection)
+
+//handleKPIDay(data)
+  setFlagCircular(false)
    
+  }
+},[data,isLoading]);
   //console.log("stategeo"+JSON.stringify(state.positions))
   function onResize (map, event)  {
    //alert(map.getZoom()+" " +JSON.stringify(event))
@@ -185,7 +239,7 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
   }
   //var coords=[]
 
-  var centro=[state.position.longitude,state.position.latitude]
+  
   //var centro=[ -80.23521423339844,25.791081498923305 ]
 //  if (latitude>1){
 //  centro=[longitude,latitude]
@@ -194,6 +248,7 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
  //console.log(JSON.stringify(drone))
 // var center = [  -66.8658,10.4645];
 // var radius = 7;
+var centro=[state.position.longitude,state.position.latitude]
  var options = {steps: 10, units: 'kilometers', properties: {foo: 'bar'}};
  var circle10 = circle(centro, 10, options);
  var circle9 = circle(centro, 9, options);
@@ -211,6 +266,8 @@ console.log("zooooooooooooooooooooooooooooom"+state.zoom+"zooooooooooooooooooooo
 return (
 <Fragment>
 <div className={classes.root}>
+{flagCircular&&<CircularProgress variant="indeterminate"   disableShrink  size={20}   thickness={4} className={classes.progress} />}
+
  <Title>Log de Actividades</Title>   
 <Map       
    //style="mapbox://styles/mapbox/streets-v8"
@@ -243,7 +300,7 @@ return (
                          <GeoJSONLayer
               data={LIBERTADOR}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': '#FFFF00','line-width': .3}}
+              linePaint={{'line-color': '#FFFF00','line-width': 1}}
              
             />
                <GeoJSONLayer
@@ -252,6 +309,40 @@ return (
               linePaint={{'line-color': '#58D3F7','line-width': 1.0}}
              
             />  
+             <GeoJSONLayer
+              data={PAMIRANDA}
+              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
+              linePaint={{'line-color': '#FFFF00','line-width': 1}}
+             
+            />
+               <GeoJSONLayer
+              data={voronoijson}
+              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
+              linePaint={{'line-color': 'violet','line-width': 1}}
+             
+            />
+               <GeoJSONLayer
+              data={ESTADOSGEO}
+              //fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
+              linePaint={{'line-color': '#58D3F7','line-width': 1.0}}
+             
+            />  
+<GeoJSONLayer
+          data={personasjson}
+          circleLayout={{ visibility: 'visible' }}
+         circlePaint={{'circle-color': '#3BB9FF','circle-radius': 10,'circle-opacity': 0.6 }}         
+          symbolLayout={{
+            'text-field': '{nombre0}',
+            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top',
+            
+          }}
+          symbolPaint={{
+            'text-color': 'black'
+          }}
+          />
+
 <GeoJSONLayer
           data={antenasjson}
           circleLayout={{ visibility: 'visible' }}

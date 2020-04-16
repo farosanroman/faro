@@ -142,7 +142,7 @@ export default function Indicadores() {
 useEffect(() => {   
   setFlagCircular(true)
   //alert(JSON.stringify(state.login))
-  fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional=1039&roles=')
+  fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional='+state.login.idfuncional+'&roles=')
        
 },[]);
 useEffect(() => {
