@@ -47,7 +47,9 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
   
 //   alert(JSON.stringify(antfl))
     const classes = useStyles();
-    const [personasjson, setPersonasJson]=useState({"type":"FeatureCollection","features":[] });
+    const [rolesjson, setRolesJson]=useState({"type":"FeatureCollection","features":[] });
+    const [rejson, setReJson]=useState({"type":"FeatureCollection","features":[] });
+
     const [flagCircular, setFlagCircular] = React.useState(false); 
     const [data, isLoading, isError , fetchData] = useFetch(""); 
 
@@ -89,7 +91,7 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
    //var a=kpigeojson(celular)
  // console.log(JSON.stringify(kpigeojson('GEOJSON')))
  // handleKPIDay(kpigeojson('GEOJSON'))
- fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido=1&idnodofuncional=1039&roles=');
+ fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido=&idnodofuncional=1039&roles=');
     
 },[]);
 useEffect(() => {
@@ -103,7 +105,7 @@ useEffect(() => {
   {
    // console.log(JSON.stringify(data))
    //alert("fetch"+JSON.stringify(data))
-   const  featurespersonasjson=data.map(d=>{               
+   const  featuresrolesjson=data.map(d=>{               
     return(
       {
         "type":"Feature",
@@ -113,12 +115,27 @@ useEffect(() => {
       }
 )     
 })   
+const  featuresrejson=data.map(d=>{               
+  return(
+    {
+      "type":"Feature",
+      "properties":{"nombre":"o.cellid"},                             
+      "geometry":{"type":"Point","coordinates":[d.relng,d.relat ]
+      }
+    }
+)     
+})   
 
-let personasFeatureCollection={
+let personasRolesCollection={
   "type":"FeatureCollection",
-  "features":featurespersonasjson
+  "features":featuresrolesjson
 }
-setPersonasJson(personasFeatureCollection)
+setRolesJson(personasRolesCollection)
+let personasReCollection={
+  "type":"FeatureCollection",
+  "features":featuresrejson
+}
+setReJson(personasReCollection)
 
 //handleKPIDay(data)
   setFlagCircular(false)
@@ -297,24 +314,25 @@ return (
           
         /> 
       
-                         <GeoJSONLayer
-              data={LIBERTADOR}
-              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': '#FFFF00','line-width': 1}}
-             
-            />
                <GeoJSONLayer
               data={ESTADOSGEO}
               //fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
               linePaint={{'line-color': '#58D3F7','line-width': 1.0}}
              
             />  
+                         {/* <GeoJSONLayer
+              data={LIBERTADOR}
+              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
+              linePaint={{'line-color': '#FFFF00','line-width': .8}}
+             
+            />
+
              <GeoJSONLayer
               data={PAMIRANDA}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': '#FFFF00','line-width': 1}}
+              linePaint={{'line-color': '#FFFF00','line-width': .8}}
              
-            />
+            /> */}
                <GeoJSONLayer
               data={voronoijson}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
@@ -328,9 +346,24 @@ return (
              
             />  
 <GeoJSONLayer
-          data={personasjson}
+          data={rolesjson}
           circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': '#3BB9FF','circle-radius': 10,'circle-opacity': 0.6 }}         
+         circlePaint={{'circle-color': '#3BB9FF','circle-radius': 5,'circle-opacity': 0.6 }}         
+          symbolLayout={{
+            'text-field': '{nombre0}',
+            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top',
+            
+          }}
+          symbolPaint={{
+            'text-color': 'black'
+          }}
+          />
+<GeoJSONLayer
+          data={ rejson}
+          circleLayout={{ visibility: 'visible' }}
+         circlePaint={{'circle-color': 'red','circle-radius': 5,'circle-opacity': 0.6 }}         
           symbolLayout={{
             'text-field': '{nombre0}',
             'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],

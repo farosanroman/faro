@@ -73,3 +73,82 @@ export default App;
 //https://medium.com/hackernoon/accepting-payments-in-a-react-native-app-part-1-9cb09a271f59
 //https://medium.com/react-native-training/accepting-payments-in-a-react-native-app-part-3-c22828ecab13
 
+//SENDGRID AzureFunction
+//https://www.freecodecamp.org/news/how-to-build-a-serverless-report-server-with-azure-functions-and-sendgrid-3c063a51f963/
+
+
+
+/*
+const { Connection, Request } = require('tedious');
+
+const options = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+};
+
+
+ var config = {
+        userName: process.env.TEDIUS_LOGIN,
+        password: process.env.TEDIUS_PASSWORD,
+        server: process.env.TEDIUS_SERVER,
+        options: {encrypt: true, database: process.env.TEDIUS_DATABASE}
+    };
+module.exports = function (context, req) {
+  context.log(process.env.TEDIUS_SERVER)
+  executeStatement()
+    .then(data => {
+      if (data.length > 0) {
+       
+       context.res = {
+                status: 200,
+                body:data
+            };
+         context.done();
+      } else {
+          context.log('context.done()');
+        
+      }
+    })
+    .catch(err => {
+      context.log(`ERROR: ${err}`);
+    });
+};
+
+function executeStatement() {
+  return new Promise((resolve, reject) => {
+    const connection = new Connection(config);
+    //const query="select * from nodoorganizacional"
+    //const query="[openfarosql].[indicadoresget]   '', '','1039',''"
+    const query = 'SELECT idrol, nombre as Modified     FROM rol';
+                  // WHERE Modified >= dateadd(day, -1, getdate())`;
+
+    connection.on('connect', err => {
+      if (err) reject(err);
+
+      let request = new Request(query, err => {
+        if (err) {
+          reject(err);
+        }
+      });
+
+      const results = [];
+      request.on('row', columns => {
+        let result = {};
+        columns.forEach(column => {
+          result[column.metadata.colName] = column.value;
+        });
+
+        results.push(result);
+      });
+
+      request.on('doneProc', (rowCount, more) => {
+        resolve(results);
+      });
+
+      connection.execSql(request);
+    });
+  });
+}
+*/
