@@ -52,18 +52,18 @@ import { mainListItems, secondaryListItems } from './listItems';
 
 //import { Summary } from './summary'
 //import Chart from './chartpyramid';
-import Total from './indicadores/total';
+import Total from './dashboardindicadores/total';
 import PrimeraPagina from './dashboard/primerapagina';
 import About from './dashboard/about';
-import FaroPieChart from './indicadores/faropiechartborrar';
+//import FaroPieChart from './indicadores/faropiechartborrar';
 //import Log from './dashboardlog/log';
 ///////////////Equipo//////////////////
 import Indicadores from './dashboardindicadores/indicadores';
 //import Avance from './indicadores/avance';
 
 import Radar2 from './dashboardindicadores/radar2';
-import ChartPyramid from './dashboardindicadores/chartpyramidBORRAR';
-import ChartPieChart from './dashboardindicadores/chartpiechartBORRAR';
+//import ChartPyramid from './dashboardindicadores/chartpyramidBORRAR';
+//import ChartPieChart from './dashboardindicadores/chartpiechartBORRAR';
 import Geo from './dashboardindicadores/geo';
 import PorcPartidos from './dashboardindicadores/porcpartidos';
 ///////////////Equipo//////////////////

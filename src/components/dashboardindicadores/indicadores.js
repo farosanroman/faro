@@ -10,19 +10,19 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import FaroPieChart from '../indicadores/faropiechart';
 //import FaroPieChart from './faropiechartborrar';
 //import PieChartDE from '../indicadores/piechartde';
-import Total from '../indicadores/total';
+import Total from './total';
 //import CircleTotal from '../indicadores/circletotal';
 import { Application } from '../../App';
 import {DASHBOARD} from '../../data/DASHBOARD.json';
 import {DASHBOARD2} from '../../data/DASHBOARD2.json';
 
-import TotalCircle from '../indicadores/totalcircle';
-import TotalCurve from '../indicadores/totalcurve';
-import TotalDonut from '../indicadores/totaldonut';
+import TotalCircle from './totalcircle';
+import TotalCurve from './totalcurve';
+import TotalDonut from './totaldonut';
 import TotalPie from '../indicadores/totalpie';
 
-import TotalDemografy from '../indicadores/totaldemografy';
-import HeatMap from '../indicadores/heatmap';
+import TotalDemografy from './totaldemografy';
+import HeatMap from './heatmap';
 
 import { Pivote } from './pivote'
 import {useFetch}  from '../hooks/usefetch'
@@ -142,6 +142,8 @@ export default function Indicadores() {
 useEffect(() => {   
   setFlagCircular(true)
   //alert(JSON.stringify(state.login))
+  //alert(JSON.stringify(state.login.idfuncional))
+  // http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional=1039&roles=
   fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional='+state.login.idfuncional+'&roles=')
        
 },[]);

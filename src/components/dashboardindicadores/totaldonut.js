@@ -27,10 +27,12 @@ var p = props.resultados.map(function (respuesta, index) {
   return respuesta; 
   }
 });
+console.log(respuestas)
+console.log(cantidades)
 setResultados(cantidades)
 setLabels(respuestas)
 if (props.titulo=="Partidos"){
-setColors(['#ECF0F1', '#FDD017', '#2554C7', ,'#F88017','#000080'])
+setColors(['#ECF0F1', '#FDD017', '#2554C7', '#F88017','#000080'])
 }else{
   setColors(['#2E93fA', '#66DA26', '#546E7A', '#E91E63', '#FF9800'])
 }
