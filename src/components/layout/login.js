@@ -1,4 +1,6 @@
 import React,{useEffect,useState} from 'react';
+import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
+import { flagLogin,login} from '../store/atom';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
@@ -36,9 +38,9 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 
 import firebase from 'firebase'
-
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { Application } from '../../App';
+
+//import { Application } from '../../App';
 import {useFetch}  from '../hooks/usefetch'
 import {useFetchPost}  from '../hooks/usefetchpost'
 import {useGeolocation}  from '../hooks/usegeolocation'
@@ -126,7 +128,10 @@ firebase.initializeApp(config);
 //https://github.com/firebase/firebaseui-web-react#using-firebaseauth-with-local-state
 //https://stackoverflow.com/questions/60420906/how-do-i-implement-firebase-authentication-with-local-state-with-hooks
 export default function Login(props) {
-  const { state, dispatch } = React.useContext(Application);
+//  const { state, dispatch } = React.useContext(Application);
+  const [FLAGLOGIN, setFLAGLOGIN] = useRecoilState(flagLogin);
+  const [LOGIN, setLOGIN] = useRecoilState(login);
+
   const classes = useStyles();
   const [loginauth, setLoginAuth] = useState({uid:"0",name:"",photoURL:"",email:"",phone:"",cedula:"",lat:0,lng:0})
   const [open, setOpen] = useState(false);
@@ -178,14 +183,14 @@ export default function Login(props) {
 // },[]);
 function SignIn(user) {
      // alert("firebase user "+JSON.stringify(user))
-     console.log(JSON.stringify(user))
-      var login={id:user.providerData[0].uid,name:user.displayName,photoURL:user.photoURL,email:user.email,phone:user.metadata.phoneNumber,cedula:"",photo:"",lat:0,lng:0,idorg:0,org:"",idfuncional:0,funcional:"",idrol:0,rol:"",codcne:"000000000"}
-      setLoginAuth(login)
+   //  console.log(JSON.stringify(user))
+      var loginn={id:user.providerData[0].uid,name:user.displayName,photoURL:user.photoURL,email:user.email,phone:user.metadata.phoneNumber,cedula:"",photo:"",lat:0,lng:0,idorg:0,org:"",idfuncional:0,funcional:"",idrol:0,rol:"",codcne:"000000000"}
+      setLoginAuth(loginn)
    
       //alert(JSON.stringify(login.email))
       //setMensajeSnackBar(user.displayName)
       setOpenSnackBar(true)
-      if (login.email!=""){
+      if (loginn.email!=""){
         setMensajeSnackBar("Autenticando la asignacion del correo:"+user.email+" de "+user.displayName)
         const url='http://openfaroapi.azurewebsites.net/api/autenticacionapp?login='+user.email+'&clave=9999&idfaroaplicacion=3&plataforma=SIN&uuid=SIN'
         console.log(url)
@@ -220,7 +225,7 @@ function SignIn(user) {
     }
   },[data,isLoading]);
   
-  function login(pos){
+  function flogin(pos){
            loginauth.idorg=data[pos].idorganizacion;
            loginauth.org=data[pos].nombreorganizacion;
            loginauth.idfuncional=data[pos].idnodofuncional
@@ -228,8 +233,8 @@ function SignIn(user) {
            loginauth.idrol=data[pos].idrol
           loginauth.rol=data[pos].nombrerol
            loginauth.codcne=data[pos].codigocanonicocne
-         console.log(JSON.stringify(data[pos]))
-          // alert(JSON.stringify(loginauth))
+         //console.log(JSON.stringify(data[pos]))
+          //alert(JSON.stringify(loginauth))
           var logcosmosdb={
             "type": "Feature",
             "properties": {
@@ -277,23 +282,25 @@ function SignIn(user) {
    
         console.log(logcosmosdb)
            setOpen(false)
-
+           setFLAGLOGIN(true)
+           setLOGIN(loginauth)
            props.loginclick() 
-           dispatch({
-             type: 'FLAGLOGIN',
-             stateprop:true
-           });
-           dispatch({
-             type: 'LOGIN',
-             stateprop:loginauth
-           });
+
+          //  dispatch({
+          //    type: 'FLAGLOGIN',
+          //    stateprop:true
+          //  });
+          //  dispatch({
+          //    type: 'LOGIN',
+          //    stateprop:loginauth
+          //  });
     
   }
   
 function handleCloseSnackBar() {
     // onClick("V3664204")
     //setLoginAuth(login)
-    if (state.flagLogin==true){
+    if (FLAGLOGIN==true){
      // props.loginclick() 
       setOpenSnackBar(false)
     }else{
@@ -370,7 +377,7 @@ function handleCloseSnackBar() {
         <div>
       <Divider variant="inset" component="li" />
      <ListItem alignItems="flex-start">
-        <ListItemAvatar onClick={() =>login(index)}>
+        <ListItemAvatar onClick={() =>flogin(index)}>
         <Avatar>
                       <MouseIcon />
                     </Avatar>

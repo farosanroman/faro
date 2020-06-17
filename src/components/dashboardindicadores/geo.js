@@ -19,7 +19,7 @@ import {usePosition} from '../../hooks/useposition';
 import {voronoijson} from '../../data/voronoijson.json';
 //import {useGeolocation} from '../hooks/usegeolocation';
 import { greatCircle, point,circle } from '@turf/turf';
-import Title from '../dashboard/title';
+import Title from '../layout/title';
 //import Chart from 'react-google-charts';
 //https://github.com/alex3165/react-mapbox-gl/issues/763
 //https://www.youtube.com/watch?v=JJatzkPcmoI

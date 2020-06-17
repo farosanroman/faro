@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {  PieChart, Pie, Sector, Cell,Leyend,Tooltip} from 'recharts';
-import Title from '../dashboard/title';
+import Title from '../layout/title';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';

@@ -4,7 +4,7 @@ import Circle from 'react-circle';
 import CountUp from 'react-countup';
 
 
-import Title from '../dashboard/title';
+import Title from '../layout/title';
 import Chart from 'react-apexcharts';
 
 //import Title from '../dashboard/title';

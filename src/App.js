@@ -12,10 +12,10 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import indigo from '@material-ui/core/colors/indigo';
 import amber from '@material-ui/core/colors/amber';
 
-import Login from './components/dashboard/login'
+import Login from './components/layout/login'
 import logo from './logo.svg';
 import './App.css';
-
+import { 	RecoilRoot } from 'recoil';
 
 import Dashboard from '../src/components/dashboard'
 import { reducer, defaultState } from './Context';
@@ -49,6 +49,7 @@ function App() {
 
   return (
     <Application.Provider value={{ state, dispatch }}>
+       <RecoilRoot>
     <ThemeProvider theme={theme}>
       <CssBaseline />
           {(pag==0)&&<Login loginclick={onLoginClick} />}
@@ -56,6 +57,7 @@ function App() {
   
 
     </ThemeProvider>
+    </RecoilRoot>
   </Application.Provider>
    
   );

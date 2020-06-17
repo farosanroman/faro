@@ -37,7 +37,7 @@ import {PAPROPERTIES} from  '../../data/PAPROPERTIES.json';
 import {usePosition} from '../../hooks/useposition';
 //import {useGeolocation} from '../hooks/usegeolocation';
 import { greatCircle, point,circle } from '@turf/turf';
-import Title2 from '../dashboard/title';
+import Title2 from '../layout/title';
 import {func1} from '../helpers/helperpolygons'
 import {pointInPolygon} from '../helpers/helperpolygons'
 import {resultados,getLocation,getPersona,getPersonasCODCNE,getCentrosCODCNE} from '../helpers/helpers'

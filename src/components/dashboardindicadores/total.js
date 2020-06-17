@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CountUp from 'react-countup';
 import Circle from 'react-circle';
-import Title from '../dashboard/title';
+import Title from '../layout/title';
 import Card from '@material-ui/core/Card';
 
 import Table from '@material-ui/core/Table';

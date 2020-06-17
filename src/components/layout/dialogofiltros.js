@@ -1,11 +1,12 @@
 import React,{useEffect} from 'react';
-
+import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
+import { flagLogin,login,funcionales, organizacion,getindicadores} from '../store/atom';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
+// import TextField from '@material-ui/core/TextField';
+// import Dialog from '@material-ui/core/Dialog';
+// import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+// import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { makeStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -27,15 +28,15 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 //import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
-import Typography from '@material-ui/core/Typography';
-import Snackbar from '@material-ui/core/Snackbar';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
-import { Application } from '../../App';
+// import Typography from '@material-ui/core/Typography';
+// import Snackbar from '@material-ui/core/Snackbar';
+// import SnackbarContent from '@material-ui/core/SnackbarContent';
+//import { Application } from '../../App';
 
 import {useFetch}  from '../hooks/usefetch'
 import {EEMMPP} from  '../../data/EEMMPP.json';
-import {roles} from  '../../data/roles.json';
-import {organizacion} from  '../../data/organizacion.json';
+//import {roles} from  '../../data/roles.json';
+//import {organizacion} from  '../../data/organizacion.json';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -56,11 +57,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function DialogoFiltros(props) {
     const classes = useStyles();
+    
     const [open, setOpen] = React.useState(true);
-    const { state, dispatch } = React.useContext(Application);
+    //const { state, dispatch } = React.useContext(Application);
 
     const [posfuncional, setPosFuncional] = React.useState(""); 
-    const [idfuncional, setIdFuncional] = React.useState(state.idfuncional); 
+    const [idfuncional, setIdFuncional] = React.useState(1); 
     const [posrol, setPosRol] = React.useState(""); 
     const [idrol, setIdrol] = React.useState(""); 
 
@@ -71,9 +73,14 @@ export default function DialogoFiltros(props) {
    
     const [codparroquia, setCodigoParroquia] = React.useState("");
     const [posparroquia, setPosParroquia] = React.useState(0);
+
     const [ dataF, isLoadingF, isErrorF , fetchDataF] = useFetch("");
     const [ dataR, isLoadingR, isErrorR , fetchDataR] = useFetch("");
-
+    const [LOGIN, setLOGIN] = useRecoilState(login);
+    const [FUNCIONALES, setFUNCIONALES] = useRecoilState(funcionales);
+    const [ORGANIZACION, setORGANIZACION] = useRecoilState(organizacion);
+    const [GETINDICADORES, setGETINDICADORES]= useRecoilState(getindicadores) 
+   
     const handleChange = name => event => {
       //setState({ ...state, [name]: event.target.checked });
     };
@@ -86,11 +93,21 @@ useEffect(() => {
   
   //alert(JSON.stringify(state.funcionales))
   //Aqui se ve el codcne y se actualia el estado municipio y parrouia
-  var index = state.funcionales.findIndex(obj => obj.selected==true);
+ // var index = state.funcionales.findIndex(obj => obj.selected==true);
   //alert(index)
-  if (index==-1)index=0
-  setIdFuncional(state.funcionales[index].idfuncional)
+ // if (index==-1)index=0
+ // setIdFuncional(state.funcionales[index].idfuncional)
+ setIdFuncional(1039)
+ //DELETE
+ var index=0
 
+
+//deleteTodo(0)
+//addTodo()
+//toggleTodo(0)
+//ADD
+ 
+ //alert(JSON.stringify(ORGANIZACION))
 }, []); // Important, pass an empty array so to execute useEffect hook only once
 //useEffect(() => {
  
@@ -99,31 +116,82 @@ useEffect(() => {
 useEffect(() => {
   fetchDataR('https://openfaroapi.azurewebsites.net/api/pizarragetroles?idorganizacion=&codigocne=00000000000&idnodofuncional='+idfuncional)
 }, [idfuncional]); 
-useEffect(() => {
-//alert()
-}, [state.funcionales]); 
-const handleCheckboxChangePartido = id => {
- // alert(id)
-  dispatch({
-    type: 'FILTRO_ORGANIZACION',
-    stateprop: id
-  });
 
+
+const addTodo = () => {
+  setORGANIZACION((oldList) => [
+    ...oldList,
+    {
+      "id": 226,"nombre": "PCV","descripcion": "Partico Comunisra", "selected": true,value: 800
+    },
+]);
+}
+const toggleTodo = (index) => {
+
+  setORGANIZACION((oldTodoList) => {
+    const newTodoList = oldTodoList.map((todo, i) => {
+      if (index === i) {
+        return {
+          ...todo,
+          selected: !todo.selected,
+        };
+      } else {
+        return todo;
+      }
+    });
+//    setPersistedTodoList(newTodoList);
+    return newTodoList;
+  });
+};
+const deleteTodo = (index) => {
+  setORGANIZACION((oldList) => {
+    const newList = oldList.filter(function (el, i) {
+     // alert()
+      return index != i;
+    });
+    //setORGANIZACION(newList);
+    return newList;
+  });
+  
+
+};
+
+
+// useEffect(() => {
+// //alert()
+// }, [state.funcionales]); 
+
+
+const handleCheckboxChangePartido = id => {
+  setORGANIZACION((oldTodoList) => {
+    const newTodoList = oldTodoList.map((todo, i) => {
+      if (id === todo.id) {
+        return {
+          ...todo,
+          selected: !todo.selected,
+        };
+      } else {
+        return todo;
+      }
+    });
+//    setPersistedTodoList(newTodoList);
+    return newTodoList;
+  });
   //if (state.currentWeight) recalculate();
 };
 const handleCheckboxChangeRol = id => {
-  alert(id)
-   dispatch({
-     type: 'FILTRO_ROLES',
-     stateprop: id
-   });
+ // alert(id)
+  //  dispatch({
+  //    type: 'FILTRO_ROLES',
+  //    stateprop: id
+  //  });
  
    //if (state.currentWeight) recalculate();
  };
  
 const handleChangeCambios=input=>e=>{
       if (input=="funcional"){
-        var index = state.funcionales.findIndex(obj => obj.idfuncional==e.target.value);
+      //  var index = state.funcionales.findIndex(obj => obj.idfuncional==e.target.value);
         // alert(index)
         //  dispatch({
         //   type: 'FILTRO_FUNCIONALES',
@@ -133,8 +201,8 @@ const handleChangeCambios=input=>e=>{
           setPosFuncional(index)
       }
       if (input=="rol"){
-        alert(e.target.value)
-        var index = state.funcionales.findIndex(obj => obj.idfuncional==e.target.value);
+       // alert(e.target.value)
+       // var index = state.funcionales.findIndex(obj => obj.idfuncional==e.target.value);
         // alert(index)
         //  dispatch({
         //   type: 'FILTRO_FUNCIONALES',
@@ -282,7 +350,8 @@ const handleChangeCambios=input=>e=>{
           </FormLabel>
         </ListItem>
       <FormGroup>
-          {state.organizacion.map(({ id,nombre, selected }) => {
+          {ORGANIZACION.map(({ id,nombre, selected }) => {
+           
             const labelId ='lista';
             return (
               <ListItem

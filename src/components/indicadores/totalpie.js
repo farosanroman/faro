@@ -1,7 +1,7 @@
 
 import React,{useState,useEffect,Component} from 'react';
 import Chart from 'react-apexcharts'
-import Title from '../dashboard/title';
+import Title from '../layout/title';
 export default function TotalPie(props) {
 
   const [ colors, setColors ] = React.useState([]);

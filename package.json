@@ -32,6 +32,7 @@
     "react-mapbox-gl": "^4.6.0",
     "react-scripts": "^3.4.1",
     "recharts": "^1.7.1",
+    "recoil": "0.0.8",
     "turf": "^3.0.14"
   },
   "scripts": {

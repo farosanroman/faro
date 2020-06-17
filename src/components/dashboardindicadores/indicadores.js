@@ -1,4 +1,6 @@
 import React, { PureComponent,useEffect,useState } from 'react';
+import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
+import { flagLogin,login,organizacion,getindicadores} from '../store/atom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +14,7 @@ import FaroPieChart from '../indicadores/faropiechart';
 //import PieChartDE from '../indicadores/piechartde';
 import Total from './total';
 //import CircleTotal from '../indicadores/circletotal';
-import { Application } from '../../App';
+//import { Application } from '../../App';
 import {DASHBOARD} from '../../data/DASHBOARD.json';
 import {DASHBOARD2} from '../../data/DASHBOARD2.json';
 
@@ -130,8 +132,11 @@ export default function Indicadores() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const fixedHeightPaper2 = clsx(classes.paper, classes.fixedHeight2);
   const fixedHeightPaperPie = clsx(classes.paper, classes.fixedHeightPie);
-  
-  const { state, dispatch } = React.useContext(Application);
+  const [FLAGLOGIN, setFLAGLOGIN] = useRecoilState(flagLogin);
+  const [LOGIN, setLOGIN] = useRecoilState(login); 
+  const ORGANIZACION=useRecoilValue(organizacion) 
+  const GETINDICADORES=useRecoilValue(getindicadores) 
+  //const { state, dispatch } = React.useContext(Application);
   const [ data, isLoading, isError , fetchData] = useFetch("");
   const [flag,setFlag]= useState(false);
   const [flagCircular, setFlagCircular] = React.useState(false); 
@@ -140,13 +145,20 @@ export default function Indicadores() {
  // alert(JSON.stringify(state.login))
 // alert("indicadores "+JSON.stringify(DASHBOARD2.dashboard[3].resultados))
 useEffect(() => {   
-  setFlagCircular(true)
-  //alert(JSON.stringify(state.login))
+
+  alert(JSON.stringify(ORGANIZACION))
   //alert(JSON.stringify(state.login.idfuncional))
   // http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional=1039&roles=
-  fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional='+state.login.idfuncional+'&roles=')
-       
-},[]);
+  //if (GETINDICADORES==true){
+    setFlagCircular(true)
+    fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional='+LOGIN.idfuncional+'&roles=')
+  //}
+  //fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional=1039&roles=')
+  // console.log('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional='+state.login.idfuncional+'&roles=')    
+},[ORGANIZACION]);
+useEffect(() => {   
+//alert()
+},[ORGANIZACION]);
 useEffect(() => {
   if (isLoading) {
   //  setFlagCircular(true)

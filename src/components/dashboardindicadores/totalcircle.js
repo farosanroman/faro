@@ -14,7 +14,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-import Title from '../dashboard/title';
+import Title from '../layout/title';
 import { findProps } from 'devextreme-react/core/template';
     export default function TotalCircle(props) {
             return (

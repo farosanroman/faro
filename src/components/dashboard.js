@@ -1,4 +1,6 @@
 import React, { useState, useEffect }  from 'react';
+import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
+import { flagFiltros,getindicadores,organizacion} from './store/atom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,20 +24,20 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from    '@material-ui/icons/Dashboard';
 import PublicIcon from '@material-ui/icons/Public';
-import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
-import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
-import BallotIcon from '@material-ui/icons/Ballot';
-import MailIcon from '@material-ui/icons/Mail';
+// import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
+// import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+// import BallotIcon from '@material-ui/icons/Ballot';
+// import MailIcon from '@material-ui/icons/Mail';
 import PlaceIcon from '@material-ui/icons/Place';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
-import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
-import SpeakerNotesIcon from '@material-ui/icons/SpeakerNotes';
-import ShowChartIcon from '@material-ui/icons/ShowChart';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import PieChartIcon from '@material-ui/icons/PieChart';
-import LayersIcon from '@material-ui/icons/Layers';
-import SendIcon from '@material-ui/icons/Send';
+// import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
+// import SpeakerNotesIcon from '@material-ui/icons/SpeakerNotes';
+// import ShowChartIcon from '@material-ui/icons/ShowChart';
+// import BarChartIcon from '@material-ui/icons/BarChart';
+// import PieChartIcon from '@material-ui/icons/PieChart';
+// import LayersIcon from '@material-ui/icons/Layers';
+// import SendIcon from '@material-ui/icons/Send';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
 import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
@@ -53,8 +55,8 @@ import { mainListItems, secondaryListItems } from './listItems';
 //import { Summary } from './summary'
 //import Chart from './chartpyramid';
 import Total from './dashboardindicadores/total';
-import PrimeraPagina from './dashboard/primerapagina';
-import About from './dashboard/about';
+import PrimeraPagina from './layout/primerapagina';
+import About from './layout/about';
 //import FaroPieChart from './indicadores/faropiechartborrar';
 //import Log from './dashboardlog/log';
 ///////////////Equipo//////////////////
@@ -80,8 +82,8 @@ import Intervalos from './dashboardmensajeria/intervalos';
 import Resultados from './dashboardmensajeria/resultados';
 import DialogoGetPersona from './personas/dialogogetpersona'
 //import DialogoLogin from './dashboard/dialogologin'
-import DialogoFiltros from './dashboard/dialogofiltros'
-import Fotos from './dashboard/fotos';
+import DialogoFiltros from './layout/dialogofiltros'
+import Fotos from './layout/fotos';
 import Cursos     from      './formacion/cursos'
 import VinoTinto     from      './formacion/vinotinto'
 import {useFetch}  from './helpers/hooks'
@@ -218,7 +220,8 @@ function getStepContent(step) {
 }
 export default function Dashboard() {
   const classes = useStyles();
-  
+  const [GETINDICADORES, setGETINDICADORES]= useRecoilState(getindicadores) 
+  const [ORGANIZACION, setGETORGANIZACION]= useRecoilState(organizacion) 
   const [flagDrawer, setFlagDrawer] = React.useState(true);
   const [flagLogin, setFlagLogin] = React.useState(false);
   const [flagFiltros, setFlagFiltros] = React.useState(false);
@@ -255,7 +258,7 @@ export default function Dashboard() {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-    
+    setGETINDICADORES(true)
     setState({ ...state, [side]: open });
   };
   const handleFiltro=()=>{
