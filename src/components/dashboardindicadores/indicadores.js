@@ -1,6 +1,6 @@
 import React, { PureComponent,useEffect,useState } from 'react';
 import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
-import { flagLogin,login,organizacion,getindicadores} from '../store/atom';
+import { flagLogin,login,organizacion} from '../store/atom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -135,7 +135,7 @@ export default function Indicadores() {
   const [FLAGLOGIN, setFLAGLOGIN] = useRecoilState(flagLogin);
   const [LOGIN, setLOGIN] = useRecoilState(login); 
   const ORGANIZACION=useRecoilValue(organizacion) 
-  const GETINDICADORES=useRecoilValue(getindicadores) 
+  //const GETINDICADORES=useRecoilValue(getindicadores) 
   //const { state, dispatch } = React.useContext(Application);
   const [ data, isLoading, isError , fetchData] = useFetch("");
   const [flag,setFlag]= useState(false);

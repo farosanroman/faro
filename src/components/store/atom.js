@@ -32,12 +32,12 @@ export const funcionales=atom(
       
     })
 
-    export const getindicadores=atom(
-      {
-         key:'getindicadores',
-         default: false
+    // export const getindicadores=atom(
+    //   {
+    //      key:'getindicadores',
+    //      default: false
         
-      })
+    //   })
   export const url = atom({
     key: 'url',
     default: "https://monederoapi.azurewebsites.net/api/GetLogins?code=nMU6jy8N428ZZRJSWynpSKaZikH1DTBXV/9v9pSBi/c3B7KLr9YS8w=="

@@ -1,6 +1,6 @@
 import React, { useState, useEffect }  from 'react';
 import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
-import { flagFiltros,getindicadores,organizacion} from './store/atom';
+import { flagFiltros,organizacion} from './store/atom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -220,7 +220,7 @@ function getStepContent(step) {
 }
 export default function Dashboard() {
   const classes = useStyles();
-  const [GETINDICADORES, setGETINDICADORES]= useRecoilState(getindicadores) 
+//  const [GETINDICADORES, setGETINDICADORES]= useRecoilState(getindicadores) 
   const [ORGANIZACION, setGETORGANIZACION]= useRecoilState(organizacion) 
   const [flagDrawer, setFlagDrawer] = React.useState(true);
   const [flagLogin, setFlagLogin] = React.useState(false);
@@ -258,7 +258,7 @@ export default function Dashboard() {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-    setGETINDICADORES(true)
+    //setGETINDICADORES(true)
     setState({ ...state, [side]: open });
   };
   const handleFiltro=()=>{
