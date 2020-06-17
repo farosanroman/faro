@@ -40,58 +40,11 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
-  // toolbarIcon: {
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   justifyContent: 'flex-end',
-  //   padding: '0 8px',
-  //   ...theme.mixins.toolbar,
-  // },
-  // appBar: {
-  //   zIndex: theme.zIndex.drawer + 1,
-  //   transition: theme.transitions.create(['width', 'margin'], {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.leavingScreen,
-  //   }),
-  // },
-  // appBarShift: {
-  //   marginLeft: drawerWidth,
-  //   width: `calc(100% - ${drawerWidth}px)`,
-  //   transition: theme.transitions.create(['width', 'margin'], {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.enteringScreen,
-  //   }),
-  // },
-  // menuButton: {
-  //   marginRight: 36,
-  // },
-  // menuButtonHidden: {
-  //   display: 'none',
-  // },
+
   title: {
     flexGrow: 1,
   },
-  // drawerPaper: {
-  //   position: 'relative',
-  //   whiteSpace: 'nowrap',
-  //   width: drawerWidth,
-  //   transition: theme.transitions.create('width', {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.enteringScreen,
-  //   }),
-  // },
-  // drawerPaperClose: {
-  //   overflowX: 'hidden',
-  //   transition: theme.transitions.create('width', {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.leavingScreen,
-  //   }),
-  //   width: theme.spacing(7),
-  //   [theme.breakpoints.up('sm')]: {
-  //     width: theme.spacing(9),
-  //   },
-  // },
- // appBarSpacer: theme.mixins.toolbar,
+
   content: {
     flexGrow: 1,
     height: '100vh',
@@ -146,7 +99,7 @@ export default function Indicadores() {
 // alert("indicadores "+JSON.stringify(DASHBOARD2.dashboard[3].resultados))
 useEffect(() => {   
 
-  alert(JSON.stringify(ORGANIZACION))
+ // alert(JSON.stringify(ORGANIZACION))
   //alert(JSON.stringify(state.login.idfuncional))
   // http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional=1039&roles=
   //if (GETINDICADORES==true){
@@ -199,35 +152,20 @@ useEffect(() => {
     
       </Grid>
       </Grid>
-
+{/* 
       <Grid container spacing={3}>
    
-   <Grid item xs={12} md={12} sm={12}>
+  <Grid item xs={12} md={12} sm={12}>
       <TotalCurve titulo={'Totales'} color={'#1bc943'} data={[
              {
                  name: 'Orders',
                  data: [0, 10, 22, 43, 46, 56, 84, 145]
              }
          ]}/>
-   </Grid>
-   {/* <Grid item xs={12} md={4} sm={6}>
-   <TotalCurve titulo={'Trimestre'} color={"#11c5db"} data={[
-             {
-                 name: 'Orders',
-                 data: [0, 10, 22, 43, 46, 56, 64, 95]
-             }
-         ]}/>
-   </Grid>
-   <Grid item xs={12} md={4} sm={6}>
-   <TotalCurve titulo={'Retiros'} color={'#f83245'} data={[
-             {
-                 name: 'Orders',
-                 data: [0, 10, 22, 43, 46, 66, 54, 85]
-             }
-         ]}/>
-   </Grid> */}
-   </Grid>
+   </Grid> 
 
+   </Grid>
+ */}
 
       <Grid container spacing={3}>
       

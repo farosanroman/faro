@@ -79,7 +79,7 @@ export default function DialogoFiltros(props) {
     const [LOGIN, setLOGIN] = useRecoilState(login);
     const [FUNCIONALES, setFUNCIONALES] = useRecoilState(funcionales);
     const [ORGANIZACION, setORGANIZACION] = useRecoilState(organizacion);
-    const [GETINDICADORES, setGETINDICADORES]= useRecoilState(getindicadores) 
+    //const [GETINDICADORES, setGETINDICADORES]= useRecoilState(getindicadores) 
    
     const handleChange = name => event => {
       //setState({ ...state, [name]: event.target.checked });

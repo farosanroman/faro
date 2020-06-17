@@ -43,7 +43,6 @@ export const funcionales=atom(
     default: "https://monederoapi.azurewebsites.net/api/GetLogins?code=nMU6jy8N428ZZRJSWynpSKaZikH1DTBXV/9v9pSBi/c3B7KLr9YS8w=="
   });
 
-
  // https://www.youtube.com/watch?v=ncBSWL1tkr0
   //https://github.com/danba340/todos-recoil
   // const addTodo = () => {
@@ -93,3 +92,37 @@ export const funcionales=atom(
   
   // };
   
+
+  ///////////////////////////////////
+  //https://www.youtube.com/watch?v=tqlUfdIdzk0
+//CRUD https://github.com/mrhm-dev/recoil-cc/blob/master/src/demo/todoApp/state.js
+// Custom Hooks
+// export const useTodoList = () => {
+// 	const [todoList, setTodoList] = useRecoilState(todoListState);
+// 	return {
+// 		addItem: (value) =>
+// 			setTodoList((prev) => [
+// 				...prev,
+// 				{
+// 					id: generateId(),
+// 					text: value,
+// 					isComplete: false,
+// 				},
+// 			]),
+// 		toggleComplete: (id) => {
+// 			const { cloned, index } = cloneArray(todoList, id);
+// 			cloned[index].isComplete = !cloned[index].isComplete;
+// 			setTodoList(cloned);
+// 		},
+// 		editItem: (id, value) => {
+// 			const { cloned, index } = cloneArray(todoList, id);
+// 			cloned[index].text = value;
+// 			setTodoList(cloned);
+// 		},
+// 		deleteItem: (id) => {
+// 			const { cloned, index } = cloneArray(todoList, id);
+// 			cloned.splice(index, 1);
+// 			setTodoList(cloned);
+// 		},
+// 	};
+// };
