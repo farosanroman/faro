@@ -12,25 +12,45 @@ export const login = atom({
 export const funcionales=atom(
 {
    key:'funcionales',
-   default: [
-    {idfuncional:1,funcional:"Comando 2020","selected": true},
-    {idfuncional:2,funcional:"Formacion","selected": false},
-    {idfuncional:3,funcional:"Conteo Rapido","selected": false}
- ]
+   default: []
 })
 
+// [{"idorganizacion":"","idnodofuncional":"1039","codigonodofuncional":"COMAN","nombrenodofuncional":"Comando 2020","pordefecto":1},
+// {"idorganizacion":"","idnodofuncional":"1038","codigonodofuncional":"FORMA","nombrenodofuncional":"Formación","pordefecto":2}]
 
+export const roles=atom(
+  {
+     key:'roles',
+     default:[]
+})
+//{ROLES.map(({ idrol,nombrerol }) => {
+//  [{"idorganizacion":"","idnodofuncional":"1039","codigonodofuncional":"COMAN","nombrenodofuncional":"Comando 2020","idrol":"248","nombrerol":"Responsables Nacionales","posrol":1},
+//     {"idorganizacion":"","idnodofuncional":"1039","codigonodofuncional":"COMAN","nombrenodofuncional":"Comando 2020","idrol":"249","nombrerol":"Coordinador Electoral","posrol":2},
+//     {"idorganizacion":"","idnodofuncional":"1039","codigonodofuncional":"COMAN","nombrenodofuncional":"Comando 2020","idrol":"251","nombrerol":"Call Center","posrol":4}]
+    
+// {idfuncional:1,funcional:"Comando 2020www","selected": true},
+// {idfuncional:2,funcional:"Formacion","selected": false},
+// {idfuncional:3,funcional:"Conteo Rapido","selected": false}
   export const organizacion=atom(
     {
        key:'organizacion',
-       default: [{"id": 0,"nombre": "AD","descripcion": "Accion Democratica", "selected": true,value: 800 },
-        {"id": 1,"nombre": "PJ","descripcion": "Primero Justicia","selected": true,value: 800 },
+       default: [{"id": 1,"nombre": "AD","descripcion": "Accion Democratica", "selected": true,value: 800 },
+        {"id": 3,"nombre": "PJ","descripcion": "Primero Justicia","selected": true,value: 800 },
         { "id": 2,"nombre": "VP","descripcion": "Voluntad Popular", "selected": true,value: 800},
-        { "id": 3,"nombre": "UNT","descripcion": "Un Nuevo Tiempo",  "selected": true, value: 800}
+        { "id": 4,"nombre": "UNT","descripcion": "Un Nuevo Tiempo",  "selected": true, value: 800},
+        {"id": 7,"nombre": "CAUSA R","descripcion": "Un Nuevo Tiempo",  "selected": true, value: 800}
       
       ]
       
     })
+    // [{"idpregunta":"4","idrespuesta":"1","respuesta":"AD","cantporcadarespuesta":3,"totalpregunta":3,"porcentaje":100},
+    // {"idpregunta":"4","idrespuesta":"7","respuesta":"CAUSA R","cantporcadarespuesta":0,"totalpregunta":3,"porcentaje":0},
+    // {"idpregunta":"4","idrespuesta":"3","respuesta":"MPJ","cantporcadarespuesta":0,"totalpregunta":3,"porcentaje":0},
+    // {"idpregunta":"4","idrespuesta":"4","respuesta":"UNTC","cantporcadarespuesta":0,"totalpregunta":3,"porcentaje":0},
+    // {"idpregunta":"4","idrespuesta":"2","respuesta":"VPA","cantporcadarespuesta":0,"totalpregunta":3,"porcentaje":0}]
+    // [{"idorganizacion":"","idnodofuncional":"1039","codigonodofuncional":"COMAN","nombrenodofuncional":"Comando 2020","idrol":"248","nombrerol":"Responsables Nacionales","posrol":1},
+    // {"idorganizacion":"","idnodofuncional":"1039","codigonodofuncional":"COMAN","nombrenodofuncional":"Comando 2020","idrol":"249","nombrerol":"Coordinador Electoral","posrol":2},
+    // {"idorganizacion":"","idnodofuncional":"1039","codigonodofuncional":"COMAN","nombrenodofuncional":"Comando 2020","idrol":"251","nombrerol":"Call Center","posrol":4}]
 
     // export const getindicadores=atom(
     //   {

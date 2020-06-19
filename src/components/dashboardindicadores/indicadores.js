@@ -1,6 +1,6 @@
 import React, { PureComponent,useEffect,useState } from 'react';
 import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
-import { flagLogin,login,organizacion} from '../store/atom';
+import { flagLogin,login,organizacion,roles} from '../store/atom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,8 +15,8 @@ import FaroPieChart from '../indicadores/faropiechart';
 import Total from './total';
 //import CircleTotal from '../indicadores/circletotal';
 //import { Application } from '../../App';
-import {DASHBOARD} from '../../data/DASHBOARD.json';
-import {DASHBOARD2} from '../../data/DASHBOARD2.json';
+//import {DASHBOARD} from '../../data/DASHBOARD.json';
+//import {DASHBOARD2} from '../../data/DASHBOARD2.json';
 
 import TotalCircle from './totalcircle';
 import TotalCurve from './totalcurve';
@@ -88,6 +88,7 @@ export default function Indicadores() {
   const [FLAGLOGIN, setFLAGLOGIN] = useRecoilState(flagLogin);
   const [LOGIN, setLOGIN] = useRecoilState(login); 
   const ORGANIZACION=useRecoilValue(organizacion) 
+  const ROLES=useRecoilValue(roles)
   //const GETINDICADORES=useRecoilValue(getindicadores) 
   //const { state, dispatch } = React.useContext(Application);
   const [ data, isLoading, isError , fetchData] = useFetch("");
@@ -104,11 +105,26 @@ useEffect(() => {
   // http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional=1039&roles=
   //if (GETINDICADORES==true){
     setFlagCircular(true)
-    fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional='+LOGIN.idfuncional+'&roles=')
+    var partidos=""
+    ORGANIZACION.map(function (partido) {
+      if (partido.selected)partidos+=partido.id+","; 
+      
+    });
+    partidos=partidos.substring(0, partidos.length - 1);
+   // alert(JSON.stringify(ROLES))
+    var roles=""
+    ROLES.map(function (rol) {
+      if (rol.selected)roles+=rol.idrol+","; 
+      
+    });
+    roles=roles.substring(0, roles.length - 1);
+   // alert(JSON.stringify(roles))
+    //partidos="2";
+    fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido='+partidos+'&idnodofuncional='+LOGIN.idfuncional+'&roles='+roles)
   //}
   //fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional=1039&roles=')
   // console.log('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional='+state.login.idfuncional+'&roles=')    
-},[ORGANIZACION]);
+},[ORGANIZACION,ROLES]);
 useEffect(() => {   
 //alert()
 },[ORGANIZACION]);

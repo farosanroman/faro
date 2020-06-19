@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
 import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
-import { flagLogin,login,funcionales, organizacion,getindicadores} from '../store/atom';
+import { flagLogin,login,funcionales,roles, organizacion,getindicadores} from '../store/atom';
 import Button from '@material-ui/core/Button';
 // import TextField from '@material-ui/core/TextField';
 // import Dialog from '@material-ui/core/Dialog';
@@ -74,9 +74,11 @@ export default function DialogoFiltros(props) {
     const [codparroquia, setCodigoParroquia] = React.useState("");
     const [posparroquia, setPosParroquia] = React.useState(0);
 
-    const [ dataF, isLoadingF, isErrorF , fetchDataF] = useFetch("");
-    const [ dataR, isLoadingR, isErrorR , fetchDataR] = useFetch("");
+    // const [ dataF, isLoadingF, isErrorF , fetchDataF] = useFetch("");
+    //const [ dataR, isLoadingR, isErrorR , fetchDataR] = useFetch("");
     const [LOGIN, setLOGIN] = useRecoilState(login);
+    const [ROLES, setROLES] = useRecoilState(roles);
+    
     const [FUNCIONALES, setFUNCIONALES] = useRecoilState(funcionales);
     const [ORGANIZACION, setORGANIZACION] = useRecoilState(organizacion);
     //const [GETINDICADORES, setGETINDICADORES]= useRecoilState(getindicadores) 
@@ -89,7 +91,7 @@ export default function DialogoFiltros(props) {
     //const error = [ AD, PJ, VP].filter(v => v).length !== 2;
 const error='ABC'
 useEffect(() => {
-  fetchDataF('https://openfaroapi.azurewebsites.net/api/pizarragetnodosfuncionales?idorganizacion=&codigocne=00000000000&idrol=')
+  //fetchDataF('https://openfaroapi.azurewebsites.net/api/pizarragetnodosfuncionales?idorganizacion=&codigocne=00000000000&idrol=')
   
   //alert(JSON.stringify(state.funcionales))
   //Aqui se ve el codcne y se actualia el estado municipio y parrouia
@@ -102,20 +104,14 @@ useEffect(() => {
  var index=0
 
 
-//deleteTodo(0)
-//addTodo()
-//toggleTodo(0)
-//ADD
- 
- //alert(JSON.stringify(ORGANIZACION))
 }, []); // Important, pass an empty array so to execute useEffect hook only once
 //useEffect(() => {
  
 //}, [dataF]); 
 
-useEffect(() => {
-  fetchDataR('https://openfaroapi.azurewebsites.net/api/pizarragetroles?idorganizacion=&codigocne=00000000000&idnodofuncional='+idfuncional)
-}, [idfuncional]); 
+// useEffect(() => {
+//   fetchDataR('https://openfaroapi.azurewebsites.net/api/pizarragetroles?idorganizacion=&codigocne=00000000000&idnodofuncional='+idfuncional)
+// }, [idfuncional]); 
 
 
 const addTodo = () => {
@@ -179,15 +175,22 @@ const handleCheckboxChangePartido = id => {
   });
   //if (state.currentWeight) recalculate();
 };
-const handleCheckboxChangeRol = id => {
- // alert(id)
-  //  dispatch({
-  //    type: 'FILTRO_ROLES',
-  //    stateprop: id
-  //  });
- 
-   //if (state.currentWeight) recalculate();
- };
+const handleCheckboxChangeRol = idrol => {
+  setROLES((oldTodoList) => {
+    const newTodoList = oldTodoList.map((todo, i) => {
+      if (idrol === todo.idrol) {
+        return {
+          ...todo,
+          selected: !todo.selected,
+        };
+      } else {
+        return todo;
+      }
+    });
+//    setPersistedTodoList(newTodoList);
+    return newTodoList;
+  });
+  };
  
 const handleChangeCambios=input=>e=>{
       if (input=="funcional"){
@@ -275,7 +278,7 @@ const handleChangeCambios=input=>e=>{
               
                ))}
         */}
-       {dataF.map((item, index) => (
+       {FUNCIONALES.map((item, index) => (
                 
                 <MenuItem value={item.idnodofuncional}>{item.nombrenodofuncional}</MenuItem>
               
@@ -387,7 +390,7 @@ const handleChangeCambios=input=>e=>{
          </FormLabel>
        </ListItem>
      <FormGroup>
-     {dataR.map(({ idrol,nombrerol }) => {
+     {ROLES.map(({ idrol,nombrerol,selected }) => {
            const labelId ='lista';
            return (
              <ListItem
@@ -400,7 +403,7 @@ const handleChangeCambios=input=>e=>{
                <ListItemIcon>
                  <Checkbox
                    edge="start"
-                   checked={true}
+                   checked={selected}
                    value={idrol}
                    tabIndex={-1}
                    disableRipple

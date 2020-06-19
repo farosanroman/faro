@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
-import { flagLogin,login} from '../store/atom';
+import { flagLogin,login,funcionales,roles} from '../store/atom';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
@@ -129,8 +129,12 @@ firebase.initializeApp(config);
 //https://stackoverflow.com/questions/60420906/how-do-i-implement-firebase-authentication-with-local-state-with-hooks
 export default function Login(props) {
 //  const { state, dispatch } = React.useContext(Application);
-  const [FLAGLOGIN, setFLAGLOGIN] = useRecoilState(flagLogin);
+
+   
   const [LOGIN, setLOGIN] = useRecoilState(login);
+  const [FLAGLOGIN, setFLAGLOGIN] = useRecoilState(flagLogin);
+  const [FUNCIONALES, setFUNCIONALES] = useRecoilState(funcionales);
+  const [ROLES, setROLES] = useRecoilState(roles);
 
   const classes = useStyles();
   const [loginauth, setLoginAuth] = useState({uid:"0",name:"",photoURL:"",email:"",phone:"",cedula:"",lat:0,lng:0})
@@ -143,7 +147,8 @@ export default function Login(props) {
   const [openSnackBar,setOpenSnackBar]= useState(true);
   const [mensajeSnackBar,setMensajeSnackBar]= useState("");
   const [ data, isLoading, isError , fetchData] = useFetch("");
-
+  const [ dataF, isLoadingF, isErrorF , fetchDataF] = useFetch("");
+  const [ dataR, isLoadingR, isErrorR , fetchDataR] = useFetch("");
   const [signedIn, setSignIn]= useState(false);
   const [ dataPost, isLoadingPost, isErrorPost , postData] = useFetchPost('');
   const stategeo = useGeolocation();
@@ -229,6 +234,7 @@ function SignIn(user) {
            loginauth.idorg=data[pos].idorganizacion;
            loginauth.org=data[pos].nombreorganizacion;
            loginauth.idfuncional=data[pos].idnodofuncional
+           alert(data[pos].idnodofuncional)
            loginauth.funcional=data[pos].nombrenodofuncional
            loginauth.idrol=data[pos].idrol
           loginauth.rol=data[pos].nombrerol
@@ -278,25 +284,53 @@ function SignIn(user) {
                 ]
             },
         }
+        fetchDataF('https://openfaroapi.azurewebsites.net/api/pizarragetnodosfuncionales?idorganizacion=&codigocne=00000000000&idrol=')
+  
         postData("https://faronosql.azurewebsites.net/api/LogPost",logcosmosdb)
    
         console.log(logcosmosdb)
            setOpen(false)
            setFLAGLOGIN(true)
            setLOGIN(loginauth)
-           props.loginclick() 
 
-          //  dispatch({
-          //    type: 'FLAGLOGIN',
-          //    stateprop:true
-          //  });
-          //  dispatch({
-          //    type: 'LOGIN',
-          //    stateprop:loginauth
-          //  });
     
   }
-  
+  useEffect(() => {
+   // alert(JSON.stringify(dataF))
+    if (isLoadingF) {
+    //  setFlagCircular(true)
+    }
+    if ((dataF!=undefined)&&(!isLoadingF)&&(dataF.length>0))      
+    {console.log(JSON.stringify(dataF))
+      setFUNCIONALES(dataF)
+
+      //alert(JSON.stringify(dataF))
+      /////////////////PRENDE LOS INDICADORES
+        fetchDataR('https://openfaroapi.azurewebsites.net/api/pizarragetroles?idorganizacion=&codigocne=00000000000&idnodofuncional=1039')//+idfuncional)
+            
+            /////////////////PRENDE LOS INDICADORES
+    }
+  },[dataF,isLoadingF]);
+  useEffect(() => {
+    // alert(JSON.stringify(dataF))
+     if (isLoadingR) {
+     //  setFlagCircular(true)
+     }
+     if ((dataR!=undefined)&&(!isLoadingR)&&(dataR.length>0))      
+     {
+   //   alert(JSON.stringify(dataR))  
+    var roles=[]
+     dataR.map(function (r, index, array) {
+       if (index<2){
+       roles.push({idrol:r.idrol,nombrerol:r.nombrerol,selected:true}); 
+       }
+     });
+ // alert(JSON.stringify(roles))
+     setROLES(roles) 
+     props.loginclick(1)     
+             /////////////////PRENDE LOS INDICADORES
+     }
+   },[dataR,isLoadingR]);
 function handleCloseSnackBar() {
     // onClick("V3664204")
     //setLoginAuth(login)

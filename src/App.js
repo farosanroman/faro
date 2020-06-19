@@ -1,5 +1,4 @@
 import React,{ useState } from 'react';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -49,7 +48,7 @@ function App() {
 
   return (
     <Application.Provider value={{ state, dispatch }}>
-       <RecoilRoot>
+     <RecoilRoot>
     <ThemeProvider theme={theme}>
       <CssBaseline />
           {(pag==0)&&<Login loginclick={onLoginClick} />}
