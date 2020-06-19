@@ -234,7 +234,7 @@ function SignIn(user) {
            loginauth.idorg=data[pos].idorganizacion;
            loginauth.org=data[pos].nombreorganizacion;
            loginauth.idfuncional=data[pos].idnodofuncional
-           alert("login"+data[pos].idnodofuncional)
+          // alert("login"+data[pos].idnodofuncional)
            loginauth.funcional=data[pos].nombrenodofuncional
            loginauth.idrol=data[pos].idrol
           loginauth.rol=data[pos].nombrerol

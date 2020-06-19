@@ -24,20 +24,20 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from    '@material-ui/icons/Dashboard';
 import PublicIcon from '@material-ui/icons/Public';
-// import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
-// import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
-// import BallotIcon from '@material-ui/icons/Ballot';
-// import MailIcon from '@material-ui/icons/Mail';
+import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+import BallotIcon from '@material-ui/icons/Ballot';
+import MailIcon from '@material-ui/icons/Mail';
 import PlaceIcon from '@material-ui/icons/Place';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
 // import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
 // import SpeakerNotesIcon from '@material-ui/icons/SpeakerNotes';
-// import ShowChartIcon from '@material-ui/icons/ShowChart';
+import ShowChartIcon from '@material-ui/icons/ShowChart';
 // import BarChartIcon from '@material-ui/icons/BarChart';
-// import PieChartIcon from '@material-ui/icons/PieChart';
+import PieChartIcon from '@material-ui/icons/PieChart';
 // import LayersIcon from '@material-ui/icons/Layers';
-// import SendIcon from '@material-ui/icons/Send';
+import SendIcon from '@material-ui/icons/Send';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
 import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
@@ -376,7 +376,7 @@ export default function Dashboard() {
     </ListItem> */}
 
         </List>   
-         {/* <Divider />
+         <Divider />
         <List>
        
     <ListItem button onClick={handleComponent(2)}>
@@ -401,7 +401,7 @@ export default function Dashboard() {
       <ListItemText primary="Resultados" />
     </ListItem>
     
-        </List>  */}
+        </List> 
               
        
         <Divider />
@@ -495,7 +495,7 @@ export default function Dashboard() {
                 <Geo />
               </Paper>
             </Grid>
-      <Grid item xs={12} md={6} lg={6}>
+      {/* <Grid item xs={12} md={6} lg={6}>
         <Paper className={fixedHeightPaper}>
            <PorcPartidos />
         </Paper>
@@ -506,7 +506,7 @@ export default function Dashboard() {
         <Paper className={fixedHeightPaper2}>
            <Radar2 />
         </Paper>
-      </Grid>
+      </Grid> */}
          </Grid>
 
 </Container>

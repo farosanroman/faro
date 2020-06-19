@@ -63,7 +63,7 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
         
         ///// GeoJSON
         lnglat:[-66.888,9.508],
-        zoom:20,
+        zoom:5,
         radio:3,
         /////
         centro:"Centro de Votacion",
@@ -77,7 +77,7 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
           }]
         },
         })
-    const [zoom, setZoom] = useState([6]);
+    const [zoom, setZoom] = useState([12]);
     const { latitude, longitude, timestamp, accuracy, error } = usePosition();
   //  const stategeo = useGeolocation();
   useEffect(() => {
@@ -104,33 +104,31 @@ useEffect(() => {
   if ((data!=undefined)&&(!isLoading))      
   {
    // console.log(JSON.stringify(data))
-   //alert("fetch"+JSON.stringify(data))
+  // alert("fetch"+JSON.stringify(data))
    const  featuresrolesjson=data.map(d=>{               
     return(
       {
         "type":"Feature",
-        "properties":{"nombre":"o.cellid"},                             
+        "properties":{"nombre":"o.cellid","partido":d.partido},                             
         "geometry":{"type":"Point","coordinates":[d.lng,d.lat ]
         }
       }
-)     
-})   
-const  featuresrejson=data.map(d=>{               
-  return(
-    {
-      "type":"Feature",
-      "properties":{"nombre":"o.cellid"},                             
-      "geometry":{"type":"Point","coordinates":[d.relng,d.relat ]
+     )     
+    })   
+
+    const  featuresrejson=data.map(d=>{               
+     return(
+     {
+        "type":"Feature",
+        "properties":{"nombre":"o.cellid","partido":d.partido},                             
+        "geometry":{"type":"Point","coordinates":[d.relng,d.relat ]
       }
     }
-)     
-})   
+    )     
+    })   
 
-let personasRolesCollection={
-  "type":"FeatureCollection",
-  "features":featuresrolesjson
-}
-setRolesJson(personasRolesCollection)
+// setRolesJson(personasRolesCollection)
+
 let personasReCollection={
   "type":"FeatureCollection",
   "features":featuresrejson
@@ -265,27 +263,14 @@ setReJson(personasReCollection)
  //console.log(JSON.stringify(drone))
 // var center = [  -66.8658,10.4645];
 // var radius = 7;
-var centro=[state.position.longitude,state.position.latitude]
- var options = {steps: 10, units: 'kilometers', properties: {foo: 'bar'}};
- var circle10 = circle(centro, 10, options);
- var circle9 = circle(centro, 9, options);
- var circle8 = circle(centro, 8, options);
- 
- 
- var circle1 = circle(centro, 7, options);
- var circle2 = circle(centro, 6, options);
- var circle3 = circle(centro, 5, options);
- var circle4 = circle(centro, 4, options);
- var circle5 = circle(centro, 3, options);
- var circle6 = circle(centro, 2, options);
- var circle7 = circle(centro, 1, options); 
+
 console.log("zooooooooooooooooooooooooooooom"+state.zoom+"zooooooooooooooooooooooooooom")
 return (
 <Fragment>
 <div className={classes.root}>
 {flagCircular&&<CircularProgress variant="indeterminate"   disableShrink  size={20}   thickness={4} className={classes.progress} />}
 
- <Title>Log de Actividades</Title>   
+ <Title>Distribucion Geoespacial</Title>   
 <Map       
    //style="mapbox://styles/mapbox/streets-v8"
    style="mapbox://styles/mapbox/dark-v9"
@@ -309,7 +294,7 @@ return (
 <ScaleControl />
 <GeoJSONLayer
           data={CIUDADESGEO}
-          fillPaint={{'fill-color': 'lightgray','fill-outline-color': 'yellow','fill-opacity': .1}}
+          fillPaint={{'fill-color': 'lightgray','fill-outline-color': 'yellow','fill-opacity': .05}}
           linePaint={{            'line-color': 'gray',            'line-width': 1          }}
           
         /> 
@@ -320,32 +305,32 @@ return (
               linePaint={{'line-color': '#58D3F7','line-width': 1.0}}
              
             />  
-                         {/* <GeoJSONLayer
+                         <GeoJSONLayer
               data={LIBERTADOR}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': '#FFFF00','line-width': .8}}
+              linePaint={{'line-color': 'deepskyblue','line-width': 1}}
              
             />
 
              <GeoJSONLayer
               data={PAMIRANDA}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': '#FFFF00','line-width': .8}}
+              linePaint={{'line-color': 'deepskyblue','line-width': 1}}
              
-            /> */}
+            />
                <GeoJSONLayer
               data={voronoijson}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': 'violet','line-width': 1}}
+              linePaint={{'line-color': 'red','line-width': .5}}
              
             />
                <GeoJSONLayer
               data={ESTADOSGEO}
               //fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': '#58D3F7','line-width': 1.0}}
+              linePaint={{'line-color': 'lime','line-width': 1.0}}
              
             />  
-<GeoJSONLayer
+{/* <GeoJSONLayer
           data={rolesjson}
           circleLayout={{ visibility: 'visible' }}
          circlePaint={{'circle-color': '#3BB9FF','circle-radius': 5,'circle-opacity': 0.6 }}         
@@ -359,11 +344,11 @@ return (
           symbolPaint={{
             'text-color': 'black'
           }}
-          />
+          /> */}
 <GeoJSONLayer
           data={ rejson}
           circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'red','circle-radius': 5,'circle-opacity': 0.6 }}         
+         circlePaint={{'circle-color': 'yellow','circle-radius': 5,'circle-opacity': 0.6 }}         
           symbolLayout={{
             'text-field': '{nombre0}',
             'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
@@ -403,7 +388,7 @@ return (
           }}
           
         />   
-         <GeoJSONLayer   centro y brillo
+         {/* <GeoJSONLayer   centro y brillo
           data={observadoresjson}
           circleLayout={{ visibility: 'visible' }}
          circlePaint={{'circle-color': 'yellow','circle-radius': 4,'circle-opacity': 1,'circle-stroke-color': 'yellow' , 'circle-stroke-width': 2,'circle-blur': 0.9, }}         
@@ -417,7 +402,7 @@ return (
           symbolPaint={{
             'text-color': 'black'
           }}
-          />
+          /> */}
         {/* <GeoJSONLayer
           data={observadoresjson}
           circlePaint={{'circle-color': '#FF0000','circle-radius': 4,'circle-opacity': 1 }}   
@@ -460,96 +445,8 @@ return (
           }}
           />
 
-<GeoJSONLayer
-          data={circle10}
-          circlePaint={{'circle-color': 'pink','circle-radius': .5, }}   
-          linePaint={{
-            'line-color': 'yellow',
-            'line-width': .1
-          }}
-          
-        />
-   
-           <GeoJSONLayer
-        data={circle9}
-        circlePaint={{'circle-color': 'yellow','circle-radius': .5, }}   
-        linePaint={{
-          'line-color': 'yellow',
-          'line-width': .1
-        }}
-        
-      />   <GeoJSONLayer
-      data={circle8}
-      circlePaint={{'circle-color': 'orange','circle-radius': .5, }}   
-      linePaint={{
-        'line-color': 'yellow',
-        'line-width': .1
-      }}
-      
-    />   
-<GeoJSONLayer
-          data={circle1}
-          circlePaint={{'circle-color': 'red','circle-radius': .5, }}   
-          linePaint={{
-            'line-color': 'yellow',
-            'line-width': .1
-          }}
-          
-        />   
-<GeoJSONLayer
-          data={circle2}
-          circlePaint={{'circle-color': 'orange','circle-radius': .5, }}   
-          linePaint={{
-            'line-color': 'yellow',
-            'line-width': .1
-          }}
-          
-        />   
-<GeoJSONLayer
-          data={circle3}
-          circlePaint={{'circle-color': 'blue','circle-radius': .5, }}   
-          linePaint={{
-            'line-color': 'yellow',
-            'line-width': .1
-          }}
-          
-        />   
-<GeoJSONLayer
-          data={circle4}
-          circlePaint={{'circle-color': 'green','circle-radius': .5, }}   
-          linePaint={{
-            'line-color': 'yellow',
-            'line-width': .1
-          }}
-          
-        />   
-        <GeoJSONLayer
-          data={circle5}
-          circlePaint={{'circle-color': 'lightgray','circle-radius': .5, }}   
-          linePaint={{
-            'line-color': 'yellow',
-            'line-width': .1
-          }}
-          
-        />
-        <GeoJSONLayer
-          data={circle6}
-          circlePaint={{'circle-color': 'red','circle-radius': .5, }}   
-          linePaint={{
-            'line-color': 'yellow',
-            'line-width': .1
-          }}
-          
-        />   
-        <GeoJSONLayer
-          data={circle7}
-          circlePaint={{'circle-color': 'purple','circle-radius': .5, }}   
-          linePaint={{
-            'line-color': 'yellow',
-            'line-width': .1
-          }}
-          
-        />   
+
+
 
 </Map>
 
