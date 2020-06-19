@@ -25,7 +25,7 @@ var p = props.resultados.respuestas.map(function (resp, index) {
 setResultados(cantidades)
 setLabels(respuestas)
 setColors(['#FFFFFF', '#FDD017','#F88017', '#2554C7', '#000080'])
-  }, []); // Important, pass an empty array so to execute useEffect hook only once
+  }, [props.resultados]); // Important, pass an empty array so to execute useEffect hook only once
 
 
 var     options= {

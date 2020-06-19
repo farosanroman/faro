@@ -1,6 +1,6 @@
 import React, { PureComponent,useEffect,useState } from 'react';
 import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
-import { flagLogin,login,organizacion,roles} from '../store/atom';
+import { flagLogin,login,organizacion,roles,indicadoresorganizacion} from '../store/atom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -87,6 +87,7 @@ export default function Indicadores() {
   const fixedHeightPaperPie = clsx(classes.paper, classes.fixedHeightPie);
   const [FLAGLOGIN, setFLAGLOGIN] = useRecoilState(flagLogin);
   const [LOGIN, setLOGIN] = useRecoilState(login); 
+  const [INDICADORESORGANIZACION, setINDICADORESORGANIZACION] = useRecoilState(indicadoresorganizacion); 
   const ORGANIZACION=useRecoilValue(organizacion) 
   const ROLES=useRecoilValue(roles)
   //const GETINDICADORES=useRecoilValue(getindicadores) 
@@ -106,6 +107,7 @@ useEffect(() => {
   //if (GETINDICADORES==true){
     setFlagCircular(true)
     var partidos=""
+   // alert(JSON.stringify(ORGANIZACION))
     ORGANIZACION.map(function (partido) {
       if (partido.selected)partidos+=partido.id+","; 
       
@@ -120,6 +122,7 @@ useEffect(() => {
     roles=roles.substring(0, roles.length - 1);
    // alert(JSON.stringify(roles))
     //partidos="2";
+    console.log('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido='+partidos+'&idnodofuncional='+LOGIN.idfuncional+'&roles='+roles)
     fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido='+partidos+'&idnodofuncional='+LOGIN.idfuncional+'&roles='+roles)
   //}
   //fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional=1039&roles=')
@@ -138,11 +141,12 @@ useEffect(() => {
    // alert(JSON.stringify(data))
    setFlag(true)
    setFlagCircular(false)
-   console.log(JSON.stringify(data.indicadores[0]))
+   //console.log(JSON.stringify(data.indicadores[0]))
    SetIndicadores(
    data
    )
-  
+   setINDICADORESORGANIZACION(data)
+ // alert("INDICADORES "+JSON.stringify(data.partidos))
   }
 },[data,isLoading]);
     return (

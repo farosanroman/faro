@@ -234,7 +234,7 @@ function SignIn(user) {
            loginauth.idorg=data[pos].idorganizacion;
            loginauth.org=data[pos].nombreorganizacion;
            loginauth.idfuncional=data[pos].idnodofuncional
-           alert(data[pos].idnodofuncional)
+           alert("login"+data[pos].idnodofuncional)
            loginauth.funcional=data[pos].nombrenodofuncional
            loginauth.idrol=data[pos].idrol
           loginauth.rol=data[pos].nombrerol
@@ -321,9 +321,9 @@ function SignIn(user) {
    //   alert(JSON.stringify(dataR))  
     var roles=[]
      dataR.map(function (r, index, array) {
-       if (index<2){
+      // if (index<100){
        roles.push({idrol:r.idrol,nombrerol:r.nombrerol,selected:true}); 
-       }
+      // }
      });
  // alert(JSON.stringify(roles))
      setROLES(roles) 

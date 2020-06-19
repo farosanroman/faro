@@ -8,7 +8,18 @@ export const login = atom({
   key: 'login',
   default: {id:"id",type:"login",name:"mister",photoURL:"https://image.shutterstock.com/image-vector/photo-camera-icon-260nw-197166461.jpg",email:"",phone:"",cedula:"",lat:0,lng:0,idorg:0,org:"",idfuncional:0,funcional:"",idrol:0,rol:"",codcne:"000000000"}
 });
-
+export const organizacion=atom(
+  {
+     key:'organizacion',
+     default: [{"id": 1,"nombre": "AD","descripcion": "Accion Democratica", "selected": true,value: 800 },
+      {"id": 3,"nombre": "PJ","descripcion": "Primero Justicia","selected": true,value: 800 },
+      { "id": 2,"nombre": "VP","descripcion": "Voluntad Popular", "selected": true,value: 800},
+      { "id": 4,"nombre": "UNT","descripcion": "Un Nuevo Tiempo",  "selected": true, value: 800},
+      {"id": 7,"nombre": "CAUSA R","descripcion": "Un Nuevo Tiempo",  "selected": true, value: 800}
+    
+    ]
+    
+  })
 export const funcionales=atom(
 {
    key:'funcionales',
@@ -23,6 +34,11 @@ export const roles=atom(
      key:'roles',
      default:[]
 })
+export const indicadoresorganizacion=atom(
+  {
+     key:'indicadoresorganizacion',
+     default:{}
+})
 //{ROLES.map(({ idrol,nombrerol }) => {
 //  [{"idorganizacion":"","idnodofuncional":"1039","codigonodofuncional":"COMAN","nombrenodofuncional":"Comando 2020","idrol":"248","nombrerol":"Responsables Nacionales","posrol":1},
 //     {"idorganizacion":"","idnodofuncional":"1039","codigonodofuncional":"COMAN","nombrenodofuncional":"Comando 2020","idrol":"249","nombrerol":"Coordinador Electoral","posrol":2},
@@ -31,18 +47,7 @@ export const roles=atom(
 // {idfuncional:1,funcional:"Comando 2020www","selected": true},
 // {idfuncional:2,funcional:"Formacion","selected": false},
 // {idfuncional:3,funcional:"Conteo Rapido","selected": false}
-  export const organizacion=atom(
-    {
-       key:'organizacion',
-       default: [{"id": 1,"nombre": "AD","descripcion": "Accion Democratica", "selected": true,value: 800 },
-        {"id": 3,"nombre": "PJ","descripcion": "Primero Justicia","selected": true,value: 800 },
-        { "id": 2,"nombre": "VP","descripcion": "Voluntad Popular", "selected": true,value: 800},
-        { "id": 4,"nombre": "UNT","descripcion": "Un Nuevo Tiempo",  "selected": true, value: 800},
-        {"id": 7,"nombre": "CAUSA R","descripcion": "Un Nuevo Tiempo",  "selected": true, value: 800}
-      
-      ]
-      
-    })
+
     // [{"idpregunta":"4","idrespuesta":"1","respuesta":"AD","cantporcadarespuesta":3,"totalpregunta":3,"porcentaje":100},
     // {"idpregunta":"4","idrespuesta":"7","respuesta":"CAUSA R","cantporcadarespuesta":0,"totalpregunta":3,"porcentaje":0},
     // {"idpregunta":"4","idrespuesta":"3","respuesta":"MPJ","cantporcadarespuesta":0,"totalpregunta":3,"porcentaje":0},
@@ -146,3 +151,5 @@ export const roles=atom(
 // 		},
 // 	};
 // };
+//ASYNC
+//https://codesandbox.io/s/recoiljs-is-meant-to-rock-your-react-world-oljjf?file=/src/Demo.jsx

@@ -1,5 +1,8 @@
 
 import React,{useState,useEffect} from 'react';
+import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
+import { indicadoresorganizacion} from '../store/atom';
+
 import Circle from 'react-circle';
 import CountUp from 'react-countup';
 
@@ -12,13 +15,15 @@ export default function TotalDonut(props) {
   const [ colors, setColors ] = React.useState([]);
   const [ resultados, setResultados ] = React.useState( []);
   const [ labels, setLabels ] = React.useState( []);
-  
+  const INDICADORESORGANIZACION=useRecoilValue(indicadoresorganizacion) 
   useEffect(() => {
  //   console.log(JSON.stringify(props))
- //   alert(JSON.stringify(props.resultados))
+  // alert(JSON.stringify(INDICADORESORGANIZACION))
 var respuestas=[]
 var colores=[]
 var cantidades=[]
+//console.log("DONUT "+JSON.stringify(props.resultados))
+//alert("DONUT "+JSON.stringify(JSON.stringify(props.resultados)))
 var p = props.resultados.map(function (respuesta, index) {
   if ((respuesta.cant>0)&&(respuesta.respuesta!='SUMATE')){
   respuestas.push(respuesta.respuesta)
@@ -27,8 +32,8 @@ var p = props.resultados.map(function (respuesta, index) {
   return respuesta; 
   }
 });
-console.log(respuestas)
-console.log(cantidades)
+//console.log(respuestas)
+//console.log(cantidades)
 setResultados(cantidades)
 setLabels(respuestas)
 if (props.titulo=="Partidos"){
@@ -36,7 +41,7 @@ setColors(['#ECF0F1', '#FDD017', '#2554C7', '#F88017','#000080'])
 }else{
   setColors(['#2E93fA', '#66DA26', '#546E7A', '#E91E63', '#FF9800'])
 }
-  }, []); // Important, pass an empty array so to execute useEffect hook only once
+  }, [props.resultados]); // Important, pass an empty array so to execute useEffect hook only once
 
  //  var colors=['#FFFFFF', '#FDD017','#F88017', '#2554C7', '#000080']
            
