@@ -66,7 +66,7 @@ import Indicadores from './dashboardindicadores/indicadores';
 import Radar2 from './dashboardindicadores/radar2';
 //import ChartPyramid from './dashboardindicadores/chartpyramidBORRAR';
 //import ChartPieChart from './dashboardindicadores/chartpiechartBORRAR';
-import Geo from './dashboardindicadores/geo';
+import GeoIndicadores from './dashboardindicadores/geoindicadores';
 import PorcPartidos from './dashboardindicadores/porcpartidos';
 ///////////////Equipo//////////////////
 import Historia from './dashboardgeo/historia';
@@ -360,23 +360,7 @@ export default function Dashboard() {
     </List>
    
     <Divider />
-        <List>
-        <ListItem button  onClick={handleComponent(10)} >
-      <ListItemIcon>
-        <PlaceIcon />
-      </ListItemIcon>
-      <ListItemText primary="GeoCentros" />
-    </ListItem>
-{/* 
-        <ListItem button onClick={handleComponent(5)}>
-      <ListItemIcon>
-        <EditIcon />
-      </ListItemIcon>
-      <ListItemText primary="Asignacion" />
-    </ListItem> */}
-
-        </List>   
-         <Divider />
+      
         <List>
        
     <ListItem button onClick={handleComponent(2)}>
@@ -402,8 +386,25 @@ export default function Dashboard() {
     </ListItem>
     
         </List> 
-              
+        <Divider />  
        
+        <List>
+        <ListItem button  onClick={handleComponent(10)} >
+      <ListItemIcon>
+        <PlaceIcon />
+      </ListItemIcon>
+      <ListItemText primary="GeoCentros" />
+    </ListItem>
+{/* 
+        <ListItem button onClick={handleComponent(5)}>
+      <ListItemIcon>
+        <EditIcon />
+      </ListItemIcon>
+      <ListItemText primary="Asignacion" />
+    </ListItem> */}
+
+        </List>   
+
         <Divider />
         
         <List>
@@ -412,7 +413,7 @@ export default function Dashboard() {
       <ListItemIcon>
         <PublicIcon />
       </ListItemIcon>
-      <ListItemText primary="GeoElectoral" />
+      <ListItemText primary="PolyLines" />
     </ListItem>
    
     <ListItem button  onClick={handleComponent(11)} >
@@ -456,11 +457,8 @@ export default function Dashboard() {
       }
       
        <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}
-      classes={{
-        paper: classes.drawerPaper2,
-      }}
-
-      >
+           classes={{paper: classes.drawerPaper2,}}
+       >
     
          <DialogoFiltros onClick={handleFiltro}/>
        
@@ -475,24 +473,25 @@ export default function Dashboard() {
                {getStepContent(component)}
            </Paper>
       }
-  {false&&<div>!!!!!!!!!!!!Indicadores ARRANCA AQIO ARRANCA AQUI ARRANCA QUI!!!!!!!!!!</div>  }    
-  {(component==1)&&
-  <Container maxWidth="lg" className={classes.container}>   
+
+     {false&&<div>!!!!!!!!!!!!Indicadores ARRANCA AQIO ARRANCA AQUI ARRANCA QUI!!!!!!!!!!</div>  }    
+     {(component==1)&&
+     <Container maxWidth="lg" className={classes.container}>   
            <Indicadores />
         
         {/* <Paper className={fixedHeightPaper}>
           <Avance />
         </Paper> */}
-   </Container>
-          }
+      </Container>
+    }
   {(component==0)&&
- <Container maxWidth="lg" className={classes.container}>
-   <Grid container spacing={3}>
+       <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={3}>
   
-{false&&<div>!!!!!!!!!!!!Padron!!!!!!!!!!</div>}
-<Grid item xs={12}>
+             {false&&<div>!!!!!!!!!!!!Padron!!!!!!!!!!</div>}
+             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Geo />
+                <GeoIndicadores />
               </Paper>
             </Grid>
       {/* <Grid item xs={12} md={6} lg={6}>
@@ -509,7 +508,7 @@ export default function Dashboard() {
       </Grid> */}
          </Grid>
 
-</Container>
+     </Container>
 }
 {false&&<div>!!!!!!!!!!!!Mensajes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>}
 {(component==2)&&

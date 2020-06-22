@@ -322,6 +322,7 @@ function SignIn(user) {
     var roles=[]
      dataR.map(function (r, index, array) {
       // if (index<100){
+      
        roles.push({idrol:r.idrol,nombrerol:r.nombrerol,selected:true}); 
       // }
      });

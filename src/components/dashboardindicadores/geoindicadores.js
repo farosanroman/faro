@@ -1,5 +1,7 @@
 import React, {useEffect, useState,Fragment } from 'react';
-import { Application } from '../../App';
+import { useRecoilValue} from "recoil";
+import { organizacion,roles} from '../store/atom';
+//import { Application } from '../../App';
 import {useFetch} from '../hooks/usefetch'; 
 import CircularProgress from '@material-ui/core/CircularProgress';
 //import {antenacercana} from './helpers'
@@ -20,6 +22,7 @@ import {voronoijson} from '../../data/voronoijson.json';
 //import {useGeolocation} from '../hooks/usegeolocation';
 import { greatCircle, point,circle } from '@turf/turf';
 import Title from '../layout/title';
+
 //import Chart from 'react-google-charts';
 //https://github.com/alex3165/react-mapbox-gl/issues/763
 //https://www.youtube.com/watch?v=JJatzkPcmoI
@@ -47,12 +50,14 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
   
 //   alert(JSON.stringify(antfl))
     const classes = useStyles();
+    const ORGANIZACION = useRecoilValue(organizacion);
+    const ROLES = useRecoilValue(roles);
     const [rolesjson, setRolesJson]=useState({"type":"FeatureCollection","features":[] });
     const [rejson, setReJson]=useState({"type":"FeatureCollection","features":[] });
 
     const [flagCircular, setFlagCircular] = React.useState(false); 
     const [data, isLoading, isError , fetchData] = useFetch(""); 
-
+    const [cant,setCant]=React.useState(0)
     const [pos, setPos] = React.useState([-66.9188,10.508]);
     //const { state, dispatch } = React.useContext(Application);
     const [state,setState]=useState( {
@@ -77,21 +82,29 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
           }]
         },
         })
-    const [zoom, setZoom] = useState([12]);
+    const [zoom, setZoom] = useState([6]);
     const { latitude, longitude, timestamp, accuracy, error } = usePosition();
   //  const stategeo = useGeolocation();
   useEffect(() => {
-    //alert(JSON.stringify(contextKPI))
-   // contextKPI.addKPI({
-   //   firstName: 'ssssssssswww',
-   //   lastName: '2222222222222222'
-   // });
-   // alert(JSON.stringify(contextKPI))
-   // alert("indicadores "+JSON.stringify(context))
-   //var a=kpigeojson(celular)
- // console.log(JSON.stringify(kpigeojson('GEOJSON')))
- // handleKPIDay(kpigeojson('GEOJSON'))
- fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido=&idnodofuncional=1039&roles=');
+    var partidos=""
+    // alert(JSON.stringify(ORGANIZACION))
+     ORGANIZACION.map(function (partido) {
+       if (partido.selected)partidos+=partido.id+","; 
+       
+     });
+     partidos=partidos.substring(0, partidos.length - 1);
+     if (partidos=="")partidos="NADA"
+     // alert(JSON.stringify(ROLES))
+     var roles=""
+     ROLES.map(function (rol) {
+       if (rol.selected)roles+=rol.idrol+","; 
+       
+     });
+     roles=roles.substring(0, roles.length - 1);
+     if (roles=="")roles="NADA"
+ fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles);
+ console.log('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles)
+ //fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido=&idnodofuncional=1039&roles=');
     
 },[]);
 useEffect(() => {
@@ -105,22 +118,22 @@ useEffect(() => {
   {
    // console.log(JSON.stringify(data))
   // alert("fetch"+JSON.stringify(data))
-   const  featuresrolesjson=data.map(d=>{               
-    return(
-      {
-        "type":"Feature",
-        "properties":{"nombre":"o.cellid","partido":d.partido},                             
-        "geometry":{"type":"Point","coordinates":[d.lng,d.lat ]
-        }
-      }
-     )     
-    })   
+  // const  featuresrolesjson=data.map(d=>{               
+    // return(
+    //   {
+    //     "type":"Feature",
+    //     "properties":{"nombre":"o.cellid","partido":d.partido,"color":"red"},                             
+    //     "geometry":{"type":"Point","coordinates":[d.lng,d.lat ]
+    //     }
+    //   }
+    //  )     
+    // })   
 
     const  featuresrejson=data.map(d=>{               
      return(
      {
         "type":"Feature",
-        "properties":{"nombre":"o.cellid","partido":d.partido},                             
+        "properties":{"nombre":"o.cellid","partido":d.partido,"color":"red","width":10},                             
         "geometry":{"type":"Point","coordinates":[d.relng,d.relat ]
       }
     }
@@ -134,7 +147,7 @@ let personasReCollection={
   "features":featuresrejson
 }
 setReJson(personasReCollection)
-
+setCant(data.length)
 //handleKPIDay(data)
   setFlagCircular(false)
    
@@ -263,14 +276,32 @@ setReJson(personasReCollection)
  //console.log(JSON.stringify(drone))
 // var center = [  -66.8658,10.4645];
 // var radius = 7;
-
+const getCirclePoint=(q)=>{
+  console.log("aaaaaaaaaaaaaaaaaaaaaaa    "+q)
+  return {'circle-color': 'yellow','circle-radius': 5,'circle-opacity': 1,'circle-stroke-color': 'white' , 'circle-stroke-width':6,'circle-stroke-opacity':.2,'circle-blur': 0.1,}
+}
+const getColor = (part) => {
+  console.log(">>>>>>>>>>>>>>>>>"+part)
+  var color="pink"
+ 
+  ORGANIZACION.map((o, i) => {
+    if (o.nombre ==part ) {
+     
+       color=o.color;
+       console.log(o.nombre+" "+part+" "+o.color)
+      }
+   });
+ // var partido={"AD":"white","MPJ":"orange","VP":"blue"}
+  return color;
+};
 console.log("zooooooooooooooooooooooooooooom"+state.zoom+"zooooooooooooooooooooooooooom")
 return (
 <Fragment>
 <div className={classes.root}>
 {flagCircular&&<CircularProgress variant="indeterminate"   disableShrink  size={20}   thickness={4} className={classes.progress} />}
+<table><tr><td>
+<Title>Distribucion Geoespacial</Title></td><td>&nbsp;&nbsp;&nbsp;</td><td>    <Title>{"   "+cant+" personas..."}</Title> </td></tr></table>  
 
- <Title>Distribucion Geoespacial</Title>   
 <Map       
    //style="mapbox://styles/mapbox/streets-v8"
    style="mapbox://styles/mapbox/dark-v9"
@@ -286,7 +317,6 @@ return (
    onResize={onResize}
    containerStyle={mapStyle}        
    onControlClick={onControlClick}
-//onClick={this._onClickMap}  
 //<ZoomControl onControlClick={onControlClick}/>
 
 > 
@@ -345,33 +375,34 @@ return (
             'text-color': 'black'
           }}
           /> */}
+
 <GeoJSONLayer
           data={ rejson}
           circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'yellow','circle-radius': 5,'circle-opacity': 0.6 }}         
+         circlePaint={getCirclePoint('{nombre}')}         
           symbolLayout={{
-            'text-field': '{nombre0}',
+            'text-field': '{nombre}',
             'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
             'text-offset': [0, 0.6],
             'text-anchor': 'top',
             
           }}
           symbolPaint={{
-            'text-color': 'black'
+            'text-color': 'white'
           }}
           />
-
-<GeoJSONLayer
-          data={antenasjson}
-          circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': '#3BB9FF','circle-radius': 2,'circle-opacity': 0.6 }}         
-          symbolLayout={{
-            'text-field': '{nombre0}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
+  
+        <GeoJSONLayer
+            data={antenasjson}
+            circleLayout={{ visibility: 'visible' }}
+            circlePaint={{'circle-color': '#3BB9FF','circle-radius': 2,'circle-opacity': 0.6 }}         
+            symbolLayout={{
+               'text-field': '{nombre0}',
+              'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
+               'text-offset': [0, 0.6],
+               'text-anchor': 'top',
             
-          }}
+            }}
           symbolPaint={{
             'text-color': 'black'
           }}

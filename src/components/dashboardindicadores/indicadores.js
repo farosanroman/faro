@@ -113,13 +113,15 @@ useEffect(() => {
       
     });
     partidos=partidos.substring(0, partidos.length - 1);
-   // alert(JSON.stringify(ROLES))
+    if (partidos=="")partidos="NADA"
+    // alert(JSON.stringify(ROLES))
     var roles=""
     ROLES.map(function (rol) {
       if (rol.selected)roles+=rol.idrol+","; 
       
     });
     roles=roles.substring(0, roles.length - 1);
+    if (roles=="")roles="NADA"
    // alert(JSON.stringify(roles))
     //partidos="2";
     console.log('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido='+partidos+'&idnodofuncional='+LOGIN.idfuncional+'&roles='+roles)

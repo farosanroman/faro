@@ -8,17 +8,45 @@ export const login = atom({
   key: 'login',
   default: {id:"id",type:"login",name:"mister",photoURL:"https://image.shutterstock.com/image-vector/photo-camera-icon-260nw-197166461.jpg",email:"",phone:"",cedula:"",lat:0,lng:0,idorg:0,org:"",idfuncional:0,funcional:"",idrol:0,rol:"",codcne:"000000000"}
 });
+export const page = atom({
+  key: 'page',
+  default: [
+    {"id":1,"componente":"Dashboard Indicadores","selected":true},
+    {"id":0,"componente":"Geo Bitacora","selected":false},
+
+    {"id":10,"componente":"Geo Centros (original)","selected":false},
+    
+    {"id":2,"componente":"Mensajes Creacion","selected":false},
+    {"id":3,"componente":"Mensajes Envio","selected":false},
+    {"id":4,"componente":"Mensajes Consultas","selected":false},
+  
+    {"id":12,"componente":"Polylineas","selected":false},
+    {"id":11,"componente":"Historia","selected":false},
+
+    {"id":9,"componente":"Fotos","selected":false},
+    {"id":69,"componente":"Curriculum","selected":false},
+    {"id":6,"componente":"Curso","selected":false},
+  ]
+});
 export const organizacion=atom(
   {
      key:'organizacion',
-     default: [{"id": 1,"nombre": "AD","descripcion": "Accion Democratica", "selected": true,value: 800 },
-      {"id": 3,"nombre": "PJ","descripcion": "Primero Justicia","selected": true,value: 800 },
-      { "id": 2,"nombre": "VP","descripcion": "Voluntad Popular", "selected": true,value: 800},
-      { "id": 4,"nombre": "UNT","descripcion": "Un Nuevo Tiempo",  "selected": true, value: 800},
-      {"id": 7,"nombre": "CAUSA R","descripcion": "Un Nuevo Tiempo",  "selected": true, value: 800}
+     default: [
+      {"id": 1,"nombre": "AD","descripcion": "Accion Democratica","color":"white", "selected": true,value: 800 },
+      {"id": 3,"nombre": "PJ","descripcion": "Primero Justicia","color":"yellow","selected": true,value: 800 },
+      { "id": 2,"nombre": "VP","descripcion": "Voluntad Popular","color":"orange", "selected": true,value: 800},
+      { "id": 4,"nombre": "UNT","descripcion": "Un Nuevo Tiempo", "color":"darkblue", "selected": true, value: 800},
+      {"id": 7,"nombre": "CAUSA R","descripcion": "Un Nuevo Tiempo","color":"purple",  "selected": true, value: 800}
     
     ]
     
+    // var color="pink"
+    // if (r.idrol=="AD"){color="white"}
+    // if (r.idrol=="MPJ"){color="yellow"}
+    // if (r.idrol=="MVP"){color="orange"}
+    // if (r.idrol=="UNT"){color="darkblue"}
+    // if (r.idrol=="VPA"){color="darkblue"}
+
   })
 export const funcionales=atom(
 {

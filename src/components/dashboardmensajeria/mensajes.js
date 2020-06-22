@@ -38,7 +38,7 @@ import {usePosition} from '../../hooks/useposition';
 //import {useGeolocation} from '../hooks/usegeolocation';
 import { greatCircle, point,circle } from '@turf/turf';
 import Title2 from '../layout/title';
-import PieChart, { Title,Font, Series , Label ,Connector,  Size, Export,Legend } from 'devextreme-react/pie-chart';
+//import PieChart, { Title,Font, Series , Label ,Connector,  Size, Export,Legend } from 'devextreme-react/pie-chart';
 import {EEMMPP} from  '../../data/EEMMPP.json';
 import {formulario} from  '../../data/formulario.json';
 import {getPersona,getTestigos} from '../helpers/helperpersonas'
