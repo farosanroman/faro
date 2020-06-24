@@ -1,4 +1,9 @@
 import React, {useEffect, useState,Fragment } from 'react';
+import { useRecoilValue} from "recoil";
+import { codcne,organizacion,roles} from '../store/atom';
+
+import {useFetch} from '../hooks/usefetch'; 
+
 import clsx from 'clsx';
 //import { Application } from '../App';
 //import {antenacercana} from './helpers'
@@ -32,7 +37,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
 import {RESP} from '../../data/resp.json';
-import {roles} from  '../../data/roles.json';
+//import {roles} from  '../../data/roles.json';
 //import {LIBERTADOR} from '../data/libertador.json';
 import {usePosition} from '../../hooks/useposition';
 //import {useGeolocation} from '../hooks/usegeolocation';
@@ -48,6 +53,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 //https://github.com/alex3165/react-mapbox-gl/issues/763
 //https://www.youtube.com/watch?v=JJatzkPcmoI
 //https://github.com/leighhalliday/mapbox-react-demo
+
+//DRAFT.JS SAMPLE
+//https://codepen.io/Kiwka/pen/YNYvyG
 var linearoja={"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[-66,9],[-80.31606674194336,25.77392392167507]]}}]}
 const style={   Paper:{padding:1,marginTop:1,marginBottom:1}}
 const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pzIn0.V8cqmZH6dFIcxtKoaWcZZw"
@@ -80,49 +88,33 @@ const MenuProps = {
     },
   },
 };
-  const names = [
-    'Formador',
-    'Facilitador',
-    'Testigo',
-    'Activista',
-    'Influencer'
-  ];
-  const direcciones= [
-    {"key":1,"cedula":"V3664204","celular":"4126340692","mail":"ppazpurua@gmail.com","twt":"pazpurua","mensaje":"Prueba de Concepto SMS, TWT, MAIL"},
-    {"key":2,"cedula":"V888888","celular":"4142863817","mail":"franciscojcastrom@gmail.com","twt":"fcastrom","mensaje":"Te esperan 8.000 observadore"},
-   {"key":3,"cedula":"V888888","celular":"4264020509","mail":"gboyerizo@gmail.com","twt":"gboyerizo","mensaje":"Te esperan 8.000 observadore"}
-  ]
-  const roles2 = [
-    { id: 243, rol: "Transcriptor Formacion" },
-    { id: 229, rol: "Formadores Nacionales" },
-    { id: 230, rol: "Enlaces Formacion UCAB" },
-    { id: 231, rol: "Facilitadores" },
-    { id: 232, rol: "Observadores" },
-    { id: 242, rol: "Soporte Formacion" },
-   
-    { id: 246, rol: "Coordinador de Partido" },
-    { id: 247, rol: "Observador 9D" },
-   { id: 245, rol: "Observador Inactivo" }
-  ]
+  
   export default function Mensajes() {
   
 //   alert(JSON.stringify(antfl))
     const classes = useStyles();
     //const { state, dispatch } = React.useContext(Application);
+    const CODCNE = useRecoilValue(codcne);
+    const ORGANIZACION = useRecoilValue(organizacion);
+    const ROLES = useRecoilValue(roles);
     const [personName, setPersonName] = React.useState([]);
+ 
+    // const [codpartido, setCodigoPartido] = React.useState("10");
+    // const [codestado, setCodigoEstado] = React.useState("");
+    // const [posestado, setPosEstado] = React.useState(0);
+    // const [codmunicipio, setCodigoMunicipio] = React.useState("");
+    // const [posmunicipio, setPosMunicipio] = React.useState(0);
+   
+    // const [codparroquia, setCodigoParroquia] = React.useState("130101");
+    // const [posparroquia, setPosParroquia] = React.useState("130101");
+   
+    // const [idrol, setIdRol] = React.useState("0");
+    const [rejson, setReJson]=useState({"type":"FeatureCollection","features":[] });
 
-    const [codpartido, setCodigoPartido] = React.useState("10");
-    const [codestado, setCodigoEstado] = React.useState("");
-    const [posestado, setPosEstado] = React.useState(0);
-    const [codmunicipio, setCodigoMunicipio] = React.useState("");
-    const [posmunicipio, setPosMunicipio] = React.useState(0);
+    const [flagCircular, setFlagCircular] = React.useState(false); 
+    const [data, isLoading, isError , fetchData] = useFetch(""); 
+    const [cant,setCant]=React.useState(0)
    
-    const [codparroquia, setCodigoParroquia] = React.useState("130101");
-    const [posparroquia, setPosParroquia] = React.useState("130101");
-   
-    const [idrol, setIdRol] = React.useState("0");
-  
-    const [flagCircular, setFlagCircular] = React.useState(false);
     const [encabezado, setEncabezado] = React.useState("Actividades de Formacion");
     const [texto, setTexto] = React.useState("Actividades de Formacion mañana: Taller de Testigo en el Colegio Jose Maria Vargas en la Parroquia General Paez");
     
@@ -158,49 +150,99 @@ const MenuProps = {
     const [TESTIGOSLOCATION,setTESTIGOSLOCATION]=useState(null)
     const [MENSAJES,setMENSAJES]=useState(null)
     useEffect(() => {
-        // Actualiza el título del documento usando la API del navegador
-       // calculos(FORMULARIOS)
-      },[]);
-    //alert(respuestas)
-  //alert(JSON.stringify(RESP))
-    //  const stategeo = useGeolocation();
-  ///function 
-  //console.log("stategeo"+JSON.stringify(state.positions))
+      var partidos=""
+      // alert(JSON.stringify(ORGANIZACION))
+       ORGANIZACION.map(function (partido) {
+         if (partido.selected)partidos+=partido.id+","; 
+         
+       });
+       partidos=partidos.substring(0, partidos.length - 1);
+       if (partidos=="")partidos="NADA"
+       // alert(JSON.stringify(ROLES))
+       var roles=""
+       ROLES.map(function (rol) {
+         if (rol.selected)roles+=rol.idrol+","; 
+         
+       });
+       roles=roles.substring(0, roles.length - 1);
+       if (roles=="")roles="NADA"
+   fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne='+CODCNE+'&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles);
+   console.log('http://openfaroapi.azurewebsites.net/api/personasget?codigocne='+CODCNE+'&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles)
+   //fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido=&idnodofuncional=1039&roles=');
+      
+  },[CODCNE,ORGANIZACION,ROLES]);
+  useEffect(() => {
+    //alert("in "+option)
+   //alert(JSON.stringify(data))
+    if (isLoading) {
+      setFlagCircular(true)
+    }
+    //alert(data[0].type)
+    if ((data!=undefined)&&(!isLoading))      
+    {
+     // console.log(JSON.stringify(data))
+    // alert("fetch"+JSON.stringify(data))
+  
+      const  featuresrejson=data.map(d=>{               
+       return(
+       {
+          "type":"Feature",
+          "properties":{"nombre":"o.cellid","partido":d.partido,"color":"red","width":10},                             
+          "geometry":{"type":"Point","coordinates":[d.relng,d.relat ]
+        }
+      }
+      )     
+      })   
+  
+  // setRolesJson(personasRolesCollection)
+  
+  let personasReCollection={
+    "type":"FeatureCollection",
+    "features":featuresrejson
+  }
+  setReJson(personasReCollection)
+  setCant(data.length)
+  //handleKPIDay(data)
+    setFlagCircular(false)
+     
+    }
+  },[data,isLoading]);
+  
   const handleChangeCambios=input=>e=>{
     if (input=="formularios"){
      //alert("cedula")
       //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
     }
-    if (input=="estado"){
-      //alert(JSON.stringify(e.target.value)) 
-      var index = EEMMPP.findIndex(obj => obj.cneestado==e.target.value);
-    // alert(index)
-      setCodigoEstado(e.target.value)
-      setPosEstado(index)
-     }
-     if (input=="municipio"){
-      var index = EEMMPP[posestado].items.findIndex(obj => obj.cnemunicipio==e.target.value);
-      //alert(index)
-        setPosMunicipio(index)
-      setCodigoMunicipio(e.target.value)
-     }
-     if (input=="parroquia"){
-      setCodigoParroquia(e.target.value)
-      var index = EEMMPP[posestado].items[posmunicipio].items.findIndex(obj => obj.cneparroquia==e.target.value);
-      //alert(index)
-        setPosParroquia(index)
-     }
-     if (input=="rol"){
-      setIdRol(e.target.value)
-     }
+    // if (input=="estado"){
+    //   //alert(JSON.stringify(e.target.value)) 
+    //   var index = EEMMPP.findIndex(obj => obj.cneestado==e.target.value);
+    // // alert(index)
+    //   setCodigoEstado(e.target.value)
+    //   setPosEstado(index)
+    //  }
+    //  if (input=="municipio"){
+    //   var index = EEMMPP[posestado].items.findIndex(obj => obj.cnemunicipio==e.target.value);
+    //   //alert(index)
+    //     setPosMunicipio(index)
+    //   setCodigoMunicipio(e.target.value)
+    //  }
+    //  if (input=="parroquia"){
+    //   setCodigoParroquia(e.target.value)
+    //   var index = EEMMPP[posestado].items[posmunicipio].items.findIndex(obj => obj.cneparroquia==e.target.value);
+    //   //alert(index)
+    //     setPosParroquia(index)
+    //  }
+    //  if (input=="rol"){
+    //   setIdRol(e.target.value)
+    //  }
     
    }
-   const handleChangeTexto=input=>e=>{
-        setTexto(e.target.value)
-   }
-   function handleChange(event) {
-    setPersonName(event.target.value);
-  }
+  //  const handleChangeTexto=input=>e=>{
+  //       setTexto(e.target.value)
+  //  }
+  //  function handleChange(event) {
+  //   setPersonName(event.target.value);
+  // }
 //  const handleChangeCambios=input=>e=>{
   
   function onResize (map, event)  {
@@ -459,121 +501,21 @@ const handleClickGrabarMensajes =input=>{
 }
 
 
-console.log("zooooooooooooooooooooooooooooom"+state.zoom+"zooooooooooooooooooooooooooom")
+//c//onsole.log("zooooooooooooooooooooooooooooom"+state.zoom+"zooooooooooooooooooooooooooom")
 var heading="Testigos: "+TESTIGOS.length
 const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
-const header = (
+const header0 = (
   <div id="toolbar">
-  <span className="ql-formats">
-    <select className="ql-font">
-			<option value="serif"></option>
-			<option value="monospace"></option>
-			<option defaultValue></option>
-		</select>
-		<select className="ql-size">
-			{/*<option value="8"></option>
-            <option value="9"></option>
-			<option value="10"></option>
-			<option value="11"></option>
-			<option value="12"></option>
-			<option value="13"></option>
-			<option value="14"></option>
-			<option value="16"></option>
-			<option value="18"></option>
-			<option value="24"></option>
-			<option value="36"></option>*/}
-		</select>
-    </span>
-    <span className="ql-formats">
-      <button className="ql-bold" aria-label="Bold"></button>
-      <button className="ql-italic" aria-label="Italic"></button>
-      <button className="ql-underline" aria-label="Underline"></button>
-      </span>
-    <span className="ql-formats">
-      <button className='ql-list' value='ordered'></button>
-		<button className='ql-list' value='bullet'></button>
-		<select className="ql-align"></select>
-  </span>
-  <span className="ql-formats">
-        <select title="Text Color" className="ql-color" defaultValue="rgb(0, 0, 0)">
-          <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)"/>
-          <option value="rgb(230, 0, 0)" label="rgb(230, 0, 0)"/>
-          <option value="rgb(255, 153, 0)" label="rgb(255, 153, 0)"/>
-          <option value="rgb(255, 255, 0)" label="rgb(255, 255, 0)"/>
-          <option value="rgb(0, 138, 0)" label="rgb(0, 138, 0)"/>
-          <option value="rgb(0, 102, 204)" label="rgb(0, 102, 204)"/>
-          <option value="rgb(153, 51, 255)" label="rgb(153, 51, 255)"/>
-          <option value="rgb(250, 204, 204)" label="rgb(250, 204, 204)"/>
-          <option value="rgb(255, 235, 204)" label="rgb(255, 235, 204)"/>
-          <option value="rgb(255, 255, 204)" label="rgb(255, 255, 204)"/>
-          <option value="rgb(204, 232, 204)" label="rgb(204, 232, 204)"/>
-          <option value="rgb(204, 224, 245)" label="rgb(204, 224, 245)"/>
-          <option value="rgb(235, 214, 255)" label="rgb(235, 214, 255)"/>
-          <option value="rgb(187, 187, 187)" label="rgb(187, 187, 187)"/>
-          <option value="rgb(240, 102, 102)" label="rgb(240, 102, 102)"/>
-          <option value="rgb(255, 194, 102)" label="rgb(255, 194, 102)"/>
-          <option value="rgb(255, 255, 102)" label="rgb(255, 255, 102)"/>
-          <option value="rgb(102, 185, 102)" label="rgb(102, 185, 102)"/>
-          <option value="rgb(102, 163, 224)" label="rgb(102, 163, 224)"/>
-          <option value="rgb(194, 133, 255)" label="rgb(194, 133, 255)"/>
-          <option value="rgb(136, 136, 136)" label="rgb(136, 136, 136)"/>
-          <option value="rgb(161, 0, 0)" label="rgb(161, 0, 0)"/>
-          <option value="rgb(178, 107, 0)" label="rgb(178, 107, 0)"/>
-          <option value="rgb(178, 178, 0)" label="rgb(178, 178, 0)"/>
-          <option value="rgb(0, 97, 0)" label="rgb(0, 97, 0)"/>
-          <option value="rgb(0, 71, 178)" label="rgb(0, 71, 178)"/>
-          <option value="rgb(107, 36, 178)" label="rgb(107, 36, 178)"/>
-          <option value="rgb(68, 68, 68)" label="rgb(68, 68, 68)"/>
-          <option value="rgb(92, 0, 0)" label="rgb(92, 0, 0)"/>
-          <option value="rgb(102, 61, 0)" label="rgb(102, 61, 0)"/>
-          <option value="rgb(102, 102, 0)" label="rgb(102, 102, 0)"/>
-          <option value="rgb(0, 55, 0)" label="rgb(0, 55, 0)"/>
-          <option value="rgb(0, 41, 102)" label="rgb(0, 41, 102)"/>
-          <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"/>
-        </select>
-        <span className="ql-formats"/>
-        <select title="Background Color" className="ql-background" defaultValue="rgb(255, 255, 255)">
-            <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)"/>
-            <option value="rgb(230, 0, 0)" label="rgb(230, 0, 0)"/>
-          <option value="rgb(255, 153, 0)" label="rgb(255, 153, 0)"/>
-          <option value="rgb(255, 255, 0)" label="rgb(255, 255, 0)"/>
-          <option value="rgb(0, 138, 0)" label="rgb(0, 138, 0)"/>
-          <option value="rgb(0, 102, 204)" label="rgb(0, 102, 204)"/>
-          <option value="rgb(153, 51, 255)" label="rgb(153, 51, 255)"/>
-          <option value="rgb(255, 255, 255)" label="rgb(255, 255, 255)"/>
-          <option value="rgb(250, 204, 204)" label="rgb(250, 204, 204)"/>
-          <option value="rgb(255, 235, 204)" label="rgb(255, 235, 204)"/>
-          <option value="rgb(255, 255, 204)" label="rgb(255, 255, 204)"/>
-          <option value="rgb(204, 232, 204)" label="rgb(204, 232, 204)"/>
-          <option value="rgb(204, 224, 245)" label="rgb(204, 224, 245)"/>
-          <option value="rgb(235, 214, 255)" label="rgb(235, 214, 255)"/>
-          <option value="rgb(187, 187, 187)" label="rgb(187, 187, 187)"/>
-          <option value="rgb(240, 102, 102)" label="rgb(240, 102, 102)"/>
-          <option value="rgb(255, 194, 102)" label="rgb(255, 194, 102)"/>
-          <option value="rgb(255, 255, 102)" label="rgb(255, 255, 102)"/>
-          <option value="rgb(102, 185, 102)" label="rgb(102, 185, 102)"/>
-          <option value="rgb(102, 163, 224)" label="rgb(102, 163, 224)"/>
-          <option value="rgb(194, 133, 255)" label="rgb(194, 133, 255)"/>
-          <option value="rgb(136, 136, 136)" label="rgb(136, 136, 136)"/>
-          <option value="rgb(161, 0, 0)" label="rgb(161, 0, 0)"/>
-          <option value="rgb(178, 107, 0)" label="rgb(178, 107, 0)"/>
-          <option value="rgb(178, 178, 0)" label="rgb(178, 178, 0)"/>
-          <option value="rgb(0, 97, 0)" label="rgb(0, 97, 0)"/>
-          <option value="rgb(0, 71, 178)" label="rgb(0, 71, 178)"/>
-          <option value="rgb(107, 36, 178)" label="rgb(107, 36, 178)"/>
-          <option value="rgb(68, 68, 68)" label="rgb(68, 68, 68)"/>
-          <option value="rgb(92, 0, 0)" label="rgb(92, 0, 0)"/>
-          <option value="rgb(102, 61, 0)" label="rgb(102, 61, 0)"/>
-          <option value="rgb(102, 102, 0)" label="rgb(102, 102, 0)"/>
-          <option value="rgb(0, 55, 0)" label="rgb(0, 55, 0)"/>
-          <option value="rgb(0, 41, 102)" label="rgb(0, 41, 102)"/>
-          <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"/>
-        </select>
-    </span>
+    <b>Encabezado</b>
+
  </div>
 
 );
+
+const getCirclePoint=(q)=>{
+ // console.log("aaaaaaaaaaaaaaaaaaaaaaa    "+q)
+  return {'circle-color': 'yellow','circle-radius': 4,'circle-opacity': 1,'circle-stroke-color': 'white' , 'circle-stroke-width':2,'circle-stroke-opacity':.2,'circle-blur': 0.2,}
+}
 return (
 <Fragment>
 <div className={classes.root}>
@@ -609,7 +551,7 @@ return (
         
        
         <Grid item xs={12} sm={6} md={6}>
-          <Editor style={{height:'50px'}} value={encabezado} onTextChange={(e) => setEncabezado(e.htmlValue)} headerTemplate={header}/>
+          <Editor style={{height:'50px'}} value={encabezado} onTextChange={(e) => setEncabezado(e.htmlValue)} headerTemplate={header0}/>
           <Editor style={{height:'100px'}} value={texto} onTextChange={(e) => setTexto(e.htmlValue)} headerTemplate={header}/>
 
         </Grid>
@@ -699,21 +641,7 @@ Registro
               linePaint={{'line-color': '#58D3F7','line-width': 1.0}}
              
             />  
- <GeoJSONLayer
-          data={redpoint}
-          circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'red','circle-radius': 4, }}         
-          symbolLayout={{
-            'text-field': '{nombre0}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
-            
-          }}
-          symbolPaint={{
-            'text-color': 'black'
-          }}
-          />
+
 
            <GeoJSONLayer
           data={TESTIGOSLOCATION}
@@ -746,6 +674,22 @@ Registro
           }}
           />
 
+<GeoJSONLayer
+          data={ rejson}
+          circleLayout={{ visibility: 'visible' }}
+         circlePaint={getCirclePoint('{nombre}')}         
+          symbolLayout={{
+            'text-field': '{nombre}',
+            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top',
+            
+          }}
+          symbolPaint={{
+            'text-color': 'white'
+          }}
+          />
+
 </Map>
 
 </Container>
@@ -754,3 +698,115 @@ Registro
 </Fragment>
 )
         }
+
+        const header = (
+          <div id="toolbar">
+          <span className="ql-formats">
+            <select className="ql-font">
+              <option value="serif"></option>
+              <option value="monospace"></option>
+              <option defaultValue></option>
+            </select>
+            <select className="ql-size">
+              {/*<option value="8"></option>
+                    <option value="9"></option>
+              <option value="10"></option>
+              <option value="11"></option>
+              <option value="12"></option>
+              <option value="13"></option>
+              <option value="14"></option>
+              <option value="16"></option>
+              <option value="18"></option>
+              <option value="24"></option>
+              <option value="36"></option>*/}
+            </select>
+            </span>
+            <span className="ql-formats">
+              <button className="ql-bold" aria-label="Bold"></button>
+              <button className="ql-italic" aria-label="Italic"></button>
+              <button className="ql-underline" aria-label="Underline"></button>
+              </span>
+            <span className="ql-formats">
+              <button className='ql-list' value='ordered'></button>
+            <button className='ql-list' value='bullet'></button>
+            <select className="ql-align"></select>
+          </span>
+          <span className="ql-formats">
+                <select title="Text Color" className="ql-color" defaultValue="rgb(0, 0, 0)">
+                  <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)"/>
+                  <option value="rgb(230, 0, 0)" label="rgb(230, 0, 0)"/>
+                  <option value="rgb(255, 153, 0)" label="rgb(255, 153, 0)"/>
+                  <option value="rgb(255, 255, 0)" label="rgb(255, 255, 0)"/>
+                  <option value="rgb(0, 138, 0)" label="rgb(0, 138, 0)"/>
+                  <option value="rgb(0, 102, 204)" label="rgb(0, 102, 204)"/>
+                  <option value="rgb(153, 51, 255)" label="rgb(153, 51, 255)"/>
+                  <option value="rgb(250, 204, 204)" label="rgb(250, 204, 204)"/>
+                  <option value="rgb(255, 235, 204)" label="rgb(255, 235, 204)"/>
+                  <option value="rgb(255, 255, 204)" label="rgb(255, 255, 204)"/>
+                  <option value="rgb(204, 232, 204)" label="rgb(204, 232, 204)"/>
+                  <option value="rgb(204, 224, 245)" label="rgb(204, 224, 245)"/>
+                  <option value="rgb(235, 214, 255)" label="rgb(235, 214, 255)"/>
+                  <option value="rgb(187, 187, 187)" label="rgb(187, 187, 187)"/>
+                  <option value="rgb(240, 102, 102)" label="rgb(240, 102, 102)"/>
+                  <option value="rgb(255, 194, 102)" label="rgb(255, 194, 102)"/>
+                  <option value="rgb(255, 255, 102)" label="rgb(255, 255, 102)"/>
+                  <option value="rgb(102, 185, 102)" label="rgb(102, 185, 102)"/>
+                  <option value="rgb(102, 163, 224)" label="rgb(102, 163, 224)"/>
+                  <option value="rgb(194, 133, 255)" label="rgb(194, 133, 255)"/>
+                  <option value="rgb(136, 136, 136)" label="rgb(136, 136, 136)"/>
+                  <option value="rgb(161, 0, 0)" label="rgb(161, 0, 0)"/>
+                  <option value="rgb(178, 107, 0)" label="rgb(178, 107, 0)"/>
+                  <option value="rgb(178, 178, 0)" label="rgb(178, 178, 0)"/>
+                  <option value="rgb(0, 97, 0)" label="rgb(0, 97, 0)"/>
+                  <option value="rgb(0, 71, 178)" label="rgb(0, 71, 178)"/>
+                  <option value="rgb(107, 36, 178)" label="rgb(107, 36, 178)"/>
+                  <option value="rgb(68, 68, 68)" label="rgb(68, 68, 68)"/>
+                  <option value="rgb(92, 0, 0)" label="rgb(92, 0, 0)"/>
+                  <option value="rgb(102, 61, 0)" label="rgb(102, 61, 0)"/>
+                  <option value="rgb(102, 102, 0)" label="rgb(102, 102, 0)"/>
+                  <option value="rgb(0, 55, 0)" label="rgb(0, 55, 0)"/>
+                  <option value="rgb(0, 41, 102)" label="rgb(0, 41, 102)"/>
+                  <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"/>
+                </select>
+                <span className="ql-formats"/>
+                <select title="Background Color" className="ql-background" defaultValue="rgb(255, 255, 255)">
+                    <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)"/>
+                    <option value="rgb(230, 0, 0)" label="rgb(230, 0, 0)"/>
+                  <option value="rgb(255, 153, 0)" label="rgb(255, 153, 0)"/>
+                  <option value="rgb(255, 255, 0)" label="rgb(255, 255, 0)"/>
+                  <option value="rgb(0, 138, 0)" label="rgb(0, 138, 0)"/>
+                  <option value="rgb(0, 102, 204)" label="rgb(0, 102, 204)"/>
+                  <option value="rgb(153, 51, 255)" label="rgb(153, 51, 255)"/>
+                  <option value="rgb(255, 255, 255)" label="rgb(255, 255, 255)"/>
+                  <option value="rgb(250, 204, 204)" label="rgb(250, 204, 204)"/>
+                  <option value="rgb(255, 235, 204)" label="rgb(255, 235, 204)"/>
+                  <option value="rgb(255, 255, 204)" label="rgb(255, 255, 204)"/>
+                  <option value="rgb(204, 232, 204)" label="rgb(204, 232, 204)"/>
+                  <option value="rgb(204, 224, 245)" label="rgb(204, 224, 245)"/>
+                  <option value="rgb(235, 214, 255)" label="rgb(235, 214, 255)"/>
+                  <option value="rgb(187, 187, 187)" label="rgb(187, 187, 187)"/>
+                  <option value="rgb(240, 102, 102)" label="rgb(240, 102, 102)"/>
+                  <option value="rgb(255, 194, 102)" label="rgb(255, 194, 102)"/>
+                  <option value="rgb(255, 255, 102)" label="rgb(255, 255, 102)"/>
+                  <option value="rgb(102, 185, 102)" label="rgb(102, 185, 102)"/>
+                  <option value="rgb(102, 163, 224)" label="rgb(102, 163, 224)"/>
+                  <option value="rgb(194, 133, 255)" label="rgb(194, 133, 255)"/>
+                  <option value="rgb(136, 136, 136)" label="rgb(136, 136, 136)"/>
+                  <option value="rgb(161, 0, 0)" label="rgb(161, 0, 0)"/>
+                  <option value="rgb(178, 107, 0)" label="rgb(178, 107, 0)"/>
+                  <option value="rgb(178, 178, 0)" label="rgb(178, 178, 0)"/>
+                  <option value="rgb(0, 97, 0)" label="rgb(0, 97, 0)"/>
+                  <option value="rgb(0, 71, 178)" label="rgb(0, 71, 178)"/>
+                  <option value="rgb(107, 36, 178)" label="rgb(107, 36, 178)"/>
+                  <option value="rgb(68, 68, 68)" label="rgb(68, 68, 68)"/>
+                  <option value="rgb(92, 0, 0)" label="rgb(92, 0, 0)"/>
+                  <option value="rgb(102, 61, 0)" label="rgb(102, 61, 0)"/>
+                  <option value="rgb(102, 102, 0)" label="rgb(102, 102, 0)"/>
+                  <option value="rgb(0, 55, 0)" label="rgb(0, 55, 0)"/>
+                  <option value="rgb(0, 41, 102)" label="rgb(0, 41, 102)"/>
+                  <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"/>
+                </select>
+            </span>
+         </div>
+        
+        );

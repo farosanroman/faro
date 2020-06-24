@@ -1,6 +1,6 @@
 import React, {useEffect, useState,Fragment } from 'react';
 import { useRecoilValue} from "recoil";
-import { organizacion,roles} from '../store/atom';
+import { codcne,organizacion,roles} from '../store/atom';
 //import { Application } from '../../App';
 import {useFetch} from '../hooks/usefetch'; 
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -52,6 +52,7 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
     const classes = useStyles();
     const ORGANIZACION = useRecoilValue(organizacion);
     const ROLES = useRecoilValue(roles);
+    const CODCNE = useRecoilValue(codcne);
     const [rolesjson, setRolesJson]=useState({"type":"FeatureCollection","features":[] });
     const [rejson, setReJson]=useState({"type":"FeatureCollection","features":[] });
 
@@ -102,11 +103,11 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
      });
      roles=roles.substring(0, roles.length - 1);
      if (roles=="")roles="NADA"
- fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles);
- console.log('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles)
+ fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne='+CODCNE+'&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles);
+ console.log('http://openfaroapi.azurewebsites.net/api/personasget?codigocne='+CODCNE+'&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles)
  //fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido=&idnodofuncional=1039&roles=');
     
-},[]);
+},[CODCNE,ORGANIZACION,ROLES]);
 useEffect(() => {
   //alert("in "+option)
  //alert(JSON.stringify(data))
@@ -193,10 +194,24 @@ setCant(data.length)
       "type":"FeatureCollection",
       "features":[{
         "type":"Feature",
-        "properties":{"nombre":"red"},                             
+        "properties":{"nombre":"red","color":10,"radio":20},                             
         "geometry":{"type":"Point","coordinates":[state.position.longitude,state.position.latitude]
         }
-      }]
+      },
+      {
+        "type":"Feature",
+        "properties":{"nombre":"red","color":50,"radio":40},                             
+        "geometry":{"type":"Point","coordinates":[-66.798,9.408]
+        }
+      },
+      {
+        "type":"Feature",
+        "properties":{"nombre":"red","color":70,"radio":60},                             
+        "geometry":{"type":"Point","coordinates":[-65,9.108]
+        }
+      }
+    
+    ]
     }
   
     let antenasjson={
@@ -376,23 +391,8 @@ return (
           }}
           /> */}
 
-<GeoJSONLayer
-          data={ rejson}
-          circleLayout={{ visibility: 'visible' }}
-         circlePaint={getCirclePoint('{nombre}')}         
-          symbolLayout={{
-            'text-field': '{nombre}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
-            
-          }}
-          symbolPaint={{
-            'text-color': 'white'
-          }}
-          />
-  
-        <GeoJSONLayer
+
+        {/* <GeoJSONLayer
             data={antenasjson}
             circleLayout={{ visibility: 'visible' }}
             circlePaint={{'circle-color': '#3BB9FF','circle-radius': 2,'circle-opacity': 0.6 }}         
@@ -406,7 +406,7 @@ return (
           symbolPaint={{
             'text-color': 'black'
           }}
-          />
+          /> */}
   
        
         <GeoJSONLayer
@@ -459,8 +459,7 @@ return (
           circleLayout={{ visibility: 'visible' }}
          circlePaint={{'circle-color': 'yellow','circle-radius': 14,'circle-opacity': 0.1 }}         
          
-          />
- <GeoJSONLayer
+          /> <GeoJSONLayer
           data={redpoint}
           circleLayout={{ visibility: 'visible' }}
          circlePaint={{'circle-color': 'red','circle-radius': 4, }}         
@@ -477,6 +476,75 @@ return (
           />
 
 
+
+{/* 'circle-radius':  [
+            "interpolate",
+            ["linear"],
+            ["get", "radio"],
+            10, 10,
+            20, 15,
+            30, 20,
+            40, 40
+          ] */}
+
+<GeoJSONLayer
+          data={redpoint}
+          circleLayout={{ visibility: 'visible' }}
+         circlePaint={{
+          'circle-color': {
+              "property": "color",
+              "stops": [
+                        [10, "#fff5f0"],
+                        [20, "#fee0d2"],
+                        [30, "#fcbba1"],
+                        [40, "#fc9272"],
+                        [50, "#fb6a4a"],
+                        [60, "#ef3b2c"],
+                        [70, "#cb181d"],
+                        [80, "#a50f15"],
+                        [90, "#67000d"]
+                     ]
+            },
+            'circle-radius': {
+              "property": "radio",
+               "stops": [
+                         [20, 20],
+                         [40, 40],
+                         [50,50],
+                         [60, 60]
+                       ]
+               }
+    
+            
+         
+          }}         
+          symbolLayout={{
+            'text-field': '{nombre0}',
+            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top',
+            
+          }}
+          symbolPaint={{
+            'text-color': 'black'
+          }}
+          />
+<GeoJSONLayer
+          data={ rejson}
+          circleLayout={{ visibility: 'visible' }}
+         circlePaint={getCirclePoint('{nombre}')}         
+          symbolLayout={{
+            'text-field': '{nombre}',
+            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top',
+            
+          }}
+          symbolPaint={{
+            'text-color': 'white'
+          }}
+          />
+  
 
 
 </Map>

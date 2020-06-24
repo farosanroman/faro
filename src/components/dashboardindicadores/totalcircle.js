@@ -28,7 +28,7 @@ import { findProps } from 'devextreme-react/core/template';
                                     <Table><TableRow><TableCell>
                                     <Circle
                                             animate={true} // Boolean: Animated/Static progress
-                                            animationDuration="3s" //String: Length of animation
+                                            animationDuration="1s" //String: Length of animation
                                             responsive={false} // Boolean: Make SVG adapt to parent size
                                             size={80} // Number: Defines the size of the circle.
                                             lineWidth={22} // Number: Defines the thickness of the circle's stroke.
@@ -50,7 +50,7 @@ import { findProps } from 'devextreme-react/core/template';
                                             <CountUp
                                             start={0}
                                             end={props.total}
-                                            duration={4}
+                                            duration={2}
                                             separator="."
                                             decimals={0}
                                             decimal=","

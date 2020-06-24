@@ -75,11 +75,12 @@ import GeoFaro from './dashboardgeo/geofaro';
 import AsignacionPasos from './personas/asignacionpasos'
 
 //import AsignacionDatos from './personas/asignaciondatosborrar';
-import SimpleTable from './dashboardmensajeria/simpletable';
+//import SimpleTable from './dashboardmensajeria/simpletable';
 //import Chat from './dashboardmensajeria/chat';
-import Mensajes from './dashboardmensajeria/mensajes';
-import Intervalos from './dashboardmensajeria/intervalos';
-import Resultados from './dashboardmensajeria/resultados';
+import  RichText from './mensajeria/richtext';
+import Mensajes from './mensajeria/mensajes';
+import Intervalos from './mensajeria/intervalos';
+import Resultados from './mensajeria/resultados';
 import DialogoGetPersona from './personas/dialogogetpersona'
 //import DialogoLogin from './dashboard/dialogologin'
 import DialogoFiltros from './layout/dialogofiltros'
@@ -513,7 +514,8 @@ export default function Dashboard() {
 {false&&<div>!!!!!!!!!!!!Mensajes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>}
 {(component==2)&&
       <Container maxWidth="lg" className={classes.container}>
-           <Mensajes />
+        <Mensajes />
+           <RichText />
       </Container>
           }
   {(component==3)&&

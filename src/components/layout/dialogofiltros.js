@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
 import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
-import { flagLogin,login,funcionales,roles, organizacion,getindicadores} from '../store/atom';
+import { flagLogin,login,codcne,eemmpp,funcionales,roles, organizacion,getindicadores,} from '../store/atom';
 import Button from '@material-ui/core/Button';
 // import TextField from '@material-ui/core/TextField';
 // import Dialog from '@material-ui/core/Dialog';
@@ -33,8 +33,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 // import SnackbarContent from '@material-ui/core/SnackbarContent';
 //import { Application } from '../../App';
 
-import {useFetch}  from '../hooks/usefetch'
-import {EEMMPP} from  '../../data/EEMMPP.json';
+//import {useFetch}  from '../hooks/usefetch'
+//import {EEMMPP} from  '../../data/EEMMPP.json';
 //import {roles} from  '../../data/roles.json';
 //import {organizacion} from  '../../data/organizacion.json';
 
@@ -77,6 +77,9 @@ export default function DialogoFiltros(props) {
     // const [ dataF, isLoadingF, isErrorF , fetchDataF] = useFetch("");
     //const [ dataR, isLoadingR, isErrorR , fetchDataR] = useFetch("");
     const [LOGIN, setLOGIN] = useRecoilState(login);
+    const EEMMPP = useRecoilValue(eemmpp);
+    const [CODCNE, setCODCNE] = useRecoilState(codcne);
+  
     const [ROLES, setROLES] = useRecoilState(roles);
     
     const [FUNCIONALES, setFUNCIONALES] = useRecoilState(funcionales);
@@ -86,9 +89,7 @@ export default function DialogoFiltros(props) {
     const handleChange = name => event => {
       //setState({ ...state, [name]: event.target.checked });
     };
-  //alert(JSON.stringify(state.organizacion))
-    //const { AD, PJ, VP } = state;
-    //const error = [ AD, PJ, VP].filter(v => v).length !== 2;
+ 
 const error='ABC'
 useEffect(() => {
   //fetchDataF('https://openfaroapi.azurewebsites.net/api/pizarragetnodosfuncionales?idorganizacion=&codigocne=00000000000&idrol=')
@@ -105,14 +106,6 @@ useEffect(() => {
 
 
 }, []); // Important, pass an empty array so to execute useEffect hook only once
-//useEffect(() => {
- 
-//}, [dataF]); 
-
-// useEffect(() => {
-//   fetchDataR('https://openfaroapi.azurewebsites.net/api/pizarragetroles?idorganizacion=&codigocne=00000000000&idnodofuncional='+idfuncional)
-// }, [idfuncional]); 
-
 
 const addTodo = () => {
   setORGANIZACION((oldList) => [
@@ -153,11 +146,6 @@ const deleteTodo = (index) => {
 };
 
 
-// useEffect(() => {
-// //alert()
-// }, [state.funcionales]); 
-
-
 const handleCheckboxChangePartido = id => {
   setORGANIZACION((oldTodoList) => {
     const newTodoList = oldTodoList.map((todo, i) => {
@@ -193,24 +181,15 @@ const handleCheckboxChangeRol = idrol => {
   };
  
 const handleChangeCambios=input=>e=>{
+  
       if (input=="funcional"){
-      //  var index = state.funcionales.findIndex(obj => obj.idfuncional==e.target.value);
-        // alert(index)
-        //  dispatch({
-        //   type: 'FILTRO_FUNCIONALES',
-        //   stateprop: state.funcionales[index].idfuncional
-        // });
-          setIdFuncional(e.target.value)
+           setIdFuncional(e.target.value)
           setPosFuncional(index)
       }
       if (input=="rol"){
        // alert(e.target.value)
        // var index = state.funcionales.findIndex(obj => obj.idfuncional==e.target.value);
-        // alert(index)
-        //  dispatch({
-        //   type: 'FILTRO_FUNCIONALES',
-        //   stateprop: state.funcionales[index].idfuncional
-        // });
+ 
           setIdFuncional(e.target.value)
           setPosFuncional(index)
       }
@@ -218,16 +197,21 @@ const handleChangeCambios=input=>e=>{
         //alert(JSON.stringify(e.target.value)) 
         var index = EEMMPP.findIndex(obj => obj.cneestado==e.target.value);
       // alert(index)
-        setCodigoEstado(e.target.value)
+      setCODCNE(e.target.value.substring(0,2))
+      setCodigoEstado(e.target.value)
         setPosEstado(index)
+        setPosMunicipio(0)
        }
        if (input=="municipio"){
         var index = EEMMPP[posestado].items.findIndex(obj => obj.cnemunicipio==e.target.value);
         //alert(index)
-          setPosMunicipio(index)
+        setCODCNE(e.target.value.substring(0,4))
+        setPosMunicipio(index)
         setCodigoMunicipio(e.target.value)
+        setPosParroquia(0)
        }
        if (input=="parroquia"){
+        setCODCNE(e.target.value.substring(0,6))
         setCodigoParroquia(e.target.value)
         var index = EEMMPP[posestado].items[posmunicipio].items.findIndex(obj => obj.cneparroquia==e.target.value);
         //alert(index)

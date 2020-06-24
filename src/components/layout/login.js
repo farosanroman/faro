@@ -305,8 +305,8 @@ function SignIn(user) {
       setFUNCIONALES(dataF)
 
       //alert(JSON.stringify(dataF))
-      /////////////////PRENDE LOS INDICADORES
-        fetchDataR('https://openfaroapi.azurewebsites.net/api/pizarragetroles?idorganizacion=&codigocne=00000000000&idnodofuncional=1039')//+idfuncional)
+      /////////////////PRENDE LOS INDICADORES  00000000000
+        fetchDataR('https://openfaroapi.azurewebsites.net/api/pizarragetroles?idorganizacion=&codigocne=&idnodofuncional=1039')//+idfuncional)
             
             /////////////////PRENDE LOS INDICADORES
     }

@@ -1,6 +1,6 @@
 import React, { PureComponent,useEffect,useState } from 'react';
 import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
-import { flagLogin,login,organizacion,roles,indicadoresorganizacion} from '../store/atom';
+import { flagLogin,login,codcne,organizacion,roles,indicadoresorganizacion} from '../store/atom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -88,6 +88,8 @@ export default function Indicadores() {
   const [FLAGLOGIN, setFLAGLOGIN] = useRecoilState(flagLogin);
   const [LOGIN, setLOGIN] = useRecoilState(login); 
   const [INDICADORESORGANIZACION, setINDICADORESORGANIZACION] = useRecoilState(indicadoresorganizacion); 
+  const CODCNE=useRecoilValue(codcne) 
+  
   const ORGANIZACION=useRecoilValue(organizacion) 
   const ROLES=useRecoilValue(roles)
   //const GETINDICADORES=useRecoilValue(getindicadores) 
@@ -105,6 +107,7 @@ useEffect(() => {
   //alert(JSON.stringify(state.login.idfuncional))
   // http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional=1039&roles=
   //if (GETINDICADORES==true){
+    console.log(CODCNE+" "+JSON.stringify(ORGANIZACION)+" "+JSON.stringify(ROLES))
     setFlagCircular(true)
     var partidos=""
    // alert(JSON.stringify(ORGANIZACION))
@@ -124,12 +127,12 @@ useEffect(() => {
     if (roles=="")roles="NADA"
    // alert(JSON.stringify(roles))
     //partidos="2";
-    console.log('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido='+partidos+'&idnodofuncional='+LOGIN.idfuncional+'&roles='+roles)
-    fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido='+partidos+'&idnodofuncional='+LOGIN.idfuncional+'&roles='+roles)
+    console.log('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne='+CODCNE+'&idpartido='+partidos+'&idnodofuncional='+LOGIN.idfuncional+'&roles='+roles)
+    fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne='+CODCNE+'&idpartido='+partidos+'&idnodofuncional='+LOGIN.idfuncional+'&roles='+roles)
   //}
   //fetchData('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional=1039&roles=')
   // console.log('http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional='+state.login.idfuncional+'&roles=')    
-},[ORGANIZACION,ROLES]);
+},[CODCNE,ORGANIZACION,ROLES]);
 useEffect(() => {   
 //alert()
 },[ORGANIZACION]);
