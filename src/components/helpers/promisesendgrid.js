@@ -4,7 +4,7 @@ var nuevo=[];
 var i=0
 var  error=[]
     Promise.all(correos.map(c =>{
-        console.log(c)
+       // console.log(c)
        nuevo.push(c)
 
        var url= "https://faronosql.azurewebsites.net/api/SendGridVT?code=cavrTaG45NaieWsIfwJncoUqEyW3xnuWfoTD1yIwfdSJ/0a84ahnnw==";

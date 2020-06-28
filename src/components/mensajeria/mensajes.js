@@ -120,26 +120,26 @@ const MenuProps = {
     const [TESTIGOS,setTESTIGOS]=useState([]) 
     const [cantregistros,setCantregistros]=useState([]) 
     const [state,setState]=useState( {
-        flagLogin:false,
-        geolocation:{country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"},
+        //flagLogin:false,
+        //geolocation:{country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"},
         position:{ latitude:8.4881081498923305, longitude:-66.888521423339844, timestamp:0, accuracy:0, error:null },  //hook
-        positions:[],
+      //  positions:[],
         
         ///// GeoJSON
         lnglat:[-66.888,9.508],
         zoom:20,
         radio:3,
         /////
-        centro:"Centro de Votacion",
-        centros:null,
-        ruta:{
-          "type":"FeatureCollection",
-          "features":[ {
-            "type":"Feature",
-            "properties":{"nombre":'ppa',"latitude":10.55555,"timestamp":0},                             
-            "geometry":{"type":"LineString","coordinates":[[-66.8721358,9.4783499 ]] }
-          }]
-        },
+        // centro:"Centro de Votacion",
+        // centros:null,
+        // ruta:{
+        //   "type":"FeatureCollection",
+        //   "features":[ {
+        //     "type":"Feature",
+        //     "properties":{"nombre":'ppa',"latitude":10.55555,"timestamp":0},                             
+        //     "geometry":{"type":"LineString","coordinates":[[-66.8721358,9.4783499 ]] }
+        //   }]
+        // },
         })
         const [pos, setPos] = React.useState([-66.9188,5.58]);
     
@@ -214,7 +214,7 @@ const MenuProps = {
        roles=roles.substring(0, roles.length - 1);
        if (roles=="")roles="NADA"
    fetchDataP('http://openfaroapi.azurewebsites.net/api/personasget?codigocne='+CODCNE+'&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles);
-   console.log('http://openfaroapi.azurewebsites.net/api/personasget?codigocne='+CODCNE+'&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles)
+   //console.log('http://openfaroapi.azurewebsites.net/api/personasget?codigocne='+CODCNE+'&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles)
    //fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido=&idnodofuncional=1039&roles=');
   //},[CODCNE,ORGANIZACION,ROLES]);
       
@@ -302,41 +302,7 @@ const MenuProps = {
   var centro=[state.position.longitude,state.position.latitude]
 var ii=0
     
-///var respuestas=[]
-//alert(JSON.stringify(RESPUESTAS.preguntas))
-// const handleClickBuscar =input=>{  
- 
-//   setFlagCircular(true)
-//   getTestigos("TESTIGOS",result => {  
-//    // alert(JSON.stringify(result))
-//     setTESTIGOS(result)
-//   //alert(JSON.stringify(TESTIGOS))
-  
-//   var featuresTESTIGOS=[]
-//   for (var i = 0; i < result.length; i++) {
-//     featuresTESTIGOS.push( {
-//         "type":"Feature",
-//         "properties":{
-//           "place":result[i].nombre,
-          
-//         }, 
-                
-//         "geometry":{
-//           "type":"Point",
-//           "coordinates":[result[i].lng,result[i].lat]
-//         }
-//       })
-//   }
-//   const pointsTESTIGOS={
-//     "type":"FeatureCollection",
-//     "features":featuresTESTIGOS
-//    }      
-//    setFlagCircular(false)
-//    setTESTIGOSLOCATION(pointsTESTIGOS)
-//  //  alert(JSON.stringify(pointsTESTIGOS))
-//   })
- 
-// }
+
 const handleClickGrabarMensajes =input=>{  
   setFlagCircular(true)
  
@@ -345,9 +311,11 @@ const handleClickGrabarMensajes =input=>{
  var fecha=new Date()
 // personas.length
 var correos=[{"correo":"gboyerizo@gmail.com","cedula":"V6505691"},{"correo":"gabo2595@gmail.com","cedula":"V24218683"},{"correo":"ppazpurua@gmail.com","cedula":"V3664204"}]
+correos.push({"correo":"lospinos16.2017@gmail.com","cedula":"V6505691"})
+correos.push({"correo":"danelighernandezs@gmail.com","cedula":"V6505691"})
 
  var FORMULARIOS=[] 
-  for (let i = 0; i <3; ++i) {
+  for (let i = 0; i <5; ++i) {
     var celular=personas[i].celular
    if (celular==null){
        celular="00"
@@ -371,9 +339,7 @@ var correos=[{"correo":"gboyerizo@gmail.com","cedula":"V6505691"},{"correo":"gab
     "fecha": fecha,
  //   "cedula": personas[i].identificacion,
      "cedula":correos[i].cedula,  
-"persona":personas[i],
-    
-    
+     "persona":personas[i],
     "cv": {
       "codcne":  personas[i].cvcodcne,
       "nombre":  personas[i].cvcentro,
@@ -468,15 +434,7 @@ var correos=[{"correo":"gboyerizo@gmail.com","cedula":"V6505691"},{"correo":"gab
    // console.log(JSON.stringify(mensaje))
    //alert("mensajes"+JSON.stringify(mensajes))
     FORMULARIOS.push(mensaje)
-    // postMensaje(mensaje,res => {  
-    //   // alert(res.length)
-    //    alert("formulario"+JSON.stringify(res)+"formulario")
-    //   if (i>=TESTIGOS.length-1){
-    //    setFlagCircular(false) 
-    //    setTESTIGOSLOCATION([])
-    //    setTESTIGOS([])
-    //   }
-    //  });
+    
 
 }
 PromisePostFormularios(FORMULARIOS,callback=> {
@@ -498,11 +456,13 @@ var MENSAJES=FORMULARIOS.map(f =>{
   var boton='<body><img src="https://th.bing.com/th/id/OIP.0gGbWbkHhtYt9-R3j0a-2AHaEK?w=307&h=180&c=7&o=5&pid=1.7" alt="Girl in a jacket" width="200" height="200"><h1>aaaa</h1><br/><a href="https://poliflash.github.io/PoliData/?cedula=V3664204"><button  style="background-color:red;color:yellow;font-size:40px">Click para ir al Formulario 101</button></a></body>'
   var lnk='<br/><a href="cualquier url" target="_blank">https://poliflash.github.io/PoliData/?cedula=V3664204</a>'
   var ht='<html>'+f.mensaje.contenido+'<br/>'+table+'<br/>'+boton+lnk+'</html>'
-  
+  var encabezado=f.mensaje.encabezado;
+  encabezado=encabezado.replace("<p>","")
+  encabezado=encabezado.replace("</p>","")
   var  message = {   
     "personalizations": [ { "to": [ { "email": f.medios[0].destino} ] } ],
    from: { email: "ppazpurua@gmail.com" },        
-   subject: "🇻🇪📣 FaroV2.120 "+f.mensaje.encabezado,
+   subject: "🇻🇪📣 FaroV2.120 "+encabezado,
    content: [{
        type: 'text/html',
        value:ht

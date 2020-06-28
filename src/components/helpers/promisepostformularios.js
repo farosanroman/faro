@@ -4,7 +4,7 @@ var nuevo=[];
 var i=0
 var  error=[]
     Promise.all(formularios.map(f =>{
-        console.log(f)
+        //console.log(f)
        nuevo.push(f)
 
        var url= "https://farodesarrollo2010.azurewebsites.net/api/FormularioPersonaPost?code=VtEH0pzl8ADUEHmaoT7NDikIh6WGOgZuYHc5pvLsDdeALF1iqLdKWg==";
