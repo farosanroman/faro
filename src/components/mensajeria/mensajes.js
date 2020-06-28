@@ -3,6 +3,8 @@ import { useRecoilValue} from "recoil";
 import { codcne,organizacion,roles} from '../store/atom';
 
 import {useFetch} from '../hooks/usefetch'; 
+import {PromisePostFormularios} from '../helpers/promisepostformularios';
+import {PromiseSendGrid} from '../helpers/promisesendgrid';
 
 import clsx from 'clsx';
 //import { Application } from '../App';
@@ -36,16 +38,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 //import {celular} from '../data/celular.json';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
-import {RESP} from '../../data/resp.json';
+//import {RESP} from '../../data/resp.json';
 //import {roles} from  '../../data/roles.json';
 //import {LIBERTADOR} from '../data/libertador.json';
 import {usePosition} from '../../hooks/useposition';
 //import {useGeolocation} from '../hooks/usegeolocation';
-import { greatCircle, point,circle } from '@turf/turf';
+//import { greatCircle, point,circle } from '@turf/turf';
 import Title2 from '../layout/title';
 //import PieChart, { Title,Font, Series , Label ,Connector,  Size, Export,Legend } from 'devextreme-react/pie-chart';
-import {EEMMPP} from  '../../data/EEMMPP.json';
-import {formulario} from  '../../data/formulario.json';
+//import {EEMMPP} from  '../../data/EEMMPP.json';
+//import {formulario} from  '../../data/formulario.json';
 import {getPersona,getTestigos} from '../helpers/helperpersonas'
 import {postMensaje} from '../helpers/helpermensajes'
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -97,27 +99,26 @@ const MenuProps = {
     const CODCNE = useRecoilValue(codcne);
     const ORGANIZACION = useRecoilValue(organizacion);
     const ROLES = useRecoilValue(roles);
+    const [formularios,setFormularios]=React.useState([])
+    const [formulario,setFormulario]=React.useState("")
+    const [formulariojson,setFormulariojson]=React.useState({mensaje:{encabezado:""}})
+    
     const [personName, setPersonName] = React.useState([]);
- 
-    // const [codpartido, setCodigoPartido] = React.useState("10");
-    // const [codestado, setCodigoEstado] = React.useState("");
-    // const [posestado, setPosEstado] = React.useState(0);
-    // const [codmunicipio, setCodigoMunicipio] = React.useState("");
-    // const [posmunicipio, setPosMunicipio] = React.useState(0);
-   
-    // const [codparroquia, setCodigoParroquia] = React.useState("130101");
-    // const [posparroquia, setPosParroquia] = React.useState("130101");
-   
-    // const [idrol, setIdRol] = React.useState("0");
+
     const [rejson, setReJson]=useState({"type":"FeatureCollection","features":[] });
 
     const [flagCircular, setFlagCircular] = React.useState(false); 
-    const [data, isLoading, isError , fetchData] = useFetch(""); 
+    const [data, isLoading, isError , fetchData]     = useFetch(""); 
+    const [dataP, isLoadingP, isErrorP , fetchDataP] = useFetch(""); 
+    
+    const [dataF, isLoadingF, isErrorF , fetchDataF] = useFetch(""); 
+  
     const [cant,setCant]=React.useState(0)
    
     const [encabezado, setEncabezado] = React.useState("Actividades de Formacion");
     const [texto, setTexto] = React.useState("Actividades de Formacion mañana: Taller de Testigo en el Colegio Jose Maria Vargas en la Parroquia General Paez");
-    
+    const [TESTIGOS,setTESTIGOS]=useState([]) 
+    const [cantregistros,setCantregistros]=useState([]) 
     const [state,setState]=useState( {
         flagLogin:false,
         geolocation:{country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"},
@@ -144,11 +145,57 @@ const MenuProps = {
     
         const [zoom, setZoom] = useState([5]);
     const { latitude, longitude, timestamp, accuracy, error } = usePosition();
-    const [ FORMULARIOS,SetFORMULARIOS ] = useState(RESP);
+    //const [ FORMULARIOS,SetFORMULARIOS ] = useState(RESP);
    // const [RESPUESTAS,SetRESPUESTAS]=useState({enviados:0,preguntas:[],respondidos:0,invalidos:0,isLoading:false })
-    const [TESTIGOS,setTESTIGOS]=useState([])
+   
     const [TESTIGOSLOCATION,setTESTIGOSLOCATION]=useState(null)
     const [MENSAJES,setMENSAJES]=useState(null)
+    
+    
+    useEffect(() => {
+    // alert("[]")
+     //var url="https://farodesarrollo2010.azurewebsites.net/api/GetFormularioBaseById?code=VHv965PUWi0HhNnfc2PWxUCnakhMkt60HOV90NOMkZ1fPsx6JMRqFQ==&id=experiencia"
+     var url='http://farodesarrollo2010.azurewebsites.net/api/GetFormulariosBase?code=LJUvmxMGdxdjn8ZY8maaAWOD4b9FaDtdMbYap8/yMXcNaXBR8khW3w=='
+     //var url='https://farodesarrollo2010.azurewebsites.net/api/GetFormulariosBase'
+     //var url='https://farodesarrollo2010.azurewebsites.net/api/GetFormularioBaseById?code=VHv965PUWi0HhNnfc2PWxUCnakhMkt60HOV90NOMkZ1fPsx6JMRqFQ==&id=EXPERIENCIA'
+   fetchData(url);
+   //fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido=&idnodofuncional=1039&roles=');
+      
+  },[]);
+  useEffect(() => {
+  // alert("formularios "+JSON.stringify(data))
+    if (isLoading) {
+      setFlagCircular(true)
+    }
+    //alert(data[0].type)
+    if ((data!=undefined)&&(!isLoading))      
+    {
+   //   console.log(JSON.stringify(data))
+   //  alert("fetchF "+JSON.stringify(data))
+     setFormularios(data)
+    setFlagCircular(false)
+     
+    }
+  },[data,isLoading]);
+  useEffect(() => {
+    // alert("formularios "+JSON.stringify(data))
+      if (isLoadingF) {
+        setFlagCircular(true)
+      }
+      //alert(data[0].type)
+      if ((dataF!=undefined)&&(!isLoadingF))      
+      {
+     //   console.log(JSON.stringify(dataF))
+       //alert("fetchF "+JSON.stringify(dataF))
+     if (JSON.stringify(dataF)!="[]"){
+       setFormulariojson(dataF[0])
+       setEncabezado(dataF[0].mensaje.encabezado)
+     }
+      setFlagCircular(false)
+       
+      }
+    },[dataF,isLoadingF]);
+
     useEffect(() => {
       var partidos=""
       // alert(JSON.stringify(ORGANIZACION))
@@ -166,24 +213,25 @@ const MenuProps = {
        });
        roles=roles.substring(0, roles.length - 1);
        if (roles=="")roles="NADA"
-   fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne='+CODCNE+'&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles);
+   fetchDataP('http://openfaroapi.azurewebsites.net/api/personasget?codigocne='+CODCNE+'&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles);
    console.log('http://openfaroapi.azurewebsites.net/api/personasget?codigocne='+CODCNE+'&idpartido='+partidos+'&idnodofuncional=1039&roles='+roles)
    //fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido=&idnodofuncional=1039&roles=');
+  //},[CODCNE,ORGANIZACION,ROLES]);
       
   },[CODCNE,ORGANIZACION,ROLES]);
   useEffect(() => {
     //alert("in "+option)
    //alert(JSON.stringify(data))
-    if (isLoading) {
+    if (isLoadingP) {
       setFlagCircular(true)
     }
     //alert(data[0].type)
-    if ((data!=undefined)&&(!isLoading))      
+    if ((dataP!=undefined)&&(!isLoadingP))      
     {
      // console.log(JSON.stringify(data))
     // alert("fetch"+JSON.stringify(data))
-  
-      const  featuresrejson=data.map(d=>{               
+    setTESTIGOS(dataP)
+      const  featuresrejson=dataP.map(d=>{               
        return(
        {
           "type":"Feature",
@@ -201,71 +249,40 @@ const MenuProps = {
     "features":featuresrejson
   }
   setReJson(personasReCollection)
-  setCant(data.length)
+  setCant(dataP.length)
   //handleKPIDay(data)
     setFlagCircular(false)
      
     }
-  },[data,isLoading]);
+  },[dataP,isLoadingP]);
   
   const handleChangeCambios=input=>e=>{
-    if (input=="formularios"){
-     //alert("cedula")
+   //alert(e.target.value)
+    if (input=="formulario"){
+     // console.log(JSON.stringify(e))
+      //alert(JSON.stringify(e)) 
+      
+     setFormulario(e.target.value)
       //setMensajeAsignacion({ ...mensajeasignacion, cedula: e.target.value })
+      const url="https://farodesarrollo2010.azurewebsites.net/api/GetFormularioBaseById?code=VHv965PUWi0HhNnfc2PWxUCnakhMkt60HOV90NOMkZ1fPsx6JMRqFQ==&id="+e.target.value
+      fetchDataF(url);
     }
-    // if (input=="estado"){
-    //   //alert(JSON.stringify(e.target.value)) 
-    //   var index = EEMMPP.findIndex(obj => obj.cneestado==e.target.value);
-    // // alert(index)
-    //   setCodigoEstado(e.target.value)
-    //   setPosEstado(index)
-    //  }
-    //  if (input=="municipio"){
-    //   var index = EEMMPP[posestado].items.findIndex(obj => obj.cnemunicipio==e.target.value);
-    //   //alert(index)
-    //     setPosMunicipio(index)
-    //   setCodigoMunicipio(e.target.value)
-    //  }
-    //  if (input=="parroquia"){
-    //   setCodigoParroquia(e.target.value)
-    //   var index = EEMMPP[posestado].items[posmunicipio].items.findIndex(obj => obj.cneparroquia==e.target.value);
-    //   //alert(index)
-    //     setPosParroquia(index)
-    //  }
-    //  if (input=="rol"){
-    //   setIdRol(e.target.value)
-    //  }
+   
     
    }
-  //  const handleChangeTexto=input=>e=>{
-  //       setTexto(e.target.value)
-  //  }
-  //  function handleChange(event) {
-  //   setPersonName(event.target.value);
-  // }
-//  const handleChangeCambios=input=>e=>{
   
   function onResize (map, event)  {
    //alert(map.getZoom()+" " +JSON.stringify(event))
   }
    function onZoom (map, event)  {
      var zoomint=Math.round(map.getZoom());
-     //dispatch({
-    //  type: 'ZOOM',
-    //  stateprop:zoomint
-    //});
-            //setZoom([map.getZoom()])    
-      //alert(zoomint+" "+event)
-         
+ 
             setZoom(zoomint+(event)*1.1)
           }
       function onControlClick(map,event){
         var z=state.zoom
         z+=event
-      //  dispatch({
-      //    type: 'ZOOM',
-      //    stateprop:z
-      //  });
+
       }
     // console.log(props.positions.length+" possssssssssss ")
    // setCenter([stategeo.longitude,stategeo.latitude])
@@ -283,74 +300,54 @@ const MenuProps = {
     
 
   var centro=[state.position.longitude,state.position.latitude]
-  //var centro=[ -80.23521423339844,25.791081498923305 ]
-//  if (latitude>1){
-//  centro=[longitude,latitude]
-//  if (zoom<8)setZoom([50])  
-//}
- //console.log(JSON.stringify(drone))
-// var center = [  -66.8658,10.4645];
-// var radius = 7;
-//alert(JSON.stringify(RESPUESTAS))
 var ii=0
     
 ///var respuestas=[]
 //alert(JSON.stringify(RESPUESTAS.preguntas))
-const handleClickBuscar =input=>{  
+// const handleClickBuscar =input=>{  
  
-  setFlagCircular(true)
-  getTestigos("TESTIGOS",result => {  
-   // alert(JSON.stringify(result))
-    setTESTIGOS(result)
-  //alert(JSON.stringify(TESTIGOS))
+//   setFlagCircular(true)
+//   getTestigos("TESTIGOS",result => {  
+//    // alert(JSON.stringify(result))
+//     setTESTIGOS(result)
+//   //alert(JSON.stringify(TESTIGOS))
   
-  var featuresTESTIGOS=[]
-  for (var i = 0; i < result.length; i++) {
-    featuresTESTIGOS.push( {
-        "type":"Feature",
-        "properties":{
-          "place":result[i].nombre,
+//   var featuresTESTIGOS=[]
+//   for (var i = 0; i < result.length; i++) {
+//     featuresTESTIGOS.push( {
+//         "type":"Feature",
+//         "properties":{
+//           "place":result[i].nombre,
           
-        }, 
+//         }, 
                 
-        "geometry":{
-          "type":"Point",
-          "coordinates":[result[i].lng,result[i].lat]
-        }
-      })
-  }
-  const pointsTESTIGOS={
-    "type":"FeatureCollection",
-    "features":featuresTESTIGOS
-   }      
-   setFlagCircular(false)
-   setTESTIGOSLOCATION(pointsTESTIGOS)
- //  alert(JSON.stringify(pointsTESTIGOS))
-  })
+//         "geometry":{
+//           "type":"Point",
+//           "coordinates":[result[i].lng,result[i].lat]
+//         }
+//       })
+//   }
+//   const pointsTESTIGOS={
+//     "type":"FeatureCollection",
+//     "features":featuresTESTIGOS
+//    }      
+//    setFlagCircular(false)
+//    setTESTIGOSLOCATION(pointsTESTIGOS)
+//  //  alert(JSON.stringify(pointsTESTIGOS))
+//   })
  
-}
+// }
 const handleClickGrabarMensajes =input=>{  
   setFlagCircular(true)
  
-//  setFlagCircular(false)
-  //alert(this.state.sms+" "+this.state.mail)
-  
-  //this.setState({loadIndicatorVisible:true}) 
-  //var rols=[]
-  //for (let i = 0; i < this.state.ROLES.length; ++i) {
-  //  for (let j = 0; j < roles.length; ++j) {
-  //    if (this.state.ROLES[i]==roles[j].id){
-  //      rols.push(roles[j])
-  //    }
-  //  }
- // }
- // alert(JSON.stringify(rols))
-  var mensajes=[]
+ // var mensajes=[]
   var personas=TESTIGOS;
  var fecha=new Date()
+// personas.length
+var correos=[{"correo":"gboyerizo@gmail.com","cedula":"V6505691"},{"correo":"gabo2595@gmail.com","cedula":"V24218683"},{"correo":"ppazpurua@gmail.com","cedula":"V3664204"}]
 
-  for (let i = 0; i < personas.length; ++i) {
-//alert(JSON.stringify(personas[i]))
+ var FORMULARIOS=[] 
+  for (let i = 0; i <3; ++i) {
     var celular=personas[i].celular
    if (celular==null){
        celular="00"
@@ -364,27 +361,19 @@ const handleClickGrabarMensajes =input=>{
     }
     
     var preguntas=formulario.preguntas;
-   // if (this.state.flagFormulario){
-  //  for (let j = 0; j < this.state.formulariosbase.length; ++j) {
-  //       if (this.state.formulariosbase[j].id==this.state.formulario)
-  //       {preguntas=this.state.formulariosbase[j].preguntas}
-  //  }
- // }
     var fecha=new Date()
     var mensaje= {
-    "id":personas[i].identificacion+"*"+formulario.id,
+    "id":correos[i].cedula+"*"+formulario,
+    //"id":personas[i].identificacion+"*"+formulario,
     "type":"formulario",
     
-    "idformulario":formulario.id,
+    "idformulario":formulario,
     "fecha": fecha,
-    "cedula": personas[i].identificacion,
+ //   "cedula": personas[i].identificacion,
+     "cedula":correos[i].cedula,  
+"persona":personas[i],
     
-    "nombreapellido":personas[i].nombreapellido,
-    "idpartido": personas[i].idpartido,
-    "partido": personas[i].orientacion,
-    "sexo": personas[i].sexo,
-    "fechanac":  personas[i].fechanac,
-    "edad":  personas[i].edad,
+    
     "cv": {
       "codcne":  personas[i].cvcodcne,
       "nombre":  personas[i].cvcentro,
@@ -403,49 +392,56 @@ const handleClickGrabarMensajes =input=>{
       "direccion":""
   },
   "mensaje": {
-    "encabezado": "this.state.CONFIGURACION.mensaje.encabezado",
-    "contenido": "this.state.CONFIGURACION.mensaje.contenido",
+    "encabezado": encabezado,
+    "contenido": texto,
     "flagFormulario":false,
     "formulario":"sin",
     "imagen": ""
 },
-  "preguntas": preguntas,
+  "preguntas": formulariojson,
   
   //"roles": rols,
      "medios": [
-      {
-        "medio": "sms",
-        "destino": personas[i].celular,
-        "activado":false,
-        "procesos":{
-          "existe":true,
-          "envio":false,
-          "fechaenvio":null,
-          "apertura":false,
-          "fechaapertura":null,
-          "click":false,
-          "fechaclick":null,
-          "respuesta":false,
-          "fecharespuesta":null
-        }
-},
+     
+
       {
             "medio": "correo",
-            "destino": personas[i].correo,
+            //"destino": personas[i].correo,
+            "destino": correos[i].correo,
             "activado":true,
             "procesos":{
               "existe":true,
               "envio":false,
               "fechaenvio":null,
-              "apertura":false,
-              "fechaapertura":null,
+              "cantenvios":0,
               "click":false,
               "fechaclick":null,
               "respuesta":false,
-              "fecharespuesta":null
+              "fecharespuesta":null,
+              "cancelado":false,
+              "fechacancelacion":null,
+              "diascancelacion":90,
             }
           },
-
+          {
+            "medio": "sms",
+            "destino": personas[i].celular,
+            "activado":false,
+            "procesos":{
+              "existe":true,
+              "envio":false,
+              "fechaenvio":null,
+              "cantenvios":0,
+    
+              "click":false,
+              "fechaclick":null,
+              "respuesta":false,
+              "fecharespuesta":null,
+              "cancelado":false,
+              "fechacancelacion":null,
+              "diascancelacion":90,
+            }
+          },
         {
             "medio": "twt",
             "destino": "pazpurua",
@@ -455,49 +451,76 @@ const handleClickGrabarMensajes =input=>{
               "existe":true,
               "envio":false,
               "fechaenvio":null,
-              "apertura":false,
-              "fechaapertura":null,
+              "cantenvios":0,
+
               "click":false,
               "fechaclick":null,
               "respuesta":false,
-              "fecharespuesta":null
+              "fecharespuesta":null,
+              "cancelado":false,
+              "fechacancelacion":null,
+              "diascancelacion":90,
             }
         }
     ]
 
     }
-   // alert("mensajes"+JSON.stringify(mensajes))
-    mensajes.push(mensaje)
-    postMensaje(mensaje,res => {  
-      // alert(res.length)
-       //alert("formulario"+JSON.stringify(res)+"formulario")
-      if (i>=TESTIGOS.length-1){
-       setFlagCircular(false) 
-       setTESTIGOSLOCATION([])
-       setTESTIGOS([])
-      }
-     });
-    //alert("post"+JSON.stringify(mensaje)+"formulario")
-    //postMensaje(mensaje,res => {  
-      // alert(res.length)
-       //alert("formulario"+JSON.stringify(res)+"formulario")
-      // if (i>=personas.length){
-        // setTimeout(() => {
-        //  this.setState({loadIndicatorVisible:false}) 
-
-        
-        // }, 0);
- 
-     //   }
-    // });
-    // alert(i)
+   // console.log(JSON.stringify(mensaje))
+   //alert("mensajes"+JSON.stringify(mensajes))
+    FORMULARIOS.push(mensaje)
+    // postMensaje(mensaje,res => {  
+    //   // alert(res.length)
+    //    alert("formulario"+JSON.stringify(res)+"formulario")
+    //   if (i>=TESTIGOS.length-1){
+    //    setFlagCircular(false) 
+    //    setTESTIGOSLOCATION([])
+    //    setTESTIGOS([])
+    //   }
+    //  });
 
 }
-
+PromisePostFormularios(FORMULARIOS,callback=> {
+  //alert(JSON.stringify(callback.length))
+  setFlagCircular(false)
+  console.log(callback.length)
+  setCantregistros(callback.length)
+ // setHeatmap(callback) 
+ // console.log("callback "+JSON.stringify(callback))
+});  
 //this.setState({MENSAJES:mensajes });
 //this.setState({ CONFIGURACIONTEXTO: "Creados y Registrados: "+this.state.MENSAJES.length+" mensajes"});
 //alert("mensajes"+JSON.stringify(mensajes))
 
+//alert(formularios.length)
+var MENSAJES=FORMULARIOS.map(f =>{
+  //const head='<head><h1>wwwEncabezadoQQQQ</h1></head>'
+  var table='<table><tr><th>Month</th><th>Savings</th></tr><tr><td>January</td><td>$100</td></tr><tr><td>January</td><td>$100</td></tr></table>'  
+  var boton='<body><img src="https://th.bing.com/th/id/OIP.0gGbWbkHhtYt9-R3j0a-2AHaEK?w=307&h=180&c=7&o=5&pid=1.7" alt="Girl in a jacket" width="200" height="200"><h1>aaaa</h1><br/><a href="https://poliflash.github.io/PoliData/?cedula=V3664204"><button  style="background-color:red;color:yellow;font-size:40px">Click para ir al Formulario 101</button></a></body>'
+  var lnk='<br/><a href="cualquier url" target="_blank">https://poliflash.github.io/PoliData/?cedula=V3664204</a>'
+  var ht='<html>'+f.mensaje.contenido+'<br/>'+table+'<br/>'+boton+lnk+'</html>'
+  
+  var  message = {   
+    "personalizations": [ { "to": [ { "email": f.medios[0].destino} ] } ],
+   from: { email: "ppazpurua@gmail.com" },        
+   subject: "🇻🇪📣 FaroV2.120 "+f.mensaje.encabezado,
+   content: [{
+       type: 'text/html',
+       value:ht
+   }]
+  };
+  return message
+})
+console.log(JSON.stringify(MENSAJES))
+//alert(MENSAJES.length)
+//var correos=[message]
+PromiseSendGrid(MENSAJES,callback=> {
+  //alert(JSON.stringify(callback.length))
+  setFlagCircular(false)
+  console.log(callback.length)
+  setCantregistros(callback.length)
+ // setHeatmap(callback) 
+ // console.log("callback "+JSON.stringify(callback))
+}); 
 }
 
 
@@ -507,10 +530,11 @@ const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 const header0 = (
   <div id="toolbar">
     <b>Encabezado</b>
-
  </div>
-
 );
+//alert("fff "+JSON.stringify(formulariojson))
+var formulariodatos=formulariojson.mensaje.encabezado
+//alert(formulariodatos)
 
 const getCirclePoint=(q)=>{
  // console.log("aaaaaaaaaaaaaaaaaaaaaaa    "+q)
@@ -523,28 +547,28 @@ return (
  <Container maxWidth="lg" className={classes.container}>
 
  <span className="badge badge-success m-2">{heading}</span>
- 
+ {flagCircular&&<CircularProgress disableShrink  size={20}   thickness={4} className={classes.progress} />} 
  <Grid container spacing={3}>
           
        <Grid item xs={12} sm={6} md={3}>
 
         <InputLabel htmlFor="age-simple">Formularios</InputLabel>
         <Select
-          value={10}
+          value={formulario}
           onChange={handleChangeCambios('formulario')}
           inputProps={{
             name: 'age',
             id: 'age-simple',
           }}
         >
-           <MenuItem value={0}>Sin Formulario</MenuItem>
-          <MenuItem value={10}>Conectividad</MenuItem>
-          <MenuItem value={20}>Servicios Publicos</MenuItem>
-          <MenuItem value={30}>Claps</MenuItem>
-          <MenuItem value={40}>CarnetPatria</MenuItem>
-          <MenuItem value={50}>Activismo</MenuItem>
-          <MenuItem value={50}>Ambiente</MenuItem>
+          {formularios.map((item, index) => (
+                 <MenuItem value={item.formulario}>{item.formulario}</MenuItem>
+              
+               ))}
         </Select>
+        <br/>
+        <span className="badge badge-success m-2">{formulariodatos}</span>
+
         </Grid>
         
        
@@ -552,7 +576,7 @@ return (
        
         <Grid item xs={12} sm={6} md={6}>
           <Editor style={{height:'50px'}} value={encabezado} onTextChange={(e) => setEncabezado(e.htmlValue)} headerTemplate={header0}/>
-          <Editor style={{height:'100px'}} value={texto} onTextChange={(e) => setTexto(e.htmlValue)} headerTemplate={header}/>
+          <Editor style={{height:'100px'}} value={texto} onTextChange={(e) => {console.log(e.htmlValue);setTexto(e.htmlValue)}} headerTemplate={header}/>
 
         </Grid>
         </Grid>
@@ -592,20 +616,22 @@ return (
       </Grid>
         </Grid>
         <Grid container spacing={3}>
-        <Grid item xs={6} sm={3} md={3}>
+        {/* <Grid item xs={6} sm={3} md={3}>
 
         <Button variant="contained" color="primary" className={classes.button} onClick={handleClickBuscar}>
         Busqueda
       </Button>
-      </Grid>       
+      </Grid>        */}
       <Grid item xs={6} sm={3} md={3}>
 
 <Button variant="contained" color="primary" className={classes.button} onClick={handleClickGrabarMensajes}>
 Registro
 </Button>
+{(cantregistros>0)&&<span className="badge badge-success m-2">{cantregistros+" registrados..."}</span>}
+
 </Grid> 
 <Grid item xs={6} sm={3} md={3}>
-{flagCircular&&<CircularProgress className={classes.progress} />}
+
 </Grid>       
         </Grid>
        
@@ -702,11 +728,11 @@ Registro
         const header = (
           <div id="toolbar">
           <span className="ql-formats">
-            <select className="ql-font">
+            {/* <select className="ql-font">
               <option value="serif"></option>
               <option value="monospace"></option>
               <option defaultValue></option>
-            </select>
+            </select> */}
             <select className="ql-size">
               {/*<option value="8"></option>
                     <option value="9"></option>
@@ -731,7 +757,7 @@ Registro
             <button className='ql-list' value='bullet'></button>
             <select className="ql-align"></select>
           </span>
-          <span className="ql-formats">
+          {/* <span className="ql-formats">
                 <select title="Text Color" className="ql-color" defaultValue="rgb(0, 0, 0)">
                   <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)"/>
                   <option value="rgb(230, 0, 0)" label="rgb(230, 0, 0)"/>
@@ -806,7 +832,31 @@ Registro
                   <option value="rgb(0, 41, 102)" label="rgb(0, 41, 102)"/>
                   <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"/>
                 </select>
-            </span>
+            </span> */}
          </div>
         
         );
+
+  
+
+// export  const mailVerify=(correos,callback)=>{
+  
+//   const  urls=correos.map(c=>
+    
+//       "http://nodechatbotjson.azurewebsites.net/mailverify?mail="+c  
+  
+//   )
+  
+// Promise.all(urls.map(url =>
+//   fetch(url)
+//   .then(response => response.json())
+//   .catch(error => console.log('There was a problem!', error))
+
+// ))
+// .then(data => {
+//   //alert(JSON.stringify(data))
+//   callback(data)
+// })
+// //https://w.trhou.se/bhriv87fql
+// }
+

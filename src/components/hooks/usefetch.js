@@ -28,8 +28,12 @@ export const useFetch = (url) => {
        try {
          //const response = await axios.get(url);
        //  alert(url)
-         const response = await fetch(url2);        
+         const response = await fetch(url2);
+         //console.log("useFetch")
+         //console.log(JSON.stringify(response))
          const data = await response.json();
+        // console.log(JSON.stringify(data))        
+         
          //alert(url2+ " useFetch www " +JSON.stringify(data))  
          setData(data);
        } catch (error) {
@@ -41,6 +45,9 @@ export const useFetch = (url) => {
  
    return [ data, isLoading, isError , fetchData];
  };
+
+
+ 
 // // fetchData('https://openfaroapi.azurewebsites.net/api/personaget?identificacion='+callback[0].cedula)
  
 

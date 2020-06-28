@@ -27,7 +27,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 //import {celular} from '../data/celular.json';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
-import {RESP} from '../../data/resp.json';
+//import {RESP} from '../../data/resp.json';
 import {roles} from  '../../data/roles.json';
 //import {LIBERTADOR} from '../data/libertador.json';
 import {usePosition} from '../../hooks/useposition';
@@ -142,7 +142,7 @@ const MenuProps = {
     const [pos, setPos] = React.useState([-66.9188,5.508]);
     
     const { latitude, longitude, timestamp, accuracy, error } = usePosition();
-    const [ FORMULARIOS,SetFORMULARIOS ] = useState(RESP);
+   // const [ FORMULARIOS,SetFORMULARIOS ] = useState(RESP);
     const [RESPUESTAS,SetRESPUESTAS]=useState({enviados:0,preguntas:[],respondidos:0,invalidos:0,isLoading:false })
     const [ MENSAJES,SetMENSAJES ] = useState([]);
     

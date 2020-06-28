@@ -107,7 +107,7 @@ useEffect(() => {
   //alert(JSON.stringify(state.login.idfuncional))
   // http://openfaroapi.azurewebsites.net/api/indicadoresget?codigocne=&idpartido=&idnodofuncional=1039&roles=
   //if (GETINDICADORES==true){
-    console.log(CODCNE+" "+JSON.stringify(ORGANIZACION)+" "+JSON.stringify(ROLES))
+    //console.log(CODCNE+" "+JSON.stringify(ORGANIZACION)+" "+JSON.stringify(ROLES))
     setFlagCircular(true)
     var partidos=""
    // alert(JSON.stringify(ORGANIZACION))

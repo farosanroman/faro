@@ -10,7 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import {observadores} from '../../data/observadores.json';
+//import {observadores} from '../../data/observadores.json';
 import {antenas} from '../../data/antenas.json';
 //import {celular} from '../data/celular.json';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
@@ -243,17 +243,17 @@ setCant(data.length)
       "type":"FeatureCollection",
       "features":[]
     }  
-  const  featuresobservadoresjson=observadores.map(c=>{               
-          return(
-            {
-              "type":"Feature",
-              "properties":{"nombre":c.nombre1},                             
-              "geometry":{"type":"Point","coordinates":[c.lng,c.lat]
-              }
-            }
-      )     
-   })   
-   observadoresjson.features=featuresobservadoresjson;
+  // const  featuresobservadoresjson=observadores.map(c=>{               
+  //         return(
+  //           {
+  //             "type":"Feature",
+  //             "properties":{"nombre":c.nombre1},                             
+  //             "geometry":{"type":"Point","coordinates":[c.lng,c.lat]
+  //             }
+  //           }
+  //     )     
+  //  })   
+   //observadoresjson.features=featuresobservadoresjson;
    //alert(JSON.stringify(observadoresjson))
   //const  featurescelularjson=celular.map((c,i)=>{
     var featurescelularjson=[]

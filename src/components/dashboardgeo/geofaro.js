@@ -35,7 +35,7 @@ import {resultados,getLocation,getPersona,getPersonasCODCNE,getCentrosCODCNE} fr
 import {LIBERTADOR} from '../../data/libertador.json';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
-import {padron} from '../../data/padron.json';
+//import {padron} from '../../data/padron.json';
 import {PAMIRANDA} from '../../data/PAMIRANDA.json';
 import {atc} from '../../data/atc.json';
 import {voronoijson} from '../../data/voronoijson.json';
@@ -203,27 +203,27 @@ setCentrosgeojson(centrosjson)
       "features":[]
     }
     //coordendas de centride de parroquias
-       const  padronfeatures=personas.map(p=>{               
-            return(
-              {
-                "type":"Feature",
-                "properties":{"nombre":p.nombreapellido,"codcne":p.codcne,"correo":p.correo,},                             
-                "geometry":{"type":"Point","coordinates":[p.re[0].lng,p.re[0].lat]
-                }
-              }
-        )     
-     })   
-     const  padronfeatures2=padron.map(p=>{               
-      return(
-        {
-          "type":"Feature",
-          "properties":{"nombre":p.nombreapellido,"codcne":p.codcne,"correo":p.correo,},                             
-          "geometry":{"type":"Point","coordinates":[p.lng,p.lat]
-          }
-        }
-  )     
-})   
-     padronjson.features=padronfeatures2;
+//        const  padronfeatures=personas.map(p=>{               
+//             return(
+//               {
+//                 "type":"Feature",
+//                 "properties":{"nombre":p.nombreapellido,"codcne":p.codcne,"correo":p.correo,},                             
+//                 "geometry":{"type":"Point","coordinates":[p.re[0].lng,p.re[0].lat]
+//                 }
+//               }
+//         )     
+//      })   
+//      const  padronfeatures2=padron.map(p=>{               
+//       return(
+//         {
+//           "type":"Feature",
+//           "properties":{"nombre":p.nombreapellido,"codcne":p.codcne,"correo":p.correo,},                             
+//           "geometry":{"type":"Point","coordinates":[p.lng,p.lat]
+//           }
+//         }
+//   )     
+// })   
+//      padronjson.features=padronfeatures2;
      //alert("personas 222 "+JSON.stringify(padronjson))
      setPersonasgeojson(padronjson)
    },[personas]);

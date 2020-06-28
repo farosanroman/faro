@@ -453,7 +453,7 @@ export  const getPersonaFaro=(cedula,callback)=>{
   export  const postMensaje=(mensaje,callback)=>{
   //alert(JSON.stringify(mensaje))
   
-   var url= "https://geofaro.azurewebsites.net/api/FormularioPost?code=NUH2YWqQM3Nx6OAq25sOOaovAWDaGpbk6x5daLFBrz63GYmgc2L3IA==";
+   var url= "https://farodesarrollo2010.azurewebsites.net/api/FormularioPersonaPost?code=VtEH0pzl8ADUEHmaoT7NDikIh6WGOgZuYHc5pvLsDdeALF1iqLdKWg==";
    fetch(url,{
    method: "POST",
    body: JSON.stringify(mensaje),
@@ -468,7 +468,7 @@ export  const getPersonaFaro=(cedula,callback)=>{
         callback([])
       })
   .then(data => {
-    //alert("helper"+JSON.stringify(data)+"helper")
+    alert("helper"+JSON.stringify(data)+"helper")
    callback(data)
   })
   .catch(error => {callback("error")});

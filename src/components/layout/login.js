@@ -198,7 +198,7 @@ function SignIn(user) {
       if (loginn.email!=""){
         setMensajeSnackBar("Autenticando la asignacion del correo:"+user.email+" de "+user.displayName)
         const url='http://openfaroapi.azurewebsites.net/api/autenticacionapp?login='+user.email+'&clave=9999&idfaroaplicacion=3&plataforma=SIN&uuid=SIN'
-        console.log(url)
+     //   console.log(url)
         fetchData(url)
        
       // fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
@@ -288,7 +288,7 @@ function SignIn(user) {
   
         postData("https://faronosql.azurewebsites.net/api/LogPost",logcosmosdb)
    
-        console.log(logcosmosdb)
+      //  console.log(logcosmosdb)
            setOpen(false)
            setFLAGLOGIN(true)
            setLOGIN(loginauth)
@@ -301,7 +301,8 @@ function SignIn(user) {
     //  setFlagCircular(true)
     }
     if ((dataF!=undefined)&&(!isLoadingF)&&(dataF.length>0))      
-    {console.log(JSON.stringify(dataF))
+    {
+      //console.log(JSON.stringify(dataF))
       setFUNCIONALES(dataF)
 
       //alert(JSON.stringify(dataF))

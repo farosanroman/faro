@@ -34,7 +34,7 @@
     "react-mapbox-gl": "^4.6.0",
     "react-scripts": "^3.4.1",
     "recharts": "^1.7.1",
-    "recoil": "0.0.8",
+    "recoil": "0.0.10",
     "slate": "^0.58.3",
     "slate-history": "^0.58.3",
     "slate-react": "^0.58.3",

@@ -92,6 +92,7 @@ export default function DialogoFiltros(props) {
  
 const error='ABC'
 useEffect(() => {
+ // alert()
   //fetchDataF('https://openfaroapi.azurewebsites.net/api/pizarragetnodosfuncionales?idorganizacion=&codigocne=00000000000&idrol=')
   
   //alert(JSON.stringify(state.funcionales))
@@ -104,6 +105,14 @@ useEffect(() => {
  //DELETE
  var index=0
 
+ if (CODCNE==""){
+setCodigoEstado("000000")
+ }else{
+  setCodigoEstado(CODCNE.substring(0,2)+"0000")
+
+ }
+setCodigoMunicipio(CODCNE.substring(0,4)+"00")
+setCodigoParroquia(CODCNE.substring(0,6))
 
 }, []); // Important, pass an empty array so to execute useEffect hook only once
 
@@ -197,7 +206,9 @@ const handleChangeCambios=input=>e=>{
         //alert(JSON.stringify(e.target.value)) 
         var index = EEMMPP.findIndex(obj => obj.cneestado==e.target.value);
       // alert(index)
-      setCODCNE(e.target.value.substring(0,2))
+      var estado=e.target.value.substring(0,2)
+      if (estado=="00")estado=""
+      setCODCNE(estado)
       setCodigoEstado(e.target.value)
         setPosEstado(index)
         setPosMunicipio(0)
