@@ -120,26 +120,7 @@ const MenuProps = {
     const [TESTIGOS,setTESTIGOS]=useState([]) 
     const [cantregistros,setCantregistros]=useState([]) 
     const [state,setState]=useState( {
-        //flagLogin:false,
-        //geolocation:{country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"},
-        position:{ latitude:8.4881081498923305, longitude:-66.888521423339844, timestamp:0, accuracy:0, error:null },  //hook
-      //  positions:[],
-        
-        ///// GeoJSON
-        lnglat:[-66.888,9.508],
-        zoom:20,
-        radio:3,
-        /////
-        // centro:"Centro de Votacion",
-        // centros:null,
-        // ruta:{
-        //   "type":"FeatureCollection",
-        //   "features":[ {
-        //     "type":"Feature",
-        //     "properties":{"nombre":'ppa',"latitude":10.55555,"timestamp":0},                             
-        //     "geometry":{"type":"LineString","coordinates":[[-66.8721358,9.4783499 ]] }
-        //   }]
-        // },
+     
         })
         const [pos, setPos] = React.useState([-66.9188,5.58]);
     
@@ -274,32 +255,36 @@ const MenuProps = {
   function onResize (map, event)  {
    //alert(map.getZoom()+" " +JSON.stringify(event))
   }
-   function onZoom (map, event)  {
-     var zoomint=Math.round(map.getZoom());
+  function onZoom (map, event)  {
+    setZoom(Math.round(map.getZoom()))
+    //alert(map.getZoom()+" " +JSON.stringify(event))
+   }
+  //  function onZoom (map, event)  {
+  //    var zoomint=Math.round(map.getZoom());
  
-            setZoom(zoomint+(event)*1.1)
-          }
+  //           setZoom(zoomint+(event)*1.1)
+  //         }
       function onControlClick(map,event){
-        var z=state.zoom
-        z+=event
+       // var z=state.zoom
+       // z+=event
 
       }
     // console.log(props.positions.length+" possssssssssss ")
    // setCenter([stategeo.longitude,stategeo.latitude])
-    let redpoint={
-      "type":"FeatureCollection",
-      "features":[{
-        "type":"Feature",
-        "properties":{"nombre":"red","partido":""},                             
-        "geometry":{"type":"Point","coordinates":[state.position.longitude,state.position.latitude]
-        }
-      }]
-    }
+    // let redpoint={
+    //   "type":"FeatureCollection",
+    //   "features":[{
+    //     "type":"Feature",
+    //     "properties":{"nombre":"red","partido":""},                             
+    //     "geometry":{"type":"Point","coordinates":[state.position.longitude,state.position.latitude]
+    //     }
+    //   }]
+    // }
 
   //coordendas de centride de parroquias
     
 
-  var centro=[state.position.longitude,state.position.latitude]
+//  var centro=[state.position.longitude,state.position.latitude]
 var ii=0
     
 
@@ -605,6 +590,7 @@ Registro
    center={pos} 
    //center={[state.position.latitude,state.position.longitude]} 
     zoom={[zoom]}
+    onZoom={onZoom} 
    //onZoom={onZoom}
    onResize={onResize}
    containerStyle={mapStyle}        

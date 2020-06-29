@@ -102,18 +102,7 @@ const MenuProps = {
     //const { state, dispatch } = React.useContext(Application);
    
   
-    const [state,setState]=useState( {
-      //flagLogin:false,
-      //geolocation:{country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"},
-      position:{ latitude:8.4881081498923305, longitude:-66.888521423339844, timestamp:0, accuracy:0, error:null },  //hook
-    //  positions:[],
-      
-      ///// GeoJSON
-      lnglat:[-66.888,9.508],
-      zoom:20,
-      radio:3,
-     
-      })
+   
     const [zoom, setZoom] = useState([5]);
     const [pos, setPos] = React.useState([-66.9188,5.508]);
     
@@ -171,18 +160,21 @@ const MenuProps = {
   function onResize (map, event)  {
    //alert(map.getZoom()+" " +JSON.stringify(event))
   }
-   function onZoom (map, event)  {
-     var zoomint=Math.round(map.getZoom());
+  //  function onZoom (map, event)  {
+  //    var zoomint=Math.round(map.getZoom());
     
          
-            setZoom(zoomint+(event)*1.1)
-          }
+  //           setZoom(zoomint+(event)*1.1)
+  //         }
       function onControlClick(map,event){
-        var z=state.zoom
+        var z=zoom
       
       }
- 
-  var centro=[state.position.longitude,state.position.latitude]
+      function onZoom (map, event)  {
+        setZoom(Math.round(map.getZoom()))
+        //alert(map.getZoom()+" " +JSON.stringify(event))
+       }
+  //var centro=[state.position.longitude,state.position.latitude]
 
 var ii=0
 
@@ -240,7 +232,7 @@ return (
       </Button>
       </Grid>       
       <Grid item xs={4} sm={4} md={3}>
-      {flagCircular&&<CircularProgress className={classes.progress} />}
+      {flagCircular&&<CircularProgress disableShrink  size={20}   thickness={4} className={classes.progress} />}
 
 </Grid>       
 
@@ -264,6 +256,7 @@ Stop Interval
    center={pos} 
    //center={[state.position.latitude,state.position.longitude]} 
     zoom={[zoom]}
+    onZoom={onZoom} 
    //onZoom={onZoom}
    onResize={onResize}
    containerStyle={mapStyle}        
@@ -272,7 +265,7 @@ Stop Interval
 //<ZoomControl onControlClick={onControlClick}/>
 
 > 
-<ZoomControl onControlClick={onZoom}/>
+{/* <ZoomControl onControlClick={onZoom}/> */}
 <ScaleControl />
 <GeoJSONLayer
           data={CIUDADESGEO}
