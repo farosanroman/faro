@@ -324,7 +324,7 @@ function SignIn(user) {
      dataR.map(function (r, index, array) {
       // if (index<100){
       
-       roles.push({idrol:r.idrol,nombrerol:r.nombrerol,selected:true}); 
+       roles.push({idrol:r.idrol,nombrerol:r.nombrerol,selected:false}); 
       // }
      });
  // alert(JSON.stringify(roles))

@@ -225,7 +225,7 @@ setCant(data.length)
           return(
             {
               "type":"Feature",
-              "properties":{"nombre":o.cellid},                             
+              "properties":{"nombre":o.cellid,"partido":o.partido},                             
               "geometry":{"type":"Point","coordinates":[o.lon,o.lat]
               }
             }
@@ -375,39 +375,6 @@ return (
               linePaint={{'line-color': 'lime','line-width': 1.0}}
              
             />  
-{/* <GeoJSONLayer
-          data={rolesjson}
-          circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': '#3BB9FF','circle-radius': 5,'circle-opacity': 0.6 }}         
-          symbolLayout={{
-            'text-field': '{nombre0}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
-            
-          }}
-          symbolPaint={{
-            'text-color': 'black'
-          }}
-          /> */}
-
-
-        {/* <GeoJSONLayer
-            data={antenasjson}
-            circleLayout={{ visibility: 'visible' }}
-            circlePaint={{'circle-color': '#3BB9FF','circle-radius': 2,'circle-opacity': 0.6 }}         
-            symbolLayout={{
-               'text-field': '{nombre0}',
-              'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-               'text-offset': [0, 0.6],
-               'text-anchor': 'top',
-            
-            }}
-          symbolPaint={{
-            'text-color': 'black'
-          }}
-          /> */}
-  
        
         <GeoJSONLayer
           data={drone}
@@ -419,41 +386,7 @@ return (
           }}
           
         />   
-         {/* <GeoJSONLayer   centro y brillo
-          data={observadoresjson}
-          circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'yellow','circle-radius': 4,'circle-opacity': 1,'circle-stroke-color': 'yellow' , 'circle-stroke-width': 2,'circle-blur': 0.9, }}         
-          symbolLayout={{
-            'text-field': '{nombre0}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
-            
-          }}
-          symbolPaint={{
-            'text-color': 'black'
-          }}
-          /> */}
-        {/* <GeoJSONLayer
-          data={observadoresjson}
-          circlePaint={{'circle-color': '#FF0000','circle-radius': 4,'circle-opacity': 1 }}   
-          linePaint={{
-            'line-color': 'lightyellow',
-            'line-width': 2,
-           'line-opacity': 0.6
-          }}
-          
-        />   
-          <GeoJSONLayer
-          data={observadoresjson}
-          circlePaint={{'circle-color': '#FA5858','circle-radius': 10,'circle-opacity': .2 }}   
-          linePaint={{
-            'line-color': 'lightyellow',
-            'line-width': 2,
-           'line-opacity': 0.6
-          }}
-          
-        />    */}
+
 <GeoJSONLayer
           data={redpoint}
           circleLayout={{ visibility: 'visible' }}
@@ -534,7 +467,7 @@ return (
           circleLayout={{ visibility: 'visible' }}
          circlePaint={getCirclePoint('{nombre}')}         
           symbolLayout={{
-            'text-field': '{nombre}',
+            'text-field': '{partido}',
             'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
             'text-offset': [0, 0.6],
             'text-anchor': 'top',

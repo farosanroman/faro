@@ -32,11 +32,11 @@ export const organizacion=atom(
   {
      key:'organizacion',
      default: [
-      {"id": 1,"nombre": "AD","descripcion": "Accion Democratica","color":"white", "selected": true,value: 800 },
-      {"id": 3,"nombre": "PJ","descripcion": "Primero Justicia","color":"yellow","selected": true,value: 800 },
-      { "id": 2,"nombre": "VP","descripcion": "Voluntad Popular","color":"orange", "selected": true,value: 800},
-      { "id": 4,"nombre": "UNT","descripcion": "Un Nuevo Tiempo", "color":"darkblue", "selected": true, value: 800},
-      {"id": 7,"nombre": "CAUSA R","descripcion": "Un Nuevo Tiempo","color":"purple",  "selected": true, value: 800}
+      {"id": 1,"nombre": "AD","descripcion": "Accion Democratica","color":"white", "selected": false,value: 800 },
+      {"id": 3,"nombre": "PJ","descripcion": "Primero Justicia","color":"yellow","selected": false,value: 800 },
+      { "id": 2,"nombre": "VP","descripcion": "Voluntad Popular","color":"orange", "selected": false,value: 800},
+      { "id": 4,"nombre": "UNT","descripcion": "Un Nuevo Tiempo", "color":"darkblue", "selected": false, value: 800},
+      {"id": 7,"nombre": "CAUSA R","descripcion": "Un Nuevo Tiempo","color":"purple",  "selected": false, value: 800}
     
     ]
     

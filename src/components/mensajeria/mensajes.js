@@ -115,8 +115,8 @@ const MenuProps = {
   
     const [cant,setCant]=React.useState(0)
    
-    const [encabezado, setEncabezado] = React.useState("Actividades de Formacion");
-    const [texto, setTexto] = React.useState("Actividades de Formacion mañana: Taller de Testigo en el Colegio Jose Maria Vargas en la Parroquia General Paez");
+    const [encabezado, setEncabezado] = React.useState("Error en Pruebas de Sistema");
+    const [texto, setTexto] = React.useState("Buenas tardes. Hemos estado reactivando los servicios de envio de correo. Hoy durante el medio dia se activaron unos servicios viejos que no se habian apagado. Disculpen la confusion.");
     const [TESTIGOS,setTESTIGOS]=useState([]) 
     const [cantregistros,setCantregistros]=useState([]) 
     const [state,setState]=useState( {
@@ -290,7 +290,7 @@ const MenuProps = {
       "type":"FeatureCollection",
       "features":[{
         "type":"Feature",
-        "properties":{"nombre":"red"},                             
+        "properties":{"nombre":"red","partido":""},                             
         "geometry":{"type":"Point","coordinates":[state.position.longitude,state.position.latitude]
         }
       }]
@@ -309,13 +309,13 @@ const handleClickGrabarMensajes =input=>{
  // var mensajes=[]
   var personas=TESTIGOS;
  var fecha=new Date()
-// personas.length
+
 var correos=[{"correo":"gboyerizo@gmail.com","cedula":"V6505691"},{"correo":"gabo2595@gmail.com","cedula":"V24218683"},{"correo":"ppazpurua@gmail.com","cedula":"V3664204"}]
 correos.push({"correo":"lospinos16.2017@gmail.com","cedula":"V6505691"})
 correos.push({"correo":"danelighernandezs@gmail.com","cedula":"V6505691"})
-
+// personas.length
  var FORMULARIOS=[] 
-  for (let i = 0; i <5; ++i) {
+  for (let i = 0; i <personas.length; ++i) {
     var celular=personas[i].celular
    if (celular==null){
        celular="00"
@@ -327,18 +327,18 @@ correos.push({"correo":"danelighernandezs@gmail.com","cedula":"V6505691"})
       personas[i].celular=celular.substring(1,celular.length)
       //alert(personas[i].celular)
     }
-    
+   // console.log(personas[i].lng)
     var preguntas=formulario.preguntas;
     var fecha=new Date()
     var mensaje= {
-    "id":correos[i].cedula+"*"+formulario,
-    //"id":personas[i].identificacion+"*"+formulario,
+   // "id":correos[i].cedula+"*"+formulario,
+    "id":personas[i].identificacion+"*"+formulario,
     "type":"formulario",
     
     "idformulario":formulario,
     "fecha": fecha,
- //   "cedula": personas[i].identificacion,
-     "cedula":correos[i].cedula,  
+    "cedula": personas[i].identificacion,
+ //    "cedula":correos[i].cedula,  
      "persona":personas[i],
     "cv": {
       "codcne":  personas[i].cvcodcne,
@@ -351,8 +351,8 @@ correos.push({"correo":"danelighernandezs@gmail.com","cedula":"V6505691"})
       "location": {
           "type": "Point",
           "coordinates": [
-            personas[i].lng,
-            personas[i].lat
+            personas[i].relng,
+            personas[i].relat
           ]
       },
       "direccion":""
@@ -372,8 +372,8 @@ correos.push({"correo":"danelighernandezs@gmail.com","cedula":"V6505691"})
 
       {
             "medio": "correo",
-            //"destino": personas[i].correo,
-            "destino": correos[i].correo,
+            "destino": personas[i].correo,
+            //"destino": correos[i].correo,
             "activado":true,
             "procesos":{
               "existe":true,
@@ -473,14 +473,14 @@ var MENSAJES=FORMULARIOS.map(f =>{
 console.log(JSON.stringify(MENSAJES))
 //alert(MENSAJES.length)
 //var correos=[message]
-PromiseSendGrid(MENSAJES,callback=> {
-  //alert(JSON.stringify(callback.length))
-  setFlagCircular(false)
-  console.log(callback.length)
-  setCantregistros(callback.length)
- // setHeatmap(callback) 
- // console.log("callback "+JSON.stringify(callback))
-}); 
+// PromiseSendGrid(MENSAJES,callback=> {
+//   //alert(JSON.stringify(callback.length))
+//   setFlagCircular(false)
+//   console.log(callback.length)
+//   setCantregistros(callback.length)
+//  // setHeatmap(callback) 
+//  // console.log("callback "+JSON.stringify(callback))
+// }); 
 }
 
 
@@ -629,43 +629,13 @@ Registro
             />  
 
 
-           <GeoJSONLayer
-          data={TESTIGOSLOCATION}
-          circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'yellow','circle-radius': 8,'circle-opacity': .5 }}         
-          symbolLayout={{
-            'text-field': '{place}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
-            
-          }}
-          symbolPaint={{
-            'text-color': 'yellow'
-          }}
-          />
-          <GeoJSONLayer
-          data={TESTIGOSLOCATION}
-          circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': '#58D3F7','circle-radius': 3, }}         
-          symbolLayout={{
-            'text-field': '{place}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
-            
-          }}
-          symbolPaint={{
-            'text-color': 'yellow'
-          }}
-          />
 
 <GeoJSONLayer
           data={ rejson}
           circleLayout={{ visibility: 'visible' }}
          circlePaint={getCirclePoint('{nombre}')}         
           symbolLayout={{
-            'text-field': '{nombre}',
+            'text-field': '{partido}',
             'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
             'text-offset': [0, 0.6],
             'text-anchor': 'top',

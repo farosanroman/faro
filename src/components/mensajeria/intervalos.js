@@ -1,15 +1,8 @@
 import React, {useEffect, useState,Fragment } from 'react';
 import clsx from 'clsx';
-//import { Application } from '../App';
-//import {antenacercana} from './helpers'
-//import FormControl from '@material-ui/core/FormControl';
-import Button from '@material-ui/core/Button';
-// import InputLabel from '@material-ui/core/InputLabel';
-// import TextField from '@material-ui/core/TextField';
-// import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
+
 import  MapGL,{Layer,Feature,ZoomControl,GeoJSONLayer,ScaleControl} from 'react-mapbox-gl';
 //import { withStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,20 +10,13 @@ import { makeStyles } from '@material-ui/core/styles';
 //import ListItemText from '@material-ui/core/ListItemText';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-// import Paper from '@material-ui/core/Paper';
-// import Link from '@material-ui/core/Link';
-// import Select from '@material-ui/core/Select';
-// import Input from '@material-ui/core/Input';
-// import MenuItem from '@material-ui/core/MenuItem';
-//import {observadores} from '../data/observadores.json';
-//import {antenas} from '../data/antenas.json';
-//import {celular} from '../data/celular.json';
+
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
 //import {RESP} from '../../data/resp.json';
 import {roles} from  '../../data/roles.json';
 //import {LIBERTADOR} from '../data/libertador.json';
-import {usePosition} from '../../hooks/useposition';
+//import {usePosition} from '../../hooks/useposition';
 //import {useGeolocation} from '../hooks/usegeolocation';
 import { greatCircle, point,circle } from '@turf/turf';
 import Title2 from '../layout/title';
@@ -117,31 +103,21 @@ const MenuProps = {
    
   
     const [state,setState]=useState( {
-        flagLogin:false,
-        geolocation:{country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"},
-        position:{ latitude:8.4881081498923305, longitude:-66.888521423339844, timestamp:0, accuracy:0, error:null },  //hook
-        positions:[],
-        
-        ///// GeoJSON
-        lnglat:[-66.888,9.508],
-        zoom:20,
-        radio:3,
-        /////
-        centro:"Centro de Votacion",
-        centros:null,
-        ruta:{
-          "type":"FeatureCollection",
-          "features":[ {
-            "type":"Feature",
-            "properties":{"nombre":'ppa',"latitude":10.55555,"timestamp":0},                             
-            "geometry":{"type":"LineString","coordinates":[[-66.8721358,9.4783499 ]] }
-          }]
-        },
-        })
+      //flagLogin:false,
+      //geolocation:{country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"},
+      position:{ latitude:8.4881081498923305, longitude:-66.888521423339844, timestamp:0, accuracy:0, error:null },  //hook
+    //  positions:[],
+      
+      ///// GeoJSON
+      lnglat:[-66.888,9.508],
+      zoom:20,
+      radio:3,
+     
+      })
     const [zoom, setZoom] = useState([5]);
     const [pos, setPos] = React.useState([-66.9188,5.508]);
     
-    const { latitude, longitude, timestamp, accuracy, error } = usePosition();
+   // const { latitude, longitude, timestamp, accuracy, error } = usePosition();
    // const [ FORMULARIOS,SetFORMULARIOS ] = useState(RESP);
     const [RESPUESTAS,SetRESPUESTAS]=useState({enviados:0,preguntas:[],respondidos:0,invalidos:0,isLoading:false })
     const [ MENSAJES,SetMENSAJES ] = useState([]);
@@ -154,34 +130,25 @@ const MenuProps = {
       callback: () => {
         console.log(Date())
         setTime(new Date().toLocaleTimeString());
-        //setFlagCircular(false) 
         
-        //stop()
-        //var delayInMilliseconds = 10000; //1 second
-
-        //setTimeout(function() {
-        // start()
-        // setFlagCircular(true)
-        //}, delayInMilliseconds);
-        //    }
         stop()
         SetMENSAJES([])
         setFlagCircular(true)
         getMensajes("criteria",result => {
           if (result.length==0)setActivo(false)
-          console.log(result)
+          console.log(JSON.stringify(result))
           SetMENSAJES(result)
-          for (let i = 0; i < result.length; ++i) {
-            var criteria={"id":result[i].id}
-           // alert()
-            getpostMensaje(criteria,result2 => {
-              //alert(JSON.stringify(result2))
-                  console.log("getPostMensaje"+JSON.stringify(result2))
-            })
-          }
-          SendGrid("criteria",result => {
+          // for (let i = 0; i < result.length; ++i) {
+          //   var criteria={"id":result[i].id}
+          //  // alert()
+          //   // getpostMensaje(criteria,result2 => {
+          //   //   //alert(JSON.stringify(result2))
+          //   //       console.log("getPostMensaje"+JSON.stringify(result2))
+          //   // })
+          // }
+          // SendGrid("criteria",result => {
                 
-          })
+          // })
          // alert(JSON.stringify(result))
           setFlagCircular(false)
           if (activo==true){
@@ -206,52 +173,18 @@ const MenuProps = {
   }
    function onZoom (map, event)  {
      var zoomint=Math.round(map.getZoom());
-     //dispatch({
-    //  type: 'ZOOM',
-    //  stateprop:zoomint
-    //});
-            //setZoom([map.getZoom()])    
-      //alert(zoomint+" "+event)
+    
          
             setZoom(zoomint+(event)*1.1)
           }
       function onControlClick(map,event){
         var z=state.zoom
-        z+=event
-      //  dispatch({
-      //    type: 'ZOOM',
-      //    stateprop:z
-      //  });
+      
       }
-    // console.log(props.positions.length+" possssssssssss ")
-   // setCenter([stategeo.longitude,stategeo.latitude])
-    let redpoint={
-      "type":"FeatureCollection",
-      "features":[{
-        "type":"Feature",
-        "properties":{"nombre":"red"},                             
-        "geometry":{"type":"Point","coordinates":[state.position.longitude,state.position.latitude]
-        }
-      }]
-    }
-
-  //coordendas de centride de parroquias
-    
-
+ 
   var centro=[state.position.longitude,state.position.latitude]
-  //var centro=[ -80.23521423339844,25.791081498923305 ]
-//  if (latitude>1){
-//  centro=[longitude,latitude]
-//  if (zoom<8)setZoom([50])  
-//}
- //console.log(JSON.stringify(drone))
-// var center = [  -66.8658,10.4645];
-// var radius = 7;
-//alert(JSON.stringify(RESPUESTAS))
+
 var ii=0
-    
-///var respuestas=[]
-//alert(JSON.stringify(RESPUESTAS.preguntas))
 
 var featuresWHITE=[] 
 
@@ -261,8 +194,7 @@ for (var i = 0; i < MENSAJES.length; i++) {
          "properties":{
            "place":"MENSAJES[i].cv.municipio",
            "login":"espresso",
-           "lat":"38.91427",
-           "lon":"-66.86699"
+           "partido":MENSAJES[i].persona.partido
            
          }, 
                  
@@ -354,28 +286,14 @@ Stop Interval
               linePaint={{'line-color': '#58D3F7','line-width': 1.0}}
              
             />  
- <GeoJSONLayer
-          data={redpoint}
-          circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'red','circle-radius': 4, }}         
-          symbolLayout={{
-            'text-field': '{nombre0}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
-            
-          }}
-          symbolPaint={{
-            'text-color': 'black'
-          }}
-          />
+
 
 <GeoJSONLayer
           data={pointsWHITE}
           circleLayout={{ visibility: 'visible' }}
          circlePaint={{'circle-color': 'yellow','circle-radius': 4, }}         
           symbolLayout={{
-            'text-field': '{place}',
+            'text-field': '{partido}',
             'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
             'text-offset': [0, 0.6],
             'text-anchor': 'top',
