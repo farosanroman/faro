@@ -10,7 +10,7 @@ import {ESTADOS} from  '../../data/ESTADOS.json';
 import {HISTORIAPAIS} from  '../../data/HISTORIAPAIS.json';
 import {HISTORIAESTADO} from  '../../data/HISTORIAESTADO.json';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
-import {PA} from  '../../data/PA.json';
+//import {PA} from  '../../data/PA.json';
 import {PAPROPERTIES} from  '../../data/PAPROPERTIES.json';
 
 //const countriesInfo = service.getCountriesInfo();
@@ -45,7 +45,7 @@ class Historia extends Component {
           zoom:[6],
           error:null,
           isLoading:false,
-          PA:PA
+          PA:null
         };
         this.handleChange = this.handleChange.bind(this);
       }

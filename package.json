@@ -38,7 +38,8 @@
     "slate": "^0.58.3",
     "slate-history": "^0.58.3",
     "slate-react": "^0.58.3",
-    "turf": "^3.0.14"
+    "turf": "^3.0.14",
+    "turf-inside": "^3.0.12"
   },
   "scripts": {
     "start": "react-scripts start",

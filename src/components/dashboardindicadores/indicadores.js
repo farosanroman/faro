@@ -163,7 +163,7 @@ useEffect(() => {
        
         <Grid container spacing={3}>
       <Grid item xs={12} sm={6} md={3}>
-           <TotalCircle titulo={'Asignaciones Totales'} indicador={'Totalhh'} color={'#1bc943'} bcolor={"rgba(27, 201, 67, 0.15)"} porc={indicadores.indicadores[0].porc} total={indicadores.indicadores[0].cant} leyenda={'Total Acumulado'}/>
+           <TotalCircle titulo={'Totales'} indicador={'Totalhh'} color={'#1bc943'} bcolor={"rgba(27, 201, 67, 0.15)"} porc={indicadores.indicadores[0].porc} total={indicadores.indicadores[0].cant} leyenda={'Total Acumulado'}/>
       </Grid>
 
      <Grid item xs={12} sm={6} md={3}>

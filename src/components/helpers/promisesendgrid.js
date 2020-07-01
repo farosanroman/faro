@@ -3,8 +3,14 @@ export  const PromiseSendGrid=(correos,callback)=>{
 var nuevo=[];
 var i=0
 var  error=[]
+console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+console.log(JSON.stringify(correos))
     Promise.all(correos.map(c =>{
        // console.log(c)
+      var html="<html>Buenas tardes. Hemos estado reactivando los servicios de envio de correo. Por aqui podras responder a los formularios pendientes. <br/><br/><body><img src='https://i1.wp.com/lopezdoriga.com/wp-content/uploads/2017/04/venezuela.jpg?resize=200%2C250' alt='Imagen' width='200' height='200'><h1>Por Favor responder los formularios</h1><br/><a href='https://poliflash.github.io/PoliData'><button  style='background-color:red;color:yellow;font-size:40px'>Click para ir a Polidata</button></a></body></html>"
+      var mail={"personalizations":[{"to":[{"email":"ppazpurua@gmail.com"}]}],"from":{"email":"ppazpurua@gmail.com"},"subject":"🇻🇪📣 FaroV2.120 Formulario de Experiencia Electoral","content":[{"type":"text/html","value":html}]}
+
+
        nuevo.push(c)
 
        var url= "https://faronosql.azurewebsites.net/api/SendGridVT?code=cavrTaG45NaieWsIfwJncoUqEyW3xnuWfoTD1yIwfdSJ/0a84ahnnw==";
@@ -22,7 +28,7 @@ var  error=[]
             nuevo.push([])
           })
       .then(data => {
-        //alert("helper"+JSON.stringify(data)+"helper")
+        alert("helper"+JSON.stringify(data)+"helper")
         i+=1
         //console.log(i)
         nuevo.push(data)
@@ -93,3 +99,7 @@ var  error=[]
 
   //body
 //  {"personalizations":[{"to":[{"email":"ppazpurua@gmail.com"},{"email":"gboyerizo@gmail.com"}]}],"from":{"email":"ppazpurua@gmail.com"},"subject":"🇻🇪📣 FaroV2.130 Mensaje del Comando","content":[{"type":"text/html","value":"<html><head><h1>Encabezado</h1></head><br/><table><tr><th>Month</th><th>Savings</th></tr><tr><td>January</td><td>$100</td></tr><tr><td>January</td><td>$100</td></tr></table><br/><body><img src=\"https://th.bing.com/th/id/OIP.0gGbWbkHhtYt9-R3j0a-2AHaEK?w=307&h=180&c=7&o=5&pid=1.7\" alt=\"Girl in a jacket\" width=\"200\" height=\"200\"><h1>aaaa</h1><br/><a href=\"https://poliflash.github.io/PoliData/?cedula=V3664204\"><button  style=\"background-color:red;color:yellow;font-size:40px\">Click para ir al Formulario 101</button></a></body><br/><a href=\"cualquier url\" target=\"_blank\">https://poliflash.github.io/PoliData/?cedula=V3664204</a></html>"}]}
+
+
+
+

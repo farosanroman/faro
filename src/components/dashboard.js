@@ -25,12 +25,13 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from    '@material-ui/icons/Dashboard';
 import PublicIcon from '@material-ui/icons/Public';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
-import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+//import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 import BallotIcon from '@material-ui/icons/Ballot';
 import MailIcon from '@material-ui/icons/Mail';
 import PlaceIcon from '@material-ui/icons/Place';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 // import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
 // import SpeakerNotesIcon from '@material-ui/icons/SpeakerNotes';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
@@ -412,7 +413,7 @@ export default function Dashboard() {
 
         <ListItem button onClick={handleComponent(12)}>
       <ListItemIcon>
-        <PublicIcon />
+        <EmojiObjectsIcon />
       </ListItemIcon>
       <ListItemText primary="PolyLines" />
     </ListItem>

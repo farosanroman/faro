@@ -300,7 +300,7 @@ correos.push({"correo":"lospinos16.2017@gmail.com","cedula":"V6505691"})
 correos.push({"correo":"danelighernandezs@gmail.com","cedula":"V6505691"})
 // personas.length
  var FORMULARIOS=[] 
-  for (let i = 0; i <personas.length; ++i) {
+  for (let i = 0; i <4; ++i) {
     var celular=personas[i].celular
    if (celular==null){
        celular="00"
@@ -316,14 +316,14 @@ correos.push({"correo":"danelighernandezs@gmail.com","cedula":"V6505691"})
     var preguntas=formulario.preguntas;
     var fecha=new Date()
     var mensaje= {
-   // "id":correos[i].cedula+"*"+formulario,
-    "id":personas[i].identificacion+"*"+formulario,
+    "id":correos[i].cedula+"*"+formulario,
+   // "id":personas[i].identificacion+"*"+formulario,
     "type":"formulario",
     
     "idformulario":formulario,
     "fecha": fecha,
-    "cedula": personas[i].identificacion,
- //    "cedula":correos[i].cedula,  
+ //   "cedula": personas[i].identificacion,
+    "cedula":correos[i].cedula,  
      "persona":personas[i],
     "cv": {
       "codcne":  personas[i].cvcodcne,
@@ -357,8 +357,8 @@ correos.push({"correo":"danelighernandezs@gmail.com","cedula":"V6505691"})
 
       {
             "medio": "correo",
-            "destino": personas[i].correo,
-            //"destino": correos[i].correo,
+            //"destino": personas[i].correo,
+            "destino": correos[i].correo,
             "activado":true,
             "procesos":{
               "existe":true,
@@ -434,18 +434,20 @@ PromisePostFormularios(FORMULARIOS,callback=> {
 //this.setState({ CONFIGURACIONTEXTO: "Creados y Registrados: "+this.state.MENSAJES.length+" mensajes"});
 //alert("mensajes"+JSON.stringify(mensajes))
 
-//alert(formularios.length)
+alert(FORMULARIOS.length)
 var MENSAJES=FORMULARIOS.map(f =>{
   //const head='<head><h1>wwwEncabezadoQQQQ</h1></head>'
-  var table='<table><tr><th>Month</th><th>Savings</th></tr><tr><td>January</td><td>$100</td></tr><tr><td>January</td><td>$100</td></tr></table>'  
-  var boton='<body><img src="https://th.bing.com/th/id/OIP.0gGbWbkHhtYt9-R3j0a-2AHaEK?w=307&h=180&c=7&o=5&pid=1.7" alt="Girl in a jacket" width="200" height="200"><h1>aaaa</h1><br/><a href="https://poliflash.github.io/PoliData/?cedula=V3664204"><button  style="background-color:red;color:yellow;font-size:40px">Click para ir al Formulario 101</button></a></body>'
-  var lnk='<br/><a href="cualquier url" target="_blank">https://poliflash.github.io/PoliData/?cedula=V3664204</a>'
-  var ht='<html>'+f.mensaje.contenido+'<br/>'+table+'<br/>'+boton+lnk+'</html>'
+  //var table='<table><tr><th>Month</th><th>Prfesores</th></tr><tr><td>January</td><td>100</td></tr><tr><td>January</td><td>300</td></tr></table>'  
+  var table=''
+  var boton='<body><img src="https://i1.wp.com/lopezdoriga.com/wp-content/uploads/2017/04/venezuela.jpg?resize=200%2C250" alt="Girl in a jacket" width="200" height="200"><h1>Por Favor responder los formularios</h1><br/><a href="https://poliflash.github.io/PoliData"><button  style="background-color:red;color:yellow;font-size:40px">Click para ir a Polidata</button></a></body>'
+  //var lnk='<br/><a href="cualquier url" target="_blank">https://poliflash.github.io/PoliData/?cedula=V3664204</a>'
+  var ht='<html>'+f.mensaje.contenido+'<br/>'+table+'<br/>'+boton+'</html>'
   var encabezado=f.mensaje.encabezado;
   encabezado=encabezado.replace("<p>","")
   encabezado=encabezado.replace("</p>","")
+  //f.medios[0].destino}
   var  message = {   
-    "personalizations": [ { "to": [ { "email": f.medios[0].destino} ] } ],
+    "personalizations": [ { "to": [ { "email":"ppazpurua@gmail.com" } ] } ],
    from: { email: "ppazpurua@gmail.com" },        
    subject: "🇻🇪📣 FaroV2.120 "+encabezado,
    content: [{
@@ -455,17 +457,18 @@ var MENSAJES=FORMULARIOS.map(f =>{
   };
   return message
 })
+console.log()
 console.log(JSON.stringify(MENSAJES))
-//alert(MENSAJES.length)
+alert(MENSAJES.length)
 //var correos=[message]
-// PromiseSendGrid(MENSAJES,callback=> {
-//   //alert(JSON.stringify(callback.length))
-//   setFlagCircular(false)
-//   console.log(callback.length)
-//   setCantregistros(callback.length)
-//  // setHeatmap(callback) 
-//  // console.log("callback "+JSON.stringify(callback))
-// }); 
+PromiseSendGrid(MENSAJES,callback=> {
+  //alert(JSON.stringify(callback.length))
+  setFlagCircular(false)
+  console.log(callback.length)
+  setCantregistros(callback.length)
+ // setHeatmap(callback) 
+ // console.log("callback "+JSON.stringify(callback))
+}); 
 }
 
 

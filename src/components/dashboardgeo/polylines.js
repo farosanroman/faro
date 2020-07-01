@@ -3,6 +3,9 @@ import React, {useEffect, useState,Fragment } from 'react';
 //import {antenacercana} from './helpers'
 //https://codesandbox.io/s/xenodochial-tu-pwly8  pintar
 import  MapGL,{Layer,Feature,ZoomControl,GeoJSONLayer,ScaleControl} from 'react-mapbox-gl';
+import {inside, points,polygon,pointsWithinPolygon} from '@turf/turf';
+//import inside from 'turf-inside';
+
 import { withStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -28,6 +31,8 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 //import {WORLD} from '../../data/world.json';
 //import {USA} from '../../data/USA.json';
 //import {COLOMBIA} from '../../data/COLOMBIA.json';
+import {PARR} from '../../data/PARR.json';
+import {PALATLNG} from '../../data/PALATLNG.json';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
 //import {RESP} from '../../data/resp.json';
@@ -133,6 +138,8 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
     useEffect(() => {
         // Actualiza el título del documento usando la API del navegador
         //calculos(FORMULARIOS)
+       
+        console.log(JSON.stringify(PA))
         setFlagCircular(true);
         var url="http://nodefaro.azurewebsites.net/parroquias"
 			 // url="https://archivosamarillos.blob.core.windows.net/manualesfaro/0101.json"
@@ -306,11 +313,40 @@ const handleInterseccion = id => {
 
 
  };
+ const handleTurf = id => {
+  
+  PALATLNG.map((palatlng,index)=>{ 
+    //console.log(index+" "+palatlng.lat)
+    PA.features.map((pa,indexpa)=>{
+     // console.log(indexpa)
+     // console.log(JSON.stringify([[palatlng.lng,palatlng.lat]]))
+     //console.log(indexpa+" "+JSON.stringify(pa.geometry.coordinates))
+     // console.log(JSON.stringify(pa.geometry.coordinates))
+      var pointsss = points([[palatlng.lng,palatlng.lat],[palatlng.lng,palatlng.lat],[palatlng.lng,palatlng.lat],[palatlng.lng,palatlng.lat]]);   
+      var poin = point([palatlng.lng,palatlng.lat]);   
+     if (indexpa<1125){
+      var poly=polygon(pa.geometry.coordinates);
+      
+var isInside1 = inside(poin, poly);
+if (isInside1){
+ // console.log(index+" "+indexpa+" "+JSON.stringify(pa.properties)+" "+pa.geometry.coordinates.length)
+    
+  console.log(index+" "+indexpa+" "+JSON.stringify(pa.properties))
+         //var ptsWithin = pointsWithinPolygon(pointss,poly);
+     //    console.log(JSON.stringify(poin))
+
+       //  console.log(JSON.stringify(poly))
+}
+     }     
+    })
+    
+  })
+ }
 return (
 
 <Fragment>
 <div className={classes.root}>
- <Title2>Estructuras GeoElectorales</Title2>
+ <Title2>Laboratorio GeoEspacial</Title2>
  
       
      
@@ -344,6 +380,7 @@ return (
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("23")}>GeoRurales</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("08")}>GeoSocioEconomicos</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("12")}>GeoResultados</Button>
+ <Button variant="outlined" color="primary" onClick={() => handleTurf("12")}>Intersecciones</Button>
  
  <div>{comentario}</div>
  
