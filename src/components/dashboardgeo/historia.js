@@ -10,7 +10,7 @@ import {ESTADOS} from  '../../data/ESTADOS.json';
 import {HISTORIAPAIS} from  '../../data/HISTORIAPAIS.json';
 import {HISTORIAESTADO} from  '../../data/HISTORIAESTADO.json';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
-//import {PA} from  '../../data/PA.json';
+//import {PARR as PA} from  '../../data/PARR.json';
 import {PAPROPERTIES} from  '../../data/PAPROPERTIES.json';
 
 //const countriesInfo = service.getCountriesInfo();
@@ -45,7 +45,10 @@ class Historia extends Component {
           zoom:[6],
           error:null,
           isLoading:false,
-          PA:null
+          PA:{
+            "type":"FeatureCollection",
+            "features":[]
+          }
         };
         this.handleChange = this.handleChange.bind(this);
       }
@@ -61,7 +64,8 @@ class Historia extends Component {
        fetch(url)        
        .then(response => {
          response.json().then(data => {  
-					var pa=data;
+          var pa=data;
+         // alert(pa)
            for (var i = 0; i < pa.features.length; i++) {
              
              pa.features[i].properties.CODCNE="000000";

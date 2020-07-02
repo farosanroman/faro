@@ -35,11 +35,14 @@ import {PARR} from '../../data/PARR.json';
 import {PALATLNG} from '../../data/PALATLNG.json';
 import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
+import {MUNICIPIOSGEO} from '../../data/MUNICIPIOSGEO.json';
+import {MUNICIPIOS} from '../../data/MUNICIPIOS.json';
+
 //import {RESP} from '../../data/resp.json';
 import {PAPROPERTIES} from  '../../data/PAPROPERTIES.json';
 
 //import {LIBERTADOR} from '../data/libertador.json';
-import {usePosition} from '../../hooks/useposition';
+//import {usePosition} from '../../hooks/useposition';
 //import {useGeolocation} from '../hooks/usegeolocation';
 import { greatCircle, point,circle } from '@turf/turf';
 import Title2 from '../layout/title';
@@ -100,6 +103,8 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
     const [pos, setPos] = React.useState([-66.9188,8.808]);
     //const { state, dispatch } = React.useContext(Application);
     const [CODESTADO, setCODESTADO] = React.useState();
+    const [MUNICIPIOSPOINT, setMUNICIPIOSPOINT] = React.useState({"type":"FeatureCollection", "features": []});
+    const [MUNICIPIOSGEO2, setMUNICIPIOSGEO2] = React.useState({"type":"FeatureCollection", "features": []});
  
     const [CENTROSURBANOSGEO, setCENTROSURBANOSGEO] = React.useState([]);
     const [CENTROSRURALESGEO, setCENTROSRURALESGEO] = React.useState([]);
@@ -107,30 +112,9 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
     const [comentario, setComentario] = React.useState("");
  
     const [flagCircular, setFlagCircular] = React.useState(false);
-    const [state,setState]=useState( {
-        flagLogin:false,
-        geolocation:{country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"},
-        position:{ latitude:8.4881081498923305, longitude:-66.888521423339844, timestamp:0, accuracy:0, error:null },  //hook
-        positions:[],
-        
-        ///// GeoJSON
-        lnglat:[-66.888,9.508],
-        zoom:20,
-        radio:3,
-        /////
-        centro:"Centro de Votacion",
-        centros:null,
-        ruta:{
-          "type":"FeatureCollection",
-          "features":[ {
-            "type":"Feature",
-            "properties":{"nombre":'ppa',"latitude":10.55555,"timestamp":0},                             
-            "geometry":{"type":"LineString","coordinates":[[-66.8721358,9.4783499 ]] }
-          }]
-        },
-        })
+  
     const [zoom, setZoom] = useState([6]);
-    const { latitude, longitude, timestamp, accuracy, error } = usePosition();
+    //const { latitude, longitude, timestamp, accuracy, error } = usePosition();
     //const [ FORMULARIOS,SetFORMULARIOS ] = useState(RESP);
     //const [RESPUESTAS,SetRESPUESTAS]=useState({enviados:0,preguntas:[],respondidos:0,invalidos:0,isLoading:false })
     const [PA, setPA] = useState({"type":"FeatureCollection", "features": []});
@@ -176,18 +160,72 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
       });
 
       },[]);
+ ///////////////////////
+ const handleMunicipios = id => {
+
+
+MUNICIPIOSGEO.features.map((munigeo,igeo)=>{
+  MUNICIPIOSGEO.features[igeo].properties.poblacion=Math.floor(Math.random() * 10)*1;
+ })
+ var puntos=MUNICIPIOS.map((muni,index)=>{ 
+  return(
+    {
+       "type":"Feature",
+       "properties":{"nombre":"o.cellid","partido":muni.lat,"color":"red","width":index},                             
+       "geometry":{"type":"Point","coordinates":[muni.lng*1.0,muni.lat*1.0 ]
+     }
+    }
+   )    
+  })
+   const   redpoint={
+    "type":"FeatureCollection",
+    "features":puntos
+    
+  }
+  setMUNICIPIOSGEO2(MUNICIPIOSGEO)
+   setMUNICIPIOSPOINT(redpoint)
+ console.log(JSON.stringify(MUNICIPIOSGEO))
+
+
+
+ };
+//////////////////////////
+const handleTurf = id => {
+  
+  PALATLNG.map((palatlng,index)=>{ 
+    //console.log(index+" "+palatlng.lat)
+    PA.features.map((pa,indexpa)=>{
+     // console.log(indexpa)
+     // console.log(JSON.stringify([[palatlng.lng,palatlng.lat]]))
+     //console.log(indexpa+" "+JSON.stringify(pa.geometry.coordinates))
+     // console.log(JSON.stringify(pa.geometry.coordinates))
+      var pointsss = points([[palatlng.lng,palatlng.lat],[palatlng.lng,palatlng.lat],[palatlng.lng,palatlng.lat],[palatlng.lng,palatlng.lat]]);   
+      var poin = point([palatlng.lng,palatlng.lat]);   
+     if (indexpa<1125){
+      var poly=polygon(pa.geometry.coordinates);
+      
+var isInside1 = inside(poin, poly);
+if (isInside1){
+ // console.log(index+" "+indexpa+" "+JSON.stringify(pa.properties)+" "+pa.geometry.coordinates.length)
+    
+  console.log(index+" "+indexpa+" "+JSON.stringify(pa.properties))
+         //var ptsWithin = pointsWithinPolygon(pointss,poly);
+     //    console.log(JSON.stringify(poin))
+
+       //  console.log(JSON.stringify(poly))
+}
+     }     
+    })
+    
+  })
+ }
+
  
-      useEffect(() => {
-//alert(CODESTADO)
-    setFlagCircular(true);
-      getCentrosCODCNE(CODESTADO,result => {  
-  //      alert(JSON.stringify(result))
-       // setCentros(result) 
-       //coordendas de centride de parroquias
-          
-        //alert(JSON.stringify(centrosjson))
-        
-         //alert()
+  ///////////////////////////////////////////////////////     
+    ///////////////////////////////////////////////////////     
+      useEffect(() => {  
+      setFlagCircular(true);
+       getCentrosCODCNE(CODESTADO,result => {  
          var centrosfiltro=[]
          var ruralesfiltro=[]
          for (var i = 0; i < result.length; i++) {
@@ -222,14 +260,14 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
         "geometry":{"type":"Point","coordinates":[o.lng,o.lat]
         }
       }
-)     
-})   
-let centrosjson={"type":"FeatureCollection","features":[] }
+        )     
+     })   
+     let centrosjson={"type":"FeatureCollection","features":[] }
 
-    centrosjson.features=featurescentrosjson;
-    let ruralesjson={"type":"FeatureCollection","features":[] }
+            centrosjson.features=featurescentrosjson;
+     let ruralesjson={"type":"FeatureCollection","features":[] }
 
-    ruralesjson.features=featuresruralesjson;
+           ruralesjson.features=featuresruralesjson;
 
    setCENTROSURBANOSGEO(centrosjson) 
    setCENTROSRURALESGEO(ruralesjson)
@@ -240,6 +278,15 @@ let centrosjson={"type":"FeatureCollection","features":[] }
       })
      
       },[CODESTADO]);
+/////////////////////////////////
+///////////////////////////////////
+
+
+
+
+
+
+
   function onResize (map, event)  {
    //alert(map.getZoom()+" " +JSON.stringify(event))
   }
@@ -254,50 +301,20 @@ let centrosjson={"type":"FeatureCollection","features":[] }
       //setPosEstado(index)
      }
     }
+
+
+
    function onZoom (map, event)  {
      var zoomint=Math.round(map.getZoom());
-     //dispatch({
-    //  type: 'ZOOM',
-    //  stateprop:zoomint
-    //});
-            //setZoom([map.getZoom()])    
-      //alert(zoomint+" "+event)
-         
+   
             setZoom(zoomint+(event)*1.1)
           }
       function onControlClick(map,event){
-        var z=state.zoom
+        var z=zoom
         z+=event
-      //  dispatch({
-      //    type: 'ZOOM',
-      //    stateprop:z
-      //  });
+   
       }
-    // console.log(props.positions.length+" possssssssssss ")
-   // setCenter([stategeo.longitude,stategeo.latitude])
-    let redpoint={
-      "type":"FeatureCollection",
-      "features":[{
-        "type":"Feature",
-        "properties":{"nombre":"red"},                             
-        "geometry":{"type":"Point","coordinates":[state.position.longitude,state.position.latitude]
-        }
-      }]
-    }
-
-  //coordendas de centride de parroquias
-    
-
-  var centro=[state.position.longitude,state.position.latitude]
-  //var centro=[ -80.23521423339844,25.791081498923305 ]
-//  if (latitude>1){
-//  centro=[longitude,latitude]
-//  if (zoom<8)setZoom([50])  
-//}
- //console.log(JSON.stringify(drone))
-// var center = [  -66.8658,10.4645];
-// var radius = 7;
-//alert(JSON.stringify(RESPUESTAS))
+ 
 const handleInterseccion = id => {
   var a=0
   
@@ -313,35 +330,7 @@ const handleInterseccion = id => {
 
 
  };
- const handleTurf = id => {
-  
-  PALATLNG.map((palatlng,index)=>{ 
-    //console.log(index+" "+palatlng.lat)
-    PA.features.map((pa,indexpa)=>{
-     // console.log(indexpa)
-     // console.log(JSON.stringify([[palatlng.lng,palatlng.lat]]))
-     //console.log(indexpa+" "+JSON.stringify(pa.geometry.coordinates))
-     // console.log(JSON.stringify(pa.geometry.coordinates))
-      var pointsss = points([[palatlng.lng,palatlng.lat],[palatlng.lng,palatlng.lat],[palatlng.lng,palatlng.lat],[palatlng.lng,palatlng.lat]]);   
-      var poin = point([palatlng.lng,palatlng.lat]);   
-     if (indexpa<1125){
-      var poly=polygon(pa.geometry.coordinates);
-      
-var isInside1 = inside(poin, poly);
-if (isInside1){
- // console.log(index+" "+indexpa+" "+JSON.stringify(pa.properties)+" "+pa.geometry.coordinates.length)
-    
-  console.log(index+" "+indexpa+" "+JSON.stringify(pa.properties))
-         //var ptsWithin = pointsWithinPolygon(pointss,poly);
-     //    console.log(JSON.stringify(poin))
 
-       //  console.log(JSON.stringify(poly))
-}
-     }     
-    })
-    
-  })
- }
 return (
 
 <Fragment>
@@ -375,6 +364,7 @@ return (
   size={17}
   thickness={4}
  className={classes.progress} />}     
+ <Button variant="outlined" color="primary" onClick={() => handleMunicipios("01")}>Municipios</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("01")}>GeoMetropolis</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("01")}>GeoCiudades</Button>
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("23")}>GeoRurales</Button>
@@ -414,22 +404,46 @@ return (
             'line-width': .3
           }}
         />
-<GeoJSONLayer
+
+    {/* <GeoJSONLayer
+           data={PA}
+           fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
+           linePaint={{'line-color': 'purple','line-width': .3}}
+                     //fillOnMouseEnter={this.MouseEnter} 
+         // fillOnClick={this.onFillMapClick}
+       />   */}
+        
+
+        <GeoJSONLayer
+           data={MUNICIPIOSGEO2}
+           fillPaint={{'fill-color': 
+           {
+            "property": "poblacion",
+            "stops": [
+                      [0, "#FF0000"],
+                      [1, "#FFA07A"],
+                      [2, "#FF4500"],
+                      [3, "#fcbba1"],
+                      [4, "#FF8C00"],
+                      [5, "#98FB98"],
+                      [6, "#ef3b2c"],
+                      [7, "#98FB98"],
+                      [8, "#87CEFA"],
+                      [9, "#1E90FF"]
+                   ]
+          }
+           ,'fill-outline-color': 'purple','fill-opacity': .5}}
+           linePaint={{'line-color': 'firebrick','line-width': 1}}
+                     //fillOnMouseEnter={this.MouseEnter} 
+         // fillOnClick={this.onFillMapClick}
+       />     
+       <GeoJSONLayer
               data={ESTADOSGEO}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
               linePaint={{'line-color': 'darkblue','line-width': 1.5}}
          
              
             />
-             <GeoJSONLayer
-           data={PA}
-           fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-           linePaint={{'line-color': 'purple','line-width': .3}}
-                     //fillOnMouseEnter={this.MouseEnter} 
-         // fillOnClick={this.onFillMapClick}
-       />  
-        
-       
  <GeoJSONLayer
           data={CENTROSRURALESGEO}
           circleLayout={{ visibility: 'visible' }}
@@ -455,7 +469,8 @@ return (
          circlePaint={{'circle-color': 'blue','circle-radius': 2, }}  
         // onClick={onMapClick}     
         //circleOnClick={onCentroClick}
-        //   fillOnClick={this.onMapClick}  
+        //   fillOnClick={this.onMapClick} 
+         
           symbolLayout={{
             'text-field': '{nombre}',
             'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
@@ -467,6 +482,25 @@ return (
           symbolPaint={{
             'text-color': 'black'
           }}
+          />
+
+<GeoJSONLayer
+          data={MUNICIPIOSPOINT}
+          circleLayout={{ visibility: 'visible' }}
+         circlePaint={{'circle-color': 'red','circle-radius': 
+         [
+          "interpolate",
+          ["linear"],
+          ["get", "width"],
+          0,2,
+          100, 3,
+          200, 4,
+          300,6,
+          400, 10
+        ]
+         ,'circle-opacity': 0.7,
+         "circle-stroke-width": 1 }}         
+         
           />
 
 </Map>

@@ -411,18 +411,19 @@ export default function Dashboard() {
         
         <List>
 
-        <ListItem button onClick={handleComponent(12)}>
-      <ListItemIcon>
-        <EmojiObjectsIcon />
-      </ListItemIcon>
-      <ListItemText primary="PolyLines" />
-    </ListItem>
+       
    
     <ListItem button  onClick={handleComponent(11)} >
       <ListItemIcon>
         <HowToVoteIcon />
       </ListItemIcon>
       <ListItemText primary="Historia" />
+    </ListItem>
+    <ListItem button onClick={handleComponent(12)}>
+      <ListItemIcon>
+        <EmojiObjectsIcon />
+      </ListItemIcon>
+      <ListItemText primary="PolyLines" />
     </ListItem>
     </List>
               

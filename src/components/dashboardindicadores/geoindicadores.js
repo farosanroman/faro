@@ -214,49 +214,7 @@ setCant(data.length)
     ]
     }
   
-    let antenasjson={
-    "type":"FeatureCollection",
-    "features":[]
-  }
-
-  //coordendas de centride de parroquias
-    
-  const  featuresantenasjson=antenas.map(o=>{               
-          return(
-            {
-              "type":"Feature",
-              "properties":{"nombre":o.cellid,"partido":o.partido},                             
-              "geometry":{"type":"Point","coordinates":[o.lon,o.lat]
-              }
-            }
-      )     
-   })   
-   antenasjson.features=featuresantenasjson;
-   let mirandajson={
-    "type":"FeatureCollection",
-    "features":[]
-  }
-
-  //coordendas de centride de parroquias
-  let observadoresjson={
-    
-      "type":"FeatureCollection",
-      "features":[]
-    }  
-  // const  featuresobservadoresjson=observadores.map(c=>{               
-  //         return(
-  //           {
-  //             "type":"Feature",
-  //             "properties":{"nombre":c.nombre1},                             
-  //             "geometry":{"type":"Point","coordinates":[c.lng,c.lat]
-  //             }
-  //           }
-  //     )     
-  //  })   
-   //observadoresjson.features=featuresobservadoresjson;
-   //alert(JSON.stringify(observadoresjson))
-  //const  featurescelularjson=celular.map((c,i)=>{
-    var featurescelularjson=[]
+  
    
    const  dronecoordinate=state.positions.map(p=>{               
     return(
@@ -280,17 +238,7 @@ setCant(data.length)
       }
     ]
   }
-  //var coords=[]
 
-  
-  //var centro=[ -80.23521423339844,25.791081498923305 ]
-//  if (latitude>1){
-//  centro=[longitude,latitude]
-//  if (zoom<8)setZoom([50])  
-//}
- //console.log(JSON.stringify(drone))
-// var center = [  -66.8658,10.4645];
-// var radius = 7;
 const getCirclePoint=(q)=>{
   console.log("aaaaaaaaaaaaaaaaaaaaaaa    "+q)
   return {'circle-color': 'yellow','circle-radius': 5,'circle-opacity': 1,'circle-stroke-color': 'white' , 'circle-stroke-width':6,'circle-stroke-opacity':.2,'circle-blur': 0.1,}
@@ -392,7 +340,8 @@ return (
           circleLayout={{ visibility: 'visible' }}
          circlePaint={{'circle-color': 'yellow','circle-radius': 14,'circle-opacity': 0.1 }}         
          
-          /> <GeoJSONLayer
+          />
+   <GeoJSONLayer
           data={redpoint}
           circleLayout={{ visibility: 'visible' }}
          circlePaint={{'circle-color': 'red','circle-radius': 4, }}         

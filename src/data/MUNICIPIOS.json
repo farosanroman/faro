@@ -1,0 +1,2686 @@
+{"MUNICIPIOS":
+
+  [
+    {
+      "nivel": "2",
+      "codcne": "01010000000",
+      "estado": "DTTOCAPITAL",
+      "municipio": "LIBERTADOR",
+      "lat": "10.4866812287867",
+      "lng": "-66.9375731532898"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02010000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "ANACO",
+      "lat": "9.41932737192644",
+      "lng": "-64.4735580203296"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02020000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "ARAGUA",
+      "lat": "9.42862277804815",
+      "lng": "-64.8209129041315"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02030000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "BOLIVAR",
+      "lat": "10.1260087303807",
+      "lng": "-64.6734281045291"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02040000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "BRUZUAL",
+      "lat": "9.94190169242302",
+      "lng": "-65.3115198916276"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02050000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "CAJIGAL",
+      "lat": "9.655311346692",
+      "lng": "-65.2229941450041"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02060000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "FREITES",
+      "lat": "9.32813986309978",
+      "lng": "-64.2455377035175"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02070000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "INDEPENDENCIA",
+      "lat": "8.30177139367036",
+      "lng": "-63.5162809400947"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02080000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "LIBERTAD",
+      "lat": "9.79599047812201",
+      "lng": "-64.5228311529856"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02090000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "MIRANDA",
+      "lat": "8.73070953594546",
+      "lng": "-64.6263901604768"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02100000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "MONAGAS",
+      "lat": "8.21463813726722",
+      "lng": "-64.79172986899"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02110000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "PEÃ‘ALVER",
+      "lat": "10.0394271198513",
+      "lng": "-65.0644111239051"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02120000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "SIMONRODRIGUEZ",
+      "lat": "8.88537468948501",
+      "lng": "-64.2514918674768"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02130000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "SOTILLO",
+      "lat": "10.1964539470235",
+      "lng": "-64.6258868671162"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02140000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "GUANIPA",
+      "lat": "8.88622513468203",
+      "lng": "-64.1579635859762"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02150000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "GUANTA",
+      "lat": "10.2296276647223",
+      "lng": "-64.5921854947172"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02160000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "PIRITU",
+      "lat": "10.0079513747151",
+      "lng": "-65.002808539602"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02170000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "DIEGOBAUTISTAURBANEJA",
+      "lat": "10.1909958175113",
+      "lng": "-64.6898595825134"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02180000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "CARVAJAL",
+      "lat": "9.9119064458114",
+      "lng": "-65.6782725036207"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02190000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "SANTAANA",
+      "lat": "9.35455670935112",
+      "lng": "-64.6302791869813"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02200000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "MCGREGOR",
+      "lat": "9.22724496127428",
+      "lng": "-65.0537985752559"
+    },
+    {
+      "nivel": "2",
+      "codcne": "02210000000",
+      "estado": "ANZOATEGUI",
+      "municipio": "SANJUANDECAPISTRANO",
+      "lat": "10.1236199948052",
+      "lng": "-65.4179185059403"
+    },
+    {
+      "nivel": "2",
+      "codcne": "03010000000",
+      "estado": "APURE",
+      "municipio": "ACHAGUAS",
+      "lat": "7.71611576629586",
+      "lng": "-68.2872842550511"
+    },
+    {
+      "nivel": "2",
+      "codcne": "03020000000",
+      "estado": "APURE",
+      "municipio": "MUÃ‘OZ",
+      "lat": "7.68886114549961",
+      "lng": "-69.2538779552691"
+    },
+    {
+      "nivel": "2",
+      "codcne": "03030000000",
+      "estado": "APURE",
+      "municipio": "PAEZ",
+      "lat": "7.23373179180906",
+      "lng": "-70.968890219278"
+    },
+    {
+      "nivel": "2",
+      "codcne": "03040000000",
+      "estado": "APURE",
+      "municipio": "PEDROCAMEJO",
+      "lat": "7.23961196031067",
+      "lng": "-67.566765512083"
+    },
+    {
+      "nivel": "2",
+      "codcne": "03050000000",
+      "estado": "APURE",
+      "municipio": "ROMULOGALLEGOS",
+      "lat": "7.06658447156695",
+      "lng": "-69.5723409888366"
+    },
+    {
+      "nivel": "2",
+      "codcne": "03060000000",
+      "estado": "APURE",
+      "municipio": "SANFERNANDO",
+      "lat": "7.844135352345",
+      "lng": "-67.4264153057737"
+    },
+    {
+      "nivel": "2",
+      "codcne": "03070000000",
+      "estado": "APURE",
+      "municipio": "BIRUACA",
+      "lat": "7.83542504064019",
+      "lng": "-67.5982742078532"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04010000000",
+      "estado": "ARAGUA",
+      "municipio": "GIRARDOT",
+      "lat": "10.2463991113839",
+      "lng": "-67.5936385047131"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04020000000",
+      "estado": "ARAGUA",
+      "municipio": "SANTIAGOMARIÃ‘O",
+      "lat": "10.2350622950596",
+      "lng": "-67.4963452466992"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04030000000",
+      "estado": "ARAGUA",
+      "municipio": "JOSEFELIXRIBAS",
+      "lat": "10.2205914222948",
+      "lng": "-67.3400769989338"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04040000000",
+      "estado": "ARAGUA",
+      "municipio": "SANCASIMIRO",
+      "lat": "9.98959732920801",
+      "lng": "-67.0001058199045"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04050000000",
+      "estado": "ARAGUA",
+      "municipio": "SANSEBASTIAN",
+      "lat": "9.9490044819137",
+      "lng": "-67.1830461887278"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04060000000",
+      "estado": "ARAGUA",
+      "municipio": "SUCRE",
+      "lat": "10.1737835692041",
+      "lng": "-67.4617837217415"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04070000000",
+      "estado": "ARAGUA",
+      "municipio": "URDANETA",
+      "lat": "9.56494588619412",
+      "lng": "-66.8268011507174"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04080000000",
+      "estado": "ARAGUA",
+      "municipio": "ZAMORA",
+      "lat": "10.0533641174406",
+      "lng": "-67.5143848932594"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04090000000",
+      "estado": "ARAGUA",
+      "municipio": "LIBERTADOR",
+      "lat": "10.1672323798115",
+      "lng": "-67.5562586341932"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04100000000",
+      "estado": "ARAGUA",
+      "municipio": "JOSEANGELLAMAS",
+      "lat": "10.1844010560686",
+      "lng": "-67.5208719955075"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04110000000",
+      "estado": "ARAGUA",
+      "municipio": "BOLIVAR",
+      "lat": "10.2145036647384",
+      "lng": "-67.4202296487054"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04120000000",
+      "estado": "ARAGUA",
+      "municipio": "SANTOSMICHELENA",
+      "lat": "10.239710959928",
+      "lng": "-67.166164607842"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04130000000",
+      "estado": "ARAGUA",
+      "municipio": "MARIOBRICEÃ‘OIRAGORRY",
+      "lat": "10.2866857206882",
+      "lng": "-67.6282257918967"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04140000000",
+      "estado": "ARAGUA",
+      "municipio": "TOVAR",
+      "lat": "10.406696425246",
+      "lng": "-67.2720085281654"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04150000000",
+      "estado": "ARAGUA",
+      "municipio": "CAMATAGUA",
+      "lat": "9.8093477750648",
+      "lng": "-66.8928793450509"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04160000000",
+      "estado": "ARAGUA",
+      "municipio": "JOSERAFAELREVENGA",
+      "lat": "10.2433233611356",
+      "lng": "-67.2513265018111"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04170000000",
+      "estado": "ARAGUA",
+      "municipio": "FRANCISCOLINARESALCANTARA",
+      "lat": "10.204129590894",
+      "lng": "-67.5645419792907"
+    },
+    {
+      "nivel": "2",
+      "codcne": "04180000000",
+      "estado": "ARAGUA",
+      "municipio": "OCUMAREDELACOSTADEORO",
+      "lat": "10.4572809762279",
+      "lng": "-67.7635981603264"
+    },
+    {
+      "nivel": "2",
+      "codcne": "05010000000",
+      "estado": "BARINAS",
+      "municipio": "ARISMENDI",
+      "lat": "8.29414279854421",
+      "lng": "-68.2694730324761"
+    },
+    {
+      "nivel": "2",
+      "codcne": "05020000000",
+      "estado": "BARINAS",
+      "municipio": "BARINAS",
+      "lat": "8.59295144441753",
+      "lng": "-70.2122963917476"
+    },
+    {
+      "nivel": "2",
+      "codcne": "05030000000",
+      "estado": "BARINAS",
+      "municipio": "BOLIVAR",
+      "lat": "8.77547131520314",
+      "lng": "-70.4196716058282"
+    },
+    {
+      "nivel": "2",
+      "codcne": "05040000000",
+      "estado": "BARINAS",
+      "municipio": "EZEQUIELZAMORA",
+      "lat": "7.82473717423371",
+      "lng": "-71.1654783483265"
+    },
+    {
+      "nivel": "2",
+      "codcne": "05050000000",
+      "estado": "BARINAS",
+      "municipio": "OBISPOS",
+      "lat": "8.56130931943913",
+      "lng": "-70.0631247279654"
+    },
+    {
+      "nivel": "2",
+      "codcne": "05060000000",
+      "estado": "BARINAS",
+      "municipio": "PEDRAZA",
+      "lat": "8.28090399822582",
+      "lng": "-70.4822843208552"
+    },
+    {
+      "nivel": "2",
+      "codcne": "05070000000",
+      "estado": "BARINAS",
+      "municipio": "ROJAS",
+      "lat": "8.42939624673797",
+      "lng": "-69.6506517288352"
+    },
+    {
+      "nivel": "2",
+      "codcne": "05080000000",
+      "estado": "BARINAS",
+      "municipio": "SOSA",
+      "lat": "8.19144514060106",
+      "lng": "-69.2758791188833"
+    },
+    {
+      "nivel": "2",
+      "codcne": "05090000000",
+      "estado": "BARINAS",
+      "municipio": "ALBERTOARVELOTORREALBA",
+      "lat": "8.74259065595542",
+      "lng": "-69.9064687225251"
+    },
+    {
+      "nivel": "2",
+      "codcne": "05100000000",
+      "estado": "BARINAS",
+      "municipio": "ANTONIOJOSEDESUCRE",
+      "lat": "8.20717678768522",
+      "lng": "-70.8043401555287"
+    },
+    {
+      "nivel": "2",
+      "codcne": "05110000000",
+      "estado": "BARINAS",
+      "municipio": "CRUZPAREDES",
+      "lat": "8.7620122828656",
+      "lng": "-70.1412586604155"
+    },
+    {
+      "nivel": "2",
+      "codcne": "05120000000",
+      "estado": "BARINAS",
+      "municipio": "ANDRESELOYBLANCO",
+      "lat": "7.52721491569874",
+      "lng": "-71.2844022761263"
+    },
+    {
+      "nivel": "2",
+      "codcne": "06010000000",
+      "estado": "BOLIVAR",
+      "municipio": "CARONI",
+      "lat": "8.31845114029741",
+      "lng": "-62.7124061363564"
+    },
+    {
+      "nivel": "2",
+      "codcne": "06020000000",
+      "estado": "BOLIVAR",
+      "municipio": "CEDEÃ‘O",
+      "lat": "7.37950544019449",
+      "lng": "-66.1589145499916"
+    },
+    {
+      "nivel": "2",
+      "codcne": "06030000000",
+      "estado": "BOLIVAR",
+      "municipio": "HERES",
+      "lat": "8.09991257153258",
+      "lng": "-63.5460545407813"
+    },
+    {
+      "nivel": "2",
+      "codcne": "06040000000",
+      "estado": "BOLIVAR",
+      "municipio": "PIAR",
+      "lat": "7.96298568740653",
+      "lng": "-62.4450726146335"
+    },
+    {
+      "nivel": "2",
+      "codcne": "06050000000",
+      "estado": "BOLIVAR",
+      "municipio": "ROSCIO",
+      "lat": "7.47349862244389",
+      "lng": "-61.9203073189714"
+    },
+    {
+      "nivel": "2",
+      "codcne": "06060000000",
+      "estado": "BOLIVAR",
+      "municipio": "SUCRE",
+      "lat": "7.43781815866795",
+      "lng": "-64.7698861924286"
+    },
+    {
+      "nivel": "2",
+      "codcne": "06070000000",
+      "estado": "BOLIVAR",
+      "municipio": "SIFONTES",
+      "lat": "6.96995411096309",
+      "lng": "-61.4827449112283"
+    },
+    {
+      "nivel": "2",
+      "codcne": "06080000000",
+      "estado": "BOLIVAR",
+      "municipio": "ANGOSTURA",
+      "lat": "7.14306369712775",
+      "lng": "-63.3179087501279"
+    },
+    {
+      "nivel": "2",
+      "codcne": "06090000000",
+      "estado": "BOLIVAR",
+      "municipio": "GRANSABANA",
+      "lat": "4.82734764732422",
+      "lng": "-61.4049434267755"
+    },
+    {
+      "nivel": "2",
+      "codcne": "06100000000",
+      "estado": "BOLIVAR",
+      "municipio": "ELCALLAO",
+      "lat": "7.33511657128267",
+      "lng": "-61.836362588044"
+    },
+    {
+      "nivel": "2",
+      "codcne": "06110000000",
+      "estado": "BOLIVAR",
+      "municipio": "PADREPEDROCHIEN",
+      "lat": "8.05097862739761",
+      "lng": "-61.8609304404111"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07010000000",
+      "estado": "CARABOBO",
+      "municipio": "BEJUMA",
+      "lat": "10.2006210752123",
+      "lng": "-68.2488216859808"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07020000000",
+      "estado": "CARABOBO",
+      "municipio": "CARLOSARVELO",
+      "lat": "10.0699033140488",
+      "lng": "-67.8241247945846"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07030000000",
+      "estado": "CARABOBO",
+      "municipio": "DIEGOIBARRA",
+      "lat": "10.2903325020391",
+      "lng": "-67.7017590337177"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07040000000",
+      "estado": "CARABOBO",
+      "municipio": "GUACARA",
+      "lat": "10.2356331229852",
+      "lng": "-67.8825746416266"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07050000000",
+      "estado": "CARABOBO",
+      "municipio": "MONTALBAN",
+      "lat": "10.2112840823918",
+      "lng": "-68.3192155812748"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07060000000",
+      "estado": "CARABOBO",
+      "municipio": "JUANJOSEMORA",
+      "lat": "10.48454856485",
+      "lng": "-68.2217329923062"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07070000000",
+      "estado": "CARABOBO",
+      "municipio": "PUERTOCABELLO",
+      "lat": "10.4608275347718",
+      "lng": "-68.0400074912989"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07080000000",
+      "estado": "CARABOBO",
+      "municipio": "SANJOAQUIN",
+      "lat": "10.2570324906039",
+      "lng": "-67.8023900980711"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07090000000",
+      "estado": "CARABOBO",
+      "municipio": "VALENCIA",
+      "lat": "10.159352778404",
+      "lng": "-67.9993453322533"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07100000000",
+      "estado": "CARABOBO",
+      "municipio": "MIRANDA",
+      "lat": "10.1459699893607",
+      "lng": "-68.3852522711516"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07110000000",
+      "estado": "CARABOBO",
+      "municipio": "LOSGUAYOS",
+      "lat": "10.1706101628544",
+      "lng": "-67.9287054340077"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07120000000",
+      "estado": "CARABOBO",
+      "municipio": "NAGUANAGUA",
+      "lat": "10.2670536223583",
+      "lng": "-68.0196968171837"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07130000000",
+      "estado": "CARABOBO",
+      "municipio": "SANDIEGO",
+      "lat": "10.2315069328864",
+      "lng": "-67.9650791023096"
+    },
+    {
+      "nivel": "2",
+      "codcne": "07140000000",
+      "estado": "CARABOBO",
+      "municipio": "LIBERTADOR",
+      "lat": "10.0854400550245",
+      "lng": "-68.1015550825117"
+    },
+    {
+      "nivel": "2",
+      "codcne": "08010000000",
+      "estado": "COJEDES",
+      "municipio": "ANZOATEGUI",
+      "lat": "9.65096435926357",
+      "lng": "-68.8910869741146"
+    },
+    {
+      "nivel": "2",
+      "codcne": "08020000000",
+      "estado": "COJEDES",
+      "municipio": "FALCON",
+      "lat": "9.91669590702974",
+      "lng": "-68.3079377531184"
+    },
+    {
+      "nivel": "2",
+      "codcne": "08030000000",
+      "estado": "COJEDES",
+      "municipio": "GIRARDOT",
+      "lat": "8.93913184053609",
+      "lng": "-68.3547273139127"
+    },
+    {
+      "nivel": "2",
+      "codcne": "08040000000",
+      "estado": "COJEDES",
+      "municipio": "PAODESANJUANBAUTISTA",
+      "lat": "9.57651093547008",
+      "lng": "-68.1221805197863"
+    },
+    {
+      "nivel": "2",
+      "codcne": "08050000000",
+      "estado": "COJEDES",
+      "municipio": "RICAURTE",
+      "lat": "9.40473231162665",
+      "lng": "-68.6951234759925"
+    },
+    {
+      "nivel": "2",
+      "codcne": "08060000000",
+      "estado": "COJEDES",
+      "municipio": "EZEQUIELZAMORA",
+      "lat": "9.6718986167469",
+      "lng": "-68.5884851122805"
+    },
+    {
+      "nivel": "2",
+      "codcne": "08070000000",
+      "estado": "COJEDES",
+      "municipio": "TINACO",
+      "lat": "9.6990901029079",
+      "lng": "-68.4347112811278"
+    },
+    {
+      "nivel": "2",
+      "codcne": "08080000000",
+      "estado": "COJEDES",
+      "municipio": "LIMABLANCO",
+      "lat": "9.81528320551479",
+      "lng": "-68.4083456151877"
+    },
+    {
+      "nivel": "2",
+      "codcne": "08090000000",
+      "estado": "COJEDES",
+      "municipio": "ROMULOGALLEGOS",
+      "lat": "9.50710839454703",
+      "lng": "-68.6167397013352"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09010000000",
+      "estado": "FALCON",
+      "municipio": "ACOSTA",
+      "lat": "11.1724985409469",
+      "lng": "-68.5089027949119"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09020000000",
+      "estado": "FALCON",
+      "municipio": "BOLIVAR",
+      "lat": "11.0795720811465",
+      "lng": "-69.6669598116861"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09030000000",
+      "estado": "FALCON",
+      "municipio": "BUCHIVACOA",
+      "lat": "11.0214845874527",
+      "lng": "-70.6360073917958"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09040000000",
+      "estado": "FALCON",
+      "municipio": "CARIRUBANA",
+      "lat": "11.6901141317986",
+      "lng": "-70.1761559047658"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09050000000",
+      "estado": "FALCON",
+      "municipio": "COLINA",
+      "lat": "11.4324877374371",
+      "lng": "-69.558533011467"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09060000000",
+      "estado": "FALCON",
+      "municipio": "DEMOCRACIA",
+      "lat": "10.9577369963057",
+      "lng": "-70.160873873026"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09070000000",
+      "estado": "FALCON",
+      "municipio": "FALCON",
+      "lat": "11.9104941034329",
+      "lng": "-69.9279414144929"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09080000000",
+      "estado": "FALCON",
+      "municipio": "FEDERACION",
+      "lat": "10.8178818058766",
+      "lng": "-69.5520371196823"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09090000000",
+      "estado": "FALCON",
+      "municipio": "MAUROA",
+      "lat": "10.747305917912",
+      "lng": "-71.0305308374594"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09100000000",
+      "estado": "FALCON",
+      "municipio": "MIRANDA",
+      "lat": "11.3918387573269",
+      "lng": "-69.6924037451263"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09110000000",
+      "estado": "FALCON",
+      "municipio": "PETIT",
+      "lat": "11.1516066002194",
+      "lng": "-69.5921475691669"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09120000000",
+      "estado": "FALCON",
+      "municipio": "SILVA",
+      "lat": "10.7702388317906",
+      "lng": "-68.3328070475216"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09130000000",
+      "estado": "FALCON",
+      "municipio": "ZAMORA",
+      "lat": "11.4693150171537",
+      "lng": "-69.3518095755749"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09140000000",
+      "estado": "FALCON",
+      "municipio": "DABAJURO",
+      "lat": "10.9972585672418",
+      "lng": "-70.6695953102189"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09150000000",
+      "estado": "FALCON",
+      "municipio": "MONSEÃ‘ORITURRIZA",
+      "lat": "10.9789639034625",
+      "lng": "-68.337951704841"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09160000000",
+      "estado": "FALCON",
+      "municipio": "LOSTAQUES",
+      "lat": "11.7793256550963",
+      "lng": "-70.2038640073813"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09170000000",
+      "estado": "FALCON",
+      "municipio": "PIRITU",
+      "lat": "11.3765677935057",
+      "lng": "-69.0364875713783"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09180000000",
+      "estado": "FALCON",
+      "municipio": "UNION",
+      "lat": "10.8190865521232",
+      "lng": "-69.2260258330089"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09190000000",
+      "estado": "FALCON",
+      "municipio": "SANFRANCISCO",
+      "lat": "11.1586123080191",
+      "lng": "-68.7177101328506"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09200000000",
+      "estado": "FALCON",
+      "municipio": "JACURA",
+      "lat": "11.0263176598556",
+      "lng": "-68.830593072028"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09210000000",
+      "estado": "FALCON",
+      "municipio": "CACIQUEMANAURE",
+      "lat": "10.9806403572049",
+      "lng": "-68.5567111629188"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09220000000",
+      "estado": "FALCON",
+      "municipio": "PALMASOLA",
+      "lat": "10.6256642969963",
+      "lng": "-68.5468422513225"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09230000000",
+      "estado": "FALCON",
+      "municipio": "SUCRE",
+      "lat": "11.0610930060331",
+      "lng": "-69.7656405909549"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09240000000",
+      "estado": "FALCON",
+      "municipio": "URUMACO",
+      "lat": "11.1478957737402",
+      "lng": "-70.2748248996173"
+    },
+    {
+      "nivel": "2",
+      "codcne": "09250000000",
+      "estado": "FALCON",
+      "municipio": "TOCOPERO",
+      "lat": "11.5045602714834",
+      "lng": "-69.2606249920232"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10010000000",
+      "estado": "GUARICO",
+      "municipio": "INFANTE",
+      "lat": "9.17700928065895",
+      "lng": "-66.0041904924197"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10020000000",
+      "estado": "GUARICO",
+      "municipio": "MELLADO",
+      "lat": "9.37778720330365",
+      "lng": "-67.0671944588111"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10030000000",
+      "estado": "GUARICO",
+      "municipio": "MIRANDA",
+      "lat": "8.91613905442243",
+      "lng": "-67.4304265713665"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10040000000",
+      "estado": "GUARICO",
+      "municipio": "MONAGAS",
+      "lat": "9.84543524680207",
+      "lng": "-66.3398145850352"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10050000000",
+      "estado": "GUARICO",
+      "municipio": "RIBAS",
+      "lat": "9.30793392102948",
+      "lng": "-65.7513569412329"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10060000000",
+      "estado": "GUARICO",
+      "municipio": "ROSCIO",
+      "lat": "9.87429561313536",
+      "lng": "-67.3623909785559"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10070000000",
+      "estado": "GUARICO",
+      "municipio": "ZARAZA",
+      "lat": "9.34621308075112",
+      "lng": "-65.3205254038489"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10080000000",
+      "estado": "GUARICO",
+      "municipio": "CAMAGUAN",
+      "lat": "8.07503249191306",
+      "lng": "-67.5680497854493"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10090000000",
+      "estado": "GUARICO",
+      "municipio": "SANJOSEDEGUARIBE",
+      "lat": "9.83248614698948",
+      "lng": "-65.821189790744"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10100000000",
+      "estado": "GUARICO",
+      "municipio": "LASMERCEDES",
+      "lat": "8.63036565945962",
+      "lng": "-66.3474550927523"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10110000000",
+      "estado": "GUARICO",
+      "municipio": "ELSOCORRO",
+      "lat": "8.95155782347416",
+      "lng": "-65.7276232089743"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10120000000",
+      "estado": "GUARICO",
+      "municipio": "ORTIZ",
+      "lat": "9.56734754948056",
+      "lng": "-67.4350528597662"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10130000000",
+      "estado": "GUARICO",
+      "municipio": "SANTAMARIADEIPIRE",
+      "lat": "8.79452020240563",
+      "lng": "-65.3126805117723"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10140000000",
+      "estado": "GUARICO",
+      "municipio": "CHAGUARAMAS",
+      "lat": "9.36484199534052",
+      "lng": "-66.2641310064369"
+    },
+    {
+      "nivel": "2",
+      "codcne": "10150000000",
+      "estado": "GUARICO",
+      "municipio": "SANGERONIMODEGUAYABAL",
+      "lat": "7.99252857238033",
+      "lng": "-67.2209236215411"
+    },
+    {
+      "nivel": "2",
+      "codcne": "11010000000",
+      "estado": "LARA",
+      "municipio": "CRESPO",
+      "lat": "10.291045650697",
+      "lng": "-69.1726917214473"
+    },
+    {
+      "nivel": "2",
+      "codcne": "11020000000",
+      "estado": "LARA",
+      "municipio": "IRIBARREN",
+      "lat": "10.0799720049927",
+      "lng": "-69.3458039334623"
+    },
+    {
+      "nivel": "2",
+      "codcne": "11030000000",
+      "estado": "LARA",
+      "municipio": "JIMENEZ",
+      "lat": "9.91912525748823",
+      "lng": "-69.6113196297258"
+    },
+    {
+      "nivel": "2",
+      "codcne": "11040000000",
+      "estado": "LARA",
+      "municipio": "MORAN",
+      "lat": "9.70817350122089",
+      "lng": "-69.8361114118112"
+    },
+    {
+      "nivel": "2",
+      "codcne": "11050000000",
+      "estado": "LARA",
+      "municipio": "PALAVECINO",
+      "lat": "10.0259308781114",
+      "lng": "-69.2511390807816"
+    },
+    {
+      "nivel": "2",
+      "codcne": "11060000000",
+      "estado": "LARA",
+      "municipio": "TORRES",
+      "lat": "10.1513324960526",
+      "lng": "-70.1361108266324"
+    },
+    {
+      "nivel": "2",
+      "codcne": "11070000000",
+      "estado": "LARA",
+      "municipio": "URDANETA",
+      "lat": "10.5842863929715",
+      "lng": "-69.5010115245223"
+    },
+    {
+      "nivel": "2",
+      "codcne": "11080000000",
+      "estado": "LARA",
+      "municipio": "ANDRESELOYBLANCO",
+      "lat": "9.71092977167762",
+      "lng": "-69.5982875424814"
+    },
+    {
+      "nivel": "2",
+      "codcne": "11090000000",
+      "estado": "LARA",
+      "municipio": "SIMONPLANAS",
+      "lat": "9.81506004386644",
+      "lng": "-69.1436056201084"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12010000000",
+      "estado": "MERIDA",
+      "municipio": "ALBERTOADRIANI",
+      "lat": "8.62175894065125",
+      "lng": "-71.6460075121622"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12020000000",
+      "estado": "MERIDA",
+      "municipio": "ANDRESBELLO",
+      "lat": "8.7073080783326",
+      "lng": "-71.4592058875512"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12030000000",
+      "estado": "MERIDA",
+      "municipio": "ARZOBISPOCHACON",
+      "lat": "8.16881708005709",
+      "lng": "-71.4276364310942"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12040000000",
+      "estado": "MERIDA",
+      "municipio": "CAMPOELIAS",
+      "lat": "8.54928365423484",
+      "lng": "-71.2495599099453"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12050000000",
+      "estado": "MERIDA",
+      "municipio": "GUARAQUE",
+      "lat": "8.16486912200888",
+      "lng": "-71.6941202296884"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12060000000",
+      "estado": "MERIDA",
+      "municipio": "JULIOCESARSALAS",
+      "lat": "9.22597278587394",
+      "lng": "-70.9366776527928"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12070000000",
+      "estado": "MERIDA",
+      "municipio": "JUSTOBRICEÃ‘O",
+      "lat": "9.06758275936308",
+      "lng": "-70.997748613499"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12080000000",
+      "estado": "MERIDA",
+      "municipio": "LIBERTADOR",
+      "lat": "8.58715847413842",
+      "lng": "-71.1615282173145"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12090000000",
+      "estado": "MERIDA",
+      "municipio": "SANTOSMARQUINA",
+      "lat": "8.63076140223901",
+      "lng": "-71.0742923605972"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12100000000",
+      "estado": "MERIDA",
+      "municipio": "MIRANDA",
+      "lat": "8.98646155657429",
+      "lng": "-70.7608179233041"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12110000000",
+      "estado": "MERIDA",
+      "municipio": "ANTONIOPINTOSALINAS",
+      "lat": "8.41596028341724",
+      "lng": "-71.6257600582875"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12120000000",
+      "estado": "MERIDA",
+      "municipio": "OBISPORAMOSDELORA",
+      "lat": "8.82505172753638",
+      "lng": "-71.4698281549239"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12130000000",
+      "estado": "MERIDA",
+      "municipio": "CARACCIOLOPARRAOLMEDO",
+      "lat": "8.95620531716859",
+      "lng": "-71.2716244062749"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12140000000",
+      "estado": "MERIDA",
+      "municipio": "CARDENALQUINTERO",
+      "lat": "8.89993973213934",
+      "lng": "-70.6504409467204"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12150000000",
+      "estado": "MERIDA",
+      "municipio": "PUEBLOLLANO",
+      "lat": "8.93457353504317",
+      "lng": "-70.6546467542164"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12160000000",
+      "estado": "MERIDA",
+      "municipio": "RANGEL",
+      "lat": "8.74306508354097",
+      "lng": "-70.9296383654333"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12170000000",
+      "estado": "MERIDA",
+      "municipio": "RIVASDAVILA",
+      "lat": "8.26512657998397",
+      "lng": "-71.819251719427"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12180000000",
+      "estado": "MERIDA",
+      "municipio": "SUCRE",
+      "lat": "8.48777066488367",
+      "lng": "-71.4218018023026"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12190000000",
+      "estado": "MERIDA",
+      "municipio": "TOVAR",
+      "lat": "8.3327081157394",
+      "lng": "-71.7509070842831"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12200000000",
+      "estado": "MERIDA",
+      "municipio": "TULIOFEBRESCORDERO",
+      "lat": "9.11628463994832",
+      "lng": "-71.0871085343563"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12210000000",
+      "estado": "MERIDA",
+      "municipio": "PADRENOGUERA",
+      "lat": "7.72197313374086",
+      "lng": "-71.4719486163939"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12220000000",
+      "estado": "MERIDA",
+      "municipio": "ARICAGUA",
+      "lat": "8.20938774698133",
+      "lng": "-71.1480265140293"
+    },
+    {
+      "nivel": "2",
+      "codcne": "12230000000",
+      "estado": "MERIDA",
+      "municipio": "ZEA",
+      "lat": "8.4069281204398",
+      "lng": "-71.7773925981851"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13010000000",
+      "estado": "MIRANDA",
+      "municipio": "ACEVEDO",
+      "lat": "10.2810511397423",
+      "lng": "-66.3231108492045"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13020000000",
+      "estado": "MIRANDA",
+      "municipio": "BRION",
+      "lat": "10.4594127080357",
+      "lng": "-66.1366836378797"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13030000000",
+      "estado": "MIRANDA",
+      "municipio": "GUAICAIPURO",
+      "lat": "10.3342029722791",
+      "lng": "-67.0357408435545"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13040000000",
+      "estado": "MIRANDA",
+      "municipio": "INDEPENDENCIA",
+      "lat": "10.2452235716007",
+      "lng": "-66.6775656782849"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13050000000",
+      "estado": "MIRANDA",
+      "municipio": "LANDER",
+      "lat": "10.1220162064085",
+      "lng": "-66.7798131718694"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13060000000",
+      "estado": "MIRANDA",
+      "municipio": "PAEZ",
+      "lat": "10.2424475434764",
+      "lng": "-65.9657074980901"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13070000000",
+      "estado": "MIRANDA",
+      "municipio": "PAZCASTILLO",
+      "lat": "10.3046433001955",
+      "lng": "-66.6839990062147"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13080000000",
+      "estado": "MIRANDA",
+      "municipio": "PLAZA",
+      "lat": "10.4673476856828",
+      "lng": "-66.6124840982164"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13090000000",
+      "estado": "MIRANDA",
+      "municipio": "SUCRE",
+      "lat": "10.4784297944822",
+      "lng": "-66.796461875777"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13100000000",
+      "estado": "MIRANDA",
+      "municipio": "URDANETA",
+      "lat": "10.1512416094798",
+      "lng": "-66.8845597769764"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13110000000",
+      "estado": "MIRANDA",
+      "municipio": "ZAMORA",
+      "lat": "10.4662038008671",
+      "lng": "-66.5275326539325"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13120000000",
+      "estado": "MIRANDA",
+      "municipio": "CRISTOBALROJAS",
+      "lat": "10.2455648671911",
+      "lng": "-66.8524607624356"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13130000000",
+      "estado": "MIRANDA",
+      "municipio": "LOSSALIAS",
+      "lat": "10.3745559746371",
+      "lng": "-66.9616472674516"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13140000000",
+      "estado": "MIRANDA",
+      "municipio": "ANDRESBELLO",
+      "lat": "10.2984654791196",
+      "lng": "-66.0088071940241"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13150000000",
+      "estado": "MIRANDA",
+      "municipio": "SIMONBOLIVAR",
+      "lat": "10.1876835487114",
+      "lng": "-66.7418241424239"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13160000000",
+      "estado": "MIRANDA",
+      "municipio": "BARUTA",
+      "lat": "10.4537848364986",
+      "lng": "-66.8642729600961"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13170000000",
+      "estado": "MIRANDA",
+      "municipio": "CARRIZAL",
+      "lat": "10.3532967300173",
+      "lng": "-66.9951308347256"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13180000000",
+      "estado": "MIRANDA",
+      "municipio": "CHACAO",
+      "lat": "10.4978786180725",
+      "lng": "-66.8534337628446"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13190000000",
+      "estado": "MIRANDA",
+      "municipio": "ELHATILLO",
+      "lat": "10.4233617945362",
+      "lng": "-66.8211695904154"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13200000000",
+      "estado": "MIRANDA",
+      "municipio": "BUROZ",
+      "lat": "10.3668193451454",
+      "lng": "-66.1299590411775"
+    },
+    {
+      "nivel": "2",
+      "codcne": "13210000000",
+      "estado": "MIRANDA",
+      "municipio": "PEDROGUAL",
+      "lat": "10.1186441619183",
+      "lng": "-65.6812337126919"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14010000000",
+      "estado": "MONAGAS",
+      "municipio": "ACOSTA",
+      "lat": "10.122531747831",
+      "lng": "-63.7226957381421"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14020000000",
+      "estado": "MONAGAS",
+      "municipio": "BOLIVAR",
+      "lat": "10.113590510815",
+      "lng": "-63.1021004935352"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14030000000",
+      "estado": "MONAGAS",
+      "municipio": "CARIPE",
+      "lat": "10.1862257909295",
+      "lng": "-63.504291132041"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14040000000",
+      "estado": "MONAGAS",
+      "municipio": "CEDEÃ‘O",
+      "lat": "9.82576855945091",
+      "lng": "-63.6523543151011"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14050000000",
+      "estado": "MONAGAS",
+      "municipio": "EZEQUIELZAMORA",
+      "lat": "9.68554086099752",
+      "lng": "-63.6029594039366"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14060000000",
+      "estado": "MONAGAS",
+      "municipio": "LIBERTADOR",
+      "lat": "8.97252268583308",
+      "lng": "-62.6404782256835"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14070000000",
+      "estado": "MONAGAS",
+      "municipio": "MATURIN",
+      "lat": "9.7267098992412",
+      "lng": "-63.1948736675403"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14080000000",
+      "estado": "MONAGAS",
+      "municipio": "PIAR",
+      "lat": "9.92966455655303",
+      "lng": "-63.4393107967896"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14090000000",
+      "estado": "MONAGAS",
+      "municipio": "PUNCERES",
+      "lat": "9.95815351016435",
+      "lng": "-63.1813577914035"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14100000000",
+      "estado": "MONAGAS",
+      "municipio": "SOTILLO",
+      "lat": "8.69699918838605",
+      "lng": "-62.3020993311852"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14110000000",
+      "estado": "MONAGAS",
+      "municipio": "AGUASAY",
+      "lat": "9.32318916679409",
+      "lng": "-63.6661358386173"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14120000000",
+      "estado": "MONAGAS",
+      "municipio": "SANTABARBARA",
+      "lat": "9.60538068587666",
+      "lng": "-63.6057363633428"
+    },
+    {
+      "nivel": "2",
+      "codcne": "14130000000",
+      "estado": "MONAGAS",
+      "municipio": "URACOA",
+      "lat": "8.97267459436442",
+      "lng": "-62.3007346101957"
+    },
+    {
+      "nivel": "2",
+      "codcne": "15010000000",
+      "estado": "NUEVAESPARTA",
+      "municipio": "ARISMENDI",
+      "lat": "11.0330927782471",
+      "lng": "-63.8586472046075"
+    },
+    {
+      "nivel": "2",
+      "codcne": "15020000000",
+      "estado": "NUEVAESPARTA",
+      "municipio": "DIAZ",
+      "lat": "10.9839294086509",
+      "lng": "-63.9798085011794"
+    },
+    {
+      "nivel": "2",
+      "codcne": "15030000000",
+      "estado": "NUEVAESPARTA",
+      "municipio": "GOMEZ",
+      "lat": "11.0771438983938",
+      "lng": "-63.930052496526"
+    },
+    {
+      "nivel": "2",
+      "codcne": "15040000000",
+      "estado": "NUEVAESPARTA",
+      "municipio": "MANEIRO",
+      "lat": "11.0004263994743",
+      "lng": "-63.8161431596132"
+    },
+    {
+      "nivel": "2",
+      "codcne": "15050000000",
+      "estado": "NUEVAESPARTA",
+      "municipio": "MARCANO",
+      "lat": "11.0716937512135",
+      "lng": "-63.9669863719196"
+    },
+    {
+      "nivel": "2",
+      "codcne": "15060000000",
+      "estado": "NUEVAESPARTA",
+      "municipio": "MARIÃ‘O",
+      "lat": "10.960567850241",
+      "lng": "-63.8533775098986"
+    },
+    {
+      "nivel": "2",
+      "codcne": "15070000000",
+      "estado": "NUEVAESPARTA",
+      "municipio": "PENINSULADEMACANAO",
+      "lat": "10.9879256676801",
+      "lng": "-64.2875338375441"
+    },
+    {
+      "nivel": "2",
+      "codcne": "15080000000",
+      "estado": "NUEVAESPARTA",
+      "municipio": "VILLALBA",
+      "lat": "10.7644984146229",
+      "lng": "-63.9659896052671"
+    },
+    {
+      "nivel": "2",
+      "codcne": "15090000000",
+      "estado": "NUEVAESPARTA",
+      "municipio": "TUBORES",
+      "lat": "10.9984777678776",
+      "lng": "-64.1243299106152"
+    },
+    {
+      "nivel": "2",
+      "codcne": "15100000000",
+      "estado": "NUEVAESPARTA",
+      "municipio": "ANTOLINDELCAMPO",
+      "lat": "11.109487001834",
+      "lng": "-63.8601281458464"
+    },
+    {
+      "nivel": "2",
+      "codcne": "15110000000",
+      "estado": "NUEVAESPARTA",
+      "municipio": "GARCIA",
+      "lat": "10.9579280145878",
+      "lng": "-63.9154962716028"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16010000000",
+      "estado": "PORTUGUESA",
+      "municipio": "ARAURE",
+      "lat": "9.58448675969404",
+      "lng": "-69.2271222401886"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16020000000",
+      "estado": "PORTUGUESA",
+      "municipio": "ESTELLER",
+      "lat": "9.32493091133407",
+      "lng": "-69.2095739271721"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16030000000",
+      "estado": "PORTUGUESA",
+      "municipio": "GUANARE",
+      "lat": "9.05885047972664",
+      "lng": "-69.7509084161062"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16040000000",
+      "estado": "PORTUGUESA",
+      "municipio": "GUANARITO",
+      "lat": "8.65945064264569",
+      "lng": "-69.1427840136892"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16050000000",
+      "estado": "PORTUGUESA",
+      "municipio": "OSPINO",
+      "lat": "9.33673372628417",
+      "lng": "-69.4726753330794"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16060000000",
+      "estado": "PORTUGUESA",
+      "municipio": "PAEZ",
+      "lat": "9.53857604532186",
+      "lng": "-69.1821579162836"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16070000000",
+      "estado": "PORTUGUESA",
+      "municipio": "SUCRE",
+      "lat": "9.3310785540209",
+      "lng": "-69.9658631799639"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16080000000",
+      "estado": "PORTUGUESA",
+      "municipio": "TUREN",
+      "lat": "9.3365205318848",
+      "lng": "-69.0640591581825"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16090000000",
+      "estado": "PORTUGUESA",
+      "municipio": "MONSEÃ‘ORJOSEVICENTEDEUNDA",
+      "lat": "9.45455882421173",
+      "lng": "-69.9315721843076"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16100000000",
+      "estado": "PORTUGUESA",
+      "municipio": "AGUABLANCA",
+      "lat": "9.63616491533882",
+      "lng": "-69.0915900564648"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16110000000",
+      "estado": "PORTUGUESA",
+      "municipio": "PAPELON",
+      "lat": "8.83397574804468",
+      "lng": "-69.4163841415273"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16120000000",
+      "estado": "PORTUGUESA",
+      "municipio": "SANGENARODEBOCONOITO",
+      "lat": "8.82976977442658",
+      "lng": "-69.8847808522901"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16130000000",
+      "estado": "PORTUGUESA",
+      "municipio": "SANRAFAELDEONOTO",
+      "lat": "9.66247449682343",
+      "lng": "-68.980622908417"
+    },
+    {
+      "nivel": "2",
+      "codcne": "16140000000",
+      "estado": "PORTUGUESA",
+      "municipio": "SANTAROSALIA",
+      "lat": "9.04705929788071",
+      "lng": "-69.0082418181564"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17010000000",
+      "estado": "SUCRE",
+      "municipio": "ARISMENDI",
+      "lat": "10.695362436256",
+      "lng": "-63.0525566711676"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17020000000",
+      "estado": "SUCRE",
+      "municipio": "BENITEZ",
+      "lat": "10.5036802008895",
+      "lng": "-63.1414677151176"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17030000000",
+      "estado": "SUCRE",
+      "municipio": "BERMUDEZ",
+      "lat": "10.6497115233795",
+      "lng": "-63.2640646875596"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17040000000",
+      "estado": "SUCRE",
+      "municipio": "CAJIGAL",
+      "lat": "10.5968108153424",
+      "lng": "-62.822873574994"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17050000000",
+      "estado": "SUCRE",
+      "municipio": "MARIÃ‘O",
+      "lat": "10.5917264015305",
+      "lng": "-62.5662022606762"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17060000000",
+      "estado": "SUCRE",
+      "municipio": "MEJIA",
+      "lat": "10.4193403210966",
+      "lng": "-63.7761686217049"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17070000000",
+      "estado": "SUCRE",
+      "municipio": "MONTES",
+      "lat": "10.2470453123869",
+      "lng": "-63.911668520968"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17080000000",
+      "estado": "SUCRE",
+      "municipio": "RIBERO",
+      "lat": "10.4539892019719",
+      "lng": "-63.5457788600581"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17090000000",
+      "estado": "SUCRE",
+      "municipio": "SUCRE",
+      "lat": "10.4317229959607",
+      "lng": "-64.1875389684952"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17100000000",
+      "estado": "SUCRE",
+      "municipio": "VALDEZ",
+      "lat": "10.5950350747682",
+      "lng": "-62.2999456922438"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17110000000",
+      "estado": "SUCRE",
+      "municipio": "ANDRESELOYBLANCO",
+      "lat": "10.4264503323368",
+      "lng": "-63.3540281142494"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17120000000",
+      "estado": "SUCRE",
+      "municipio": "LIBERTADOR",
+      "lat": "10.5837967745604",
+      "lng": "-63.0768609194847"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17130000000",
+      "estado": "SUCRE",
+      "municipio": "ANDRESMATA",
+      "lat": "10.5497278733035",
+      "lng": "-63.3246294643414"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17140000000",
+      "estado": "SUCRE",
+      "municipio": "BOLIVAR",
+      "lat": "10.4381138763572",
+      "lng": "-63.916857852835"
+    },
+    {
+      "nivel": "2",
+      "codcne": "17150000000",
+      "estado": "SUCRE",
+      "municipio": "CRUZSALMERONACOSTA",
+      "lat": "10.6034310628379",
+      "lng": "-64.1308326048316"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18010000000",
+      "estado": "TACHIRA",
+      "municipio": "AYACUCHO",
+      "lat": "8.04172112198238",
+      "lng": "-72.2629484524013"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18020000000",
+      "estado": "TACHIRA",
+      "municipio": "BOLIVAR",
+      "lat": "7.81350137340181",
+      "lng": "-72.44122095823"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18030000000",
+      "estado": "TACHIRA",
+      "municipio": "INDEPENDENCIA",
+      "lat": "7.80990406864347",
+      "lng": "-72.2855231137067"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18040000000",
+      "estado": "TACHIRA",
+      "municipio": "CARDENAS",
+      "lat": "7.81841795511975",
+      "lng": "-72.2115096121905"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18050000000",
+      "estado": "TACHIRA",
+      "municipio": "JAUREGUI",
+      "lat": "8.14133887823797",
+      "lng": "-71.9791575812552"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18060000000",
+      "estado": "TACHIRA",
+      "municipio": "JUNIN",
+      "lat": "7.6796568417408",
+      "lng": "-72.3698339856892"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18070000000",
+      "estado": "TACHIRA",
+      "municipio": "LOBATERA",
+      "lat": "7.91502629640916",
+      "lng": "-72.2506460589169"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18080000000",
+      "estado": "TACHIRA",
+      "municipio": "SANCRISTOBAL",
+      "lat": "7.76700685134837",
+      "lng": "-72.2256635403457"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18090000000",
+      "estado": "TACHIRA",
+      "municipio": "URIBANTE",
+      "lat": "7.96319581714661",
+      "lng": "-71.7784183903677"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18100000000",
+      "estado": "TACHIRA",
+      "municipio": "CORDOBA",
+      "lat": "7.63762591877579",
+      "lng": "-72.2742034075912"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18110000000",
+      "estado": "TACHIRA",
+      "municipio": "GARCIADEHEVIA",
+      "lat": "8.24520826610295",
+      "lng": "-72.2650176126062"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18120000000",
+      "estado": "TACHIRA",
+      "municipio": "GUASIMOS",
+      "lat": "7.83907407599016",
+      "lng": "-72.2331538855425"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18130000000",
+      "estado": "TACHIRA",
+      "municipio": "MICHELENA",
+      "lat": "7.96085097602081",
+      "lng": "-72.2336161982108"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18140000000",
+      "estado": "TACHIRA",
+      "municipio": "LIBERTADOR",
+      "lat": "7.59751362565009",
+      "lng": "-71.5772380366291"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18150000000",
+      "estado": "TACHIRA",
+      "municipio": "PANAMERICANO",
+      "lat": "8.35038408885213",
+      "lng": "-72.0769551747862"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18160000000",
+      "estado": "TACHIRA",
+      "municipio": "PEDROMARIAUREÃ‘A",
+      "lat": "7.91617364061229",
+      "lng": "-72.446053649782"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18170000000",
+      "estado": "TACHIRA",
+      "municipio": "SUCRE",
+      "lat": "7.88237405483272",
+      "lng": "-71.9991620691503"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18180000000",
+      "estado": "TACHIRA",
+      "municipio": "ANDRESBELLO",
+      "lat": "7.85975021629944",
+      "lng": "-72.1762816841727"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18190000000",
+      "estado": "TACHIRA",
+      "municipio": "FERNANDEZFEO",
+      "lat": "7.53920345392122",
+      "lng": "-71.9841317633221"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18200000000",
+      "estado": "TACHIRA",
+      "municipio": "LIBERTAD",
+      "lat": "7.80575083986611",
+      "lng": "-72.3154019864252"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18210000000",
+      "estado": "TACHIRA",
+      "municipio": "SAMUELDARIOMALDONADO",
+      "lat": "8.46678435103983",
+      "lng": "-71.8543117891552"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18220000000",
+      "estado": "TACHIRA",
+      "municipio": "SEBORUCO",
+      "lat": "8.14426943037461",
+      "lng": "-72.0770852046038"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18230000000",
+      "estado": "TACHIRA",
+      "municipio": "ANTONIOROMULOCOSTA",
+      "lat": "8.16539602542688",
+      "lng": "-72.1740405769305"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18240000000",
+      "estado": "TACHIRA",
+      "municipio": "FRANCISCODEMIRANDA",
+      "lat": "7.90527194441086",
+      "lng": "-71.9612495071374"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18250000000",
+      "estado": "TACHIRA",
+      "municipio": "JOSEMARIAVARGAS",
+      "lat": "8.03733510514373",
+      "lng": "-72.0665314694335"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18260000000",
+      "estado": "TACHIRA",
+      "municipio": "RAFAELURDANETA",
+      "lat": "7.54031503809929",
+      "lng": "-72.4469273490694"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18270000000",
+      "estado": "TACHIRA",
+      "municipio": "SIMONRODRIGUEZ",
+      "lat": "8.34866558341093",
+      "lng": "-71.8512792720351"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18280000000",
+      "estado": "TACHIRA",
+      "municipio": "TORBES",
+      "lat": "7.66019781071143",
+      "lng": "-72.2261825007273"
+    },
+    {
+      "nivel": "2",
+      "codcne": "18290000000",
+      "estado": "TACHIRA",
+      "municipio": "SANJUDASTADEO",
+      "lat": "8.26286866078223",
+      "lng": "-72.0477251433694"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19010000000",
+      "estado": "TRUJILLO",
+      "municipio": "RAFAELRANGEL",
+      "lat": "9.36650070101252",
+      "lng": "-70.7230389217493"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19020000000",
+      "estado": "TRUJILLO",
+      "municipio": "BOCONO",
+      "lat": "9.25159977596472",
+      "lng": "-70.2724622885469"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19030000000",
+      "estado": "TRUJILLO",
+      "municipio": "CARACHE",
+      "lat": "9.64228681149059",
+      "lng": "-70.2577861896002"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19040000000",
+      "estado": "TRUJILLO",
+      "municipio": "ESCUQUE",
+      "lat": "9.31295048878289",
+      "lng": "-70.6679253933372"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19050000000",
+      "estado": "TRUJILLO",
+      "municipio": "TRUJILLO",
+      "lat": "9.36136839776164",
+      "lng": "-70.4379287547579"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19060000000",
+      "estado": "TRUJILLO",
+      "municipio": "URDANETA",
+      "lat": "9.124310056211",
+      "lng": "-70.6094745522882"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19070000000",
+      "estado": "TRUJILLO",
+      "municipio": "VALERA",
+      "lat": "9.2908255784427",
+      "lng": "-70.6225695190441"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19080000000",
+      "estado": "TRUJILLO",
+      "municipio": "CANDELARIA",
+      "lat": "9.63567820710279",
+      "lng": "-70.4132810711765"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19090000000",
+      "estado": "TRUJILLO",
+      "municipio": "MIRANDA",
+      "lat": "9.51158507372983",
+      "lng": "-70.7016513456586"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19100000000",
+      "estado": "TRUJILLO",
+      "municipio": "MONTECARMELO",
+      "lat": "9.25309583386002",
+      "lng": "-70.8615506259853"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19110000000",
+      "estado": "TRUJILLO",
+      "municipio": "MOTATAN",
+      "lat": "9.40479801607409",
+      "lng": "-70.5954078610796"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19120000000",
+      "estado": "TRUJILLO",
+      "municipio": "PAMPAN",
+      "lat": "9.49355045408294",
+      "lng": "-70.4499838165926"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19130000000",
+      "estado": "TRUJILLO",
+      "municipio": "SANRAFAELDECARVAJAL",
+      "lat": "9.34710116386789",
+      "lng": "-70.5797620963985"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19140000000",
+      "estado": "TRUJILLO",
+      "municipio": "SUCRE",
+      "lat": "9.45282275350248",
+      "lng": "-70.7916181791132"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19150000000",
+      "estado": "TRUJILLO",
+      "municipio": "ANDRESBELLO",
+      "lat": "9.62128037144467",
+      "lng": "-70.7544234940884"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19160000000",
+      "estado": "TRUJILLO",
+      "municipio": "BOLIVAR",
+      "lat": "9.38789558675601",
+      "lng": "-70.8225094298988"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19170000000",
+      "estado": "TRUJILLO",
+      "municipio": "JOSEFELIPEMARQUEZCAÃ‘IZALES",
+      "lat": "9.7673578920496",
+      "lng": "-70.6200622952349"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19180000000",
+      "estado": "TRUJILLO",
+      "municipio": "JUANVICENTECAMPOELIAS",
+      "lat": "9.39165240318951",
+      "lng": "-70.0697453768097"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19190000000",
+      "estado": "TRUJILLO",
+      "municipio": "LACEIBA",
+      "lat": "9.5047363536337",
+      "lng": "-70.9805408079723"
+    },
+    {
+      "nivel": "2",
+      "codcne": "19200000000",
+      "estado": "TRUJILLO",
+      "municipio": "PAMPANITO",
+      "lat": "9.41443227953191",
+      "lng": "-70.5036880059858"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20010000000",
+      "estado": "YARACUY",
+      "municipio": "BOLIVAR",
+      "lat": "10.4659829042315",
+      "lng": "-68.8843276019336"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20020000000",
+      "estado": "YARACUY",
+      "municipio": "BRUZUAL",
+      "lat": "10.1733005012729",
+      "lng": "-68.8978908761415"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20030000000",
+      "estado": "YARACUY",
+      "municipio": "NIRGUA",
+      "lat": "10.1423915863262",
+      "lng": "-68.5725600499524"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20040000000",
+      "estado": "YARACUY",
+      "municipio": "SANFELIPE",
+      "lat": "10.3630453650193",
+      "lng": "-68.7115717066824"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20050000000",
+      "estado": "YARACUY",
+      "municipio": "SUCRE",
+      "lat": "10.2583446985724",
+      "lng": "-68.8201474335323"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20060000000",
+      "estado": "YARACUY",
+      "municipio": "URACHICHE",
+      "lat": "10.1607008106886",
+      "lng": "-68.9707748255066"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20070000000",
+      "estado": "YARACUY",
+      "municipio": "PEÃ‘A",
+      "lat": "10.0837193919245",
+      "lng": "-69.1127713475174"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20080000000",
+      "estado": "YARACUY",
+      "municipio": "JOSEANTONIOPAEZ",
+      "lat": "10.1124530922436",
+      "lng": "-69.0368716167321"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20090000000",
+      "estado": "YARACUY",
+      "municipio": "LATRINIDAD",
+      "lat": "10.2457724797038",
+      "lng": "-68.770738217742"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20100000000",
+      "estado": "YARACUY",
+      "municipio": "COCOROTE",
+      "lat": "10.3093488639272",
+      "lng": "-68.7757108981555"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20110000000",
+      "estado": "YARACUY",
+      "municipio": "INDEPENDENCIA",
+      "lat": "10.3289954622727",
+      "lng": "-68.7490210642092"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20120000000",
+      "estado": "YARACUY",
+      "municipio": "ARISTIDESBASTIDAS",
+      "lat": "10.2451255178481",
+      "lng": "-68.8512108901178"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20130000000",
+      "estado": "YARACUY",
+      "municipio": "MANUELMONGE",
+      "lat": "10.6029711981926",
+      "lng": "-68.7001414594979"
+    },
+    {
+      "nivel": "2",
+      "codcne": "20140000000",
+      "estado": "YARACUY",
+      "municipio": "VEROES",
+      "lat": "10.4407769371866",
+      "lng": "-68.5257601313892"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21010000000",
+      "estado": "ZULIA",
+      "municipio": "BARALT",
+      "lat": "9.82806017917836",
+      "lng": "-70.930965148095"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21020000000",
+      "estado": "ZULIA",
+      "municipio": "SANTARITA",
+      "lat": "10.5339361823819",
+      "lng": "-71.4849034572263"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21030000000",
+      "estado": "ZULIA",
+      "municipio": "COLON",
+      "lat": "8.93876022565946",
+      "lng": "-71.8893732460408"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21040000000",
+      "estado": "ZULIA",
+      "municipio": "MARA",
+      "lat": "10.8389878746767",
+      "lng": "-71.8585507072892"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21050000000",
+      "estado": "ZULIA",
+      "municipio": "MARACAIBO",
+      "lat": "10.66367222519",
+      "lng": "-71.64828633478"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21060000000",
+      "estado": "ZULIA",
+      "municipio": "MIRANDA",
+      "lat": "10.6983142473612",
+      "lng": "-71.4351684350041"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21070000000",
+      "estado": "ZULIA",
+      "municipio": "GUAJIRA",
+      "lat": "11.2870707240763",
+      "lng": "-71.9838987447027"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21080000000",
+      "estado": "ZULIA",
+      "municipio": "MACHIQUESDEPERIJA",
+      "lat": "10.0027902544989",
+      "lng": "-72.5332154239936"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21090000000",
+      "estado": "ZULIA",
+      "municipio": "SUCRE",
+      "lat": "9.16445002687827",
+      "lng": "-71.124118078099"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21100000000",
+      "estado": "ZULIA",
+      "municipio": "LACAÃ‘ADADEURDANETA",
+      "lat": "10.4133920160273",
+      "lng": "-71.7476319853486"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21110000000",
+      "estado": "ZULIA",
+      "municipio": "LAGUNILLAS",
+      "lat": "10.2003194070633",
+      "lng": "-71.2873050604972"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21120000000",
+      "estado": "ZULIA",
+      "municipio": "CATATUMBO",
+      "lat": "8.90036872989165",
+      "lng": "-72.2588257680592"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21130000000",
+      "estado": "ZULIA",
+      "municipio": "ROSARIODEPERIJA",
+      "lat": "10.2818545345132",
+      "lng": "-72.2800547874914"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21140000000",
+      "estado": "ZULIA",
+      "municipio": "CABIMAS",
+      "lat": "10.3930845837029",
+      "lng": "-71.4346546549897"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21150000000",
+      "estado": "ZULIA",
+      "municipio": "VALMORERODRIGUEZ",
+      "lat": "10.0082044050701",
+      "lng": "-71.0857951740621"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21160000000",
+      "estado": "ZULIA",
+      "municipio": "JESUSENRIQUELOSSADA",
+      "lat": "10.6294990616944",
+      "lng": "-71.8667123851133"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21170000000",
+      "estado": "ZULIA",
+      "municipio": "ALMIRANTEPADILLA",
+      "lat": "10.9640542718702",
+      "lng": "-71.6447024956753"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21180000000",
+      "estado": "ZULIA",
+      "municipio": "SANFRANCISCO",
+      "lat": "10.559222605025",
+      "lng": "-71.6506219113494"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21190000000",
+      "estado": "ZULIA",
+      "municipio": "JESUSMARIASEMPRUM",
+      "lat": "8.88531132528465",
+      "lng": "-72.5521692403777"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21200000000",
+      "estado": "ZULIA",
+      "municipio": "FRANCISCOJAVIERPULGAR",
+      "lat": "8.93611621423442",
+      "lng": "-71.5833380230625"
+    },
+    {
+      "nivel": "2",
+      "codcne": "21210000000",
+      "estado": "ZULIA",
+      "municipio": "SIMONBOLIVAR",
+      "lat": "10.2765291720817",
+      "lng": "-71.3608496097316"
+    },
+    {
+      "nivel": "2",
+      "codcne": "22010000000",
+      "estado": "AMAZONAS",
+      "municipio": "ATURES",
+      "lat": "5.66916428560335",
+      "lng": "-67.5851603205337"
+    },
+    {
+      "nivel": "2",
+      "codcne": "22020000000",
+      "estado": "AMAZONAS",
+      "municipio": "ATABAPO",
+      "lat": "4.03268961137089",
+      "lng": "-67.6039994773271"
+    },
+    {
+      "nivel": "2",
+      "codcne": "22030000000",
+      "estado": "AMAZONAS",
+      "municipio": "MAROA",
+      "lat": "2.70732665689368",
+      "lng": "-67.5019205266779"
+    },
+    {
+      "nivel": "2",
+      "codcne": "22040000000",
+      "estado": "AMAZONAS",
+      "municipio": "RIONEGRO",
+      "lat": "1.86882040739884",
+      "lng": "-66.9886997117303"
+    },
+    {
+      "nivel": "2",
+      "codcne": "22050000000",
+      "estado": "AMAZONAS",
+      "municipio": "AUTANA",
+      "lat": "5.00969435695503",
+      "lng": "-67.7474692253854"
+    },
+    {
+      "nivel": "2",
+      "codcne": "22060000000",
+      "estado": "AMAZONAS",
+      "municipio": "MANAPIARE",
+      "lat": "5.04810738046165",
+      "lng": "-65.9693689424157"
+    },
+    {
+      "nivel": "2",
+      "codcne": "22070000000",
+      "estado": "AMAZONAS",
+      "municipio": "ALTOORINOCO",
+      "lat": "3.0175880749717",
+      "lng": "-65.242930160406"
+    },
+    {
+      "nivel": "2",
+      "codcne": "23010000000",
+      "estado": "DELTAAMACURO",
+      "municipio": "TUCUPITA",
+      "lat": "9.05012086279484",
+      "lng": "-62.0390918134775"
+    },
+    {
+      "nivel": "2",
+      "codcne": "23020000000",
+      "estado": "DELTAAMACURO",
+      "municipio": "PEDERNALES",
+      "lat": "9.78306662833466",
+      "lng": "-62.210100433855"
+    },
+    {
+      "nivel": "2",
+      "codcne": "23030000000",
+      "estado": "DELTAAMACURO",
+      "municipio": "ANTONIODIAZ",
+      "lat": "8.83205195436688",
+      "lng": "-61.0165932990095"
+    },
+    {
+      "nivel": "2",
+      "codcne": "23040000000",
+      "estado": "DELTAAMACURO",
+      "municipio": "CASACOIMA",
+      "lat": "8.46024875747867",
+      "lng": "-62.3844488806376"
+    },
+    {
+      "nivel": "2",
+      "codcne": "24010000000",
+      "estado": "VARGAS",
+      "municipio": "VARGAS",
+      "lat": "10.5938141909732",
+      "lng": "-66.9658532553069"
+    }
+  ]  
+
+}
