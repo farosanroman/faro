@@ -405,13 +405,13 @@ return (
           }}
         />
 
-    {/* <GeoJSONLayer
+    <GeoJSONLayer
            data={PA}
            fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
            linePaint={{'line-color': 'purple','line-width': .3}}
                      //fillOnMouseEnter={this.MouseEnter} 
          // fillOnClick={this.onFillMapClick}
-       />   */}
+       />  
         
 
         <GeoJSONLayer
@@ -432,7 +432,7 @@ return (
                       [9, "#1E90FF"]
                    ]
           }
-           ,'fill-outline-color': 'purple','fill-opacity': .5}}
+           ,'fill-outline-color': 'purple','fill-opacity': .2}}
            linePaint={{'line-color': 'firebrick','line-width': 1}}
                      //fillOnMouseEnter={this.MouseEnter} 
          // fillOnClick={this.onFillMapClick}
@@ -444,45 +444,7 @@ return (
          
              
             />
- <GeoJSONLayer
-          data={CENTROSRURALESGEO}
-          circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'red','circle-radius': 2, }}  
-        // onClick={onMapClick}     
-        //circleOnClick={onCentroClick}
-        //   fillOnClick={this.onMapClick}  
-          symbolLayout={{
-            'text-field': '{nombre}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
-            "text-size": 10
-            
-          }}
-          symbolPaint={{
-            'text-color': 'black'
-          }}
-          />
- <GeoJSONLayer
-          data={CENTROSURBANOSGEO}
-          circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'blue','circle-radius': 2, }}  
-        // onClick={onMapClick}     
-        //circleOnClick={onCentroClick}
-        //   fillOnClick={this.onMapClick} 
-         
-          symbolLayout={{
-            'text-field': '{nombre}',
-            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top',
-            "text-size": 10
-            
-          }}
-          symbolPaint={{
-            'text-color': 'black'
-          }}
-          />
+ 
 
 <GeoJSONLayer
           data={MUNICIPIOSPOINT}
@@ -502,7 +464,49 @@ return (
          "circle-stroke-width": 1 }}         
          
           />
-
+<GeoJSONLayer
+          data={CENTROSRURALESGEO}
+          circleLayout={{ visibility: 'visible' }}
+         circlePaint={{'circle-color': 'green','circle-radius': 4, 
+         'circle-stroke-color': 'yellow' , 'circle-stroke-width':5,'circle-stroke-opacity':.2,'circle-blur': 0.1
+        }}  
+        // onClick={onMapClick}     
+        //circleOnClick={onCentroClick}
+        //   fillOnClick={this.onMapClick}  
+          symbolLayout={{
+            'text-field': '{nombre}',
+            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top',
+            "text-size": 10
+            
+          }}
+          symbolPaint={{
+            'text-color': 'black'
+          }}
+          />
+ <GeoJSONLayer
+          data={CENTROSURBANOSGEO}
+          circleLayout={{ visibility: 'visible' }}
+         circlePaint={{'circle-color': 'dodgerblue','circle-radius': 4,
+         'circle-stroke-color': 'white' , 'circle-stroke-width':4,'circle-stroke-opacity':.2,'circle-blur': 0.1
+        }}  
+        // onClick={onMapClick}     
+        //circleOnClick={onCentroClick}
+        //   fillOnClick={this.onMapClick} 
+         
+          symbolLayout={{
+            'text-field': '{nombre}',
+            'text-font': ['Open Sans Regular', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top',
+            "text-size": 10
+            
+          }}
+          symbolPaint={{
+            'text-color': 'black'
+          }}
+          />
 </Map>
 
 
