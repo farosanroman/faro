@@ -26,6 +26,7 @@ import Button from '@material-ui/core/Button';
 //import { Application } from '../App';
 
 //import {ESTADOSGEO} from '../data/ESTADOSGEO.json';
+import {observadores} from '../../data/observadores.json';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {useFetch}  from '../hooks/usefetch'
@@ -429,13 +430,16 @@ setCentrosgeojson(centrosjson)
       </Grid>
 
     <Divider />
-    <Grid container spacing={2}>
     
-      {atc.map((item, index) => (
-        <Grid item xl={3} md={3} sm={3} xs={12}>
-            <SimpleCard persona={item} />
+    <Grid container spacing={2}>
+    <Grid item xl={4} md={4} sm={6} xs={12}>
+       <SimpleCard persona={observadores[0]} />
       </Grid>
-      ))}
+      {observadores.map((o, index) => (
+    <Grid item xl={4} md={4} sm={6} xs={12}>
+    <SimpleCard persona={o} />
+   </Grid>
+       ) )}
       </Grid>
       
  </div>

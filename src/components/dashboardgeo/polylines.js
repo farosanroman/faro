@@ -24,7 +24,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import Circle from 'react-circle';
 import NativeSelect from '@material-ui/core/NativeSelect';
+
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Avatar from '@material-ui/core/Avatar';
+import Divider from '@material-ui/core/Divider';
 //import {observadores} from '../data/observadores.json';
 //import {antenas} from '../data/antenas.json';
 //import {celular} from '../data/celular.json';
@@ -49,6 +56,7 @@ import Title2 from '../layout/title';
 import {func1} from '../helpers/helperpolygons'
 import {pointInPolygon} from '../helpers/helperpolygons'
 import {resultados,getLocation,getPersona,getPersonasCODCNE,getCentrosCODCNE} from '../helpers/helpers'
+import {analisiscentros} from './helperanalisis'
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {EEMMPP} from  '../../data/EEMMPP.json';
@@ -93,6 +101,15 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
     container: {
         paddingTop: theme.spacing(4),
         paddingBottom: theme.spacing(4),
+      },
+      card: {
+        maxWidth:200,
+        minWidth:200,
+        boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+        "&:hover": {
+          boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+        }
+        
       },
   }));
 
@@ -191,7 +208,7 @@ MUNICIPIOSGEO.features.map((munigeo,igeo)=>{
  };
 //////////////////////////
 const handleTurf = id => {
-  
+  setFlagCircular(true);
   PALATLNG.map((palatlng,index)=>{ 
     //console.log(index+" "+palatlng.lat)
     PA.features.map((pa,indexpa)=>{
@@ -201,6 +218,7 @@ const handleTurf = id => {
      // console.log(JSON.stringify(pa.geometry.coordinates))
       var pointsss = points([[palatlng.lng,palatlng.lat],[palatlng.lng,palatlng.lat],[palatlng.lng,palatlng.lat],[palatlng.lng,palatlng.lat]]);   
       var poin = point([palatlng.lng,palatlng.lat]);   
+     // alert(JSON.stringify(poin))
      if (indexpa<1125){
       var poly=polygon(pa.geometry.coordinates);
       
@@ -218,6 +236,7 @@ if (isInside1){
     })
     
   })
+  setFlagCircular(false);
  }
 
  
@@ -226,6 +245,10 @@ if (isInside1){
       useEffect(() => {  
       setFlagCircular(true);
        getCentrosCODCNE(CODESTADO,result => {  
+        analisiscentros(result,result2 => {  
+            alert(JSON.stringify(result2))
+        })
+         console.log(result)
          var centrosfiltro=[]
          var ruralesfiltro=[]
          for (var i = 0; i < result.length; i++) {
@@ -273,7 +296,8 @@ if (isInside1){
    setCENTROSRURALESGEO(ruralesjson)
    setComentario(result.length+ " centros "+centrosfiltro.length+" Urbanos")
    //alert(JSON.stringify(centrosjson))
-   setFlagCircular(flag)
+   
+   setFlagCircular(false);
    //alert(result.length+" "+JSON.stringify(centrosfiltro.length))
       })
      
@@ -365,15 +389,27 @@ return (
   thickness={4}
  className={classes.progress} />}     
  <Button variant="outlined" color="primary" onClick={() => handleMunicipios("01")}>Municipios</Button>
- <Button variant="outlined" color="primary" onClick={() => handleInterseccion("01")}>GeoMetropolis</Button>
+ <Button variant="outlined" color="primary" onClick={() => handleInterseccion("01")}>Circunscripciones</Button>
+ <Button variant="outlined" color="primary" onClick={() => handleInterseccion("01")}>Diputados</Button>
+
  <Button variant="outlined" color="primary" onClick={() => handleInterseccion("01")}>GeoCiudades</Button>
- <Button variant="outlined" color="primary" onClick={() => handleInterseccion("23")}>GeoRurales</Button>
- <Button variant="outlined" color="primary" onClick={() => handleInterseccion("08")}>GeoSocioEconomicos</Button>
- <Button variant="outlined" color="primary" onClick={() => handleInterseccion("12")}>GeoResultados</Button>
+
+ 
  <Button variant="outlined" color="primary" onClick={() => handleTurf("12")}>Intersecciones</Button>
  
  <div>{comentario}</div>
- 
+ <Grid container  spacing={0}     alignItems="center"  >
+ <Grid item xs ><SimpleCard persona={pp} />
+</Grid><Grid item xs   ><SimpleCard persona={pp} />
+</Grid><Grid item xs  ><SimpleCard persona={pp} />
+</Grid>
+<Grid item xs  ><SimpleCard persona={pp} />
+</Grid>
+<Grid item xs  ><SimpleCard persona={pp} />
+</Grid>
+
+</Grid>
+
  <Map       
    //style="mapbox://styles/mapbox/streets-v8"
    //style="mapbox://styles/mapbox/dark-v9"
@@ -467,8 +503,8 @@ return (
 <GeoJSONLayer
           data={CENTROSRURALESGEO}
           circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'green','circle-radius': 4, 
-         'circle-stroke-color': 'yellow' , 'circle-stroke-width':5,'circle-stroke-opacity':.2,'circle-blur': 0.1
+         circlePaint={{'circle-color': 'green','circle-radius': 3, 
+         'circle-stroke-color': 'red' , 'circle-stroke-width':2,'circle-stroke-opacity':.2,'circle-blur': 0.1
         }}  
         // onClick={onMapClick}     
         //circleOnClick={onCentroClick}
@@ -488,8 +524,8 @@ return (
  <GeoJSONLayer
           data={CENTROSURBANOSGEO}
           circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'dodgerblue','circle-radius': 4,
-         'circle-stroke-color': 'white' , 'circle-stroke-width':4,'circle-stroke-opacity':.2,'circle-blur': 0.1
+         circlePaint={{'circle-color': 'orange','circle-radius': 3,
+         'circle-stroke-color': 'red' , 'circle-stroke-width':2,'circle-stroke-opacity':.2,'circle-blur': 0.1
         }}  
         // onClick={onMapClick}     
         //circleOnClick={onCentroClick}
@@ -515,3 +551,95 @@ return (
 </Fragment>
 )
         }
+
+
+        var pp= {
+          "id": 369432,
+          "FechaAsignado": "2018-11-23T14:24:11.813Z",
+          "idnodoorganizacional": 5298,
+          "codcne": "050502010",
+          "muestra": 1,
+          "E": 5,
+          "RE": "050702001",
+          "nombre": "(***) ESCUELA BASICA ESTADAL CONCENTRADA EL ROBLECITO",
+          "estado": "BARINAS",
+          "municipio": "OBISPOS",
+          "parroquia": "LA LUZ",
+          "idrol": 247,
+          "rol": "Testigo Electoral",
+          "identificacion": "V8139366",
+          "nombre1": "YLDEGAR",
+          "nombre2": "JOSE",
+          "apellido1": "CECILIO",
+          "evaluacion": "",
+          "idpartido": 0,
+          "descripcion": null,
+          "facilitador": "",
+          "celular": "04245299871",
+          "correo": "constructorapuntabrava@gmail.com",
+          "sexo": "0",
+          "fechanac": "1960-11-09",
+          "edad": 58,
+          "cvcodcne": "050702001",
+          "cvestado": "BARINAS",
+          "cvmunicipio": "ROJAS",
+          "cvparroquia": "LIBERTAD",
+          "cvcentro": "ESCUELA BASICA LUIS UGUETO",
+          "lng": -69.63098,
+          "lat": 8.327147,
+          "cuenta": ""
+      }
+
+        function SimpleCard({persona}) {
+          //https://codesandbox.io/s/50l225l964
+            // alert(JSON.stringify(testigo))
+           const classes = useStyles();
+           // const bull = <span className={classes.bullet}>•</span>;
+           var RANDOM=Math.floor(Math.random() * (70- 1 + 1) + 1);
+          var url ="https://i.pravatar.cc/100?img="+RANDOM
+           function handleSubmit(event) {
+          
+          
+          };
+            return (
+          
+          <Card className={classes.card}>
+          <CardContent>
+          <Grid container 
+                 spacing={0}
+                 direction="column"
+                 alignItems="center"
+                 justify='center'
+                  
+                   >
+ <Grid item >
+<Circle animate={true} animationDuration="1s"   progress={60} size={50} percentSpacing={20}  bgColor="green"  
+                    textColor="black" progressColor="orange"    roundedStroke={false}  showPercentage={true}  showPercentageSymbol={true} lineWidth={50}/>
+ 
+ <Circle animate={true} animationDuration="1s"   progress={60} size={50} percentSpacing={20}  bgColor="lightgray"  
+                    textColor="black" progressColor="black"    roundedStroke={false}  showPercentage={true}  showPercentageSymbol={true} lineWidth={50}/>
+            
+ <Circle animate={true} animationDuration="1s"   progress={67.45} size={50} percentSpacing={20}  bgColor="red"  
+                    textColor="dodgerblue" progressColor="dodgerblue"    roundedStroke={false}  showPercentage={true}  showPercentageSymbol={true} lineWidth={50}/>
+</Grid>
+
+                    
+                   </Grid>
+            <Typography className={classes.title} color="textSecondary" gutterBottom>
+            {"Miranda"}
+            </Typography>
+            <Typography gutterBottom variant="h8" component="h5">
+            {"Total"}
+            </Typography>
+            <Typography className={classes.pos} color="textSecondary">
+            {'12 Diputados Lista'}
+            </Typography>
+            <Divider className={classes.divider} light />
+          
+          </CardContent>
+         <CardActions>
+          
+          </CardActions>
+          </Card>
+            );
+          }

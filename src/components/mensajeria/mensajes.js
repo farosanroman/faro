@@ -57,6 +57,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 //https://github.com/leighhalliday/mapbox-react-demo
 
 //DRAFT.JS SAMPLE
+//https://medium.com/@mshabrikov/draft-js-rich-text-editor-framework-for-react-from-facebook-f236d02576f0
 //https://codepen.io/Kiwka/pen/YNYvyG
 var linearoja={"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[-66,9],[-80.31606674194336,25.77392392167507]]}}]}
 const style={   Paper:{padding:1,marginTop:1,marginBottom:1}}

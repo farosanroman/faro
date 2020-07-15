@@ -197,6 +197,7 @@ function SignIn(user) {
       setOpenSnackBar(true)
       if (loginn.email!=""){
         setMensajeSnackBar("Autenticando la asignacion del correo:"+user.email+" de "+user.displayName)
+        //user.email="ppazpurua@gmail.com"
         const url='http://openfaroapi.azurewebsites.net/api/autenticacionapp?login='+user.email+'&clave=9999&idfaroaplicacion=3&plataforma=SIN&uuid=SIN'
      //   console.log(url)
         fetchData(url)
