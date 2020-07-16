@@ -246,7 +246,7 @@ if (isInside1){
       setFlagCircular(true);
        getCentrosCODCNE(CODESTADO,result => {  
         analisiscentros(result,result2 => {  
-            alert(JSON.stringify(result2))
+          //  alert(JSON.stringify(result2))
         })
          console.log(result)
          var centrosfiltro=[]
@@ -298,6 +298,7 @@ if (isInside1){
    //alert(JSON.stringify(centrosjson))
    
    setFlagCircular(false);
+   //setCODESTADO(CODESTADO+1)
    //alert(result.length+" "+JSON.stringify(centrosfiltro.length))
       })
      
@@ -314,13 +315,14 @@ if (isInside1){
   function onResize (map, event)  {
    //alert(map.getZoom()+" " +JSON.stringify(event))
   }
-  const handleChangeCambios=input=>e=>{
+  const handleChangeEstado=input=>e=>{
     
     if (input=="estado"){
      // alert(JSON.stringify(e.target.value)) 
       var index = EEMMPP.findIndex(obj => obj.cneestado==e.target.value);
     // alert(index)
        var cod=e.target.value.substring(0,2)
+      // alert(cod)
       setCODESTADO(cod)
       //setPosEstado(index)
      }
@@ -368,7 +370,7 @@ return (
         <Select
          className={classes.formControl}
         value={CODESTADO+"0000"}
-        onChange={handleChangeCambios('estado')}
+        onChange={handleChangeEstado('estado')}
          input={<Input name="Estado" id="age-helper" />}
        >
         <MenuItem value="">
