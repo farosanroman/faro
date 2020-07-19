@@ -88,9 +88,7 @@ export default function GeoFaroHistoria() {
         <Paper style={style2.Paper}>
 
                 
-              <Typography gutterBottom variant="h6" component="h2">
-Resultados de: {state.centro}
-</Typography>
+              <Typography gutterBottom variant="h6" component="h2">Resultados de: {state.centro}</Typography>
 </Paper>
           <Table><TableRow><TableCell>
           <Circle animate={true} animationDuration="1s"   progress={state.resultados.participacion.toFixed(2)} size={60} percentSpacing={10}  bgColor="lightgray"  

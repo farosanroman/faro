@@ -2,6 +2,7 @@ import React, {useEffect, useState,Fragment } from 'react';
 //import { Application } from '../App';
 //import {antenacercana} from './helpers'
 //https://codesandbox.io/s/xenodochial-tu-pwly8  pintar
+//https://mapshaper.org/
 import  MapGL,{Layer,Feature,ZoomControl,GeoJSONLayer,ScaleControl} from 'react-mapbox-gl';
 import {inside, points,polygon,pointsWithinPolygon} from '@turf/turf';
 //import inside from 'turf-inside';
@@ -44,7 +45,7 @@ import {ESTADOSGEO} from '../../data/ESTADOSGEO.json';
 import {CIUDADESGEO} from '../../data/ciudadesgeo.json';
 import {MUNICIPIOSGEO} from '../../data/MUNICIPIOSGEO.json';
 import {MUNICIPIOS} from '../../data/MUNICIPIOS.json';
-
+import {CIRCUITOS} from '../../data/circuitos.json';
 //import {RESP} from '../../data/resp.json';
 import {PAPROPERTIES} from  '../../data/PAPROPERTIES.json';
 
@@ -56,7 +57,8 @@ import Title2 from '../layout/title';
 import {func1} from '../helpers/helperpolygons'
 import {pointInPolygon} from '../helpers/helperpolygons'
 import {resultados,getLocation,getPersona,getPersonasCODCNE,getCentrosCODCNE} from '../helpers/helpers'
-import {analisiscentros} from './helperanalisis'
+import {analisiscentros} from './helpers/helperanalisis'
+import {creaciongeojson} from './helpers/helpergeojson'
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {EEMMPP} from  '../../data/EEMMPP.json';
@@ -120,12 +122,18 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
     const [pos, setPos] = React.useState([-66.9188,8.808]);
     //const { state, dispatch } = React.useContext(Application);
     const [CODESTADO, setCODESTADO] = React.useState();
+    const [NOMBREESTADO, setNOMBREESTADO] = React.useState();
+    const [CENTROS,setCENTROS]=React.useState([])
+    const [RESULTADOS, setRESULTADOS] = React.useState({});
+    const [PORCURBANO,setPORCURBANO]=React.useState(0)
     const [MUNICIPIOSPOINT, setMUNICIPIOSPOINT] = React.useState({"type":"FeatureCollection", "features": []});
     const [MUNICIPIOSGEO2, setMUNICIPIOSGEO2] = React.useState({"type":"FeatureCollection", "features": []});
  
+
     const [CENTROSURBANOSGEO, setCENTROSURBANOSGEO] = React.useState([]);
     const [CENTROSRURALESGEO, setCENTROSRURALESGEO] = React.useState([]);
 
+    
     const [comentario, setComentario] = React.useState("");
  
     const [flagCircular, setFlagCircular] = React.useState(false);
@@ -244,65 +252,50 @@ if (isInside1){
     ///////////////////////////////////////////////////////     
       useEffect(() => {  
       setFlagCircular(true);
+      
        getCentrosCODCNE(CODESTADO,result => {  
         analisiscentros(result,result2 => {  
-          //  alert(JSON.stringify(result2))
+         // alert(JSON.stringify(result2[0]))
+          setCENTROS(result)
+          setRESULTADOS(result2[0])
+          setCENTROSURBANOSGEO(result2[1]) 
+          setCENTROSRURALESGEO(result2[2])
+     
+      //  setCENTROSURBANOSGEO(centrosjson) 
+      //  //setCENTROSRURALESGEO(ruralesjson)
+        setComentario((result2[0].centrosurbanos+result2[0].centrosrurales)+" centros "+result2[0].centrosurbanos+ " urbanos "+result2[0].centrosrurales+" rurales")
+      //  setPORCURBANO((result3.urbanos.length/result.length*100.0).toFixed(2))
+      //  //alert(JSON.stringify(centrosjson))
+       
+      //  setFlagCircular(false);
+                
+      //     })
         })
-         console.log(result)
-         var centrosfiltro=[]
-         var ruralesfiltro=[]
-         for (var i = 0; i < result.length; i++) {
-           var flag=false
-           for (var j = 0; j < CIUDADESGEO.features.length; j++) {
-                     var p={"type":"Point","coordinates":[result[i].lng,result[i].lat]}
-                     var poly=CIUDADESGEO.features[j].geometry
-                     if (pointInPolygon(p,poly)){
-                      centrosfiltro.push(result[i])
-                      j=CIUDADESGEO.features.length+1 
-                      flag=true
-                    }
+        //  console.log(result)
+        //  var centrosfiltro=[]
+        //  var ruralesfiltro=[]
+        //  for (var i = 0; i < result.length; i++) {
+        //    var flag=false
+        //    for (var j = 0; j < CIUDADESGEO.features.length; j++) {
+        //              var p={"type":"Point","coordinates":[result[i].lng,result[i].lat]}
+        //              var poly=CIUDADESGEO.features[j].geometry
+        //              if (pointInPolygon(p,poly)){
+        //               centrosfiltro.push(result[i])
+        //               j=CIUDADESGEO.features.length+1 
+        //               flag=true
+        //             }
                      
-           }
-           if (flag==false) {ruralesfiltro.push(result[i])}         
-         }
-         const  featurescentrosjson=centrosfiltro.map(o=>{               
-          return(
-            {
-              "type":"Feature",
-              "properties":{"nombre":o.nombrecentro,"codcne":o.codcne,"correo":o.correo,},                             
-              "geometry":{"type":"Point","coordinates":[o.lng,o.lat]
-              }
-            }
-      )     
-   }) 
-   const  featuresruralesjson=ruralesfiltro.map(o=>{               
-    return(
-      {
-        "type":"Feature",
-        "properties":{"nombre":o.nombrecentro,"codcne":o.codcne,"correo":o.correo,},                             
-        "geometry":{"type":"Point","coordinates":[o.lng,o.lat]
-        }
-      }
-        )     
-     })   
-     let centrosjson={"type":"FeatureCollection","features":[] }
-
-            centrosjson.features=featurescentrosjson;
-     let ruralesjson={"type":"FeatureCollection","features":[] }
-
-           ruralesjson.features=featuresruralesjson;
-
-   setCENTROSURBANOSGEO(centrosjson) 
-   setCENTROSRURALESGEO(ruralesjson)
-   setComentario(result.length+ " centros "+centrosfiltro.length+" Urbanos")
-   //alert(JSON.stringify(centrosjson))
-   
-   setFlagCircular(false);
+        //    }
+        //    if (flag==false) {ruralesfiltro.push(result[i])}         
+        //  }
    //setCODESTADO(CODESTADO+1)
    //alert(result.length+" "+JSON.stringify(centrosfiltro.length))
+   setFlagCircular(false);
       })
      
       },[CODESTADO]);
+
+    
 /////////////////////////////////
 ///////////////////////////////////
 
@@ -316,14 +309,18 @@ if (isInside1){
    //alert(map.getZoom()+" " +JSON.stringify(event))
   }
   const handleChangeEstado=input=>e=>{
-    
+    //SAMPLE DE SELECT
+    //https://codesandbox.io/s/material-ui-select-demo-with-objects-as-values-cf1s8?file=/demo.js
     if (input=="estado"){
-     // alert(JSON.stringify(e.target.value)) 
+     // alert(JSON.stringify(e.target)) 
       var index = EEMMPP.findIndex(obj => obj.cneestado==e.target.value);
     // alert(index)
        var cod=e.target.value.substring(0,2)
+      // const idx = EEMMPP.findIndex(listItem => listItem.cneestado === cod)
+      // alert(JSON.stringify(EEMMPP[index].name))
       // alert(cod)
       setCODESTADO(cod)
+      setNOMBREESTADO(EEMMPP[index].name)
       //setPosEstado(index)
      }
     }
@@ -362,11 +359,6 @@ return (
 <Fragment>
 <div className={classes.root}>
  <Title2>Laboratorio GeoEspacial</Title2>
- 
-      
-     
-        
-       
         <Select
          className={classes.formControl}
         value={CODESTADO+"0000"}
@@ -401,14 +393,12 @@ return (
  
  <div>{comentario}</div>
  <Grid container  spacing={0}     alignItems="center"  >
- <Grid item xs ><SimpleCard persona={pp} />
-</Grid><Grid item xs   ><SimpleCard persona={pp} />
-</Grid><Grid item xs  ><SimpleCard persona={pp} />
-</Grid>
-<Grid item xs  ><SimpleCard persona={pp} />
-</Grid>
-<Grid item xs  ><SimpleCard persona={pp} />
-</Grid>
+
+   {
+                [1,2,3].map(function(item) {
+                  return  <Grid item xs ><SimpleCard nombreestado={NOMBREESTADO}  resultados={RESULTADOS} porcurbano={PORCURBANO} /></Grid>;
+                })
+              }
 
 </Grid>
 
@@ -475,16 +465,7 @@ return (
                      //fillOnMouseEnter={this.MouseEnter} 
          // fillOnClick={this.onFillMapClick}
        />     
-       <GeoJSONLayer
-              data={ESTADOSGEO}
-              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-              linePaint={{'line-color': 'darkblue','line-width': 1.5}}
-         
-             
-            />
- 
-
-<GeoJSONLayer
+ <GeoJSONLayer
           data={MUNICIPIOSPOINT}
           circleLayout={{ visibility: 'visible' }}
          circlePaint={{'circle-color': 'red','circle-radius': 
@@ -502,11 +483,27 @@ return (
          "circle-stroke-width": 1 }}         
          
           />
+ <GeoJSONLayer
+              data={CIRCUITOS}
+              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
+              linePaint={{'line-color': 'crimson','line-width': 1.5}}
+         
+             
+            />
+       <GeoJSONLayer
+              data={ESTADOSGEO}
+              fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
+              linePaint={{'line-color': 'darkblue','line-width': 1.5}}
+         
+             
+            />
+ 
+
 <GeoJSONLayer
           data={CENTROSRURALESGEO}
           circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'green','circle-radius': 3, 
-         'circle-stroke-color': 'red' , 'circle-stroke-width':2,'circle-stroke-opacity':.2,'circle-blur': 0.1
+         circlePaint={{'circle-color': 'lightgreen','circle-radius': 2, 
+         'circle-stroke-color': 'black' , 'circle-stroke-width':2,'circle-stroke-opacity':.5,'circle-blur': 0.1
         }}  
         // onClick={onMapClick}     
         //circleOnClick={onCentroClick}
@@ -526,8 +523,8 @@ return (
  <GeoJSONLayer
           data={CENTROSURBANOSGEO}
           circleLayout={{ visibility: 'visible' }}
-         circlePaint={{'circle-color': 'orange','circle-radius': 3,
-         'circle-stroke-color': 'red' , 'circle-stroke-width':2,'circle-stroke-opacity':.2,'circle-blur': 0.1
+         circlePaint={{'circle-color': 'orange','circle-radius': 2,
+         'circle-stroke-color': 'red' , 'circle-stroke-width':2,'circle-stroke-opacity':.5,'circle-blur': 0.1
         }}  
         // onClick={onMapClick}     
         //circleOnClick={onCentroClick}
@@ -592,7 +589,8 @@ return (
           "cuenta": ""
       }
 
-        function SimpleCard({persona}) {
+        function SimpleCard({nombreestado,resultados,porcurbano}) {
+         // alert(estado)
           //https://codesandbox.io/s/50l225l964
             // alert(JSON.stringify(testigo))
            const classes = useStyles();
@@ -615,27 +613,53 @@ return (
                   
                    >
  <Grid item >
-<Circle animate={true} animationDuration="1s"   progress={60} size={50} percentSpacing={20}  bgColor="green"  
+                 <table width="100%">
+                   <tbody>
+                   <tr><td>
+                      <Typography  variant="subtitle2">Estado:</Typography>
+                  </td><td align="right">
+            <Typography  variant="subtitle2">{nombreestado}</Typography>
+                  </td></tr></tbody></table>
+                  
+<Circle animate={true} animationDuration="1s"   progress={resultados.porcurbanos} size={50} percentSpacing={20}  bgColor="green"  
                     textColor="black" progressColor="orange"    roundedStroke={false}  showPercentage={true}  showPercentageSymbol={true} lineWidth={50}/>
  
- <Circle animate={true} animationDuration="1s"   progress={60} size={50} percentSpacing={20}  bgColor="lightgray"  
+ <Circle animate={true} animationDuration="1s"   progress={resultados.participacion} size={50} percentSpacing={20}  bgColor="lightgray"  
                     textColor="black" progressColor="black"    roundedStroke={false}  showPercentage={true}  showPercentageSymbol={true} lineWidth={50}/>
             
- <Circle animate={true} animationDuration="1s"   progress={67.45} size={50} percentSpacing={20}  bgColor="red"  
+ <Circle animate={true} animationDuration="1s"   progress={resultados.porcunidad} size={50} percentSpacing={20}  bgColor="red"  
                     textColor="dodgerblue" progressColor="dodgerblue"    roundedStroke={false}  showPercentage={true}  showPercentageSymbol={true} lineWidth={50}/>
 </Grid>
 
                     
                    </Grid>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-            {"Miranda"}
-            </Typography>
-            <Typography gutterBottom variant="h8" component="h5">
-            {"Total"}
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-            {'12 Diputados Lista'}
-            </Typography>
+
+                  
+                   <Paper>
+                 <table width="100%">
+                   <tbody>
+                   <tr><td>
+                      <Typography  variant="subtitle2">Electores:</Typography>
+                  </td><td align="right">
+            <Typography  variant="subtitle2">{resultados.electores}</Typography>
+                  </td></tr></tbody></table>
+                  </Paper>
+                  <Paper>
+                 <table width="100%">
+                   <tbody>
+                   <tr><td>
+                      <Typography  variant="subtitle2">Diputados Nominales:</Typography>
+                  </td><td align="right">
+                      <Typography  variant="subtitle2">2</Typography>
+                  </td></tr>
+                  <tr><td>
+                      <Typography  variant="subtitle2">Diputados Lista:</Typography>
+                  </td><td align="right">
+                      <Typography  variant="subtitle2">3</Typography>
+                  </td></tr>
+                  </tbody></table>
+                  </Paper>
+           
             <Divider className={classes.divider} light />
           
           </CardContent>

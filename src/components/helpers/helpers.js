@@ -369,6 +369,9 @@ export  const getLocation=(mensaje,callback)=>{
     
 export  const getCentrosCODCNE=(codcne,callback)=>{
    // codcne="01"
+   if (codcne=="00"){
+    alert(codcne) 
+    codcne=""}
     const url="https://faro2018consultas.azurewebsites.net/api/centrosxcodcne?codcne="+codcne
  // alert(url)
     fetch(url,{     
