@@ -125,6 +125,9 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
     const [NOMBREESTADO, setNOMBREESTADO] = React.useState();
     const [CENTROS,setCENTROS]=React.useState([])
     const [RESULTADOS, setRESULTADOS] = React.useState({});
+    const [RESULTADOSURBANOS, setRESULTADOSURBANOS] = React.useState({});
+    const [RESULTADOSRURALES, setRESULTADOSRURALES] = React.useState({});
+    
     const [PORCURBANO,setPORCURBANO]=React.useState(0)
     const [MUNICIPIOSPOINT, setMUNICIPIOSPOINT] = React.useState({"type":"FeatureCollection", "features": []});
     const [MUNICIPIOSGEO2, setMUNICIPIOSGEO2] = React.useState({"type":"FeatureCollection", "features": []});
@@ -234,7 +237,7 @@ var isInside1 = inside(poin, poly);
 if (isInside1){
  // console.log(index+" "+indexpa+" "+JSON.stringify(pa.properties)+" "+pa.geometry.coordinates.length)
     
-  console.log(index+" "+indexpa+" "+JSON.stringify(pa.properties))
+ // console.log(index+" "+indexpa+" "+JSON.stringify(pa.properties))
          //var ptsWithin = pointsWithinPolygon(pointss,poly);
      //    console.log(JSON.stringify(poin))
 
@@ -258,8 +261,10 @@ if (isInside1){
          // alert(JSON.stringify(result2[0]))
           setCENTROS(result)
           setRESULTADOS(result2[0])
-          setCENTROSURBANOSGEO(result2[1]) 
-          setCENTROSRURALESGEO(result2[2])
+          setRESULTADOSURBANOS(result2[1])
+          setRESULTADOSRURALES(result2[2])
+          setCENTROSURBANOSGEO(result2[3]) 
+          setCENTROSRURALESGEO(result2[4])
      
       //  setCENTROSURBANOSGEO(centrosjson) 
       //  //setCENTROSRURALESGEO(ruralesjson)
@@ -393,12 +398,14 @@ return (
  
  <div>{comentario}</div>
  <Grid container  spacing={0}     alignItems="center"  >
-
-   {
+ <Grid item xs ><SimpleCard nombreestado={NOMBREESTADO}  resultados={RESULTADOS} porcurbano={PORCURBANO} /></Grid>
+ <Grid item xs ><SimpleCard nombreestado={'Urbano'}  resultados={RESULTADOSURBANOS} porcurbano={PORCURBANO} /></Grid>
+ <Grid item xs ><SimpleCard nombreestado={'Rural'}  resultados={RESULTADOSRURALES} porcurbano={PORCURBANO} /></Grid>
+   {/* {
                 [1,2,3].map(function(item) {
                   return  <Grid item xs ><SimpleCard nombreestado={NOMBREESTADO}  resultados={RESULTADOS} porcurbano={PORCURBANO} /></Grid>;
                 })
-              }
+              } */}
 
 </Grid>
 
@@ -552,42 +559,7 @@ return (
         }
 
 
-        var pp= {
-          "id": 369432,
-          "FechaAsignado": "2018-11-23T14:24:11.813Z",
-          "idnodoorganizacional": 5298,
-          "codcne": "050502010",
-          "muestra": 1,
-          "E": 5,
-          "RE": "050702001",
-          "nombre": "(***) ESCUELA BASICA ESTADAL CONCENTRADA EL ROBLECITO",
-          "estado": "BARINAS",
-          "municipio": "OBISPOS",
-          "parroquia": "LA LUZ",
-          "idrol": 247,
-          "rol": "Testigo Electoral",
-          "identificacion": "V8139366",
-          "nombre1": "YLDEGAR",
-          "nombre2": "JOSE",
-          "apellido1": "CECILIO",
-          "evaluacion": "",
-          "idpartido": 0,
-          "descripcion": null,
-          "facilitador": "",
-          "celular": "04245299871",
-          "correo": "constructorapuntabrava@gmail.com",
-          "sexo": "0",
-          "fechanac": "1960-11-09",
-          "edad": 58,
-          "cvcodcne": "050702001",
-          "cvestado": "BARINAS",
-          "cvmunicipio": "ROJAS",
-          "cvparroquia": "LIBERTAD",
-          "cvcentro": "ESCUELA BASICA LUIS UGUETO",
-          "lng": -69.63098,
-          "lat": 8.327147,
-          "cuenta": ""
-      }
+     
 
         function SimpleCard({nombreestado,resultados,porcurbano}) {
          // alert(estado)
@@ -615,9 +587,7 @@ return (
  <Grid item >
                  <table width="100%">
                    <tbody>
-                   <tr><td>
-                      <Typography  variant="subtitle2">Estado:</Typography>
-                  </td><td align="right">
+                   <tr><td align="center" colspan="2">
             <Typography  variant="subtitle2">{nombreestado}</Typography>
                   </td></tr></tbody></table>
                   
@@ -634,7 +604,24 @@ return (
                     
                    </Grid>
 
-                  
+                   <Paper>
+                 <table width="100%">
+                   <tbody>
+                   <tr><td>
+                      <Typography  variant="subtitle2">Centros:</Typography>
+                  </td><td align="right">
+            <Typography  variant="subtitle2">{resultados.centros}</Typography>
+                  </td></tr></tbody></table>
+                  </Paper>
+                  <Paper>
+                 <table width="100%">
+                   <tbody>
+                   <tr><td>
+                      <Typography  variant="subtitle2">Mesas:</Typography>
+                  </td><td align="right">
+            <Typography  variant="subtitle2">{resultados.mesas}</Typography>
+                  </td></tr></tbody></table>
+                  </Paper>
                    <Paper>
                  <table width="100%">
                    <tbody>
