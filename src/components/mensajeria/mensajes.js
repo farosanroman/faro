@@ -118,6 +118,7 @@ const MenuProps = {
    
     const [encabezado, setEncabezado] = React.useState("Error en Pruebas de Sistema");
     const [texto, setTexto] = React.useState("Buenas tardes. Hemos estado reactivando los servicios de envio de correo. Hoy durante el medio dia se activaron unos servicios viejos que no se habian apagado. Disculpen la confusion.");
+    
     const [TESTIGOS,setTESTIGOS]=useState([]) 
     const [cantregistros,setCantregistros]=useState([]) 
     const [state,setState]=useState( {
@@ -142,7 +143,17 @@ const MenuProps = {
      //var url='https://farodesarrollo2010.azurewebsites.net/api/GetFormularioBaseById?code=VHv965PUWi0HhNnfc2PWxUCnakhMkt60HOV90NOMkZ1fPsx6JMRqFQ==&id=EXPERIENCIA'
    fetchData(url);
    //fetchData('http://openfaroapi.azurewebsites.net/api/personasget?codigocne=&idpartido=&idnodofuncional=1039&roles=');
-      
+   
+  //  var ttt={ttt:'<p style="text-align: center;"><span>INFORME MEDICO</span>&nbsp;</p>
+  //  <p style="text-align: justify;"><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Se trata de paciente masculino de 74 a&ntilde;os de edad, quien fue referido a este servicio en Junio del 2015, con el diagn&oacute;stico de ADC de pr&oacute;stata GLEASON VII (4+3), status post-prostatectom&iacute;a radical en Febrero del 2014 con ves&iacute;cula seminal izquierda infiltrada por tumor, clasific&aacute;ndose como T3bNxM0 estadio III; recibi&oacute; radioterapia externa con arcos volum&eacute;tricos modulados hasta 6600 cGy en Junio-Agosto del 2015, con buena evoluci&oacute;n.</span>&nbsp;</p>
+  //  <p><span>EXAMEN FISICO:</span><br /><span>Paciente en condiciones cl&iacute;nicas estables.</span><br /><span>Tolera v&iacute;a oral y ox&iacute;geno ambiente.</span><br /><span>Afebril, eupneico e hidratado.</span><br /><span>Cabeza: normoc&eacute;falo, sin prominencia ni reblandecimiento.</span><br /><span>ORL: fosas nasales permeables, sin evidencia de rinorrea anterior.</span><br /><span>Mucosa oral hidratada. Lengua m&oacute;vil.</span><br /><span>Cuello: sin adenopat&iacute;as, m&oacute;vil. Tiroides no visible no palpable.</span><br /><span>No se palpan adenomegalias en regiones axilares ni supraclaviculares.</span><br /><span>T&oacute;rax: sim&eacute;trico, normoexpansible. Ruidos card&iacute;acos r&iacute;tmicos y sin soplos. Ruidos respiratorios presentes, sin agregados.</span><br /><span>Abdomen: blando, depresible, no doloroso. Ruidos hidroa&eacute;reos presentes. Regiones inguinales sin adenopat&iacute;as. presencia de acontosis nigricans en regi&oacute;n dorso lumbar</span><br /><span>Genitales: masculinos aspect oy configuraci&oacute;n normal tacto rectal, esf&iacute;nter normot&oacute;nico, ampolla rectal vac&iacute;a, prost&aacute;ta de buen tama&ntilde;o sin n&oacute;dulos ni alteraciones.&nbsp;</span><br /><span>Extremidades: eutr&oacute;ficas, m&oacute;viles, sin edemas.</span><br /><span>Neurol&oacute;gico: consciente, orientado en tiempo, espacio y persona.</span>&nbsp;</p>
+  //  <p><span>CONCLUSION: Sin evidencia cl&iacute;nica ni bioqu&iacute;mica de enfermedad.</span>&nbsp;</p>
+  //  <p><span>PLAN: Se solicita hematolog&iacute;a completa, quimica sanguinea y PSA expec&iacute;fico total.</span><br /><span>Se le indica urocultivo para precisar presencia de infecci&oacute;n urinaria, en vista de que present&oacute;&nbsp;bacterias moderadas.</span></p>
+  //  <p>Al tener resultado de laboratorios reevaluar.&nbsp;</p>
+  //  <p>&nbsp;</p>
+  //  <p style="text-align: center;"><span>Dr. Nelson Urdaneta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dra. Laura Ruan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dra. Sara Ott</span>&nbsp;</p>'}
+   
+
   },[]);
   useEffect(() => {
   // alert("formularios "+JSON.stringify(data))

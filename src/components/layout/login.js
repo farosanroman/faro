@@ -97,8 +97,13 @@ const useStyles = makeStyles(theme => ({
 
 const cards = [1, 2, 3];
 const config = {
-  apiKey: 'AIzaSyDZ08hKl01qFilc3nJ4oRmO8wq49pcsw8s',
-  authDomain: 'vinotinto-7f56f.firebaseapp.com',
+  apiKey: "AIzaSyACfHViztnTvTHEdPC5tm-lMebjTQEwIsY",
+  authDomain: "vinotinto-7f56f.firebaseapp.com",
+  databaseURL: "https://vinotinto-7f56f.firebaseio.com",
+  projectId: "vinotinto-7f56f",
+  storageBucket: "vinotinto-7f56f.appspot.com",
+  messagingSenderId: "892393449979",
+  appId: "1:892393449979:web:f8a44a97924a8aeaee435e",
   signInFlow: 'popup',
   // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
   //signInSuccessUrl: '/signedIn',

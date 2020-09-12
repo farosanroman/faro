@@ -94,8 +94,10 @@ export default function GeoFaroHistoria() {
           <Circle animate={true} animationDuration="1s"   progress={state.resultados.participacion.toFixed(2)} size={60} percentSpacing={10}  bgColor="lightgray"  
                     textColor="black" progressColor="black"    roundedStroke={false}  showPercentage={true}  showPercentageSymbol={true} lineWidth={50}/>
                   </TableCell><TableCell>
+                   
                     <Circle animate={true} animationDuration="1s"   progress={state.resultados.porcunidad.toFixed(2)} size={60} percentSpacing={10}  bgColor="red"  
                     textColor="dodgerblue" progressColor="dodgerblue"    roundedStroke={false}  showPercentage={true}  showPercentageSymbol={true} lineWidth={50}/>
+                  
                   </TableCell></TableRow></Table>  
                   <Paper>
 

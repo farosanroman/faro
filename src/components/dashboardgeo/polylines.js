@@ -175,10 +175,10 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
              pa.features[i].properties.OFICIALISMOPORC="0.0";
              pa.features[i].properties=PAPROPERTIES.features[i].properties;
 					 }
-          //this.setState({ jsontext:pa });
+          
           setPA(pa)
           setFlagCircular(false);
-           //this.setState({PA:pa,isLoading:false })
+          
          });
          
        })

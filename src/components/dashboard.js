@@ -397,13 +397,13 @@ export default function Dashboard() {
       </ListItemIcon>
       <ListItemText primary="GeoCentros" />
     </ListItem>
-{/* 
+
         <ListItem button onClick={handleComponent(5)}>
       <ListItemIcon>
         <EditIcon />
       </ListItemIcon>
       <ListItemText primary="Asignacion" />
-    </ListItem> */}
+    </ListItem>
 
         </List>   
 
