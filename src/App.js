@@ -19,7 +19,6 @@ import { 	RecoilRoot } from 'recoil';
 import Dashboard from '../src/components/dashboard'
 import { reducer, defaultState } from './Context';
 export const Application = React.createContext({ state: null, dispatch: null });
-
 const theme = createMuiTheme({
   palette: {
     primary: indigo,
