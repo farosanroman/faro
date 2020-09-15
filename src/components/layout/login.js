@@ -2,6 +2,11 @@ import React,{useEffect,useState} from 'react';
 import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
 import { flagLogin,login,funcionales,roles} from '../store/atom';
 import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import clsx from 'clsx';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
@@ -10,8 +15,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
 
+import TuneIcon from '@material-ui/icons/Tune';
+import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -54,13 +60,37 @@ function Copyright() {
   </Typography>
   );
 }
+const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    flexGrow: 1,
   },
+  
+  toolbar: {
+    paddingRight: 24, // keep right padding when drawer closed
+  },
+  title: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  // appBar: {
+  //   zIndex: theme.zIndex.drawer + 1,
+  //   transition: theme.transitions.create(['width', 'margin'], {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.leavingScreen,
+  //   }),
+  // },
+  // appBarShift: {
+  //   marginLeft: drawerWidth,
+  //   width: `calc(100% - ${drawerWidth}px)`,
+  //   transition: theme.transitions.create(['width', 'margin'], {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.enteringScreen,
+  //   }),
+  // },
   inline: {
     display: 'inline',
   },
@@ -141,6 +171,14 @@ export default function Login(props) {
   const [FUNCIONALES, setFUNCIONALES] = useRecoilState(funcionales);
   const [ROLES, setROLES] = useRecoilState(roles);
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openLogin, setOpenLogin] = React.useState(false);
+  const [state, setState] = React.useState({
+    top: true,
+    left: true,
+    bottom: false,
+    right: false,
+  });
   const classes = useStyles();
   const [loginauth, setLoginAuth] = useState({uid:"0",name:"",photoURL:"",email:"",phone:"",cedula:"",lat:0,lng:0})
   const [open, setOpen] = useState(false);
@@ -157,26 +195,44 @@ export default function Login(props) {
   const [signedIn, setSignIn]= useState(false);
   const [ dataPost, isLoadingPost, isErrorPost , postData] = useFetchPost('');
   const stategeo = useGeolocation();
+  const handleLogin2 = (event) => {
+    //alert()
+    setOpenLogin(true)
+    setAnchorEl(event.currentTarget);
+   
+  };
+  const handleCloseLogin = () => {
+    setAnchorEl(null);
+    
+   setOpenLogin(false)
+  };
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const toggleDrawer = (side, open) => event => {
+    
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    //setGETINDICADORES(true)
+    setState({ ...state, [side]: open });
+  };
   useEffect(() => {
-    const unregisterAuthObserver = firebase.auth()
-      .onAuthStateChanged(
-        (user) => {
-         // alert(JSON.stringify(user))
-          SignIn(user)
-          //setSignIn({isSignedIn: !!user})
-        }
-      );
+    //NO BORRAR ACTIVA AUTOMATICO
+    // const unregisterAuthObserver = firebase.auth()
+    //   .onAuthStateChanged(
+    //     (user) => {
+    //      // alert(JSON.stringify(user))
+    //       SignIn(user)
+    //       //setSignIn({isSignedIn: !!user})
+    //     }
+    //   );
   
-    // Now you either return just unregisterAuthObserver
-    // which will be called when the component is unmounted
-    return unregisterAuthObserver;
+    // // Now you either return just unregisterAuthObserver
+    // // which will be called when the component is unmounted
+    // return unregisterAuthObserver;
   
-    // or you create a function if you want more login when the component is unmounted
-    // return () => {
-    //   unregisterAuthObserver();
-    //   console.log("Sdd");
-    // }
-  
+
   }, []); // Important, pass an empty array so to execute useEffect hook only once
 
 //   useEffect(() => {   
@@ -379,16 +435,56 @@ function handleCloseSnackBar() {
   }
 };
   return (
-    <React.Fragment>
+   
+          <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-        <Avatar alt="Remy Sharp" src={'images/logo.png'} className={classes.bigAvatar} />
+      {/* <AppBar position="relative"> */}
+     
+
+      <AppBar position="static">
+      <Toolbar >
+        <Avatar alt="Remy Sharp" src={'images/logo.png'}   />
 
         
-          <Typography variant="h6" color="inherit" noWrap>
-            Digital World
+          <Typography variant="h6"  className={classes.title}>
+            Faro San Roman
           </Typography>
+          <div >
+         
+         <IconButton
+           aria-label="account of current user"
+           aria-controls="menu-appbar"
+           aria-haspopup="true"
+           onClick={handleLogin2}
+           color="inherit"
+         >
+           <AccountCircle />
+         </IconButton>
+         <Menu
+           id="menu-appbar"
+           anchorEl={anchorEl}
+           anchorOrigin={{
+             vertical: 'top',
+             horizontal: 'right',
+           }}
+           keepMounted
+           transformOrigin={{
+             vertical: 'top',
+             horizontal: 'right',
+           }}
+           open={openLogin}
+           onClose={handleCloseLogin}
+         >
+            <MenuItem onClick={() =>{ alert()}    }>SignIn</MenuItem>
+            <MenuItem onClick={() =>{ alert()}    }>SignIn</MenuItem>
+            <MenuItem onClick={() =>{ alert()}    }>SignIn</MenuItem>
+            {/* <MenuItem onClick={() =>{ setOpenLogin(false);setLoginPage(1) }    }>SignIn</MenuItem>
+           <MenuItem onClick={() =>{ setOpenLogin(false);setLoginPage(2) }}>SignUp</MenuItem>
+           <MenuItem onClick={() =>{ setOpenLogin(false) }}>Configuracion</MenuItem> */}
+         </Menu>
+       
+   
+     </div>
         </Toolbar>
       </AppBar>
       <main>
@@ -403,6 +499,8 @@ function handleCloseSnackBar() {
                      message={<span id="client-snackbar">{mensajeSnackBar}</span>}
                 />
         </Snackbar>
+
+     
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
           {/* onClose={handleClose} */}
@@ -477,10 +575,11 @@ function handleCloseSnackBar() {
         </DialogActions>
       </Dialog>
             <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
-              Digital World
+              Activismo Ciudadano
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-            Digitalisation and new technologies are everywhere - cloud computing, artificial intelligence, big data, and the Internet of things are transforming the world we live in.
+            Somos un equipo de expertos trabajando en colaboracion para construir herramientas  en la nube de apoyo a elecciones y la organizacion ciudadana.
+            
                </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
@@ -497,53 +596,56 @@ function handleCloseSnackBar() {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
+          <Grid item key={12} xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image="images/persona.png"
+                    title="Image title"
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                    Carnet VinoTinto
+                    </Typography>
+                    <Typography>
+                    Testigos y Observadores dispondran de una interfase que les permitira tener relacion con otros Testigos en el Centro o Parroquia y disponer de comunicaciones jerarquicas de lineamientos y estrategias
+                   
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
           <Grid item key={11} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNSS0fPAp5FoonWe8iRjyjAYTFpisvBmQTSLyfXPwg6nUOep8f"
+                    image="images/geo1.png"
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutAntenasterBottom variant="h5" component="h2">
-                    Information systems
+                    Faro GeoEspacial
                     </Typography>
                     <Typography>
-                    Information systems focus on integrating information technology solutions and business processes to meet the information needs of businesses and other enterprises.
+                                        Faro esta evolucionando a un entorno geoespacial basado en tecnologias de UBER y AirBnB para el reconocimiento rapido de Centros de Votacion y Testigos en sus entornos naturales.
+ 
                     </Typography>
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item key={12} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR4yO0mK4EqtUFj0SMbzgvmJUTgLAGgbTzbhxY5VoRvi9vvPjSx"
-                    title="Image title"
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                    Digital banking
-                    </Typography>
-                    <Typography>
-                    Digital Banking is the application of technology to every programme and activity undertaken by financial institutions and their customers.
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
+              
               <Grid item key={13} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://archivosamarillos.blob.core.windows.net/manualesfaro/mapas.png"
+                    image="images/geo2.png"
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Big Data
+                     PoliData
                     </Typography>
                     <Typography>
-                    Big data refers to extremely large data sets that may be analysed computationally to reveal patterns, trends, and associations, especially relating to human behaviour and interactions.
+                    Carnet VinoTinto permitira realizar encuestas y observaciones del entorno electoral y resultados a traves de tecnicas de conteo rapido.
                     </Typography>
                   </CardContent>
                 </Card>
@@ -563,6 +665,14 @@ function handleCloseSnackBar() {
         <Copyright />
       </footer> */}
       {/* End footer */}
-    </React.Fragment>
+      </div>
+
   );
 }
+
+//Digitalisation and new technologies are everywhere - cloud computing, artificial intelligence, big data, and the Internet of things are transforming the world we live in.
+
+
+//        Digital Banking is the application of technology to every programme and activity undertaken by financial institutions and their customers.
+//        Big data refers to extremely large data sets that may be analysed computationally to reveal patterns, trends, and associations, especially relating to human behaviour and interactions.
+            

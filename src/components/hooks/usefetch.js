@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 //https://hooks-guide.netlify.com/
 //en click
 export const useFetch = (url) => {
- 
+   
    const [data, setData] = useState([]);
    const [isLoading, setIsLoading] = useState(false);
    const [isError, setIsError] = useState(false);

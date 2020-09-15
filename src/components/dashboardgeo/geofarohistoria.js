@@ -89,7 +89,7 @@ export default function GeoFaroHistoria() {
 
                 
               <Typography gutterBottom variant="h6" component="h2">Resultados de: {state.centro}</Typography>
-</Paper>
+        </Paper>
           <Table><TableRow><TableCell>
           <Circle animate={true} animationDuration="1s"   progress={state.resultados.participacion.toFixed(2)} size={60} percentSpacing={10}  bgColor="lightgray"  
                     textColor="black" progressColor="black"    roundedStroke={false}  showPercentage={true}  showPercentageSymbol={true} lineWidth={50}/>

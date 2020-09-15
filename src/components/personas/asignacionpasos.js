@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import AsignacionCedula from './asignacioncedula';
+
 import AsignacionDirecciones from './asignaciondirecciones';
 import AsignacionRol from './asignacionrol';
 import AsignacionOrganizacion from './asignacionorganizacion';
@@ -74,7 +75,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const steps = ['Cedula', 'Direcciones', 'Rol','Organizacion','Asignacion'];
+const steps = ['Ced', 'Dir', 'Rol','Org','Asig'];
 
 function getStepContent(step) {
   switch (step) {
@@ -164,14 +165,18 @@ export default function AsignacionPasos() {
       
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">
-            Asignacion al Faro V2.0
+            AutoAsignacion
           </Typography>
-          <Stepper activeStep={activeStep} className={classes.stepper} orientation="horizontal">
+          {/* <Stepper activeStep={activeStep} className={classes.stepper} orientation="horizontal"> */}
+          <Stepper activeStep={activeStep} alternativeLabel>
             {steps.map(label => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
+
+
+
           </Stepper>
           <React.Fragment>
             {activeStep === steps.length ? (

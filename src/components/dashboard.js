@@ -1,4 +1,5 @@
 import React, { useState, useEffect }  from 'react';
+
 import { useRecoilState,useRecoilValue, useSetRecoilState} from "recoil";
 import { flagFiltros,organizacion} from './store/atom';
 import clsx from 'clsx';
@@ -8,6 +9,8 @@ import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -42,7 +45,8 @@ import SendIcon from '@material-ui/icons/Send';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
 import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
-
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import EditIcon from '@material-ui/icons/Edit';
@@ -224,6 +228,9 @@ export default function Dashboard() {
   const classes = useStyles();
 //  const [GETINDICADORES, setGETINDICADORES]= useRecoilState(getindicadores) 
   const [ORGANIZACION, setGETORGANIZACION]= useRecoilState(organizacion) 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  
+  const [openLogin, setOpenLogin] = React.useState(false);
   const [flagDrawer, setFlagDrawer] = React.useState(true);
   const [flagLogin, setFlagLogin] = React.useState(false);
   const [flagFiltros, setFlagFiltros] = React.useState(false);
@@ -248,6 +255,18 @@ export default function Dashboard() {
    
     setFlagLogin(true)
   }
+  
+  const handleCloseLogin = () => {
+    setAnchorEl(null);
+    
+   setOpenLogin(false)
+  };
+  const handleLogin2 = (event) => {
+    //alert()
+    setOpenLogin(true)
+    setAnchorEl(event.currentTarget);
+   
+  };
   const handleLogin = () => {
    // alert()
    setFlagDrawer(true)
@@ -279,7 +298,9 @@ export default function Dashboard() {
      setFlagFiltros(true);
      setComponente(1)
     }
-    
+    if (value==5){
+setFlagDrawer(false)
+     }
   };
   const handleDrawerOpen = () => {
   
@@ -294,6 +315,7 @@ export default function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
+     
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)} >
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -306,7 +328,7 @@ export default function Dashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Pizarra Electrónica
+            MiniFaro
           </Typography>
           
           <IconButton color="inherit">
@@ -314,20 +336,55 @@ export default function Dashboard() {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton onClick={handleComponent(69)} color="inherit">
+          {/* <IconButton onClick={handleComponent(69)} color="inherit">
             <Badge  color="secondary">
               <VisibilityIcon />
             </Badge>
-          </IconButton>
+          </IconButton> */}
+         <div align="right">
+         
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleLogin2}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={openLogin}
+                onClose={handleCloseLogin}
+              >
+                 <MenuItem onClick={() =>{ alert()}    }>SignIn</MenuItem>
+                 <MenuItem onClick={() =>{ alert()}    }>SignIn</MenuItem>
+                 <MenuItem onClick={() =>{ alert()}    }>SignIn</MenuItem>
+                 {/* <MenuItem onClick={() =>{ setOpenLogin(false);setLoginPage(1) }    }>SignIn</MenuItem>
+                <MenuItem onClick={() =>{ setOpenLogin(false);setLoginPage(2) }}>SignUp</MenuItem>
+                <MenuItem onClick={() =>{ setOpenLogin(false) }}>Configuracion</MenuItem> */}
+              </Menu>
+            
           <IconButton
             edge="end"
             color="inherit"
             aria-label="open drawer"
             onClick={toggleDrawer('right', true)}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            // className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <TuneIcon />
           </IconButton>
+          </div>
         </Toolbar>
       </AppBar>
      
@@ -387,25 +444,11 @@ export default function Dashboard() {
       <ListItemText primary="Resultados" />
     </ListItem>
     
+  
+
         </List> 
         <Divider />  
-       
-        <List>
-        <ListItem button  onClick={handleComponent(10)} >
-      <ListItemIcon>
-        <PlaceIcon />
-      </ListItemIcon>
-      <ListItemText primary="GeoCentros" />
-    </ListItem>
-
-        <ListItem button onClick={handleComponent(5)}>
-      <ListItemIcon>
-        <EditIcon />
-      </ListItemIcon>
-      <ListItemText primary="Asignacion" />
-    </ListItem>
-
-        </List>   
+          
 
         <Divider />
         
@@ -425,9 +468,31 @@ export default function Dashboard() {
       </ListItemIcon>
       <ListItemText primary="PolyLines" />
     </ListItem>
+
+    <ListItem button  onClick={handleComponent(10)} >
+      <ListItemIcon>
+        <PlaceIcon />
+      </ListItemIcon>
+      <ListItemText primary="GeoCentros" />
+    </ListItem>
     </List>
               
               <Divider />
+              
+        <List>
+      
+
+      <ListItem button onClick={handleComponent(5)}>
+    <ListItemIcon>
+      <EditIcon />
+    </ListItemIcon>
+    <ListItemText primary="Asignacion" />
+  </ListItem>
+
+      </List>
+      <Divider />
+      <Divider />
+       
         <List>
         <ListSubheader inset>Futuro</ListSubheader>
 

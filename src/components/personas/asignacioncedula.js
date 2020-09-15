@@ -57,11 +57,13 @@ export default function AsignacionCedula() {
     
     const [apellido1, setApellido1] = React.useState("");
     const [apellido2, setApellido2] = React.useState("");
+    const [persona, setPersona] = React.useState("");
+    
     const [codcne, setCodcne] = React.useState("");
     const [flagCircular, setFlagCircular] = React.useState(false);
     const [dummy, setDummy] = React.useState("");
-const [ data, isLoading, isError , fetchData] = useFetch("");
-const [ data2, isLoading2, isError2 , fetchData2] = useFetch("");
+    const [ data, isLoading, isError , fetchData] = useFetch("");
+    const [ data2, isLoading2, isError2 , fetchData2] = useFetch("");
 //const [{ data9, isLoading9, isError9 }, fetchData9] = useFetch("");
 /*
 const [{ dataPost, isLoadingPost, isErrorPost }, postData] = useFetchPost('');
@@ -85,18 +87,19 @@ useEffect(() => {
       //  alert("data")
         setFlagCircular(false)
        // data=data[0]
-     //  alert("useEffect eeee "+data.length+' '+JSON.stringify(data)+' ')
+     // alert("useEffect eeee "+data.length+' '+JSON.stringify(data)+' ')
        dispatchp({
           type: 'PERSONA',
-          stateprop: data[0]
+          stateprop: data
         });
        // setDummy("dummy")
-       if (data.length>0){
-        setNombre1(data[0].nombre1) 
-        setNombre2(data[0].nombre2) 
-        setApellido1(data[0].apellido1) 
-        setApellido2(data[0].apellido2) 
-       }
+     //  if (data.length>0){
+         setPersona(data)
+        setNombre1(data.nombre1) 
+        setNombre2(data.nombre2) 
+        setApellido1(data.apellido1) 
+        setApellido2(data.apellido2) 
+      // }
       }
     },[data,isLoading]);
 
@@ -149,8 +152,10 @@ useEffect(() => {
          setFlagCircular(true)
        //  fetchData2('https://f2020.azurewebsites.net/api/FaroFormularioBase?code=5mWvvpNVz/at91R4awZb7g/rSfVWeHbMSARrVFbEdZWtC2fWBaGtnQ==&id=jsonlite');
     
-         fetchData('http://openfaroapi.azurewebsites.net/api/personagetv2?idorganizacion=10&identificacion=V11309550')
+         fetchData('https://openfaroapi.azurewebsites.net/api/personagetv2?idorganizacion=16&identificacion=V6505691')
+       //  fetchData('https://openfaroapi.azurewebsites.net/api/personaget?identificacion=V6505691')
         
+         
           
         
         }
@@ -249,6 +254,9 @@ useEffect(() => {
             value={apellido2}
           />
         </Grid>
+        </Grid>
+       {(persona!="")&&
+       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -258,11 +266,11 @@ useEffect(() => {
             fullWidth
             autoComplete="lname"
             defaultValue={codcne}
-             value={(statep.persona==undefined) ?'': statep.persona.re[0].codcne }
-            //value={statep.persona.re[0].codcne }
+            // value={(data.re[0]==undefined) ?'': data.re[0].codcne }
+            value={(persona.re[0]==undefined) ?'': persona.re[0].codcne }
           />
           </Grid>
-                
+
  <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -272,7 +280,7 @@ useEffect(() => {
             fullWidth
             autoComplete="lname"
             defaultValue={""}
-            value={(statep.persona==undefined) ?'': statep.persona.re[0].estadonombre }
+            value={(persona.re[0]==undefined) ?'': persona.re[0].estadonombre }
            
            // value={statep.persona.re[0].estadonombre}
           />
@@ -286,7 +294,7 @@ useEffect(() => {
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
-            value={(statep.persona==undefined) ?'': statep.persona.re[0].municipionombre }
+            value={(persona.re[0]==undefined) ?'': persona.re[0].municipionombre }
            
             // value={statep.persona.re[0].municipionombre}
           />
@@ -300,7 +308,7 @@ useEffect(() => {
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
-            value={(statep.persona==undefined) ?'': statep.persona.re[0].parroquianombre }
+            value={(persona.re[0]==undefined) ?'': persona.re[0].parroquianombre }
           
           />
         </Grid>
@@ -313,7 +321,7 @@ useEffect(() => {
             fullWidth
             autoComplete="lname"
             defaultValue={nombre2}
-            value={(statep.persona==undefined) ?'': statep.persona.re[0].centronombre }
+            value={(persona.re[0]==undefined) ?'': persona.re[0].centronombre }
            
           />
         </Grid>
@@ -326,14 +334,19 @@ useEffect(() => {
             fullWidth
             autoComplete="Direccion"
             defaultValue={""}
-            value={(statep.persona==undefined) ?'': statep.persona.re[0].centrodirecion }
+            value={(persona.re[0]==undefined) ?'': persona.re[0].centrodirecion }
             multiline
             rows="4"
           />
 
         </Grid>
-      </Grid>
+        </Grid>
+        }
+      
     </React.Fragment>
   );
 }
 
+
+var ppa=
+{"flag":1,"msj":"","flagasignacion":1,"idpersona":44,"nombre1":"GABRIEL","nombre2":"FRANCISCO JOSE","apellido1":"BOYERIZO","apellido2":"LOPEZ","identificacion":"V6505691","codcnecentrovotacion":"13090202100","nombrecentrovotacion":"INSTITUTO MEJORAMIENTO PROFESIONAL DEL MAGISTERIO","idestadocentrovotacion":"13","nombreestadocentrovotacion":"MIRANDA","idmunicipiocentrovotacion":"09","nombremunicipiocentrovotacion":"SUCRE","idparroquiacentrovotacion":"02","nombreparroquiacentrovotacion":"LEONCIO MARTINEZ","direccioncentrovotacion":"URBANIZACION MONTE CRISTO IZQUIERDA AVENIDA MONTE CRISTO. FRENTE AVENIDA ROMULO GALLEGO. DERECHA CALLE EDIFICIO AVENIDA  ROMULO GALLEGOS URBANIZACION LOS RUICES EDIFICIO","idnacionalidad":245,"nacionalidad":"Venezuela","idpaisnacimiento":245,"paisnacimiento":"Venezuela","idestadocivil":2,"estadocivil":"Casado(a)","idsexo":2,"sexo":"Masculino","idestatus":1,"fechacreacionpersona":"2014/09/15","fechacreacionpersonavar":"15/09/2014","fechanacimiento":"1967/07/19","fechanacimientovar":"19/07/1967","fechanacimientojson":"1967-07-19T00:00:00.000Z","idtipopersona":25,"tipopersona":"","idprofesion":9,"profesion":"COMPUTACION","idocupacion":0,"ocupacion":"","idcaracteristicaopcion":1,"re":[{"idrespuesta":"RE","respuesta":"RE","codcne":"13090202100","descripcion":"","codcnenombre":"","lat":-66.82804,"lng":10.49501,"idestado":"13","idmunicipio":"09","idparroquia":"02","idcircunscripcion":"1","estadonombre":"MIRANDA","municipionombre":"SUCRE","parroquianombre":"LEONCIO MARTINEZ","circunscripcionnombre":"","centronombre":"INSTITUTO MEJORAMIENTO PROFESIONAL DEL MAGISTERIO"}],"direcciones":[{"idrespuesta":"TF","respuesta":"TELEFONO FIJO","codcne":"","descripcion":"","codcnenombre":"","idfuncional":"","funcionalnombre":"","lat":0,"lng":0,"idestado":"","idmunicipio":"","idparroquia":"","idcircunscripcion":"","estadonombre":"","municipionombre":"","parroquianombre":"","circunscripcionnombre":"","centronombre":"","texto":"02123658657"},{"idrespuesta":"TW","respuesta":"TWITTER","codcne":"","descripcion":"","codcnenombre":"","idfuncional":"","funcionalnombre":"","lat":0,"lng":0,"idestado":"","idmunicipio":"","idparroquia":"","idcircunscripcion":"","estadonombre":"","municipionombre":"","parroquianombre":"","circunscripcionnombre":"","centronombre":"","texto":"@gboyerizo"},{"idrespuesta":"TC","respuesta":"TELEFONO CELULAR","codcne":"","descripcion":"","codcnenombre":"","idfuncional":"","funcionalnombre":"","lat":0,"lng":0,"idestado":"","idmunicipio":"","idparroquia":"","idcircunscripcion":"","estadonombre":"","municipionombre":"","parroquianombre":"","circunscripcionnombre":"","centronombre":"","texto":"04264020511"},{"idrespuesta":"EM","respuesta":"EMAIL","codcne":"","descripcion":"","codcnenombre":"","idfuncional":"","funcionalnombre":"","lat":0,"lng":0,"idestado":"","idmunicipio":"","idparroquia":"","idcircunscripcion":"","estadonombre":"","municipionombre":"","parroquianombre":"","circunscripcionnombre":"","centronombre":"","texto":"gboyerizo@gmail.com"}],"roles":[{"idrespuesta":"242","respuesta":"Soporte Electoral","codcne":"00000000000","descripcion":"Soporte Electoral","codcnenombre":"","idfuncional":"1038","funcionalnombre":"Formación","lat":-66.47,"lng":9.09,"idestado":"00","idmunicipio":"00","idparroquia":"00","idcircunscripcion":"0","estadonombre":"","municipionombre":"","parroquianombre":"","circunscripcionnombre":"","centronombre":"VENEZUELA"},{"idrespuesta":"243","respuesta":"Transcriptor","codcne":"00000000000","descripcion":"Transcriptor","codcnenombre":"","idfuncional":"1038","funcionalnombre":"Formación","lat":-66.47,"lng":9.09,"idestado":"00","idmunicipio":"00","idparroquia":"00","idcircunscripcion":"0","estadonombre":"","municipionombre":"","parroquianombre":"","circunscripcionnombre":"","centronombre":"VENEZUELA"}],"formularios":[{"idorganizacion":"","idevento":"","idtipoformulario":"FORM","tipoformulario":"FORMACION","idformulario":"FORM","formulario":"Caracteristicas","identificacion":"V6505691","preguntas":[{"idpregunta":"3","pregunta":"Experiencia Docente","respuestas":[{"idrespuesta":"1","respuesta":"Si","seleccionada":1}]}]}]}
