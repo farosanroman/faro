@@ -16,7 +16,11 @@ import logo from './logo.svg';
 import './App.css';
 import { 	RecoilRoot } from 'recoil';
 
+
 import Dashboard from '../src/components/dashboard'
+//import MiniFaro from '../src/components/login/minifaro'
+
+import HomeLogin from './components/login/homeminifaro'
 import { reducer, defaultState } from './Context';
 export const Application = React.createContext({ state: null, dispatch: null });
 const theme = createMuiTheme({
@@ -37,9 +41,9 @@ function App() {
  // alert(JSON.stringify(state))
 
  const [pag, setPag] = useState(0);
- const onLoginClick = () => {  
+ const onLoginClick = (page) => {  
    //  alert("onLoginClick")
-     setPag(1)
+     setPag(page)
  }  
   React.useEffect(() => {
     window.localStorage.setItem('farostorage20', JSON.stringify(state));
@@ -50,8 +54,11 @@ function App() {
      <RecoilRoot>
     <ThemeProvider theme={theme}>
       <CssBaseline />
+     
           {(pag==0)&&<Login loginclick={onLoginClick} />}
           {(pag==1)&&<Dashboard />}
+          {(pag==2)&&<HomeLogin />}
+         
   
 
     </ThemeProvider>
@@ -62,6 +69,8 @@ function App() {
 }
 
 export default App;
+//BEST OS BEST MATERIALS
+//https://m.youtube.com/playlist?list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr
 //HOOKS 
 //https://www.youtube.com/watch?v=-G43PbpmGrA
 //https://www.youtube.com/watch?v=cjBm0HnYcqw BEST ON CONTEXT AND REDUCER   BEST BEST BEST OjO

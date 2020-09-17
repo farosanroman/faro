@@ -76,21 +76,7 @@ const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  // appBar: {
-  //   zIndex: theme.zIndex.drawer + 1,
-  //   transition: theme.transitions.create(['width', 'margin'], {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.leavingScreen,
-  //   }),
-  // },
-  // appBarShift: {
-  //   marginLeft: drawerWidth,
-  //   width: `calc(100% - ${drawerWidth}px)`,
-  //   transition: theme.transitions.create(['width', 'margin'], {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.enteringScreen,
-  //   }),
-  // },
+ 
   inline: {
     display: 'inline',
   },
@@ -159,7 +145,7 @@ const config = {
   //          }
   //        }
 };
-firebase.initializeApp(config);
+//firebase.initializeApp(config);
 //https://github.com/firebase/firebaseui-web-react#using-firebaseauth-with-local-state
 //https://stackoverflow.com/questions/60420906/how-do-i-implement-firebase-authentication-with-local-state-with-hooks
 export default function Login(props) {
@@ -475,7 +461,7 @@ function handleCloseSnackBar() {
            open={openLogin}
            onClose={handleCloseLogin}
          >
-            <MenuItem onClick={() =>{ alert()}    }>SignIn</MenuItem>
+            <MenuItem onClick={() =>{ props.loginclick(2) }    }>SignIn</MenuItem>
             <MenuItem onClick={() =>{ alert()}    }>SignIn</MenuItem>
             <MenuItem onClick={() =>{ alert()}    }>SignIn</MenuItem>
             {/* <MenuItem onClick={() =>{ setOpenLogin(false);setLoginPage(1) }    }>SignIn</MenuItem>

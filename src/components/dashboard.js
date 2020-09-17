@@ -93,6 +93,9 @@ import Fotos from './layout/fotos';
 import Cursos     from      './formacion/cursos'
 import VinoTinto     from      './formacion/vinotinto'
 import {useFetch}  from './helpers/hooks'
+//import SignInForm from './login/signinform'
+//import SignUpForm from '../login/signupform'
+//import ChangePwdForm from '../login/changepwdform'
 //import Deposits from './Deposits';
 //import Orders from './Orders';
 
