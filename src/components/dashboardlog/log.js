@@ -48,8 +48,7 @@ export default function Log() {
   ];
   //const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   //const fixedHeightPaper2 = clsx(classes.paper, classes.fixedHeight2);
-  //const { state, dispatch } = React.useContext(Application);
-
+  
 // alert("indicadores "+JSON.stringify(DASHBOARD2.dashboard[3].resultados))
     return (
         <div className={classes.root}>     

@@ -149,7 +149,6 @@ const config = {
 //https://github.com/firebase/firebaseui-web-react#using-firebaseauth-with-local-state
 //https://stackoverflow.com/questions/60420906/how-do-i-implement-firebase-authentication-with-local-state-with-hooks
 export default function Login(props) {
-//  const { state, dispatch } = React.useContext(Application);
 
    
   const [LOGIN, setLOGIN] = useRecoilState(login);

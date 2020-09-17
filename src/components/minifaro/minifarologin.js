@@ -46,9 +46,9 @@ import Avatar from '@material-ui/core/Avatar';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
-import SignInForm from './signinform'
-import SignUpForm from './signupform'
-import ChangePwdForm from './changepwdform'
+import SignInForm from '../login/signinform'
+import SignUpForm from '../login/signupform'
+import ChangePwdForm from '../login/changepwdform'
 import Ficha from './ficha'
 //import SignInSide from './signinside'
 function Copyright() {

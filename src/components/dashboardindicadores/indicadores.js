@@ -93,7 +93,7 @@ export default function Indicadores() {
   const ORGANIZACION=useRecoilValue(organizacion) 
   const ROLES=useRecoilValue(roles)
   //const GETINDICADORES=useRecoilValue(getindicadores) 
-  //const { state, dispatch } = React.useContext(Application);
+
   const [ data, isLoading, isError , fetchData] = useFetch("");
   const [flag,setFlag]= useState(false);
   const [flagCircular, setFlagCircular] = React.useState(false); 

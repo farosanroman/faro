@@ -1,7 +1,9 @@
 import React, { useState,useEffect } from "react";
+import { useRecoilState,useRecoilValue} from "recoil";
+import {persona} from '../store/atomfaro';
 //import {useFetch}  from '../monedero/usefetch'
 import { makeStyles } from '@material-ui/core/styles';
-
+import Container from '@material-ui/core/Container';
 //import ReactFlagsSelect from 'react-flags-select';
 //import 'react-flags-select/css/react-flags-select.css';
 import clsx from 'clsx';
@@ -110,9 +112,12 @@ TabPanel.propTypes = {
 export default function Ficha() {
   const classes = useStyles();
   const [value, setValue] = React.useState(3);
-  const [photo, setPhoto] = React.useState('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bill_Gates_June_2015.png/247px-Bill_Gates_June_2015.png');
+  const [photo, setPhoto] = React.useState('https://www.elnacional.com/wp-content/uploads/2019/08/ECwU4_MXoAMfTDV.jpg');
   const [expanded, setExpanded] = React.useState(false);
-
+  const [PERSONA, setPERSONA] = useRecoilState(persona);
+  useEffect(() => {   
+     alert(JSON.stringify(PERSONA))
+  },[]);  
 const handleChange = (event, newValue) => {
 //tabs
   setValue(newValue);
@@ -143,9 +148,10 @@ function handleImageChange  (e)  {
 };
 return (
     <>
-  
-
-  <Grid container spacing={1} justify="center">
+ 
+  <Container component="main" maxWidth="xs">
+  <br/>
+  <Grid container spacing={3} justify="center" >
             <Grid item key={0}>
             <input
                  type="file"
@@ -157,14 +163,14 @@ return (
       <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar alt="Remy Sharp" src={'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bill_Gates_June_2015.png/247px-Bill_Gates_June_2015.png'}    />
+          <Avatar alt="Remy Sharp" src={'https://www.elnacional.com/wp-content/uploads/2019/08/ECwU4_MXoAMfTDV.jpg'}    />
         }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title={"Nombre Apelido"}
+        title={PERSONA.nombre1+" "+PERSONA.apellido1}
         subheader="Registro: 12/03/2018 "
       />
 
@@ -443,7 +449,7 @@ return (
         </Button>
       </CardActions>
     </Card>
-  
+  </Container>
 </>
   );
 }

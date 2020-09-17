@@ -20,12 +20,13 @@ import { 	RecoilRoot } from 'recoil';
 import Dashboard from '../src/components/dashboard'
 //import MiniFaro from '../src/components/login/minifaro'
 
-import HomeLogin from './components/login/homeminifaro'
+import MiniFaroLogin from './components/minifaro/minifarologin'
 import { reducer, defaultState } from './Context';
 export const Application = React.createContext({ state: null, dispatch: null });
+//indigo
 const theme = createMuiTheme({
   palette: {
-    primary: indigo,
+    primary: deepPurple,
     secondary: red,
     error: red,
     warning: orange,
@@ -57,7 +58,7 @@ function App() {
      
           {(pag==0)&&<Login loginclick={onLoginClick} />}
           {(pag==1)&&<Dashboard />}
-          {(pag==2)&&<HomeLogin />}
+          {(pag==2)&&<MiniFaroLogin />}
          
   
 
