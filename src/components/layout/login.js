@@ -18,6 +18,7 @@ import Grid from '@material-ui/core/Grid';
 
 import TuneIcon from '@material-ui/icons/Tune';
 import IconButton from '@material-ui/core/IconButton';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -443,7 +444,7 @@ function handleCloseSnackBar() {
            onClick={handleLogin2}
            color="inherit"
          >
-           <AccountCircle />
+           <VpnKeyIcon />
          </IconButton>
          <Menu
            id="menu-appbar"
@@ -460,9 +461,11 @@ function handleCloseSnackBar() {
            open={openLogin}
            onClose={handleCloseLogin}
          >
-            <MenuItem onClick={() =>{ props.loginclick(2) }    }>SignIn</MenuItem>
-            <MenuItem onClick={() =>{ alert()}    }>SignIn</MenuItem>
-            <MenuItem onClick={() =>{ alert()}    }>SignIn</MenuItem>
+            <MenuItem onClick={() =>{ props.loginclick(2) }    }>MiFaro</MenuItem>
+            <MenuItem onClick={() =>{ props.loginclick(2)}    }>Noticias</MenuItem>
+            <MenuItem onClick={() =>{ props.loginclick(2)}    }>Faro</MenuItem>
+            <MenuItem onClick={() =>{ props.loginclick(2)}    }>Observacion</MenuItem>
+            
             {/* <MenuItem onClick={() =>{ setOpenLogin(false);setLoginPage(1) }    }>SignIn</MenuItem>
            <MenuItem onClick={() =>{ setOpenLogin(false);setLoginPage(2) }}>SignUp</MenuItem>
            <MenuItem onClick={() =>{ setOpenLogin(false) }}>Configuracion</MenuItem> */}

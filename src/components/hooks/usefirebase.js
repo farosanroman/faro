@@ -27,7 +27,7 @@ export const useFirebase = () => {
      .auth()
      .signInWithEmailAndPassword(email, password)
      .then(response => {
-         //alert(JSON.stringify(response))
+        // alert("A"+JSON.stringify(response))
 
        setUser(response);
        setIsError(false)
@@ -95,7 +95,7 @@ export const useFirebase = () => {
   .auth()
   .signInWithEmailAndPassword(email, password)
   .then(response => {
-      alert(JSON.stringify(response))
+     // alert(JSON.stringify(response))
       firebase.auth()
       .signOut()
       .then(() => {
@@ -115,7 +115,7 @@ const deleteuser = (email, password) => {
   .auth()
   .signInWithEmailAndPassword(email, password)
   .then(response => {
-      alert(JSON.stringify("va a borrar "+response))
+     // alert(JSON.stringify("va a borrar "+response))
 
         var user = firebase.auth().currentUser;
          user.delete().then(function() {

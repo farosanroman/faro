@@ -61,6 +61,7 @@ export default function SignInForm(props) {
     //   alert("firebase user "+correo)
       
        signin("ppa@gmail.com","1231232")
+     
        //setCUENTA({id:MAIL,name:"Jose Luis Perales",country:"VE",currency:"VES",date:Date()})
       // setSAMPLE(jsonCustomer)
     //  event.preventDefault();
@@ -84,7 +85,7 @@ export default function SignInForm(props) {
      //123789
 
      if ((isLoading==false)&&(isError==false)&&(user!=null)){
-
+      props.changePage(10)
        //alert("entro ")
        //alert(JSON.stringify(user.user.uid))
       // {"code":"auth/user-not-found","message":"There is no user record corresponding to this identifier. The user may have been deleted."}

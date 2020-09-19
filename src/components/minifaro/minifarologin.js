@@ -119,15 +119,19 @@ export default function HomeLogin(prop) {
   //const open = Boolean(anchorEl);
   //const [openPerfil, setOpenPerfil] = React.useState(false);
   //const openEl = Boolean(anchorEl);
-  const [openLogin, setOpenLogin] = React.useState(false);
-  const [loginPage, setLoginPage] = React.useState(1);
+  const [openLogin, setOpenLogin] = React.useState(true);
+  const [openMenuLogin, setOpenMenuLogin] = React.useState(false);
+  const [openDialogMenu, setOpenDialogMenu] = React.useState(false);
+  
+  
+  const [loginPage, setLoginPage] = React.useState(0);
   
   const [loginauth, setLoginAuth] = useState({uid:"0",name:"",photoURL:"",email:"",phone:"",cedula:"",lat:0,lng:0})
 
   const [ dataPost, isLoadingPost, isErrorPost , postData] = useFetchPost('');
   const { latitude, longitude, timestamp, accuracy, error } = usePosition();
   const [opendialog, setOpendialog] = useState(false);
-  const [flagAsignacion, setFlagAsignacion] = useState(false);
+  //const [flagAsignacion, setFlagAsignacion] = useState(false);
   const [openSnackBar,setOpenSnackBar]= useState(true);
   const [mensajeSnackBar,setMensajeSnackBar]= useState("");
   const [snackbarcolor, setSnackbarcolor]=useState('#1DA1F2')
@@ -148,27 +152,36 @@ export default function HomeLogin(prop) {
 
   }
 
-  const handleLogin = (event) => {
-    //alert()
-    setOpenLogin(true)
+  const handleMenuClick = (event) => {
+   // alert("handleMenuClick")
+    setOpenMenuLogin(true)
     setAnchorEl(event.currentTarget);
    
   };
+  const handleMenuItemClick = (page) => {
+   // alert("pages "+page)
 
-  const handleCloseLogin = () => {
+    setOpenMenuLogin(false)
     setAnchorEl(null);
-    
-   setOpenLogin(false)
-  };
-  const handleClose = () => {
-    setLoginPage(0)
-  };
-  
-  const handleLoginPage = (page) => {
-    //alert("pages ")
+    setOpenDialogMenu(true)
     setLoginPage(page)
   };
+  const handleChangePage =(page)=>{
+    setLoginPage(page)
+    setOpenDialogMenu(false)
+  }
+  const handleCloseDialog = () => {
+    //setLoginPage(0)
+    setOpenDialogMenu(false)
+  };
   
+
+  const handleCloseLogin = () => {
+    alert("close")
+    setAnchorEl(null);
+    setOpenMenuLogin(false);
+   setOpenLogin(false)
+  };
 
   useEffect(() => {   
   //  alert(latitude)
@@ -230,9 +243,6 @@ useEffect(() => {
        setOpenSnackBar(false)
        // prop.loginclick()
      }
-
-
-    
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -242,7 +252,7 @@ useEffect(() => {
           <Avatar alt="Remy Sharp" src={'images/logo.png'} className={classes.bigAvatar} />    
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-           MiniFaro
+           MiFaro
           </Typography>
           {auth && (
             <div>
@@ -251,7 +261,7 @@ useEffect(() => {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleLogin}
+                onClick={handleMenuClick}
                 color="inherit"
               >
                 <AccountCircle />
@@ -268,7 +278,7 @@ useEffect(() => {
                   vertical: 'top',
                   horizontal: 'right',
                 }}
-                open={openLogin}
+                open={openMenuLogin}
                 onClose={handleCloseLogin}
                 PaperProps={{
                   style: {
@@ -277,10 +287,10 @@ useEffect(() => {
                   },
                 }}
               >
-                 <MenuItem onClick={() =>{ setOpenLogin(false);setLoginPage(1) }    } >SignIn</MenuItem>
-                <MenuItem onClick={() =>{ setOpenLogin(false);setLoginPage(2) }}>Perfil</MenuItem>
+                 <MenuItem onClick={() =>{handleMenuItemClick(1) }    } >SignIn</MenuItem>
+                {/* <MenuItem onClick={() =>{ setLoginPage(2) }}>Perfil</MenuItem>
                 <MenuItem onClick={() =>{ setOpenLogin(false) }}>Direcciones</MenuItem>
-                <MenuItem onClick={() =>{ setOpenLogin(false) }}>Roles</MenuItem>
+                <MenuItem onClick={() =>{ setOpenLogin(false) }}>Roles</MenuItem> */}
               </Menu>
             </div>
           )}
@@ -289,9 +299,39 @@ useEffect(() => {
       </AppBar>
      
       <main>
-        {/* Hero unit */}
-        <Ficha />
-        <Snackbar
+     
+      <Dialog open={openDialogMenu} onClose={handleCloseDialog} aria-labelledby="form-dialog-title">
+        {/* <DialogTitle id="form-dialog-title">Registro</DialogTitle> */}
+        <DialogContent>
+           <DialogContentText>
+            Autenticate en la Red Ciudadana.
+          </DialogContentText> 
+          {(loginPage==1)&&<SignInForm changePage={handleChangePage}/>}
+          {/* {(loginPage==2)&&<SignUpForm changePage={handleLoginPage}/>}
+          {(loginPage==3)&&<ChangePwdForm changePage={handleLoginPage}/>}  */}
+        </DialogContent>
+
+      </Dialog>  
+      
+      {(loginPage==0)&&
+        <div className={classes.heroContent}>
+          <Container maxWidth="sm">
+            
+          <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
+              MiFaro Personal
+            </Typography>
+            <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            Incorporate con la experiencia de la auutogestion de Faro
+               </Typography>
+               
+
+        
+          </Container>
+
+        </div>
+       }
+       {(loginPage==10)&&<Ficha />}
+       <Snackbar
           open={openSnackBar}
           autoHideDuration={5000}
           onClose={handleCloseSnackBar}
@@ -301,143 +341,6 @@ useEffect(() => {
                      message={<span id="client-snackbar">{mensajeSnackBar}</span>}
                 />
         </Snackbar>
-        {/* <SignInSide /> */}
-       
-        <Dialog open={opendialog}  aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Area de Trabajo</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Seleccione el Area de Trabajo.
-          </DialogContentText>
-        <List className={classes.root}>
-     
-     
-      {/* {data.map((item, index) => ( */}
-        <div>
-      <Divider variant="inset" component="li" />
-    
-      <Divider variant="inset" component="li" />
-      {(controlmenues)&&
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar onClick={() =>prop.loginclick(2) }>
-        <Avatar>
-                      <MouseIcon />
-                    </Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary={'Monedero'}
-          secondary={
-            <React.Fragment>
-          <Grid container >
-          <Grid item key={12} xs={12} sm={12} md={12}>
-          
-              <Typography variant="h6" component="h6"
-               
-              >
-               {'Prueba de Concepto'}
-              </Typography>
-              </Grid>
-         </Grid>
-            </React.Fragment>
-            
-          }
-        />
-        
-      </ListItem>
-      }
-      <Divider variant="inset" component="li" />
-      {(controlmenues)&&
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar onClick={() =>prop.loginclick(3) }>
-        <Avatar>
-                      <MouseIcon />
-                    </Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary={'Tesoreria'}
-          secondary={
-            <React.Fragment>
-          <Grid container >
-          <Grid item key={12} xs={12} sm={12} md={12}>
-          
-              <Typography variant="h6" component="h6"
-               
-              >
-               {'BizAccount'}
-              </Typography>
-              </Grid>
-         </Grid>
-            </React.Fragment>
-            
-          }
-        />
-        
-      </ListItem>
-     }
-      <Divider variant="inset" component="li" />
-      {(controlmenues)&&
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar onClick={() =>prop.loginclick(4) }>
-                <Avatar>
-                      <MouseIcon />
-                    </Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary={'BlackZone'}
-          secondary={
-            <React.Fragment>
-          <Grid container >
-          <Grid item key={12} xs={12} sm={12} md={12}>
-          
-              <Typography variant="h6" component="h6"
-               
-              >
-               {'Area del BlackZone'}
-              </Typography>
-              </Grid>
-         </Grid>
-            </React.Fragment>
-            
-          }
-        />
-        
-      </ListItem>
-}
-      </div>
-      {/* ))} */}
-    </List>
-    </DialogContent>
-      </Dialog>
-
-      <Dialog open={(loginPage!=0)} onClose={handleClose} aria-labelledby="form-dialog-title">
-        {/* <DialogTitle id="form-dialog-title">Registro</DialogTitle> */}
-        <DialogContent>
-           <DialogContentText>
-            Autenticate en la Red Ciudadana.
-          </DialogContentText> 
-          {(loginPage==1)&&<SignInForm changePage={setLoginPage}/>}
-          {(loginPage==2)&&<SignUpForm changePage={setLoginPage}/>}
-          {(loginPage==3)&&<ChangePwdForm changePage={setLoginPage}/>} 
-        </DialogContent>
-
-      </Dialog>
-      
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            
-          <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
-              Activismo Ciudadano
-            </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
-            Somos un equipo de expertos trabajando en colaboracion para construir herramientas  en la nube de apoyo a elecciones y la organizacion ciudadana.
-            
-               </Typography>
-               
-
-        
-          </Container>
-        </div>
-  
       </main>
       {/* Footer */}
       {/* <Footer /> */}

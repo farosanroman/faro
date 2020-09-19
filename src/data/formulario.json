@@ -1,19 +1,20 @@
 {
-"formulario":
+"formulario2":
 {
     "id": "EXPERIENCIA",
     "type": "formulario",
     "descripcion":"Experiencia Electoral",
+    "obligatorio":true,
+    "multiples":true,
+    "texto":true,
+    "codcne":false,
+     "location":false,
     "preguntas": [
         {
             "idpregunta": "1",
-            "pregunta": "CENTRO DE VOTACION ",
-            "idrespuesta": 0,
-            "obligatorio":true,
-            "multiples":true,
-            "texto":true,
-            "codcne":false,
-            "location":false,
+            "pregunta": "CENTRO_DE_VOTACION",
+            "idrespuesta": 1,
+            "respuesta": "Testigo",
             "comentario": "Falta Experiencia en Centro",
             "respuestas": [
                 {
@@ -41,40 +42,65 @@
         },
 {
             "idpregunta": "2",
-            "pregunta": "PARTIDO ",
-            "idrespuesta": 0,
-            "obligatorio":true,
-            "multiples":true,
-            "texto":true,
-            "codcne":false,
-            "location":false,
+            "pregunta": "PARTIDO",
+            "idrespuesta": 2,
+            "respuesta": "AD",
             "comentario": "Falta Experiencia en el Partido",
             "respuestas": [
                 {
                     "idrespuesta": 1,
-                    "respuesta": "Planiiificdor",
+                    "respuesta": "AD",
                     "descripcion":"TEstigo de MEsa",
-                     "texto":"",   
+                     "texto":""  , 
                     "valid":true
                 },
                 {
                     "idrespuesta": 2,
-                    "respuesta": "Logistica",
+                    "respuesta": "PJ",
                     "descripcion":"Observador de Alguna ONG",
                     "texto":"",
                     "valid":false
                 },
                 {
                     "idrespuesta": 3,
-                    "respuesta": "CONTEORAPIDO",
+                    "respuesta": "VP",
                     "descripcion":"Ha aprticipado en conteo rapido del partido",
                     "texto":"",
                     "valid":true
                 }
             ]
         }
-        
+        ,
+        {
+            "idpregunta": "3",
+            "pregunta": "EDUCACION",
+            "idrespuesta": 3,
+            "respuesta": "Universitaria",
+            "comentario": "Falta Experiencia en el Partido",
+            "respuestas": [
+                {
+                    "idrespuesta": 1,
+                    "respuesta": "Primaria",
+                    "descripcion":"TEstigo de MEsa",
+                     "texto":""  , 
+                    "valid":true
+                },
+                {
+                    "idrespuesta": 2,
+                    "respuesta": "SEcundaria",
+                    "descripcion":"Observador de Alguna ONG",
+                    "texto":"",
+                    "valid":false
+                },
+                {
+                    "idrespuesta": 3,
+                    "respuesta": "Universitaria",
+                    "descripcion":"Ha aprticipado en conteo rapido del partido",
+                    "texto":"",
+                    "valid":true
+                }
+            ]
+        }
     ]
 }
-
 }
