@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 //import { Application } from '../App';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -63,9 +63,11 @@ export default function DialogoDireccionesNew(props) {
       isValid: value => /\S+@\S+\.\S+/.test(value)
     }
   ]);
-
+  // useEffect(() => {   
+  //   setOpen(props.flagOpen)
+  // },[props.flagOpen]);  
   function handleClickOpen(e) {
-       alert(JSON.stringify(e))
+     //  alert(JSON.stringify(e))
     //alert(index)
     //alert("direccionForm"+JSON.stringify(direcciones))
 
@@ -77,8 +79,8 @@ export default function DialogoDireccionesNew(props) {
    //alert('close')
    //props.closeDialog()
   // postData("https://faronosql.azurewebsites.net/api/VinotintoPostOauth?code=qnaytKAJlMzrAPNmn4SLxavP6JKqWqA2fpxNzvxbra8k4yJCTmQeIQ==",{id:"60",fecha:Date(),ppa:"ssss 3333",ppp:"xxxx  yyy xxxx"})
-
-   setOpen(false);
+   props.handleOpen(false)
+   //setOpen(false);
   }
   const onChange = ({ target: { id, value } }) => {
    
@@ -99,13 +101,13 @@ export default function DialogoDireccionesNew(props) {
     };
   return (
     <div>
-                 {false&&
+                 {true&&
                     <IconButton onClick={() => handleClickOpen(props.index)}>
                       <Edit />
                     </IconButton>
                  }
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth={50}>
-        <DialogTitle id="form-dialog-title">Direccionesss</DialogTitle>
+        <DialogTitle id="form-dialog-title">Direcciones</DialogTitle>
         <DialogContent>
           <DialogContentText maxWidth={50}>
             Actualizacion de Direcciones.
@@ -134,9 +136,10 @@ export default function DialogoDireccionesNew(props) {
             helperText={inputs[1].helperText}
           />
         </DialogContent>
+        
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Borrar
+            Cancelar
           </Button>
           <Button onClick={handleClose} color="primary">
             Grabar

@@ -69,6 +69,8 @@ import { Delete, Edit,Email } from '@material-ui/icons';
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone'; 
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
+import MailIcon from '@material-ui/icons/Mail';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import PersonIcon from '@material-ui/icons/Person';
 import Caracteristicas from './caracteristicas'
 import DialogoDireccionesNew from './dialogodireccionesnew'
@@ -100,8 +102,12 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-  avatar: {
+  avatar2: {
     backgroundColor: grey[500],
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main,
   },
   avatarlarge: {
     backgroundColor: grey[500],margin: 5,
@@ -138,7 +144,7 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-export default function Ficha() {
+export default function Ficha(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(3);
   const [photo, setPhoto] = React.useState('https://www.elnacional.com/wp-content/uploads/2019/08/ECwU4_MXoAMfTDV.jpg');
@@ -216,6 +222,9 @@ function handleEditPicture  () {
  //ref={fileInput=>this.fileInput=fileInput}
  fileInput.click();
 }; 
+const handleOpenVote=(page)=>{
+props.changePage(11)
+}
 function handleImageChange  (e)  {
   let reader = new FileReader();
   let file = e.target.files[0];
@@ -227,13 +236,14 @@ function handleImageChange  (e)  {
   reader.readAsDataURL(file)
 };
 function onAccionDireccion(item,accion,index){
-  alert(JSON.stringify(item+" "+accion+" "+index))
+  //alert(JSON.stringify(item+" "+accion+" "+index))
   //if (item=="direcciones"){
     const dir=PERSONA.direcciones[index]
     
-    alert(JSON.stringify(dir))
-     setDireccion(dir)
+   // alert(JSON.stringify(dir))
+setDireccion(dir)
 if ((item=="direcciones")&&(accion=="new")){ 
+  //alert()
       setflagOpenNewDireccion(true);
 }      
       
@@ -261,6 +271,12 @@ if (accion=="edit"){
     setflagOpenDialogoEliminar(true);
  }
 }
+const handleFlagOpenNewDireccion=(action)=>{
+  setflagOpenNewDireccion(action)
+}
+const handleFlagOpenNewRol=(action)=>{
+  setflagOpenNewRol(action)
+}
 const handlePostDireccion = (accion) => {   //de Faro
   //alert("accion")
   var url="https://faronosql.azurewebsites.net/api/VinotintoPostOauth?code=qnaytKAJlMzrAPNmn4SLxavP6JKqWqA2fpxNzvxbra8k4yJCTmQeIQ=="
@@ -284,13 +300,14 @@ function onDeleteDireccion(item,e){
 }
 function onAccionCaracteristica(item,accion,index){
   //nueva nuev
-  
+  if ((item=="roles")&&(accion=="new")){ 
+    setflagOpenNewRol(true);
+  }
+
   if (accion=="delete"){ 
   setflagOpenDialogoEliminar(true);
   }
-    if ((item=="roles")&&(accion=="new")){ 
-      setflagOpenNewRol(true);
-      }
+    
 }
 function handlePostEliminar(e){
   //const handlePostEliminar = index => () => {
@@ -304,7 +321,7 @@ function closeDialog(id){
 
  }
  const onChange = ({ target: { id, value } }) => {
-  alert(value)
+ // alert(value)
    const isValid = input.isValid(value);
     //console.log(isValid)
    
@@ -369,30 +386,30 @@ return (
       </CardContent>
     
       <CardActions disableSpacing>
-      <IconButton
+      <IconButton color="primary"
                 onClick={handleEditPicture}
       >
           <CameraAlt />
       </IconButton>
-      <IconButton
+      <IconButton color="primary"
        //onClick={handleClickFormulario}
       >
           <InsertComment />
       </IconButton>
     
-      <IconButton
+      <IconButton color="primary"
          //       onClick={handleSos}
 
 >
           <LocationOn />
       </IconButton>
-      <IconButton
-           //     onClick={handleOpenVote}
+      <IconButton color="primary"
+                onClick={handleOpenVote}
       >
         <HowToVoteIcon />
       </IconButton>
       
-               <IconButton
+               <IconButton color="primary"
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           })}
@@ -435,7 +452,7 @@ return (
         </AccordionSummary>
         <AccordionDetails>
         <Paper >
-                 <Table width="60%">
+          <Table width="60%">
                  <TableHead>
           <TableRow>
             <TableCell>Tipo</TableCell>
@@ -447,50 +464,53 @@ return (
                    <TableCell>
                       <Typography  variant="subtitle2">Cedula:</Typography>
                   </TableCell><TableCell align="right">
-                      <Typography  variant="subtitle2"> {'9999999'}</Typography>
+                      <Typography  variant="subtitle2"> {PERSONA.identificacion}</Typography>
                   </TableCell>
                   </TableRow>
                  <TableRow><TableCell>
                       <Typography  variant="subtitle2">Fecha Nacimiento:</Typography>
                   </TableCell><TableCell align="right">
-                      <Typography  variant="subtitle2"> {'9999'}</Typography>
+                      <Typography  variant="subtitle2"> {PERSONA.fechanacimientojson}</Typography>
                   </TableCell></TableRow>
                   <TableRow><TableCell>
                       <Typography  variant="subtitle2">Sexo:</Typography>
                   </TableCell><TableCell align="right">
-                      <Typography  variant="subtitle2"> {'9999'}</Typography>
+                      <Typography  variant="subtitle2"> {PERSONA.sexo}</Typography>
                   </TableCell></TableRow>
                   <TableRow><TableCell>
                       <Typography  variant="subtitle2">Edad:</Typography>
                   </TableCell><TableCell align="right">
-                      <Typography  variant="subtitle2"> {'9999'}</Typography>
+                      <Typography  variant="subtitle2"> {'56'}</Typography>
                   </TableCell></TableRow>
 
                    <TableRow><TableCell>
                       <Typography  variant="subtitle2">Estado:</Typography>
                   </TableCell><TableCell align="right">
-                      <Typography  variant="subtitle2"> {'9999'}</Typography>
+                      <Typography  variant="subtitle2"> {'Miranda'}</Typography>
                   </TableCell></TableRow>
                   <TableRow><TableCell>
                       <Typography  variant="subtitle2">Municipio:</Typography>
                   </TableCell><TableCell align="right">
-                      <Typography  variant="subtitle2"> {'9999' }</Typography>
+                      <Typography  variant="subtitle2"> {'Baruta' }</Typography>
                   </TableCell></TableRow>
                   <TableRow><TableCell>
                       <Typography  variant="subtitle2">Parroquia:</Typography>
                   </TableCell><TableCell align="right">
-                      <Typography  variant="subtitle2"> {'9999' }</Typography>
+                      <Typography  variant="subtitle2"> {'Baruta' }</Typography>
                   </TableCell></TableRow>
                   <TableRow><TableCell>
                       <Typography  variant="subtitle2">Centro Votacion:</Typography>
                   </TableCell><TableCell align="right">
-                      <Typography  variant="subtitle2"> {'999' }</Typography>
+                      <Typography  variant="subtitle2"> {'13020202' }</Typography>
                   </TableCell></TableRow>
                   </TableBody>
                   </Table>
                   </Paper> 
         </AccordionDetails>
       </Accordion>
+      
+      
+      
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -500,32 +520,25 @@ return (
           <Typography className={classes.heading}>Direcciones</Typography>
         </AccordionSummary>
         <AccordionDetails>
-       
-              <List >
-                
-              {[1,2,3].map((item, index) => (
-                
-              
-                <ListItem key={index}  >
+            <List >
+                {PERSONA.direcciones.map((item, index) => (
+             <ListItem key={index}  >
                 <ListItemAvatar onClick={() =>onDeleteDireccion(index)}>
-                    <Avatar>
-                    {(true)&&<PhoneAndroidRoundedIcon />}
+                  
+                    {(item.idrespuesta=='TC')&&<Avatar className={classes.avatar}><PhoneAndroidRoundedIcon  /></Avatar>}
+                    {(item.idrespuesta=='EM')&&<Avatar className={classes.avatar}><MailIcon  /></Avatar>}
+                    {(item.idrespuesta=='TW')&&<Avatar className={classes.avatar}><TwitterIcon  /></Avatar>}
 
-                    {/* {(item.texto.substr(0, 2)=='04')&&<PhoneAndroidRoundedIcon />}
-                    {(item.texto.substr(0, 2)=='02')&&<LocalPhoneIcon />}
-                    {(item.texto.indexOf('@') !== -1)&&<Email />} */}
-
-                    </Avatar>
                   </ListItemAvatar>
                 <ListItemText
-                 primary={'telefono'}
-                 secondary={'0414 389 89 39'}
+                 primary={item.respuesta}
+                 secondary={item.texto}
                 />                  
                   <IconButton onClick={() =>{onAccionDireccion('direcciones','delete',index)}}>
-                       <Delete />
+                       <Delete color="primary"/>
                      </IconButton>
                     <IconButton onClick={() =>onAccionDireccion('direcciones','edit',index)}>
-                           <Edit /><div></div>
+                           <Edit color="primary" /><div></div>
                      </IconButton>
                     
                 </ListItem>
@@ -534,15 +547,17 @@ return (
                  ))}
              <ListItem button onClick={() => onAccionDireccion('direcciones','new',0)}>
                 <ListItemAvatar>
-                 <Avatar>
-                  <AddIcon />
-                 </Avatar>
+                <Avatar className={classes.avatar}><AddIcon  /></Avatar>
+            
                 </ListItemAvatar>
                 <ListItemText primary="Añadir direccion." />
                 </ListItem>
                 </List>
-                 </AccordionDetails>
+                
+       </AccordionDetails>
       </Accordion>
+
+
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -553,37 +568,51 @@ return (
         </AccordionSummary>
         <AccordionDetails>
         <List >
-              {[1,2,3].map((item, index) => (
-                
+              {PERSONA.roles.map((item, index) => (               
               
                 <ListItem key={index}  >
                 <ListItemAvatar onClick={() =>onDeleteDireccion(index)}>
-                    <Avatar>
+                <Avatar className={classes.avatar}>
+                 
                       <PersonIcon />
                     </Avatar>
                   </ListItemAvatar>
                 <ListItemText
-                 primary={'item.respuesta'}
-                 secondary={'item.codcne'}
+                 primary={item.respuesta}
+                 secondary={
+                  <React.Fragment>
+                    {/* <Typography
+                      component="span"
+                      variant="body2"
+                      className={classes.inline}
+                      color="textPrimary"
+                    >
+                      to Scott, Alex, Jennifer
+                    </Typography> */}
+                    {item.codcne+" "+item.estadonombre+" "+item.municipionombre+" "+item.parroquianombre}
+                  </React.Fragment>}
                 /> 
-                
+               
                   
                 <IconButton onClick={() =>onAccionCaracteristica('roles','delete',index)}>
-                       <Delete />
+                       <Delete color="primary"/>
                      </IconButton>
                   
                 </ListItem>
- 
+    
           
-                 ))}
-                    <ListItem button onClick={() => onAccionCaracteristica('roles','new',0)}>
-          <ListItemAvatar>
-            <Avatar>
-              <AddIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Añadir rol." />
-        </ListItem>
+                 )
+                 
+                 )}
+               <ListItem button onClick={() => onAccionCaracteristica('roles','new',0)}>
+                   <ListItemAvatar>
+                       <Avatar className={classes.avatar}>
+                          <AddIcon />
+                       </Avatar>
+                   </ListItemAvatar>
+                   <ListItemText primary="Añadir rol." />
+               </ListItem>
+
            </List>
         </AccordionDetails>
       </Accordion>
@@ -595,7 +624,7 @@ return (
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}>Experiencia</Typography>
+          <Typography className={classes.heading}>Caracteristicas</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Caracteristicas />
@@ -709,18 +738,18 @@ return (
           aria-controls="panel3a-content"
           id="panel3a-header"
         >
-          <Typography className={classes.heading}>Disabled Accordion</Typography>
+          <Typography className={classes.heading}>Resultados</Typography>
         </AccordionSummary>
       </Accordion>
     </div>
 
 
     {flagOpenNewDireccion&&
-      <DialogoDireccionesNew />
+      <DialogoDireccionesNew handleOpen={handleFlagOpenNewDireccion}/>
         }
-        {flagOpenNewRol&&
-      <DialogoRolNew />
-        }
+    {flagOpenNewRol&&
+      <DialogoRolNew handleOpen={handleFlagOpenNewRol}/>
+    }
       <Dialog
           onClose={ closeDialog}
           aria-labelledby="customized-dialog-title"

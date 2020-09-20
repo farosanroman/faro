@@ -26,14 +26,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import MouseIcon from '@material-ui/icons/Mouse';
 
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
 import Link from '@material-ui/core/Link';
 //import Footer from '../layout/footer'
@@ -50,6 +43,7 @@ import SignInForm from '../login/signinform'
 import SignUpForm from '../login/signupform'
 import ChangePwdForm from '../login/changepwdform'
 import Ficha from './ficha'
+import Evento from './evento'
 //import SignInSide from './signinside'
 function Copyright() {
   return (
@@ -144,7 +138,7 @@ export default function HomeLogin(prop) {
   function Copyright() {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © BlackHole '}
+      {'Copyright © Faro del Cabo de San Roman '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -312,7 +306,7 @@ useEffect(() => {
         </DialogContent>
 
       </Dialog>  
-      
+       {/* Primera pagina */}
       {(loginPage==0)&&
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
@@ -321,7 +315,7 @@ useEffect(() => {
               MiFaro Personal
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-            Incorporate con la experiencia de la auutogestion de Faro
+            Incorporate con la experiencia de la autoregistro de Faro
                </Typography>
                
 
@@ -330,10 +324,13 @@ useEffect(() => {
 
         </div>
        }
-       {(loginPage==10)&&<Ficha />}
+      {/* Ficha */}
+       {(loginPage==10)&&<Ficha changePage={handleChangePage}/>}
+       {(loginPage==11)&&<Evento />}
+        {/* Fin */}
        <Snackbar
           open={openSnackBar}
-          autoHideDuration={5000}
+          autoHideDuration={3000}
           onClose={handleCloseSnackBar}
           anchorOrigin={{ vertical:'bottom', horizontal:'left' }}
        >

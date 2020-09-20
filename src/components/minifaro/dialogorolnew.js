@@ -105,7 +105,8 @@ export default function DialogoRolNew(props) {
    // onClick("V3664204")
    //alert('close')
    //props.closeDialog()
-   setOpen(false);
+  
+   props.handleOpen(false)
   }
  
   return (
@@ -203,7 +204,7 @@ export default function DialogoRolNew(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Borrar
+            Cancelar
           </Button>
           <Button onClick={handleClose} color="primary">
             Grabar

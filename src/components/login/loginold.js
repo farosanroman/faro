@@ -156,7 +156,7 @@ useEffect(() => {
   function Copyright() {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © BlackHole '}
+      {'Copyright © Faro del Cabo de San Roman '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
