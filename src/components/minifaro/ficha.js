@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect ,Fragment} from "react";
 import { useRecoilState,useRecoilValue} from "recoil";
 import {persona} from '../store/atomfaro';
 //import {useFetch}  from '../monedero/usefetch'
@@ -338,8 +338,9 @@ function closeDialog(id){
     };
   }
 return (
-    <>
- 
+  <Fragment>
+  <Grid container>
+    <Grid item sm={6} xs={12}>
   <Container component="main" maxWidth="xs">
   <br/>
   <Grid container spacing={3} justify="center" >
@@ -437,9 +438,11 @@ return (
    </Grid>
    </Grid>
 
+     
+   </Container>
 
-
-
+   </Grid>
+        <Grid item sm={6} xs={12}>
 
    <div className={classes.root}>
       <Accordion>
@@ -812,11 +815,11 @@ return (
           </DialogActions>
         </Dialog>
 
+        </Grid>
+      </Grid>
 
 
-     
-  </Container>
-</>
+</Fragment>
   );
 }
 
