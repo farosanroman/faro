@@ -9,16 +9,22 @@ Geocode.setApiKey("AIzaSyACfHViztnTvTHEdPC5tm-lMebjTQEwIsY");
 // Enable or disable logs. Its optional.
 Geocode.enableDebug(); 
 //<<<<<<MUY BUENO PARA VER EL JSON
+
 export  const getGeolocation=(position,callback)=>{
-  // alert(JSON.stringify(position))
+//  alert(JSON.stringify(position))
 // Get address from latidude & longitude.
-if (JSON.stringify(position)=="{}") return
+if (JSON.stringify(position)=="{}"){
+//alert("getlocation 15")
+  return
+} else{
+
+}
 Geocode.fromLatLng(position.latitude.toString(),position.longitude.toString()).then(
     
   //Geocode.fromLatLng("10.47186","-66.87202").then(
   response => {
 //    const address = response.results[0].formatted_address;
- //alert(JSON.stringify(response))
+// alert(JSON.stringify(response))
   // console.log(JSON.stringify(response));
 const addres = response.results[0].long_name;
       var countryshort="world";
@@ -86,7 +92,7 @@ for (var i = 0; i < address.length; i ++){
  
   },
   error => {
-    alert("error"+JSON.stringify(error))
+    alert("error getlocation GEOCODE Google"+JSON.stringify(error))
    
       var geolocation={country:"VE",countrylong:"VE",estado:"ES",municipio:"MU",municipiolong:"MUNICIPIO",ciudad:"VE",ciudadlong:"VE",urbanizacion:"URB",urbanizacionlong:"URB",ruta:"RUTA",rutalong:"RUTALONG",premisa:"PREMISA",premisalong:"PREMISALONG",postalcode:"postalcode"}
          callback(geolocation)
@@ -96,7 +102,8 @@ for (var i = 0; i < address.length; i ++){
 }
 //https://geo.ipify.org/api/v1?apiKey=at_masYl8oVUmgbnwlRkLVBGgUdrtufO&ipAddress=200.71.112.241
 export  const getLocation=(mensaje,callback)=>{
-  // alert(JSON.stringify(mensaje))
+  //OBTERNER la LAT y LONG
+   alert("getLocation "+JSON.stringify(mensaje))
   
    var url="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyACfHViztnTvTHEdPC5tm-lMebjTQEwIsY"
    // url="https://archivosamarillos.blob.core.windows.net/manualesfaro/0101.json"
@@ -128,7 +135,7 @@ export  const getLocation=(mensaje,callback)=>{
      var geolocation
  //    alert(JSON.stringify(mensaje))
      var location
-     var url="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDZ08hKl01qFilc3nJ4oRmO8wq49pcsw8s"
+     var url="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyACfHViztnTvTHEdPC5tm-lMebjTQEwIsY"
      // url="https://archivosamarillos.blob.core.windows.net/manualesfaro/0101.json"
      //alert(url)
      var mensaje=""

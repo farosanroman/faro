@@ -149,7 +149,8 @@ export default function Ficha(props) {
   const [value, setValue] = React.useState(3);
   const [photo, setPhoto] = React.useState('https://www.elnacional.com/wp-content/uploads/2019/08/ECwU4_MXoAMfTDV.jpg');
   const [expanded, setExpanded] = React.useState(false);
-  const [PERSONA, setPERSONA] = useRecoilState(persona);
+  const [CRUD, setCRUD] = React.useState({table:"",action:"",pos:0,new:{}});
+  const [PERSONA,setPERSONA] = useRecoilState(persona);
   const [flagOpenDireccion, setflagOpenDireccion] = React.useState(false);
    const [flagOpenNewDireccion, setflagOpenNewDireccion] = React.useState(false);
    const [flagOpenNewRol, setflagOpenNewRol] = React.useState(false);
@@ -201,9 +202,9 @@ export default function Ficha(props) {
       isValid: value => /^@?(\w){1,15}$/.test(value)
     }
   ]);
-  useEffect(() => {   
-    // alert(JSON.stringify(PERSONA))
-  },[]);  
+  // useEffect(() => {   
+  //    alert(JSON.stringify(PERSONA))
+  // },[PERSONA]);  
 const handleChange = (event, newValue) => {
 //tabs
   setValue(newValue);
@@ -268,6 +269,9 @@ if (accion=="edit"){
 
   }
   if (accion=="delete"){ 
+    var txt=PERSONA.direcciones[index].texto
+   
+    setCRUD({table:"DIR",texto:txt,pos:index})
     setflagOpenDialogoEliminar(true);
  }
 }
@@ -312,8 +316,23 @@ function onAccionCaracteristica(item,accion,index){
 function handlePostEliminar(e){
   //const handlePostEliminar = index => () => {
     //nueva nuev
-   // alert(JSON.stringify(e))
-    setflagOpenDialogoEliminar(false);
+    //alert(JSON.stringify(e))
+    if (e=="SI"){
+      if (CRUD.table=="DIR"){
+      var newP = Object.assign({}, PERSONA, {})
+    
+      var dirr = newP.direcciones[CRUD.pos];
+     ////    ADD ADD ADD
+      ////var newDir=[...newP.direcciones,dirr]
+      //  newP.direcciones=newDir
+     //
+     newP.direcciones=removeItemAtIndex(newP.direcciones, CRUD.pos);
+    
+        setPERSONA(newP)
+      }
+    }
+     setflagOpenDialogoEliminar(false);
+ 
   }
 function closeDialog(id){
   // alert("closeDialog")
@@ -789,6 +808,8 @@ return (
             </Button>
           </DialogActions>
         </Dialog>
+
+        
 <Dialog
           onClose={ closeDialog}
           aria-labelledby="customized-dialog-title"
@@ -799,7 +820,7 @@ return (
           </DialogTitle>
           <DialogContent dividers>
             <Typography gutterBottom>
-            01412 6340692
+                    {CRUD.texto} 
             </Typography>
             
           </DialogContent>
@@ -823,3 +844,10 @@ return (
   );
 }
 
+function replaceItemAtIndex(arr, index, newValue) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
+
+function removeItemAtIndex(arr, index) {
+  return [...arr.slice(0, index), ...arr.slice(index + 1)];
+}

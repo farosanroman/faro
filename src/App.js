@@ -31,7 +31,8 @@ const theme = createMuiTheme({
     error: red,
     warning: orange,
     succeess:green,
-    info:amber,
+    info:amber
+   
   }
 });
 //alert(JSON.stringify(indigo))
@@ -56,8 +57,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
      
-          {(pag==11110)&&<Login loginclick={onLoginClick} />}
+      {(pag==99)&&<Login loginclick={onLoginClick} />}
           {(pag==1)&&<Dashboard />}
+         
           {(pag==0)&&<MiniFaroLogin />}
          
   

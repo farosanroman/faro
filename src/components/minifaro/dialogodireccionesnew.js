@@ -27,17 +27,33 @@ export default function DialogoDireccionesNew(props) {
    // var flag=props.flagopen
  //  const { state, dispatch } = React.useContext(Application);
    //alert(JSON.stringify(props))
-   const [direcciones, setDireccion] = React.useState([]);
+   const [direccion, setDireccion] = React.useState(0);
    const [index, setIndex] = React.useState(props.index);
+   const [key, setKey] = React.useState(0);
   const [open, setOpen] = React.useState(true);
   const [flagOpen, setflagOpen] = React.useState(false);
   //const [{ dataPost, isLoadingPost, isErrorPost }, postData] = useFetchPost('');
   const [inputs, setInputs] = React.useState([
     {
+      id: 'email',
+      label: 'Email',
+      placeholder: 'john@acme.com',
+      value: '',
+      error: false,
+      helperText: 'Formato de Correo...',
+      getHelperText: error =>
+        error
+          ? 'Ooops. No tiene el formato de correo'
+          : 'Formato correcto',
+      isValid: value => /\S+@\S+\.\S+/.test(value)
+    }
+    ,
+    {
+
       id: 'phone',
       label: 'Phone',
       placeholder: '999-999-9999',
-      value: 'aaaa',
+      value: '',
       error: false,
       helperText: 'Any valid phone number will do',
       getHelperText: error =>
@@ -48,24 +64,13 @@ export default function DialogoDireccionesNew(props) {
         /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(
           value
         )
-    },
-    {
-      id: 'email',
-      label: 'Email',
-      placeholder: 'john@acme.com',
-      value: '',
-      error: false,
-      helperText: 'Any valid email address will do',
-      getHelperText: error =>
-        error
-          ? 'Ooops. No tiene el formato de correo'
-          : 'Formato correcto',
-      isValid: value => /\S+@\S+\.\S+/.test(value)
     }
+  
   ]);
+  const [input, setInput] = React.useState([])
   // useEffect(() => {   
-  //   setOpen(props.flagOpen)
-  // },[props.flagOpen]);  
+  //   setState(inputs[0])
+  // },[]);  
   function handleClickOpen(e) {
      //  alert(JSON.stringify(e))
     //alert(index)
@@ -73,7 +78,20 @@ export default function DialogoDireccionesNew(props) {
 
     setOpen(true);
   }
-
+  const handleChange = (event) => {
+    //alert(event.target.value)
+    //const name = event.target.value;
+    setKey(event.target.value);
+  };
+  function handlePost() {
+    alert(inputs[key].value)
+    // onClick("V3664204")
+    //alert('close')
+    //props.closeDialog()
+   // postData("https://faronosql.azurewebsites.net/api/VinotintoPostOauth?code=qnaytKAJlMzrAPNmn4SLxavP6JKqWqA2fpxNzvxbra8k4yJCTmQeIQ==",{id:"60",fecha:Date(),ppa:"ssss 3333",ppp:"xxxx  yyy xxxx"})
+    props.handleOpen(false)
+    //setOpen(false);
+   }
   function handleClose() {
    // onClick("V3664204")
    //alert('close')
@@ -82,22 +100,22 @@ export default function DialogoDireccionesNew(props) {
    props.handleOpen(false)
    //setOpen(false);
   }
-  const onChange = ({ target: { id, value } }) => {
-   
+  //const onChange = ({ target: { id, value } }) => {
+  const onChange = (event) => {
+  // alert(JSON.stringify(id+" "+value))
+  //console.log()
       const newInputs = [...inputs];
-      const index = inputs.findIndex(input => input.id === id);
-      //alert(index)
-      const input = inputs[index];
-      const isValid = input.isValid(value);
+
+      const input = inputs[key];
+      const isValid = input.isValid(event.target.value);
       console.log(isValid)
-      newInputs[index] = {
+      newInputs[key] = {
         ...input,
-        value: value,
+        value: event.target.value,
         error: !isValid,
         helperText: input.getHelperText(!isValid)
       };
-  
-      //setInputs(newInputs);
+      setInputs(newInputs);
     };
   return (
     <div>
@@ -113,16 +131,16 @@ export default function DialogoDireccionesNew(props) {
             Actualizacion de Direcciones.
           </DialogContentText>
           <Select
-          value={'correo'}
-          //onChange={handleChange}
+          value={direccion}
+          onChange={handleChange}
           inputProps={{
-            name: 'age',
+            name: 'Direccion',
             id: 'age-simple',
           }}
         >
-          <MenuItem value={'correo'}>Correo</MenuItem>
-          <MenuItem value={'celular'}>Celular</MenuItem>
-          <MenuItem value={'twitter'}>Twitter</MenuItem>
+          <MenuItem value={0}>Correo</MenuItem>
+          <MenuItem value={1}>Celular</MenuItem>
+          <MenuItem value={2}>Twitter</MenuItem>
         </Select>
         <br/>
           <TextField
@@ -130,10 +148,10 @@ export default function DialogoDireccionesNew(props) {
             margin="dense"
             id="email"
             label="Numero/Correo"
-            value={inputs[1].value}
+            value={inputs[key].value}
             onChange={onChange}
-            error={inputs[1].error}
-            helperText={inputs[1].helperText}
+            error={inputs[key].error}
+            helperText={inputs[key].helperText}
           />
         </DialogContent>
         
@@ -141,7 +159,7 @@ export default function DialogoDireccionesNew(props) {
           <Button onClick={handleClose} color="primary">
             Cancelar
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handlePost} color="primary">
             Grabar
           </Button>
         </DialogActions>

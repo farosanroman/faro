@@ -187,50 +187,7 @@ export default function HomeLogin(prop) {
 },[latitude]); 
 
 
-useEffect(() => {  
-  if (loginauth.name!=""){
-    ///
-    ///  AUDITORIA de la EXISTENCIA
-    ///
-    ///
-  setOpenSnackBar(true)
-  //alert(longitude)
-  setMensajeSnackBar("Autenticando el correo:"+loginauth.email+" de "+loginauth.name)
-  let redpoint={
-    "type":"FeatureCollection",
-    "features":[{
-      "type":"Feature",
-      "properties":{"nombre":loginauth.name,"correo":loginauth.email},                             
-      "geometry":{"type":"Point","coordinates":[longitude,latitude]
-      }
-    }]
-  }
-  postData("https://monederoapi.azurewebsites.net/api/PostLogin?code=4s4c6asgT45gDLabyqhrPd9Jp2oWBv28sSm0OnDthGS4e49oL2gkOw==",redpoint)
-  // setJSONDOC(redpoint)
-//console.log(redpoint)
 
-
-  if ( ['feas1997@gmail.com','ppazpurua@gmail.com','lospinos16.2017@gmail.com', 'rpiconh@gmail.com','isosab@gmail.com','guillermoacedo@gmail.com','antonio.azpurua@gmail.com','aveunalliv@gmail.com','oazpurua@gmail.com,gboyerizo@gmail.com','torres.andres87@gmail.com'].indexOf(loginauth.email)>-1){
-       setOpendialog(true) 
-       //alert(loginauth.email)
-      // setMAIL(loginauth.email)
-      // setCLIENTE(loginauth)
-       setControlmenues((loginauth.email=="ppazpurua@gmail.com")||(loginauth.email=="feas1997@gmail.com")||(loginauth.email=="oazpurua@gmail.com"))
-
-       // console.log(CLIENTE)
-  }else
-  { 
-    prop.loginclick(1)  
-    // setOpenSnackBar(true)
-    //setSnackbarcolor('red')
-    //setMensajeSnackBar(loginauth.email+" de "+loginauth.name+" No esta autorizado")
-  }
-}
-      // dispatch({
-      //   type: 'LOGIN',
-      //   stateprop: loginauth
-      // });
-},[loginauth]);
 
     function handleCloseSnackBar() {
       // onClick("V3664204")
@@ -301,8 +258,8 @@ useEffect(() => {
             Autenticate en la Red Ciudadana.
           </DialogContentText> 
           {(loginPage==1)&&<SignInForm changePage={handleChangePage}/>}
-          {/* {(loginPage==2)&&<SignUpForm changePage={handleLoginPage}/>}
-          {(loginPage==3)&&<ChangePwdForm changePage={handleLoginPage}/>}  */}
+           {(loginPage==2)&&<SignUpForm changePage={handleChangePage}/>}
+          {(loginPage==3)&&<ChangePwdForm changePage={handleChangePage}/>}  
         </DialogContent>
 
       </Dialog>  
