@@ -146,7 +146,7 @@ TabPanel.propTypes = {
 
 export default function Ficha(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(3);
+  const [value, setValue] = React.useState(0);
   const [photo, setPhoto] = React.useState('https://www.elnacional.com/wp-content/uploads/2019/08/ECwU4_MXoAMfTDV.jpg');
   const [expanded, setExpanded] = React.useState(false);
   const [CRUD, setCRUD] = React.useState({table:"",action:"",pos:0,new:{}});
@@ -321,7 +321,7 @@ function handlePostEliminar(e){
       if (CRUD.table=="DIR"){
       var newP = Object.assign({}, PERSONA, {})
     
-      var dirr = newP.direcciones[CRUD.pos];
+     // var dirr = newP.direcciones[CRUD.pos];
      ////    ADD ADD ADD
       ////var newDir=[...newP.direcciones,dirr]
       //  newP.direcciones=newDir
@@ -808,7 +808,6 @@ return (
             </Button>
           </DialogActions>
         </Dialog>
-
         
 <Dialog
           onClose={ closeDialog}

@@ -1,5 +1,7 @@
 import React,{useEffect} from 'react';
 //import { Application } from '../App';
+import { useRecoilState} from "recoil";
+import {persona} from '../store/atomfaro';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -27,6 +29,7 @@ export default function DialogoDireccionesNew(props) {
    // var flag=props.flagopen
  //  const { state, dispatch } = React.useContext(Application);
    //alert(JSON.stringify(props))
+   const [PERSONA,setPERSONA] = useRecoilState(persona);
    const [direccion, setDireccion] = React.useState(0);
    const [index, setIndex] = React.useState(props.index);
    const [key, setKey] = React.useState(0);
@@ -64,6 +67,19 @@ export default function DialogoDireccionesNew(props) {
         /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(
           value
         )
+    },
+    {
+      id: 'twitter',
+      label: 'Twitter',
+      placeholder: '@abcdef',
+      value: direccion,
+      error: false,
+      helperText: 'Un formato de nombre de Twitter',
+      getHelperText: error =>
+        error
+          ? 'Ooops. No tiene el formato de twitter'
+          : 'Formato twitter correcto',
+      isValid: value => /^@?(\w){1,15}$/.test(value)
     }
   
   ]);
@@ -84,13 +100,15 @@ export default function DialogoDireccionesNew(props) {
     setKey(event.target.value);
   };
   function handlePost() {
-    alert(inputs[key].value)
-    // onClick("V3664204")
-    //alert('close')
-    //props.closeDialog()
-   // postData("https://faronosql.azurewebsites.net/api/VinotintoPostOauth?code=qnaytKAJlMzrAPNmn4SLxavP6JKqWqA2fpxNzvxbra8k4yJCTmQeIQ==",{id:"60",fecha:Date(),ppa:"ssss 3333",ppp:"xxxx  yyy xxxx"})
+    //alert(inputs[key].value)
+    var newP = Object.assign({}, PERSONA, {})
+    
+    //var dirr = newP.direcciones[CRUD.pos];
+    var dirr = newP.direcciones[0];
+    var newDir=[...newP.direcciones,dirr]
+    newP.direcciones=newDir
+    setPERSONA(newP)
     props.handleOpen(false)
-    //setOpen(false);
    }
   function handleClose() {
    // onClick("V3664204")
