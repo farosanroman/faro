@@ -70,6 +70,19 @@ export const useFirebase = () => {
       });
  
  };
+//  firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+//     .then((userCredentials)=>{
+//         if(userCredentials.user){
+//           userCredentials.user.updateProfile({
+//             displayName: 'Frank S. Andrew'
+//           }).then((s)=> {
+//             this.props.navigation.navigate('Account');
+//           })
+//         }
+//     })
+//     .catch(function(error) {
+//       alert(error.message);
+//     });
  const sendPasswordResetEmail = email => {
   setIsError(false)
   setIsLoading(true)
