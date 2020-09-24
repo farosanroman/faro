@@ -205,10 +205,10 @@ export default function Ficha(props) {
   // useEffect(() => {   
   //    alert(JSON.stringify(PERSONA))
   // },[PERSONA]);  
-const handleChange = (event, newValue) => {
-//tabs
-  setValue(newValue);
-};
+// const handleChange = (event, newValue) => {
+// //tabs
+//   setValue(newValue);
+// };
 function handleEditPicture  () {
   //alert('handle')
   const fileInput = document.getElementById('imageInput');
@@ -249,8 +249,9 @@ if ((item=="direcciones")&&(accion=="new")){
 }      
       
 if (accion=="edit"){ 
+  setCRUD({table:"DIR",texto:txt,pos:index})
       setflagOpenDireccion(true);
-     
+      setInput(inputs[index])   
   var inp
   //celular
  // alert(dir.idrespuesta)
@@ -265,7 +266,7 @@ if (accion=="edit"){
     var inp=inputs[1]
     inp.value=dir.texto
     }
-      setInput(inp)
+  
 
   }
   if (accion=="delete"){ 
@@ -283,17 +284,28 @@ const handleFlagOpenNewRol=(action)=>{
 }
 const handlePostDireccion = (accion) => {   //de Faro
   //alert("accion")
-  var url="https://faronosql.azurewebsites.net/api/VinotintoPostOauth?code=qnaytKAJlMzrAPNmn4SLxavP6JKqWqA2fpxNzvxbra8k4yJCTmQeIQ=="
-  url="https://openfaroapi.azurewebsites.net/api/personaspost"
+  //var url="https://faronosql.azurewebsites.net/api/VinotintoPostOauth?code=qnaytKAJlMzrAPNmn4SLxavP6JKqWqA2fpxNzvxbra8k4yJCTmQeIQ=="
+  //url="https://openfaroapi.azurewebsites.net/api/personaspost"
   //var message={id:"63",fecha:Date(),celular:"0412999999",telefono:"0212777777777"}
-  var message={"identificacion":"V3664204",
-               "idcaracteristicaopcion":0,
-               "direcciones":[
-                        {"idrespuesta":"TC","texto":"04124444444","tipo":"Familiar"}
-                 ]
- }
+//   var message={"identificacion":"V3664204",
+//                "idcaracteristicaopcion":0,
+//                "direcciones":[
+//                         {"idrespuesta":"TC","texto":"04124444444","tipo":"Familiar"}
+//                  ]
+//  }
   //postData(url,message)
-
+ //alert(inputs[key].value)
+var newP = Object.assign({}, PERSONA, {})
+    
+ //var dirr = newP.direcciones[CRUD.pos];
+ var dir={"idpregunta":"xxx","pregunta":"pregunta","idrespuesta": "TC","respuesta": "CELULAR","codcne": "","descripcion": "","codcnenombre": "","idfuncional": "","funcionalnombre": "",
+   "lat": 0,"lng": 0,"idestado": "","idmunicipio": "","idparroquia": "","idcircunscripcion": "","estadonombre": "","municipionombre": "","parroquianombre": "","circunscripcionnombre": "","centronombre": "","texto": "041299999"
+ }
+ var dirr = newP.direcciones[0];
+ //var newDir=[...newP.direcciones,dir]
+ newP.direcciones[CRUD.pos].texto="000000000000"
+ setPERSONA(newP)
+// props.handleOpen(false)
    
    setflagOpenDireccion(false);
  }
@@ -348,13 +360,14 @@ function closeDialog(id){
   //  input.value=value
   //  input.error=!isValid
    // input.helperText=input.getHelperText(!isValid)
-    setInput(input)
+  
     var newInput = {
       ...input,
       value: value,
       error: !isValid,
       helperText: input.getHelperText(!isValid)
     };
+    setInput(newInput)
   }
 return (
   <Fragment>
@@ -797,12 +810,12 @@ return (
           />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handlePostDireccion} color="primary">
+            <Button onClick={() => setflagOpenDireccion(false)} color="primary">
               Salir
             </Button>
-            <Button onClick={handlePostDireccion} color="primary">
+            {/* <Button onClick={handlePostDireccion} color="primary">
               Borrar
-            </Button>
+            </Button> */}
             <Button onClick={handlePostDireccion} color="primary">
               Grabar
             </Button>

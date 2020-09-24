@@ -104,8 +104,11 @@ export default function DialogoDireccionesNew(props) {
     var newP = Object.assign({}, PERSONA, {})
     
     //var dirr = newP.direcciones[CRUD.pos];
-    var dirr = newP.direcciones[0];
-    var newDir=[...newP.direcciones,dirr]
+    var dir={"idpregunta":"xxx","pregunta":"pregunta","idrespuesta": "TC","respuesta": "CELULAR","codcne": "","descripcion": "","codcnenombre": "","idfuncional": "","funcionalnombre": "",
+      "lat": 0,"lng": 0,"idestado": "","idmunicipio": "","idparroquia": "","idcircunscripcion": "","estadonombre": "","municipionombre": "","parroquianombre": "","circunscripcionnombre": "","centronombre": "","texto": "041299999"
+    }
+    //var dirr = newP.direcciones[0];
+    var newDir=[...newP.direcciones,dir]
     newP.direcciones=newDir
     setPERSONA(newP)
     props.handleOpen(false)
