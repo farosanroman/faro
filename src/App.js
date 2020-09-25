@@ -57,7 +57,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
      
-      {(pag==99)&&<Login loginclick={onLoginClick} />}
+      {(pag==12)&&<Login loginclick={onLoginClick} />}
           {(pag==1)&&<Dashboard />}
          
           {(pag==0)&&<MiniFaroLogin />}

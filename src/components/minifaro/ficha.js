@@ -74,7 +74,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import PersonIcon from '@material-ui/icons/Person';
 import Caracteristicas from './caracteristicas'
 import DialogoDireccionesNew from './dialogodireccionesnew'
-
+import DialogoSos from './dialogosos'
 import DialogoRolNew from './dialogorolnew'
 //import IconButton from '@material-ui/core/IconButton';
 //import {useInterval} from '../hooks/useinterval'
@@ -151,6 +151,7 @@ export default function Ficha(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [CRUD, setCRUD] = React.useState({table:"",action:"",pos:0,new:{}});
   const [PERSONA,setPERSONA] = useRecoilState(persona);
+  const [flagOpenSos, setflagOpenSos] = React.useState(false);
   const [flagOpenDireccion, setflagOpenDireccion] = React.useState(false);
    const [flagOpenNewDireccion, setflagOpenNewDireccion] = React.useState(false);
    const [flagOpenNewRol, setflagOpenNewRol] = React.useState(false);
@@ -223,6 +224,16 @@ function handleEditPicture  () {
  //ref={fileInput=>this.fileInput=fileInput}
  fileInput.click();
 }; 
+const handleSos=()=> {
+  // alert('handle')
+  setflagOpenSos(true)
+   //setFlagOpenFormulario()
+ }; 
+ const handleCloseSos=()=> {
+  // alert('handle')
+  setflagOpenSos(false)
+   //setFlagOpenFormulario()
+ }; 
 const handleOpenVote=(page)=>{
 props.changePage(11)
 }
@@ -431,7 +442,7 @@ return (
       </IconButton>
     
       <IconButton color="primary"
-         //       onClick={handleSos}
+                onClick={handleSos}
 
 >
           <LocationOn />
@@ -778,7 +789,9 @@ return (
       </Accordion>
     </div>
 
-
+    {flagOpenSos&&
+    <DialogoSos closeSos={handleCloseSos}  />
+    }
     {flagOpenNewDireccion&&
       <DialogoDireccionesNew handleOpen={handleFlagOpenNewDireccion}/>
         }
