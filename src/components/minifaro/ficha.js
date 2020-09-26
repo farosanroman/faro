@@ -243,7 +243,7 @@ const handleGeo=()=> {
    //setFlagOpenFormulario()
  }; 
  const handleCloseGeo=()=> {
-  alert('handle')
+ // alert('handle')
   setflagOpenGeo(false)
    //setFlagOpenFormulario()
  }; 
