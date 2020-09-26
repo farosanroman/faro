@@ -76,6 +76,8 @@ import Caracteristicas from './caracteristicas'
 import DialogoDireccionesNew from './dialogodireccionesnew'
 import DialogoSos from './dialogosos'
 import DialogoRolNew from './dialogorolnew'
+import DialogoRolGeo from './dialogogeo'
+import DialogoGeo from "./dialogogeo";
 //import IconButton from '@material-ui/core/IconButton';
 //import {useInterval} from '../hooks/useinterval'
 //import { Sparklines, SparklinesBars } from 'react-sparklines';
@@ -152,6 +154,7 @@ export default function Ficha(props) {
   const [CRUD, setCRUD] = React.useState({table:"",action:"",pos:0,new:{}});
   const [PERSONA,setPERSONA] = useRecoilState(persona);
   const [flagOpenSos, setflagOpenSos] = React.useState(false);
+  const [flagOpenGeo, setflagOpenGeo] = React.useState(false);
   const [flagOpenDireccion, setflagOpenDireccion] = React.useState(false);
    const [flagOpenNewDireccion, setflagOpenNewDireccion] = React.useState(false);
    const [flagOpenNewRol, setflagOpenNewRol] = React.useState(false);
@@ -229,9 +232,19 @@ const handleSos=()=> {
   setflagOpenSos(true)
    //setFlagOpenFormulario()
  }; 
+const handleGeo=()=> {
+  // alert('handle')
+  setflagOpenGeo(true)
+   //setFlagOpenFormulario()
+ }; 
  const handleCloseSos=()=> {
   // alert('handle')
   setflagOpenSos(false)
+   //setFlagOpenFormulario()
+ }; 
+ const handleCloseGeo=()=> {
+  alert('handle')
+  setflagOpenGeo(false)
    //setFlagOpenFormulario()
  }; 
 const handleOpenVote=(page)=>{
@@ -382,6 +395,7 @@ function closeDialog(id){
   }
 return (
   <Fragment>
+     
   <Grid container>
     <Grid item sm={6} xs={12}>
   <Container component="main" maxWidth="xs">
@@ -436,13 +450,13 @@ return (
           <CameraAlt />
       </IconButton>
       <IconButton color="primary"
-       //onClick={handleClickFormulario}
+       onClick={handleSos}
       >
           <InsertComment />
       </IconButton>
     
       <IconButton color="primary"
-                onClick={handleSos}
+                onClick={handleGeo}
 
 >
           <LocationOn />
@@ -789,8 +803,13 @@ return (
       </Accordion>
     </div>
 
+    {flagOpenGeo&&
+    <DialogoGeo closeGeo={handleCloseGeo}/>
+  //  <DialogoSos closeSos={handleCloseSos}  />
+    }
+
     {flagOpenSos&&
-    <DialogoSos closeSos={handleCloseSos}  />
+   <DialogoSos closeSos={handleCloseSos}  />
     }
     {flagOpenNewDireccion&&
       <DialogoDireccionesNew handleOpen={handleFlagOpenNewDireccion}/>
@@ -863,7 +882,7 @@ return (
 
         </Grid>
       </Grid>
-
+   
 
 </Fragment>
   );
