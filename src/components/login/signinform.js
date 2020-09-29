@@ -144,8 +144,9 @@ export default function SignInForm(props) {
         //alert(JSON.stringify(data))
         if (data.flag==1){
           //
-          //
+          /////////////////////////////
           setPERSONA(data)
+          //////////////////////////////////////
           //SE AUTENTICO si existe en Faro   SE AUTENTICO
           //
           //

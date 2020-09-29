@@ -514,7 +514,7 @@ return (
 
    </Grid>
         <Grid item sm={6} xs={12}>
-
+        <br/>
    <div className={classes.root}>
       <Accordion>
         <AccordionSummary
@@ -526,7 +526,7 @@ return (
         </AccordionSummary>
         <AccordionDetails>
         <Paper >
-          <Table width="60%">
+        <Table width="200px">
                  <TableHead>
           <TableRow>
             <TableCell>Tipo</TableCell>
