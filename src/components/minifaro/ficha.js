@@ -65,8 +65,10 @@ import { grey } from '@material-ui/core/colors';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PhoneAndroidRoundedIcon from '@material-ui/icons/PhoneAndroidRounded';
+import PhoneIcon from '@material-ui/icons/Phone';
+import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
 import { Delete, Edit,Email } from '@material-ui/icons';
-import LocalPhoneIcon from '@material-ui/icons/LocalPhone'; 
+
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import MailIcon from '@material-ui/icons/Mail';
@@ -78,6 +80,7 @@ import DialogoSos from './dialogosos'
 import DialogoRolNew from './dialogorolnew'
 import DialogoRolGeo from './dialogogeo'
 import DialogoGeo from "./dialogogeo";
+import DialogoDatos from "./dialogodatos";
 //import IconButton from '@material-ui/core/IconButton';
 //import {useInterval} from '../hooks/useinterval'
 //import { Sparklines, SparklinesBars } from 'react-sparklines';
@@ -155,6 +158,7 @@ export default function Ficha(props) {
   const [PERSONA,setPERSONA] = useRecoilState(persona);
   const [flagOpenSos, setflagOpenSos] = React.useState(false);
   const [flagOpenGeo, setflagOpenGeo] = React.useState(false);
+  const [flagOpenDatos, setflagOpenDatos] = React.useState(false);
   const [flagOpenDireccion, setflagOpenDireccion] = React.useState(false);
    const [flagOpenNewDireccion, setflagOpenNewDireccion] = React.useState(false);
    const [flagOpenNewRol, setflagOpenNewRol] = React.useState(false);
@@ -233,10 +237,15 @@ const handleSos=()=> {
    //setFlagOpenFormulario()
  }; 
 const handleGeo=()=> {
-  // alert('handle')
+  // alert('geo')
   setflagOpenGeo(true)
    //setFlagOpenFormulario()
  }; 
+ const handleDatos=()=> {
+ // alert('datos')
+ setflagOpenDatos(true)
+  //setFlagOpenFormulario()
+}; 
  const handleCloseSos=()=> {
   // alert('handle')
   setflagOpenSos(false)
@@ -247,6 +256,11 @@ const handleGeo=()=> {
   setflagOpenGeo(false)
    //setFlagOpenFormulario()
  }; 
+ const handleCloseDatos=()=> {
+  // alert('handle')
+   setflagOpenDatos(false)
+    //setFlagOpenFormulario()
+  }; 
 const handleOpenVote=(page)=>{
 props.changePage(11)
 }
@@ -543,6 +557,47 @@ return (
                       <Typography  variant="subtitle2"> {'56'}</Typography>
                   </TableCell></TableRow>
 
+
+                  <TableRow><TableCell>
+                  <List >
+                
+                <ListItem button onClick={handleDatos}>
+                   <ListItemAvatar>
+                    <Edit color="primary" />
+               
+                   </ListItemAvatar>
+                   <ListItemText primary="Modificacion." />
+                   </ListItem>
+                   </List>
+                  </TableCell><TableCell align="right">
+                     
+                  </TableCell></TableRow>
+                  </TableBody>
+                  </Table>
+                  </Paper> 
+                 
+        </AccordionDetails>
+      </Accordion>
+      
+
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography className={classes.heading}>RE</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+        <Paper >
+          <Table width="60%">
+                 <TableHead>
+          <TableRow>
+            <TableCell>Tipo</TableCell>
+            <TableCell align="right">Descripcion</TableCell>
+          </TableRow>
+        </TableHead>  
+        <TableBody>  
                    <TableRow><TableCell>
                       <Typography  variant="subtitle2">Estado:</Typography>
                   </TableCell><TableCell align="right">
@@ -561,16 +616,20 @@ return (
                   <TableRow><TableCell>
                       <Typography  variant="subtitle2">Centro Votacion:</Typography>
                   </TableCell><TableCell align="right">
+                  
+                  </TableCell></TableRow>
+                  <TableRow><TableCell>
+                      <Typography  variant="subtitle2">Centro Votacion:</Typography>
+                  </TableCell><TableCell align="right">
                       <Typography  variant="subtitle2"> {'13020202' }</Typography>
                   </TableCell></TableRow>
+               
                   </TableBody>
                   </Table>
                   </Paper> 
+                 
         </AccordionDetails>
       </Accordion>
-      
-      
-      
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -584,7 +643,7 @@ return (
                 {PERSONA.direcciones.map((item, index) => (
              <ListItem key={index}  >
                 <ListItemAvatar onClick={() =>onDeleteDireccion(index)}>
-                  
+                {(item.idrespuesta=='TF')&&<Avatar className={classes.avatar}><LocalPhoneIcon  /></Avatar>}
                     {(item.idrespuesta=='TC')&&<Avatar className={classes.avatar}><PhoneAndroidRoundedIcon  /></Avatar>}
                     {(item.idrespuesta=='EM')&&<Avatar className={classes.avatar}><MailIcon  /></Avatar>}
                     {(item.idrespuesta=='TW')&&<Avatar className={classes.avatar}><TwitterIcon  /></Avatar>}
@@ -803,13 +862,21 @@ return (
       </Accordion>
     </div>
 
-    {flagOpenGeo&&
+    {/* {flagOpenGeo&&
     <DialogoGeo closeGeo={handleCloseGeo}/>
   //  <DialogoSos closeSos={handleCloseSos}  />
-    }
+    } */}
 
     {flagOpenSos&&
    <DialogoSos closeSos={handleCloseSos}  />
+    }
+  {flagOpenGeo&&
+    <DialogoGeo closeGeo={handleCloseGeo}/>
+  //  <DialogoSos closeSos={handleCloseSos}  />
+    }
+  {flagOpenDatos&&
+    <DialogoDatos closeDatos={handleCloseDatos}/>
+  //  <DialogoSos closeSos={handleCloseSos}  />
     }
     {flagOpenNewDireccion&&
       <DialogoDireccionesNew handleOpen={handleFlagOpenNewDireccion}/>

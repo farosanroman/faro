@@ -162,7 +162,9 @@ export default function HomeLogin(prop) {
   };
   const handleChangePage =(page)=>{
     setLoginPage(page)
+   if (page!=2){
     setOpenDialogMenu(false)
+   }
   }
   const handleCloseDialog = () => {
     //setLoginPage(0)

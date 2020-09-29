@@ -57,10 +57,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
      
-      {(pag==12)&&<Login loginclick={onLoginClick} />}
+      {(pag==0)&&<Login loginclick={onLoginClick} />}
           {(pag==1)&&<Dashboard />}
          
-          {(pag==0)&&<MiniFaroLogin />}
+          {(pag==2)&&<MiniFaroLogin />}
          
   
 

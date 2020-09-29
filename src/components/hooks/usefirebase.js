@@ -20,6 +20,9 @@ export const useFirebase = () => {
    const [error, setError] = useState(false);
    const [user, setUser] = useState(null);
 
+  //  useEffect(() => {
+  //     alert(JSON.stringify(user))
+  // }, [user])
    const signin = (email, password) => {
     setIsError(false)
     setIsLoading(true)
