@@ -3,6 +3,7 @@ import React,{useEffect,useState} from 'react';
 import { useRecoilState,useRecoilValue} from "recoil";
 import {persona} from '../store/atomfaro';
 import {useFirebase} from '../hooks/usefirebase';
+import {usePersona} from '../hooks/usepersona';
 //import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 //import { useRecoilState, useRecoilValueLoadable} from "recoil";
 //import { monederocomponente,onlinestatusflag} from '../../../../go/src/components/store/atom';
@@ -21,7 +22,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
-import {useFetch}  from '../hooks/usefetch'
+//import {useFetch}  from '../hooks/usefetch'
 import {useFetchPost}  from '../hooks/usefetchpost'
 
 //https://m.youtube.com/watch?feature=emb_logo&time_continue=1818&v=mrTPrbSoAx0   react forms hook
@@ -62,12 +63,18 @@ export default function SignInForm(props) {
   const classes = useStyles();
   const [mensaje,setMensaje]=useState("");
   const [ isLoading, isError , error, user,  signin,signup,signupgmail,signout,deleteuser,sendPasswordResetEmail,confirmPasswordReset] =useFirebase("");
+  const [isLoadingPersona, isErrorPersona ,dataPersona, getPersona, postPersona] =usePersona("");
+  
   const [openSnackBar,setOpenSnackBar]= useState(true);
   const [mensajeSnackBar,setMensajeSnackBar]= useState("");
-  const [ data, isLoadingFaro, isErrorFaro , fetchData] = useFetch("");
+  //const [ data, isLoadingFaro, isErrorFaro , fetchData] = useFetch("");
   const [PERSONA,setPERSONA] = useRecoilState(persona);
+  // React.useEffect(() => {
+  //   
+  // }, []);
  // const [COMPONENTE, setCOMPONENTE] = useRecoilState(monederocomponente);
   function clickSignin(event) {
+    //alert(JSON.stringify(PERSONA))
     //   alert("firebase user "+correo)
     setMensaje("user.user.uid")
     setOpenSnackBar(true)
@@ -108,13 +115,13 @@ export default function SignInForm(props) {
         //alert(loginn.email)
         setMensajeSnackBar("Autenticando la asignacion del correo:"+user.user.email+" de "+user.displayName)
          //user.email="ppazpurua@gmail.com"
-         const url='https://openfaroapi.azurewebsites.net/api/personagetv2?idorganizacion=16&identificacion=V6505691'
+       //  const url='https://openfaroapi.azurewebsites.net/api/personagetv2?idorganizacion=16&identificacion=V6505691'
       //   console.log(url)
-         fetchData(url)
+       //  fetchData(url)
         
        // fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
        //AQUI LA LA AUTENTICACION
-      
+         getPersona()    
       
        var log={mail:"ppazpu@gmail.com",idorganiacion:1,organizacion:"AD",idfuncional:2,funcional:"Comando",codcne:1212122929,nombrecodcne:"Colegio XYZ",idrol:202,rol:"coordinador",}
      }else{
@@ -134,18 +141,18 @@ export default function SignInForm(props) {
     },[isLoading, isError ,error, user, ]); 
 
     useEffect(() => {
-      //alert(JSON.stringify(data))
-      if (isLoadingFaro) {
+      //alert("usePersona "+JSON.stringify(dataPersona))
+      if (isLoadingPersona) {
       //  setFlagCircular(true)
       }
-      if ((data!=undefined)&&(!isLoadingFaro))      
+      if ((dataPersona!=undefined)&&(!isLoadingPersona))      
       {
         
         //alert(JSON.stringify(data))
-        if (data.flag==1){
+        if (dataPersona.flag==1){
           //
           /////////////////////////////
-          setPERSONA(data)
+         // setPERSONA(dataPersona)
           //////////////////////////////////////
           //SE AUTENTICO si existe en Faro   SE AUTENTICO
           //
@@ -160,7 +167,7 @@ export default function SignInForm(props) {
         }
         //ROJO
       }
-    },[data,isLoadingFaro]);
+    },[dataPersona,isLoadingPersona]);
 
     function handleCloseSnackBar() {
       // onClick("V3664204")

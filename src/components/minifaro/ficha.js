@@ -407,6 +407,12 @@ function closeDialog(id){
     };
     setInput(newInput)
   }
+  const ppa=(d)=>{
+    //var date=Date(d)
+    var dbDate = Date(d).split('T')[0];
+    //var datee= new Date(date).toLocaleDateString("en-US")
+    return d.split('T')[0];
+  }
 return (
   <Fragment>
      
@@ -515,6 +521,7 @@ return (
    </Grid>
         <Grid item sm={6} xs={12}>
         <br/>
+        <Container component="main" maxWidth="xs">
    <div className={classes.root}>
       <Accordion>
         <AccordionSummary
@@ -544,7 +551,7 @@ return (
                  <TableRow><TableCell>
                       <Typography  variant="subtitle2">Fecha Nacimiento:</Typography>
                   </TableCell><TableCell align="right">
-                      <Typography  variant="subtitle2"> {PERSONA.fechanacimientojson}</Typography>
+                      <Typography  variant="subtitle2"> {PERSONA.fechanacimientojson.split('T')[0]}</Typography>
                   </TableCell></TableRow>
                   <TableRow><TableCell>
                       <Typography  variant="subtitle2">Sexo:</Typography>
@@ -946,7 +953,7 @@ return (
             
           </DialogActions>
         </Dialog>
-
+        </Container>
         </Grid>
       </Grid>
    
