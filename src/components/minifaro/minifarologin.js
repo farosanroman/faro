@@ -285,7 +285,7 @@ export default function HomeLogin(prop) {
        }
       {/* Ficha */}
        {(loginPage==10)&&<Ficha changePage={handleChangePage}/>}
-       {(loginPage==11)&&<Evento />}
+       {(loginPage==11)&&<Evento changePage={handleChangePage}/>}
         {/* Fin */}
        <Snackbar
           open={openSnackBar}

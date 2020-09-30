@@ -69,10 +69,12 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
 import { Delete, Edit,Email } from '@material-ui/icons';
 
+import BallotIcon from '@material-ui/icons/Ballot';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import MailIcon from '@material-ui/icons/Mail';
 import TwitterIcon from '@material-ui/icons/Twitter';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import PersonIcon from '@material-ui/icons/Person';
 import Caracteristicas from './caracteristicas'
 import DialogoDireccionesNew from './dialogodireccionesnew'
@@ -81,6 +83,9 @@ import DialogoRolNew from './dialogorolnew'
 import DialogoRolGeo from './dialogogeo'
 import DialogoGeo from "./dialogogeo";
 import DialogoDatos from "./dialogodatos";
+
+import DialogoVoto from "./dialogovoto";
+import Tooltip from '@material-ui/core/Tooltip';
 //import IconButton from '@material-ui/core/IconButton';
 //import {useInterval} from '../hooks/useinterval'
 //import { Sparklines, SparklinesBars } from 'react-sparklines';
@@ -158,6 +163,8 @@ export default function Ficha(props) {
   const [PERSONA,setPERSONA] = useRecoilState(persona);
   const [flagOpenSos, setflagOpenSos] = React.useState(false);
   const [flagOpenGeo, setflagOpenGeo] = React.useState(false);
+  const [flagOpenVoto, setflagOpenVoto] = React.useState(false);
+ 
   const [flagOpenDatos, setflagOpenDatos] = React.useState(false);
   const [flagOpenDireccion, setflagOpenDireccion] = React.useState(false);
    const [flagOpenNewDireccion, setflagOpenNewDireccion] = React.useState(false);
@@ -241,6 +248,16 @@ const handleGeo=()=> {
   setflagOpenGeo(true)
    //setFlagOpenFormulario()
  }; 
+ const handleVoto=()=> {
+  // alert('geo')
+  setflagOpenVoto(true)
+   //setFlagOpenFormulario()
+ }; 
+ const handleCloseVoto=()=> {
+  // alert('handle')
+   setflagOpenVoto(false)
+    //setFlagOpenFormulario()
+  }; 
  const handleDatos=()=> {
  // alert('datos')
  setflagOpenDatos(true)
@@ -261,7 +278,7 @@ const handleGeo=()=> {
    setflagOpenDatos(false)
     //setFlagOpenFormulario()
   }; 
-const handleOpenVote=(page)=>{
+const handleOpenCR=(page)=>{
 props.changePage(11)
 }
 function handleImageChange  (e)  {
@@ -464,28 +481,51 @@ return (
       </CardContent>
     
       <CardActions disableSpacing>
+      <Tooltip title="Mi Avatar">
+
       <IconButton color="primary"
                 onClick={handleEditPicture}
       >
           <CameraAlt />
       </IconButton>
-      <IconButton color="primary"
-       onClick={handleSos}
-      >
-          <InsertComment />
-      </IconButton>
-    
+      </Tooltip>
+      <Tooltip title="Area Geospacial">
+
       <IconButton color="primary"
                 onClick={handleGeo}
 
 >
           <LocationOn />
+         
       </IconButton>
+      </Tooltip>
+      <Tooltip title="Observacion Cualitativa">
       <IconButton color="primary"
-                onClick={handleOpenVote}
+       onClick={handleSos}
+      
       >
-        <HowToVoteIcon />
+          <VisibilityIcon />
       </IconButton>
+      </Tooltip>
+    
+      <Tooltip title="Conteo Rapido">
+      <IconButton color="primary"
+                onClick={handleOpenCR}
+      >
+        <BallotIcon />
+       
+      </IconButton>
+      </Tooltip>
+      <Tooltip title="Votacion">
+
+<IconButton color="primary"
+          onClick={handleVoto}
+
+>
+    <HowToVoteIcon />
+   
+</IconButton>
+</Tooltip>
       
                <IconButton color="primary"
           className={clsx(classes.expand, {
@@ -497,6 +537,7 @@ return (
         >
           <ExpandMoreIcon />
         </IconButton>
+       
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
@@ -879,6 +920,10 @@ return (
     }
   {flagOpenGeo&&
     <DialogoGeo closeGeo={handleCloseGeo}/>
+  //  <DialogoSos closeSos={handleCloseSos}  />
+    }
+      {flagOpenVoto&&
+    <DialogoVoto closeVoto={handleCloseVoto}/>
   //  <DialogoSos closeSos={handleCloseSos}  />
     }
   {flagOpenDatos&&

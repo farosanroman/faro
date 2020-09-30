@@ -24,6 +24,10 @@ import { Grid, Paper, Typography } from "@material-ui/core";
 
 import Circle from 'react-circle';
 import Avatar from '@material-ui/core/Avatar';
+import PersonIcon from '@material-ui/icons/Person';
+
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
 //import Icon from '../helpers/icon';
 // import psuv from 'images/logo.png';
 // import mud from 'images/mud.png';
@@ -53,7 +57,7 @@ const style2={   Paper:{padding:1,marginTop:1,marginBottom:10,height:20}
 }
 
 
-export default function Evento() {
+export default function Evento(props) {
     const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
   
@@ -62,6 +66,9 @@ export default function Evento() {
     }
   
   
+    const handleChangePage=(page)=>{
+      props.changePage(10)
+      }
     const classes = useStyles();
   
 
@@ -145,11 +152,17 @@ export default function Evento() {
                 
                 </CardContent>
               </CardActionArea>
-              <CardActions>
-            
+              <CardActions disableSpacing>
+      <Tooltip title="Mi Avatar">
 
-               
-              </CardActions>
+      <IconButton color="primary" onClick={handleChangePage}
+      >
+          <PersonIcon />
+      </IconButton>
+      </Tooltip>
+     
+       
+      </CardActions>
             </Card>
         
            
