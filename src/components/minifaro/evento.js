@@ -1,7 +1,7 @@
 import React, { useState,Fragment } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-
+import Container from '@material-ui/core/Container';
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -39,7 +39,9 @@ import { MuiPickersUtilsProvider, KeyboardTimePicker,  KeyboardDatePicker,} from
 
 
 import TextField from '@material-ui/core/TextField';
-
+import ChartAperturaCierre from './chartaperturacierre'
+import ChartResultados from './chartresultados'
+import GeoCR from './geocr'
 const useStyles = makeStyles({
     card: {
       maxWidth: 350,
@@ -89,9 +91,12 @@ export default function Evento(props) {
 
   return (
     <Fragment>
+     
     <Grid container>
-      <Grid item sm={6} xs={12}>
-        
+      <Grid item sm={4} xs={12}>
+      <Container component="main" maxWidth="xs">
+     
+      <br/>
 <Card className={classes.card}>
               <CardActionArea>
                 <CardContent >
@@ -165,12 +170,12 @@ export default function Evento(props) {
       </CardActions>
             </Card>
         
-           
+           </Container>
         
         </Grid>
-        <Grid item sm={6} xs={12}>
-          
-        
+        <Grid item sm={4} xs={12}>
+        <Container component="main" maxWidth="xs">
+        <br/>
           <ExpansionPanel
             key={1}
             disabled={false}
@@ -364,7 +369,20 @@ margin="normal"
          </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
-          
+         <br />
+          <GeoCR />
+          </Container>
+
+
+        </Grid>
+ 
+        <Grid item sm={4} xs={12}>
+        <Container component="main" maxWidth="xs">
+          <br/>
+          <ChartAperturaCierre />
+          <br/>
+          <ChartResultados />
+          </Container>
         </Grid>
       </Grid>
 

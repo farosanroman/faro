@@ -167,7 +167,7 @@ export default function Login(props) {
   });
   const classes = useStyles();
   const [loginauth, setLoginAuth] = useState({uid:"0",name:"",photoURL:"",email:"",phone:"",cedula:"",lat:0,lng:0})
-  const [open, setOpen] = useState(false);
+  const [openRol, setOpenRol] = useState(false);
   const [flagDialog, setFlagDialog] = useState(false);
   
   const [pos, setPos] = useState(null);
@@ -244,8 +244,9 @@ function SignIn(user) {
       setOpenSnackBar(true)
       if (loginn.email!=""){
         setMensajeSnackBar("Autenticando la asignacion del correo:"+user.email+" de "+user.displayName)
-        //user.email="ppazpurua@gmail.com"
-        const url='http://openfaroapi.azurewebsites.net/api/autenticacionapp?login='+user.email+'&clave=9999&idfaroaplicacion=3&plataforma=SIN&uuid=SIN'
+        var email=user.email
+        email='ppazpurua@gmail.com'
+        const url='http://openfaroapi.azurewebsites.net/api/autenticacionapp?login='+email+'&clave=9999&idfaroaplicacion=3&plataforma=SIN&uuid=SIN'
      //   console.log(url)
         fetchData(url)
        
@@ -269,7 +270,7 @@ function SignIn(user) {
     {
       if (data[0].id==1){
      // alert(JSON.stringify(data))
-      setOpen(true)
+      setOpenRol(true)
       }else{
         setFlagDialog(true)
    
@@ -337,7 +338,7 @@ function SignIn(user) {
         postData("https://faronosql.azurewebsites.net/api/LogPost",logcosmosdb)
    
       //  console.log(logcosmosdb)
-           setOpen(false)
+           setOpenRol(false)
            setFLAGLOGIN(true)
            setLOGIN(loginauth)
 
@@ -492,7 +493,7 @@ function handleCloseSnackBar() {
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
           {/* onClose={handleClose} */}
-          <Dialog open={open}  aria-labelledby="form-dialog-title">
+          <Dialog open={openRol}  aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Seleccion del Rol</DialogTitle>
         <DialogContent>
           <DialogContentText>
