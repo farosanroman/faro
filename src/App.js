@@ -50,7 +50,9 @@ function App() {
   React.useEffect(() => {
     window.localStorage.setItem('farostorage20', JSON.stringify(state));
   }, [state]);
-
+  React.useEffect(() => {
+    alert("env "+JSON.stringify(process.env))
+   }, []);
   return (
     <Application.Provider value={{ state, dispatch }}>
      <RecoilRoot>
