@@ -57,14 +57,10 @@ function App() {
     <Application.Provider value={{ state, dispatch }}>
      <RecoilRoot>
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-     
+      <CssBaseline />     
       {(pag==0)&&<Login loginclick={onLoginClick} />}
-          {(pag==1)&&<Dashboard />}
-         
+          {(pag==1)&&<Dashboard />}         
           {(pag==2)&&<MiniFaroLogin />}
-         
-  
 
     </ThemeProvider>
     </RecoilRoot>
