@@ -58,10 +58,10 @@ function App() {
      <RecoilRoot>
     <ThemeProvider theme={theme}>
       <CssBaseline />     
-      {(pag==0)&&<Login loginclick={onLoginClick} />}
+       {(pag==0)&&<Login loginclick={onLoginClick} />}
           {(pag==1)&&<Dashboard />}         
           {(pag==2)&&<MiniFaroLogin />}
-
+    
     </ThemeProvider>
     </RecoilRoot>
   </Application.Provider>

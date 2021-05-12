@@ -22,7 +22,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
 import { MuiPickersUtilsProvider, KeyboardTimePicker,  KeyboardDatePicker,} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+//import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker } from "@material-ui/pickers";
 //import {fromAtomToJson} from '../dashboard/helpers'
 // import { useRecoilState,useRecoilValue} from "recoil";
@@ -220,7 +220,7 @@ return (
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
         disableFuture
         openTo="year"
@@ -230,7 +230,7 @@ return (
         value={selectedDate}
         onChange={handleDateChange}
       />
-      </MuiPickersUtilsProvider>
+      </MuiPickersUtilsProvider> */}
           </Grid>
         
           <Grid item xs={12} sm={6}>

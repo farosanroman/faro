@@ -34,7 +34,7 @@ import IconButton from '@material-ui/core/IconButton';
 // import otro from 'images/otro.png';
 
 import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
+//import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardTimePicker,  KeyboardDatePicker,} from '@material-ui/pickers';
 
 
@@ -186,7 +186,7 @@ export default function Evento(props) {
             <ExpansionPanelDetails>
               <Typography>
                
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid container className={classes.grid} justify="space-around">
      
         <KeyboardTimePicker
@@ -216,7 +216,7 @@ export default function Evento(props) {
           }}
         />
       </Grid>
-    </MuiPickersUtilsProvider>
+    </MuiPickersUtilsProvider> */}
          </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -314,7 +314,8 @@ export default function Evento(props) {
         value={100}
         //onChange={handleChange('name')}
         margin="normal"
-      /></Typography>
+      />
+      </Typography>
                   </TableCell>
                   </TableRow>
 

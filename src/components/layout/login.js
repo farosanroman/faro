@@ -218,7 +218,7 @@ export default function Login(props) {
     // // which will be called when the component is unmounted
     // return unregisterAuthObserver;
   
-
+//alert()
   }, []); // Important, pass an empty array so to execute useEffect hook only once
 
 //   useEffect(() => {   

@@ -1,7 +1,8 @@
 import React,{useEffect} from 'react';
 //import { Application } from '../App';
 import { useRecoilState} from "recoil";
-import {persona} from '../store/atomwallet';
+//import {persona} from '../store/atomwallet';
+import {persona} from '../store/atomfaro';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
