@@ -35,6 +35,7 @@ const theme = createMuiTheme({
 });
 //alert(JSON.stringify(indigo))
 function App() {
+  
   const initialState = () => JSON.parse(window.localStorage.getItem('farostorage20')) || defaultState;
   
   const [state, dispatch] = React.useReducer(reducer, initialState());
