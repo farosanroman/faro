@@ -201,32 +201,32 @@ const useStyles = makeStyles(theme => ({
     height: 400,
   },
 }));
-function getStepContent(step) {
-  switch (step) {
-    case 100:
-        return (
-          <Grid container spacing={3}>
-          <Grid item xs={12}>
+// function getStepContent(step) {
+//   switch (step) {
+//     case 100:
+//         return (
+//           <Grid container spacing={3}>
+//           <Grid item xs={12}>
          
-                 <Paper >
-                   {/* <Log /> */}
-                 <PrimeraPagina />
-                 </Paper>
-               </Grid>
-           </Grid>
-        )
+//                  <Paper >
+//                    {/* <Log /> */}
+//                  <PrimeraPagina />
+//                  </Paper>
+//                </Grid>
+//            </Grid>
+//         )
                
-     // return <AddressForm />;
-    case 1:
-            return  <AsignacionPasos />
-      //return <PaymentForm />;
-    case 2:
-            return  <AsignacionPasos />
+//      // return <AddressForm />;
+//     case 1:
+//             return  <AsignacionPasos />
+//       //return <PaymentForm />;
+//     case 2:
+//             return  <AsignacionPasos />
            
-    default:
-      throw new Error('Unknown step');
-  }
-}
+//     default:
+//       throw new Error('Unknown step');
+//   }
+// }
 export default function Dashboard() {
   const classes = useStyles();
 //  const [GETINDICADORES, setGETINDICADORES]= useRecoilState(getindicadores) 
@@ -412,7 +412,12 @@ setFlagDrawer(false)
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
-
+    <ListItem button onClick={handleComponent(12)}>
+      <ListItemIcon>
+        <EmojiObjectsIcon />
+      </ListItemIcon>
+      <ListItemText primary="PolyLines" />
+    </ListItem>
         <ListItem button  onClick={handleComponent(0)} >
       <ListItemIcon>
         <PersonPinCircleIcon />
@@ -421,35 +426,7 @@ setFlagDrawer(false)
     </ListItem>
     </List>
    
-    <Divider />
-      
-        <List>
-       
-    <ListItem button onClick={handleComponent(2)}>
-      <ListItemIcon>
-        <MailIcon />
-      </ListItemIcon>
-      <ListItemText primary="Mensajeria" />
-    </ListItem>
    
-    <ListItem button onClick={handleComponent(3)}>
-      <ListItemIcon>
-        <SendIcon />
-      </ListItemIcon>
-      <ListItemText primary="Envio" />
-    </ListItem>
-
-
-    <ListItem button onClick={handleComponent(4)}>
-      <ListItemIcon>
-        <PieChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Resultados" />
-    </ListItem>
-    
-  
-
-        </List> 
         <Divider />  
           
 
@@ -465,12 +442,7 @@ setFlagDrawer(false)
       </ListItemIcon>
       <ListItemText primary="Historia" />
     </ListItem>
-    <ListItem button onClick={handleComponent(12)}>
-      <ListItemIcon>
-        <EmojiObjectsIcon />
-      </ListItemIcon>
-      <ListItemText primary="PolyLines" />
-    </ListItem>
+  
 
     <ListItem button  onClick={handleComponent(10)} >
       <ListItemIcon>
@@ -494,6 +466,34 @@ setFlagDrawer(false)
 
       </List>
       <Divider />
+      
+      <List>
+     
+  <ListItem button onClick={handleComponent(2)}>
+    <ListItemIcon>
+      <MailIcon />
+    </ListItemIcon>
+    <ListItemText primary="Mensajeria" />
+  </ListItem>
+ 
+  <ListItem button onClick={handleComponent(3)}>
+    <ListItemIcon>
+      <SendIcon />
+    </ListItemIcon>
+    <ListItemText primary="Envio" />
+  </ListItem>
+
+
+  <ListItem button onClick={handleComponent(4)}>
+    <ListItemIcon>
+      <PieChartIcon />
+    </ListItemIcon>
+    <ListItemText primary="Resultados" />
+  </ListItem>
+  
+
+
+      </List> 
       <Divider />
        
         <List>
@@ -539,11 +539,11 @@ setFlagDrawer(false)
 
       <main className={classes.content}>
       <div className={classes.appBarSpacer} />
-      {(component==100)&&
+      {/* {(component==100)&&
          <Paper className={classes.paper}>
                {getStepContent(component)}
            </Paper>
-      }
+      } */}
 
      {false&&<div>!!!!!!!!!!!!Indicadores ARRANCA AQIO ARRANCA AQUI ARRANCA QUI!!!!!!!!!!</div>  }    
      {(component==1)&&
@@ -581,7 +581,7 @@ setFlagDrawer(false)
 
      </Container>
 }
-{false&&<div>!!!!!!!!!!!!Mensajes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>}
+
 {(component==2)&&
       <Container maxWidth="lg" className={classes.container}>
         <Mensajes />

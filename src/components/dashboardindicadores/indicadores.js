@@ -163,18 +163,25 @@ useEffect(() => {
        
         <Grid container spacing={3}>
       <Grid item xs={12} sm={6} md={3}>
-           <TotalCircle titulo={'Totales'} indicador={'Totalhh'} color={'#1bc943'} bcolor={"rgba(27, 201, 67, 0.15)"} porc={indicadores.indicadores[0].porc} total={indicadores.indicadores[0].cant} leyenda={'Total Acumulado'}/>
+      <TotalCircle titulo={'Totales'} indicador={'Totalhh'} color={'#1bc943'} bcolor={"rgba(27, 201, 67, 0.15)"} porc={25} total={23000} leyenda={'Total Acumulado'}/>
+           {/* <TotalCircle titulo={'Totales'} indicador={'Totalhh'} color={'#1bc943'} bcolor={"rgba(27, 201, 67, 0.15)"} porc={indicadores.indicadores[0].porc} total={indicadores.indicadores[0].cant} leyenda={'Total Acumulado'}/> */}
       </Grid>
 
      <Grid item xs={12} sm={6} md={3}>
-           <TotalCircle titulo={'Trimestral'} indicador={'Totalhh'} color={"dodgerblue"} bcolor={'rgb(230, 240, 255)'} porc={indicadores.indicadores[1].porc} total={indicadores.indicadores[1].cant} leyenda={'Total Acumulado'}/>
+     <TotalCircle titulo={'Trimestral'} indicador={'Totalhh'} color={"dodgerblue"} bcolor={'rgb(230, 240, 255)'} porc={12} total={5000} leyenda={'Total Acumulado'}/>
+     
+           {/* <TotalCircle titulo={'Trimestral'} indicador={'Totalhh'} color={"dodgerblue"} bcolor={'rgb(230, 240, 255)'} porc={indicadores.indicadores[1].porc} total={indicadores.indicadores[1].cant} leyenda={'Total Acumulado'}/>
+      */}
       </Grid>
         <Grid item xs={12} sm={6} md={3}>
-           <TotalCircle titulo={'Semanal'} indicador={'Totalhh'} color={"#11c5db"} bcolor={'rgb(230, 247, 255)'} porc={indicadores.indicadores[2].porc} total={indicadores.indicadores[2].cant} leyenda={'Total Acumulado'}/>
+           <TotalCircle titulo={'Semanal'} indicador={'Totalhh'} color={"#11c5db"} bcolor={'rgb(230, 247, 255)'} porc={10} total={123} leyenda={'Total Acumulado'}/>
+           {/* <TotalCircle titulo={'Semanal'} indicador={'Totalhh'} color={"#11c5db"} bcolor={'rgb(230, 247, 255)'} porc={indicadores.indicadores[2].porc} total={indicadores.indicadores[2].cant} leyenda={'Total Acumulado'}/>
+      */}
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-           <TotalCircle titulo={'Retiros'} indicador={'Totalhh'} color={'#f83245'} bcolor={'rgb(255, 235, 230)'} porc={0} total={0} leyenda={'Total Acumulado'}/>
-    
+           <TotalCircle titulo={'Retiros'} indicador={'Totalhh'} color={'#f83245'} bcolor={'rgb(255, 235, 230)'} porc={2} total={1500} leyenda={'Total Acumulado'}/>
+           {/* <TotalCircle titulo={'Retiros'} indicador={'Totalhh'} color={'#f83245'} bcolor={'rgb(255, 235, 230)'} porc={0} total={0} leyenda={'Total Acumulado'}/>
+     */}
       </Grid>
       </Grid>
 {/* 

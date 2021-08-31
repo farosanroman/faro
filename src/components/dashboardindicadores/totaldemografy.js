@@ -50,8 +50,17 @@ var p = props.resultados.masculino.map(function (resp, index) {
 //   return resp; 
 
 });
-setMasculinos(cantmasculinos)
-setFemeninos(cantfemeninos)
+
+
+setMasculinos([0.4, 0.65, 0.76, 0.88, 1.5, 2.1, 2.9, 3.8, 3.9, 4.2, 4, 4.3, 4.1, 4.2, 4.5,
+  3.9, 3.5, 3
+])
+setFemeninos([-0.8, -1.05, -1.06, -1.18, -1.4, -2.2, -2.85, -3.7, -3.96, -4.22, -4.3, -4.4,
+  -4.1, -4, -4.1, -3.4, -3.1, -2.8
+])
+// setMasculinos(cantmasculinos)
+// setFemeninos(cantfemeninos)
+
 setLabels(respuestas)
 setColors(['#FFFFFF', '#FDD017','#F88017', '#2554C7', '#000080'])
   }, [props.resultados]); // Important, pass an empty array so to execute useEffect hook only once

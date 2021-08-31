@@ -78,10 +78,8 @@ export default function DialogoFiltros(props) {
     //const [ dataR, isLoadingR, isErrorR , fetchDataR] = useFetch("");
     const [LOGIN, setLOGIN] = useRecoilState(login);
     const EEMMPP = useRecoilValue(eemmpp);
-    const [CODCNE, setCODCNE] = useRecoilState(codcne);
-  
-    const [ROLES, setROLES] = useRecoilState(roles);
-    
+    const [CODCNE, setCODCNE] = useRecoilState(codcne);  
+    const [ROLES, setROLES] = useRecoilState(roles);    
     const [FUNCIONALES, setFUNCIONALES] = useRecoilState(funcionales);
     const [ORGANIZACION, setORGANIZACION] = useRecoilState(organizacion);
     //const [GETINDICADORES, setGETINDICADORES]= useRecoilState(getindicadores) 

@@ -16,6 +16,16 @@ export default function TotalDonut(props) {
   const [ resultados, setResultados ] = React.useState( []);
   const [ labels, setLabels ] = React.useState( []);
   const INDICADORESORGANIZACION=useRecoilValue(indicadoresorganizacion) 
+
+  useEffect(() => {
+    //   console.log(JSON.stringify(props))
+     // alert(JSON.stringify(INDICADORESORGANIZACION))
+   
+   setResultados(23,45,67,78,78)
+   setLabels(['AD','PJ','UNT','VP','RP'])
+   setColors(['#ECF0F1', '#FDD017', '#2554C7', '#F88017','#000080'])
+ 
+     }, []); // Important, pass an empty array so to execute useEffect hook only once
   useEffect(() => {
  //   console.log(JSON.stringify(props))
   // alert(JSON.stringify(INDICADORESORGANIZACION))
@@ -41,6 +51,17 @@ setColors(['#ECF0F1', '#FDD017', '#2554C7', '#F88017','#000080'])
 }else{
   setColors(['#2E93fA', '#66DA26', '#546E7A', '#E91E63', '#FF9800'])
 }
+
+if (props.titulo=="Partidos"){
+setResultados([23,45,67,78,78])
+setLabels(['AD','PJ','UNT','VP','RP'])
+setColors(['#ECF0F1', '#FDD017', '#2554C7', '#F88017','#000080'])
+}
+if (props.titulo=="Roles"){
+  setResultados([23,45,67,78,78])
+  setLabels(['Testigo','Coordinador','Conteo','Movilizador','Motorizado'])
+  setColors(['#ECF0F1', '#FDD017', '#2554C7', '#F88017','#000080'])
+  }
   }, [props.resultados]); // Important, pass an empty array so to execute useEffect hook only once
 
  //  var colors=['#FFFFFF', '#FDD017','#F88017', '#2554C7', '#000080']
@@ -162,6 +183,7 @@ setColors(['#ECF0F1', '#FDD017', '#2554C7', '#F88017','#000080'])
                
         }
         var                 series=resultados
+      //  var                 series=[12,23,45]
                     return (
             <React.Fragment>
 <div className="donut">

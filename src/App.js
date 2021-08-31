@@ -11,13 +11,11 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import indigo from '@material-ui/core/colors/indigo';
 import amber from '@material-ui/core/colors/amber';
 
-import Login from './components/layout/login'
 import logo from './logo.svg';
 import './App.css';
 import { 	RecoilRoot } from 'recoil';
-
-
-import Dashboard from '../src/components/dashboard'
+import Login from './components/layout/login'
+import Dashboard from './components/dashboard'
 //import MiniFaro from '../src/components/login/minifaro'
 
 import MiniFaroLogin from './components/minifaro/minifarologin'
@@ -51,14 +49,14 @@ function App() {
     window.localStorage.setItem('farostorage20', JSON.stringify(state));
   }, [state]);
   React.useEffect(() => {
-    alert("env "+JSON.stringify(process.env))
+    //alert("env "+JSON.stringify(process.env))
    }, []);
   return (
     <Application.Provider value={{ state, dispatch }}>
      <RecoilRoot>
     <ThemeProvider theme={theme}>
       <CssBaseline />     
-       {(pag==0)&&<Login loginclick={onLoginClick} />}
+          {(pag==0)&&<Login loginclick={onLoginClick} />}
           {(pag==1)&&<Dashboard />}         
           {(pag==2)&&<MiniFaroLogin />}
     

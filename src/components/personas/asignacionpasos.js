@@ -208,7 +208,8 @@ export default function AsignacionPasos() {
                     disabled={false}
                   >
                     {activeStep === steps.length - 1 ? 'Asignar' : 'Proximo'}
-                  </Button> {flagCircular&&<CircularProgress variant="indeterminate"   disableShrink  size={17}   thickness={4} className={classes.progress} />}
+                  </Button> 
+                  {flagCircular&&<CircularProgress variant="indeterminate"   disableShrink  size={17}   thickness={4} className={classes.progress} />}
                 </div>
               </React.Fragment>
             )}

@@ -247,7 +247,7 @@ function SignIn(user) {
         var email=user.email
         email='ppazpurua@gmail.com'
         const url='http://openfaroapi.azurewebsites.net/api/autenticacionapp?login='+email+'&clave=9999&idfaroaplicacion=3&plataforma=SIN&uuid=SIN'
-     //   console.log(url)
+       console.log(url)
         fetchData(url)
        
       // fetchData('http://faro2018personas.azurewebsites.net/api/faroreapi_getpersonare?identificacion=V21119337');
@@ -376,7 +376,7 @@ function SignIn(user) {
        roles.push({idrol:r.idrol,nombrerol:r.nombrerol,selected:false}); 
       // }
      });
- // alert(JSON.stringify(roles))
+  //alert(JSON.stringify(roles))
      setROLES(roles) 
      props.loginclick(1)     
              /////////////////PRENDE LOS INDICADORES
@@ -642,18 +642,8 @@ function handleCloseSnackBar() {
           </Grid>
         </Container>
       </main>
-      {/* Footer */}
       <Footer />
-      {/* <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Detalles de Pizarra Electronica
-        </Typography>
-        <Copyright />
-      </footer> */}
-      {/* End footer */}
+    
       </div>
 
   );

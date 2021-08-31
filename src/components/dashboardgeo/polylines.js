@@ -13,20 +13,15 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
+
 import Typography from '@material-ui/core/Typography';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
+
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import Circle from 'react-circle';
-import NativeSelect from '@material-ui/core/NativeSelect';
 
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -153,7 +148,9 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
        
         console.log(JSON.stringify(PA))
         setFlagCircular(true);
+        //https://testfairy.com/blog/utilize-github-pages-as-json-api/
         var url="http://nodefaro.azurewebsites.net/parroquias"
+        url="https://farosanroman.github.io/farojson/parroquias.json"
 			 // url="https://archivosamarillos.blob.core.windows.net/manualesfaro/0101.json"
        //alert(url)
        fetch(url)        
@@ -167,6 +164,7 @@ const TOKEN="pk.eyJ1IjoiZmFyb21hcGJveCIsImEiOiJjamt6amF4c3MwdXJ3M3JxdDRpYm9ha2pz
 					//var pa=data.PA
 					//var pa=JSON.parse(data)
 					var pa=data;
+         // alert(pa.features.length)
            for (var i = 0; i < pa.features.length; i++) {
              
              pa.features[i].properties.CODCNE="000000";
@@ -432,7 +430,7 @@ return (
 
              <GeoJSONLayer
           data={CIUDADESGEO}
-          fillPaint={{'fill-color': 'black','fill-outline-color': 'black','fill-opacity': 0.6}}
+          fillPaint={{'fill-color': 'black','fill-outline-color': 'black','fill-opacity': 0.4}}
 
           linePaint={{
             'line-color': 'darkgray',
@@ -443,7 +441,7 @@ return (
     <GeoJSONLayer
            data={PA}
            fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
-           linePaint={{'line-color': 'purple','line-width': .3}}
+           linePaint={{'line-color': 'purple','line-width': .5}}
                      //fillOnMouseEnter={this.MouseEnter} 
          // fillOnClick={this.onFillMapClick}
        />  
@@ -468,7 +466,7 @@ return (
                    ]
           }
            ,'fill-outline-color': 'purple','fill-opacity': .2}}
-           linePaint={{'line-color': 'firebrick','line-width': 1}}
+           linePaint={{'line-color': 'firebrick','line-width': 1.5}}
                      //fillOnMouseEnter={this.MouseEnter} 
          // fillOnClick={this.onFillMapClick}
        />     
@@ -490,13 +488,13 @@ return (
          "circle-stroke-width": 1 }}         
          
           />
- <GeoJSONLayer
+ {/* <GeoJSONLayer
               data={CIRCUITOS}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
               linePaint={{'line-color': 'crimson','line-width': 1.5}}
          
              
-            />
+            /> */}
        <GeoJSONLayer
               data={ESTADOSGEO}
               fillPaint={{'fill-color': 'purple','fill-outline-color': 'purple','fill-opacity': 0.002}}
